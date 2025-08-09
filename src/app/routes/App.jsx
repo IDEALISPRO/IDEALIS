@@ -10,7 +10,7 @@ function App() {
       element: <HomePage />,
     },
       {
-      path: "/",
+      path: "/about",
       element: <AboutIDEALIS/>,
     },
   ]
