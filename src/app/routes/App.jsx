@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AboutIDEALIS, HomePage } from '../../pages'
 import '../styles/app.scss';
+import { Header } from "../../widgets";
 // import './App.css'
 
 function App() {
@@ -17,15 +18,15 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header/>
       <Routes>
         <Route index element={<HomePage />} />
         {routesArr?.map((item, index) => (
           <Route key={index} path={item.path} element={item.element} />
         ))}
       </Routes>
-      <ScrollButton />
-      <Footer />
+      {/* <ScrollButton /> */}
+      {/* <Footer /> */}
     </BrowserRouter>
   )
 }
