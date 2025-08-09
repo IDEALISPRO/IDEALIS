@@ -1,0 +1,1 @@
+export { TooltipButton } from './aboutIDEALISSections/missionsValues/TooltipButton'

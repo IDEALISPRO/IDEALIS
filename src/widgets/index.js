@@ -1,0 +1,1 @@
+export { MissionsValues } from './aboutIDEALISSections/missionsValues/MissionsValues'

@@ -1,0 +1,49 @@
+.tooltip-container {
+    position: relative;
+    display: inline-block; 
+    margin: 10px;
+
+    button {
+    position: relative;
+    padding: 24px 160px;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 40px;
+    border-radius: 60px;
+    background-color: white;
+    border: 2px solid black; 
+    transition: .3s all;
+    color: #163658;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #163659;
+        color: white;
+    }
+    }
+
+.tooltip-info {
+    width: 55%;
+    position: absolute;
+    transform: translateX(90%) translateY(-60%);
+    margin-top: 0px;
+    padding: 10px 60px;
+    background-color: white;
+    color: #163659;
+    border-radius: 20px;
+    z-index: 1000; 
+    border: #163658 solid 1px;
+    transition: .3s all;
+
+    .main-text{
+        font-size: 15px;
+    }
+    .disc-text{
+        font-size: 10px;
+    }
+    .link-text{
+        font-size: 15px;
+    }
+}
+}
+
