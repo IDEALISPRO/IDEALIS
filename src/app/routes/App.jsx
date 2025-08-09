@@ -17,15 +17,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route index element={<HomePage />} />
         {routesArr?.map((item, index) => (
           <Route key={index} path={item.path} element={item.element} />
         ))}
       </Routes>
-      <ScrollButton />
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   )
 }
