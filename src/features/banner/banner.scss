@@ -1,0 +1,23 @@
+.container{
+
+    .BannerTitale{
+        font-family: Oswald;
+        font-weight: 700;
+        font-style: Bold;
+        font-size: 295px;
+        line-height: 90%;
+        letter-spacing: -4%;
+        vertical-align: middle;
+        text-transform: uppercase;
+    }
+    .BannerDescription{
+        font-family: Inter;
+        font-weight: 400;
+        font-style: Regular;
+        font-size: 26px;
+        line-height: 100%;
+        letter-spacing: -6%;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}

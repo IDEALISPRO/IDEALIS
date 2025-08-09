@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { HomePage } from '../../pages'
 import '../styles/app.scss';
-import './App.css'
+// import './App.css'
 
 function App() {
   const routesArr = [
