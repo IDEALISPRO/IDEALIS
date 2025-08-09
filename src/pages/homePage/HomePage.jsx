@@ -1,8 +1,9 @@
-import Banner from "../../features/banner/Banner";
+import { Banner } from "../../features";
+
 export const HomePage = () => {
     return (
         <div>
-            <Banner title={"IDEALIS"} description={"Добро пожаловать в IDEALIS"} />
+            <Banner title={'IDEALIS'} description={'ОТКРОЙТЕ ДЛЯ СЕБЯ ИДЕАЛЬНОЕ СОЧЕТАНИЕ ТРАДИЦИЙ И СОВРЕМЕННЫХ ТЕХНОЛОГИЙ СТРОИТЕЛЬСТВА' }/>
         </div>
     );
 }

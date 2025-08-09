@@ -1,11 +1,11 @@
 import React from 'react';
 import './banner.scss';
 
-export default function Banner({ title, description }) {
+export function Banner({ title, description }) {
   return (
     <div className='container'>
-      <p className='BannerTitale'>{title}</p>
-      <p className='BannerDescription'>{description}</p>
+      <p className='BannerTitle'>{title}</p>
+      <strong><p className='BannerDescription'>{description}</p></strong>
     </div>
   );
 }

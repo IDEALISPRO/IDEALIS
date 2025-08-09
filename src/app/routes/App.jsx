@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { HomePage } from '../../pages'
+import { AboutIDEALIS, HomePage } from '../../pages'
 import '../styles/app.scss';
 // import './App.css'
 
@@ -9,19 +9,22 @@ function App() {
       path: "/",
       element: <HomePage />,
     },
+      {
+      path: "/about",
+      element: <AboutIDEALIS/>,
+    },
   ]
 
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route index element={<HomePage />} />
         {routesArr?.map((item, index) => (
           <Route key={index} path={item.path} element={item.element} />
         ))}
       </Routes>
-      <ScrollButton />
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   )
 }
