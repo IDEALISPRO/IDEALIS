@@ -1,0 +1,11 @@
+export { HomePage } from './homePage/HomePage';
+export { AboutIDEALIS } from './aboutIDEALIS/AboutIDEALIS';
+export { ApplicationForm } from './applicationForm/ApplicationForm';
+export { ChangeObject } from './changeObject/ChangeObject';
+export { Contacts } from './contacts/Contacts';
+export { CreateObject } from './createObject/CreateObject';
+export { Favorites } from './favorites/Favorites';
+export { NewBuilding } from './newBuilding/NewBuilding';
+export { News } from './news/News';
+export { ObjectDetail } from './objectDetail/ObjectDetail';
+export { Services } from './services/Services';
