@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AboutIDEALIS, HomePage } from '../../pages'
 import '../styles/app.scss';
 // import './App.css'
+import { ThemeProvider } from "@mui/material/styles";
+import {theme} from "../../shared/SiteTheme/SiteTheme"; 
 
 function App() {
   const routesArr = [
@@ -15,7 +17,8 @@ function App() {
     },
   ]
 
-  return (
+  return (    
+  <ThemeProvider theme={theme}>
     <BrowserRouter>
       {/* <Header /> */}
       <Routes>
@@ -26,6 +29,8 @@ function App() {
       </Routes>
       {/* <Footer /> */}
     </BrowserRouter>
+    
+    </ThemeProvider>
   )
 }
 
