@@ -1,4 +1,4 @@
-.objBtn{
+.objBtn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,28 +7,27 @@
     border-width: 2px;
     height: 470px;
     border-radius: 16px;
-    border: 1px solid black;
+    border: 1px solid #163659;
     gap: 22px;
     background: #fff;
     transition: .3s;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
+        background-color: #163659;
+        color: #fff;
+
+        .objBtn__btn {
             background-color: #163659;
-            color: #fff;
-
-            .objBtn__btn{
-                border: 0px;
-                background-color: #163659;
-            }
-
-            .objBtn__btn__svg{
-                transition: .3s; 
-                filter: brightness(0) invert(1);
-            }
         }
 
-    &__btn{
+        .objBtn__btn__svg {
+            transition: .3s;
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    &__btn {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -36,12 +35,100 @@
         border-radius: 50%;
         width: 200px;
         height: 200px;
-        border: 2px solid black;
+        border: 2px solid #163659;
     }
 
-    &__text{
+    &__text {
         font-family: Inter;
         font-weight: 400;
         font-size: 22px;
+    }
+}
+
+@media screen and (max-width:1400px) {
+    .objBtn {
+        margin-bottom: 75px;
+    }
+}
+
+
+@media screen and (max-width:992px) {
+    .objBtn {
+        width: 350px;
+        height: 420px;
+
+        &__btn {
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .objBtn {
+        width: 265px;
+        height: 300px;
+        margin-bottom: 30px;
+
+        &__btn {
+            width: 130px;
+            height: 130px;
+        }
+
+        &__text {
+            font-size: 18px
+        }
+    }
+}
+
+@media screen and (max-width:576px) {
+    .objBtn {
+        width: 200px;
+        height: 235px;
+
+        &__btn {
+            width: 100px;
+            height: 100px;
+
+            &__svg {
+                width: 50px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:440px) {
+    .objBtn {
+        width: 165px;
+        height: 200px;
+
+        &__btn {
+            width: 80px;
+            height: 80px;
+
+            &__svg {
+                width: 30px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:414px) {
+    .objBtn {
+        width: 140px;
+        height: 180px;  
+
+        &__btn {
+            width: 70px;
+            height: 70px;
+
+            &__svg {
+                width: 20px;
+            }
+        }
+
+        &__text{
+            font-size: 12px;
+        }
     }
 }

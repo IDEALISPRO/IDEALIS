@@ -24,6 +24,17 @@
         border-bottom: 1px solid #00000066;
         padding-bottom: 30px;
 
+        &__mobile {
+            display: none;
+            text-align: center;
+            font-family: Oswald;
+            font-weight: 600;
+            font-size: 36px;
+            text-transform: uppercase;
+            color: #323232;
+            text-align: start;
+        }
+
         &__text {
             text-align: center;
             font-family: Oswald;
@@ -51,6 +62,100 @@
             font-family: Inter;
             font-weight: 400;
             font-size: 18px;
+        }
+
+        &__mobile {
+            display: none;
+            color: #323232;
+            font-family: Inter;
+            font-weight: 400;
+            font-size: 18px;
+        }
+    }
+}
+
+@media screen and (max-width:1400px) {
+    .objects {
+        &__cards {
+            grid-template-columns: repeat(2, auto);
+            padding: 0 10px;
+        }
+
+        &__title {
+            margin: 0 auto;
+            width: 95%;
+        }
+
+        &__info {
+            margin: 0 auto;
+            width: 95%;
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .objects {
+        &__title {
+            padding-bottom: 24px;
+
+            &__text {
+                font-size: 30px;
+            }
+        }
+
+        &__info {
+            &__res {
+                font-size: 16px;
+            }
+
+            &__count {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:576px) {
+    .objects {
+
+        .flex-cont {
+            width: 90%;
+        }
+
+        &__title {
+            &__mobile {
+                font-size: 30px;
+                display: block;
+            }
+
+            &__text {
+                display: none;
+            }
+        }
+
+        &__info {
+            &__count {
+                display: none;
+            }
+
+            &__mobile {
+                font-size: 16px;
+                display: inline;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:414px) {
+    .objects {
+        &__info {
+            &__res{
+                font-size: 13px;
+            }
+
+           &__mobile{
+                font-size: 13px;
+           } 
         }
     }
 }

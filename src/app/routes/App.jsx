@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AboutIDEALIS, HomePage } from '../../pages'
-import { Header} from '../../widgets';
+import { Header } from '../../widgets';
 import '../styles/app.scss';
 // import './App.css'
 
@@ -10,9 +10,9 @@ function App() {
       path: "/",
       element: <HomePage />,
     },
-      {
+    {
       path: "/about",
-      element: <AboutIDEALIS/>,
+      element: <AboutIDEALIS />,
     },
   ]
 

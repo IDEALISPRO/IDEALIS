@@ -102,15 +102,16 @@ export const ObjectsSections = () => {
             <div className="flex-cont">
                 <div className="objects__title">
                     <h1 className='objects__title__text'>Количество найденных объектов</h1>
+                    <h1 className='objects__title__mobile'>Кол-во найденных объектов</h1>
                 </div>
 
                 <div className="objects__info">
                     <p className='objects__info__res'>Результаты</p>
 
                     <p className='objects__info__count'>{data[0].id}-{data[9].id} из 12118 найденных объектов</p>
+                    <p className='objects__info__mobile'>{data[9].id} найденных объектов</p>
                 </div>
             </div>
-
 
             <div className="objects__cards">
                 {
@@ -126,9 +127,9 @@ export const ObjectsSections = () => {
                         />
                     ))
                 }
-
                 <ObjectsBtn />
             </div>
+
         </div>
     );
 }
