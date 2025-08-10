@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AboutIDEALIS, HomePage } from '../../pages'
+import { Header} from '../../widgets';
 import '../styles/app.scss';
 // import './App.css'
 
@@ -24,8 +25,8 @@ function App() {
           <Route key={index} path={item.path} element={item.element} />
         ))}
       </Routes>
-      <ScrollButton />
-      <Footer />
+      {/* <ScrollButton /> */}
+      {/* <Footer /> */}
     </BrowserRouter>
   )
 }

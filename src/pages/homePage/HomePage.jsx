@@ -1,8 +1,9 @@
+import { ObjectsSections } from "../../widgets";
 
 export const HomePage = () => {
     return (
-        <div>
-            
+        <div className="container">
+            <ObjectsSections />
         </div>
     );
 }

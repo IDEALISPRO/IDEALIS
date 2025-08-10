@@ -1,0 +1,56 @@
+.objects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        border-bottom: 1px solid #00000066;
+        padding-bottom: 20px;
+        margin-bottom: 80px;
+        gap: 20px;
+    }
+
+    .flex-cont {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        border-bottom: 1px solid #00000066;
+        padding-bottom: 30px;
+
+        &__text {
+            text-align: center;
+            font-family: Oswald;
+            font-weight: 600;
+            font-size: 36px;
+            text-transform: uppercase;
+            color: #323232;
+        }
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 18px;
+
+        &__res {
+            color: #323232;
+            font-family: Inter;
+            font-weight: 400;
+            font-size: 18px;
+        }
+
+        &__count {
+            color: #323232;
+            font-family: Inter;
+            font-weight: 400;
+            font-size: 18px;
+        }
+    }
+}
