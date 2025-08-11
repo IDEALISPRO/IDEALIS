@@ -127,7 +127,16 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 8,
+          padding: "18px 24px",
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+           "& .MuiInputBase-root": {
+            padding: "2px 14px", // отступы внутри поля
+          },
         },
       },
     },
