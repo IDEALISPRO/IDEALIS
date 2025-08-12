@@ -1,0 +1,1 @@
+export { Navigate } from './homeSections/navigate/Navigate.jsx';
