@@ -12,11 +12,11 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Slider from '@mui/material/Slider';
+import Box from '@mui/material/Box';
 
 function valuetext(value) {
   return `${value}°C`;
 }
-
 const minDistance = 1000;
 
 export const FilterWidget = () => {
@@ -96,119 +96,192 @@ export const FilterWidget = () => {
           ГОРЯЧИЕ ВАРИАНТЫ
         </ToggleButton>
       </ToggleButtonGroup>
-      <div style={{ display: "grid", gap: "18px" }}>
-        <Grid container spacing={3} sx={{ gap: "18px" }} alignItems="center">
-          <Grid item size={{ xs: 4 }}>
-            <Select
-              value={age}
-              onChange={handleChange}
-              displayEmpty
-              sx={{ width: "100%" }}
-              inputProps={{ 'aria-label': 'Without label' }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
+      <Box component="section" alignItems="center" container >
+        <Grid sx={{gap: "18px", display: "grid"}}>
+          <Grid container columnSpacing={2}>
+            <Grid item size={{ xs: 4 }}>
+              <Select
+                value={age}
+                onChange={handleChange}
+                displayEmpty
+                sx={{ width: "100%" }}
+                fullWidth
+                inputProps={{ 'aria-label': 'Without label' }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </Grid>
+
+            <Grid item size={{ xs: 4 }}>
+              <Select
+                value={age}
+                onChange={handleChange}
+                displayEmpty
+                sx={{ width: "100%" }}
+                fullWidth
+                inputProps={{ 'aria-label': 'Without label' }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </Grid>
+
+            <Grid item size={{ xs: 4 }}>
+              <Select
+                value={age}
+                onChange={handleChange}
+                displayEmpty
+                sx={{ width: "100%" }}
+                fullWidth
+                inputProps={{ 'aria-label': 'Without label' }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </Grid>
           </Grid>
-          <Grid item size={{ xs: 4 }}>
-            <Select
-              value={age}
-              onChange={handleChange}
-              displayEmpty
-              sx={{ width: "100%" }}
-              inputProps={{ 'aria-label': 'Without label' }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </Grid>
-          <Grid item size={{ xs: 4 }}>
-            <Select
-              value={age}
-              onChange={handleChange}
-              displayEmpty
-              sx={{ width: "100%" }}
-              inputProps={{ 'aria-label': 'Without label' }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
+
+          <Grid container columnSpacing={2} alignItems="center">
+            <Grid item size={{ xs: 4 }}>
+              <Select
+                value={age}
+                onChange={handleChange}
+                displayEmpty
+                sx={{ width: "100%" }}
+                fullWidth
+                inputProps={{ 'aria-label': 'Without label' }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </Grid>
+
+            <Grid item size={{ xs: 4 }}>
+              <Select
+                value={age}
+                onChange={handleChange}
+                displayEmpty
+                sx={{ width: "100%" }}
+                fullWidth
+                inputProps={{ 'aria-label': 'Without label' }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </Grid>
+
+            <Grid item size={{ xs: 4 }}>
+              <Select
+                value={age}
+                onChange={handleChange}
+                displayEmpty
+                sx={{ width: "100%" }}
+                fullWidth
+                inputProps={{ 'aria-label': 'Without label' }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </Grid>
           </Grid>
         </Grid>
-        <Grid container spacing={3} sx={{ gap: "18px" }} alignItems="center">
-          <Grid item size={{ xs: 4 }}>
-            <Select
-              value={age}
-              onChange={handleChange}
-              displayEmpty
-              sx={{ width: "100%" }}
-              inputProps={{ 'aria-label': 'Without label' }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </Grid>
-          <Grid item size={{ xs: 4 }}>
-            <Select
-              value={age}
-              onChange={handleChange}
-              displayEmpty
-              sx={{ width: "100%" }}
-              inputProps={{ 'aria-label': 'Without label' }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </Grid>
-          <Grid item size={{ xs: 4 }}>
-            <Select
-              value={age}
-              onChange={handleChange}
-              displayEmpty
-              sx={{ width: "100%" }}
-              inputProps={{ 'aria-label': 'Without label' }}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </Grid>
+      </Box>
+      <Grid container spacing={2} sx={{ width: "100%", marginTop: "18px" }}>
+        <Grid item size={{ xs: 12, md: 6 }} sx={{ padding: "25px 0px" }}>
+          <Box component="section" sx={{ p: 2, border: '1px solid #00000066', borderRadius: 2 }}>
+            <h1 style={{ marginTop: "18px" }}>Цена</h1>
+            <h4>{`${value1[0]}`}</h4>
+            <h4>{`${value1[1]}`}</h4>
+            <Slider
+              getAriaLabel={() => 'Minimum distance'}
+              value={value1}
+              onChange={handleChangeSlider}
+              valueLabelDisplay="auto"
+              min={100000}
+              max={10000000}
+              step={100000}
+              getAriaValueText={valuetext}
+              disableSwap
+            />
+          </Box>
         </Grid>
-      </div>
-      <Slider
-        getAriaLabel={() => 'Minimum distance'}
-        value={value1}
-        onChange={handleChangeSlider}
-        valueLabelDisplay="auto"
-        min={100000}       // минимальное значение
-        max={10000000}      // максимальное значение
-        step={100000}
-        getAriaValueText={valuetext}
-        disableSwap
-      />
+
+        <Grid item size={{ xs: 12, md: 6 }} sx={{ gap: "18px", display: "grid" }}>
+          <Select
+            value={age}
+            onChange={handleChange}
+            displayEmpty
+            sx={{ width: "100%" }}
+            fullWidth
+            inputProps={{ 'aria-label': 'Without label' }}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+          <Select
+            value={age}
+            onChange={handleChange}
+            displayEmpty
+            sx={{ width: "100%" }}
+            fullWidth
+            inputProps={{ 'aria-label': 'Without label' }}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+          <Select
+            value={age}
+            onChange={handleChange}
+            displayEmpty
+            sx={{ width: "100%" }}
+            fullWidth
+            inputProps={{ 'aria-label': 'Without label' }}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </Grid>
+
+      </Grid>
+
+
     </section >
   );
 };
