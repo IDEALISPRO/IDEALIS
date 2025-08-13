@@ -1,3 +1,4 @@
+import React from 'react';
 import { FilterWidget } from "../../widgets/FilterWidget/FilterWidget";
 
 export const HomePage = () => {

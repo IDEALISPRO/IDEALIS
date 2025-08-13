@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AboutIDEALIS, HomePage } from '../../pages'
 import '../styles/app.scss';
