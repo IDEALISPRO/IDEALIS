@@ -13,6 +13,7 @@ function App() {
       path: "/about",
       element: <AboutIDEALIS/>,
     },
+
   ]
 
   return (
