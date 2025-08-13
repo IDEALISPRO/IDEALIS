@@ -48,6 +48,7 @@
         }
 
         &__price {
+            font-family: Roboto Condensed;
             font-family: Inter;
             font-weight: 600;
             font-size: 26px;
@@ -63,7 +64,6 @@
             border-radius: 8px;
             width: 100%;
             height: 40px;
-            gap: 10px;
             border: none;
             color: #fff;
             background-color: #163659;
@@ -80,15 +80,9 @@
             }
         }
 
-        &__phone {
-            &__mark {
-                width: 20px;
-            }
-        }
-
         &__phone,
         &__like {
-            width: 40px;
+            width: 60px;
             height: 40px;
             border: 1px solid black;
             border-radius: 4px;
@@ -99,9 +93,16 @@
             align-items: center;
             cursor: pointer;
 
+            path{
+                fill: white;
+                transition: .3s;
+                stroke:#00000066;
+            }
+
             .red {
-                fill: red;
-                stroke: none;
+                path{
+                    fill: red;
+                }
             }
         }
     }

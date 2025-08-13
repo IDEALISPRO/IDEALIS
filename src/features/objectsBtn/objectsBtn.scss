@@ -1,4 +1,4 @@
-.objBtn {
+.objectsMoreBtn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,16 +14,16 @@
     cursor: pointer;
 
     &:hover {
+        transition: .3s;
         background-color: #163659;
         color: #fff;
 
-        .objBtn__btn {
+        .objectsMoreBtn__btn {
             background-color: #163659;
-        }
 
-        .objBtn__btn__svg {
-            transition: .3s;
-            filter: brightness(0) invert(1);
+            &__icon{
+                color: #fff;
+            }
         }
     }
 
@@ -33,9 +33,13 @@
         align-items: center;
         background-color: white;
         border-radius: 50%;
-        width: 200px;
-        height: 200px;
+        width: 150px;
+        height: 150px;
         border: 2px solid #163659;
+
+        &__icon{
+            color: #163659;
+        }
     }
 
     &__text {
@@ -46,14 +50,14 @@
 }
 
 @media screen and (max-width:1400px) {
-    .objBtn {
+    .objectsMoreBtn {
         margin-bottom: 75px;
     }
 }
 
 
 @media screen and (max-width:992px) {
-    .objBtn {
+    .objectsMoreBtn {
         width: 350px;
         height: 420px;
 
@@ -65,7 +69,7 @@
 }
 
 @media screen and (max-width:768px) {
-    .objBtn {
+    .objectsMoreBtn {
         width: 265px;
         height: 300px;
         margin-bottom: 30px;
@@ -82,7 +86,7 @@
 }
 
 @media screen and (max-width:576px) {
-    .objBtn {
+    .objectsMoreBtn {
         width: 200px;
         height: 235px;
 
@@ -98,7 +102,7 @@
 }
 
 @media screen and (max-width:440px) {
-    .objBtn {
+    .objectsMoreBtn {
         width: 165px;
         height: 200px;
 
@@ -114,7 +118,7 @@
 }
 
 @media screen and (max-width:414px) {
-    .objBtn {
+    .objectsMoreBtn {
         width: 140px;
         height: 180px;  
 
