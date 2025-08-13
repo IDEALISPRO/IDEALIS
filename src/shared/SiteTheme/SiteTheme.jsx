@@ -4,13 +4,13 @@ export const theme = createTheme({
   palette: {
     mode: "light", // "dark" или "light"
     primary: {
-      main: "#163659;",
-      light: "#a557f9",
+      main: "#00246B;",
+      light: "#00246B",
       dark: "#5a1dbf",
       contrastText: "#fff",
     },
     secondary: {
-      main: "#ff4081",
+      main: "#00000000",
       light: "#ff79b0",
       dark: "#c60055",
       contrastText: "#fff",
@@ -48,7 +48,7 @@ export const theme = createTheme({
       secondary: "#555",
       disabled: "#999",
     },
-    divider: "#e0e0e0",
+    divider: "#00000099",
   },
 
   typography: {
@@ -85,8 +85,13 @@ export const theme = createTheme({
       fontWeight: 500,
     },
     subtitle1: {
-      fontSize: "1rem",
-      fontWeight: 400,
+      fontSize: "24px",
+      fontFamily: "Roboto Condensed",
+      fontWeight: 600,
+      leadingTrim: "none",
+      lineHeight: "100%",
+      letterSpacing: "-6%",
+
     },
     subtitle2: {
       fontSize: "0.875rem",
@@ -127,15 +132,16 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          padding: "18px 24px",
+          backgroundColor: "#00246B",
+          padding: "14px 18px",
         },
       },
     },
     MuiTextField: {
       styleOverrides: {
         root: {
-           "& .MuiInputBase-root": {
-            padding: "2px 14px", // отступы внутри поля
+          "& .MuiInputBase-root": {
+            padding: "0px 18px", // отступы внутри поля
           },
         },
       },
@@ -147,7 +153,38 @@ export const theme = createTheme({
         },
       },
     },
-    // Можно добавлять кастомные стили для других компонентов
+    MuiToggleButton: {
+      styleOverrides: {
+        root: {
+          border: "1px solid #00246B",
+          color: "#00246B",
+          fontWeight: 600,
+          lineHeight: "110.00000000000001%",
+          textTransform: "uppercase",
+          fontStyle: "regular",
+          fontSize: "18px",
+          fontFamily: "Roboto Condensed",
+          "&.Mui-selected": {
+            backgroundColor: "#00246B",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#09306A", // фикс: оставить фон при наведении
+            }
+          },
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Montserrat",
+          fontWeight: 500,
+          fontStyle: "medium",
+          borderRadius: "8px",
+          fontSize: "16px",
+        },
+      },
+    },
   },
 });
 
