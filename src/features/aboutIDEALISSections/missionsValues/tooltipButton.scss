@@ -1,49 +1,60 @@
 .tooltip-container {
     position: relative;
-    display: inline-block; 
+    display: inline-block;
     margin: 10px;
 
-    button {
-    position: relative;
-    padding: 24px 160px;
-    font-family: Inter;
+    .tooltip-button {
+    padding: 24px 140px;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 40px;
     border-radius: 60px;
     background-color: white;
-    border: 2px solid black; 
-    transition: .3s all;
+    border: 2px solid black;
+    transition: 0.3s all;
     color: #163658;
     cursor: pointer;
 
     &:hover {
-        background-color: #163659;
-        color: white;
+    background-color: #163659;
+    color: white;
     }
+    &.tooltip-hover {
+      background-color: #163659;
+      color: white;
     }
+}
 
-.tooltip-info {
-    width: 55%;
+    .tooltip-info {
+    width: 50%;
+    text-align: start;
     position: absolute;
-    transform: translateX(90%) translateY(-60%);
-    margin-top: 0px;
-    padding: 10px 60px;
+    transform: translateX(150%) translateY(-80%);
+    padding: 10px 40px;
     background-color: white;
     color: #163659;
     border-radius: 20px;
-    z-index: 1000; 
-    border: #163658 solid 1px;
-    transition: .3s all;
+    z-index: 100;
+    border: 1px solid #163658;
+    transition: 0.3s all;
 
-    .main-text{
-        font-size: 15px;
+    .main-text {
+    font-size: 15px;
+    cursor: default;
     }
-    .disc-text{
-        font-size: 10px;
+
+    .disc-text {
+    font-size: 13px;
+    margin: 10px 0;
+    cursor: default;
     }
-    .link-text{
-        font-size: 15px;
+
+    .link-text {
+    font-size: 15px;
+    text-decoration: underline;
+    cursor: pointer;
     }
-}
+    }
+    
 }
 
