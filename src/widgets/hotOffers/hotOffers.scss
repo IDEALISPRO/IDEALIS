@@ -3,13 +3,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0 20px;
 
     &__title{
         color: #00246B;
         font-family: Roboto Condensed;
         text-transform: uppercase;
         text-align: center;
-        font-size: 60px;
+        font-size: 45px;
         font-style: Bold;
         padding-bottom: 70px;
     }
@@ -32,6 +33,31 @@
         line-height: 100%;
         font-size: 20px;
         border: none;
-        margin-top: 300px;
+        margin-top: 290px;
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover{
+            color: #00246B;
+            background-color: #FFFFFF;
+            border: 1px solid #00246B;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .hotOffers{
+        &__btn{
+            margin-top: 50px;
+            border-radius: 8px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hotOffers{
+        &__btn{
+            
+        }
     }
 }
