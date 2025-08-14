@@ -54,10 +54,58 @@
     }
 }
 
+@media screen and (max-width: 992px) {
+    .hotOffers{
+        &__title{
+            font-size: 35px;
+        }
+    }
+}
+
 @media screen and (max-width: 768px) {
     .hotOffers{
-        &__btn{
-            
+        &__title{
+            font-size: 30px;
+            padding-bottom: 40px;
         }
+
+        &__btn{
+            margin-top: 0px;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .hotOffers{
+        &__title{
+            padding-bottom: 10px;
+            width: 140px;
+            transform: translateX(-110px);
+        }
+
+        &__list{
+            flex-wrap: wrap;
+        }
+    }
+
+    .hotOffers__list > *:nth-child(2) {
+        order: -1;
+        width: 355px;
+    }
+    
+    .hotOffers__list > *:nth-child(3) {
+      display: none;
+    }
+}
+
+@media (max-width: 391px) {
+    .hotOffers{
+        &__title{
+            transform: translateX(-68px);
+        }
+    }
+
+    .hotOffers__list > *:nth-child(2) {
+        width: 275px;
     }
 }

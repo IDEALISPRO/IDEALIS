@@ -7,7 +7,7 @@ export const HotOfferCard = ({image, description, isActive, onClick, description
             <img className='hotOffersCard__img' src={image} alt="image" />
             
             <h3 className='hotOffersCard__description'>{description}</h3>
-            <h3 className='hotOffersCard__description'>{descriptionSecond}</h3>
+            <h3 className={`hotOffersCard__description adaptive ${isActive ? '' : 'none'}`}>{descriptionSecond}</h3>
     </div>
   )
 }

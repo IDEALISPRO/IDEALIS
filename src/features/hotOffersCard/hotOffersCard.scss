@@ -37,36 +37,67 @@
 }
 
 @media screen and (max-width: 1200px) {
+    .adaptive{
+        display: none;
+    }
+
     .active{
         width: 235px;
-        height: 310px;  
+        height: 337px; 
         transform: none;
         margin: 0;
         overflow: hidden;
 
         img{
             height: 250px;
-            border-radius: 10px;
         }
     }
 }
 
 @media screen and (max-width: 768px) {
-    .hotOffersCard{
-        &__img{
+   .hotOffersCard{
+    height: 330px;
 
+        &__img{
+            height: 200px;
         }
 
         &__description{
-
+            font-size: 16px;
         }
     }
 
     .active{
-        
-
         img{
+            height: 200px;
+        }
+    }
+} 
+
+@media screen and (max-width: 576px) {
+    .hotOffersCard{
+        width: 168px;
+        height: 315px;
+        &__img{
             
         }
+    }
+
+    .adaptive{
+        display: block;
+    }
+
+    .none{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 391px) {
+    .hotOffersCard{
+        width: 130px;
+    }
+
+    .none{
+        display: block;
     }
 }
