@@ -1,0 +1,43 @@
+.events-section {
+  padding: 40px 0;
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+    align-items: flex-end; // чтобы выровнять по низу, если нужно
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &__card--small {
+    width: 277px;
+    border-radius: 10px;
+  }
+
+  &__card--medium {
+    width: 277px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+  }
+
+  &__card--large {
+    width: 574px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+  }
+}
