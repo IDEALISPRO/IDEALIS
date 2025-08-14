@@ -1,0 +1,1 @@
+export { HotOffers } from './hotOffers/HotOffers';

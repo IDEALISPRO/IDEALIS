@@ -1,8 +1,9 @@
+import  { HotOffers } from '../../widgets/hotOffers/HotOffers';
 
 export const News = () => {
     return (
-        <div>
-            
+        <div className="container">
+            <HotOffers />
         </div>
     );
 }

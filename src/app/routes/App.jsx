@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AboutIDEALIS, HomePage } from '../../pages'
+import { AboutIDEALIS, HomePage, News } from '../../pages'
 import '../styles/app.scss';
-// import './App.css'
 import { ThemeProvider } from "@mui/material/styles";
 import {theme} from "../../shared/SiteTheme/SiteTheme"; 
 
@@ -11,9 +10,13 @@ function App() {
       path: "/",
       element: <HomePage />,
     },
-      {
+    {
       path: "/about",
-      element: <AboutIDEALIS/>,
+      element: <AboutIDEALIS />,
+    },
+    {
+      path: "/news",
+      element: <News />,
     },
   ]
 

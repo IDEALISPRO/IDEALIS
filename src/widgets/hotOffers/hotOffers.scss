@@ -1,0 +1,37 @@
+.hotOffers{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__title{
+        color: #00246B;
+        font-family: Roboto Condensed;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 60px;
+        font-style: Bold;
+        padding-bottom: 70px;
+    }
+
+    &__list{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        gap: 15px;
+    }
+
+    &__btn{
+        width: 160px;
+        font-weight: 300;
+        height: 40px;
+        color: #FFFFFF;
+        background-color: #143558;
+        font-family: Inter;
+        line-height: 100%;
+        font-size: 20px;
+        border: none;
+        margin-top: 300px;
+    }
+}
