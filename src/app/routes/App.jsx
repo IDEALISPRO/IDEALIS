@@ -1,10 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AboutIDEALIS, HomePage } from '../../pages'
+import { AboutIDEALIS, HomePage, ObjectDetail } from '../../pages/index.js';
 import '../styles/app.scss';
 // import './App.css'
 import { ThemeProvider } from "@mui/material/styles";
 import {theme} from "../../shared/SiteTheme/SiteTheme"; 
-
 
 function App() {
   const routesArr = [
@@ -15,6 +14,10 @@ function App() {
       {
       path: "/about",
       element: <AboutIDEALIS/>,
+    },
+    {
+      path: "/building-details/",
+      element: <ObjectDetail />
     },
   ]
 
