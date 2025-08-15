@@ -1,8 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AboutIDEALIS, HomePage, Services } from '../../pages'
 import '../styles/app.scss';
 import { Header } from "../../widgets";
 // import './App.css'
+import { AboutIDEALIS,Services, HomePage, News } from '../../pages'
+import '../styles/app.scss';
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../shared/SiteTheme/SiteTheme";
 
@@ -16,6 +17,10 @@ function App() {
     {
       path: "/about",
       element: <AboutIDEALIS />,
+    },
+    {
+      path: "/news",
+      element: <News />,
     },
     {
       path: "/services",
