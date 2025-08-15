@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import '../styles/app.scss';
 import { Header } from "../../widgets";
