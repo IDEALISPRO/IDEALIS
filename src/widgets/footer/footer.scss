@@ -1,0 +1,173 @@
+$footer-bg: #00246B;
+$text-color: #ffffff;
+$link-color: rgb(175, 175, 179);
+
+.footer {
+  background: $footer-bg;
+  padding: 100px 0 20px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: $text-color;
+  font-family: Arial, 'Montserrat';
+  font-size: 14px;
+  width: 100%;
+
+  .section__padding {
+    padding: 4rem 4rem;
+  }
+
+  .sb__footer {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    &-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: nowrap;
+      width: 100%;
+      text-align: left;
+      margin-bottom: 2rem;
+
+      @media (max-width: 768px) {
+        display: flex;
+        
+      }
+
+      &-div {
+        min-width: 120px;
+        margin: 0 10px;
+        display: flex;
+        flex-direction: column;
+        color: $text-color;
+        line-height: 1.5;
+        gap: 0px;
+
+        h4 {
+          margin-bottom: 0px;
+          color: white;
+          font-weight: normal;
+          cursor: default;
+        }
+      }
+    }
+
+    .socialmedia {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: -8rem;
+      
+     .socialsmedia-icon {
+      flex-direction: row;
+      display: flex;
+      gap: 12px;
+
+     }
+
+      img {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    &-below {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: $text-color;
+    }
+  }
+
+  .footer-logo-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+
+    .footer-logo {
+      width: 80%;
+      height: auto;
+    }
+  }
+
+  .footer-madeby {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-color;
+    text-transform: uppercase;
+    text-align: start;
+    text-transform: uppercase;
+
+    strong {
+      font-weight: 700;
+    }
+
+    .geeks-logo {
+      height: 50px;
+      width: auto;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    margin: 0;
+  }
+
+  a {
+    color: $link-color;
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    .sb__footer {
+      &-links {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        &-div {
+          margin: 1rem 20px;
+          min-width: 140px;
+        }
+      }
+    }
+
+    .footer-madeby {
+      flex-direction: column;
+      text-align: center;
+      gap: 5px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .sb__footer-links {
+      flex-direction: column;
+      align-items: center;
+
+      &-div {
+        margin: 10px 0;
+        text-align: center;
+      }
+    }
+  }
+}
