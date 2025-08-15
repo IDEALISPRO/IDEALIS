@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AboutIDEALIS, HomePage, Services } from '../../pages'
 import '../styles/app.scss';
+import { Header } from "../../widgets";
 // import './App.css'
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../shared/SiteTheme/SiteTheme";
@@ -25,7 +26,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        {/* <Header /> */}
+        <Header />
         <Routes>
           <Route index element={<HomePage />} />
           {routesArr?.map((item, index) => (
