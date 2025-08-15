@@ -1,4 +1,3 @@
-
 import './advantages.scss';
 
 export function Advantages() {
@@ -7,7 +6,9 @@ export function Advantages() {
     { type: 'square', title: 'Архитектор', text: 'Студия Е Архитекторов' },
     { type: 'square', title: 'Архитектор', text: 'Студия Е Архитекторов' },
     { type: 'circle', title: 'Владелец', text: 'Подтвержденное жилье' },
-    { type: 'square', title: 'Архитектор', text: 'Студия Е Архитекторов' }
+    { type: 'square', title: 'Архитектор', text: 'Студия Е Архитекторов' },
+    
+
   ];
 
   return (
@@ -24,8 +25,10 @@ export function Advantages() {
               item.type === 'circle'
                 ? 'advantages__circle'
                 : 'advantages__square-box'
+                
             }
           >
+
             <p className="advantages__item-title">{item.title}</p>
             <p className="advantages__item-text">{item.text}</p>
           </div>
