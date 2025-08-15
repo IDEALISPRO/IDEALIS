@@ -4,8 +4,9 @@ import { FilterWidget } from "../../widgets/FilterWidget/FilterWidget";
 export const HomePage = () => {
     return (
         <div className="container">
-            <FilterWidget />
             <Navigate />
+
+            <FilterWidget />
         </div>
     );
 }
