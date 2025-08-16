@@ -14,35 +14,26 @@ import img9 from "../../shared/images/img9.png";
 const allImages = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
 
 export const BannerPictures = () => {
-  const initialImages =
-    window.innerWidth <= 576 ? allImages.slice(0, 9) : allImages;
-
+  const initialImages = window.innerWidth <= 576 ? allImages.slice(0, 9) : allImages;
   const middle = Math.floor(initialImages.length / 2);
   const [activeIndex, setActiveIndex] = useState(middle);
 
   return (
-    <div
-      className="banner-pictures container"
-      onMouseLeave={() => setActiveIndex(middle)}
-    >
+    <div className="banner-pictures container"onMouseLeave={() => setActiveIndex(middle)}>
       {initialImages.map((src, index) => {
         const isNeighbor =
           index === activeIndex - 1 || index === activeIndex + 1;
 
         return (
           <div key={index} className="banner-pictures-block">
-            <div
-              className={`banner-pictures-item ${
+            <div className={`banner-pictures-item ${
                 activeIndex === index ? "active" : ""
               } ${isNeighbor ? "neighbor" : ""} ${
-                index === initialImages.length - 1 ? "img_end" : ""
-              }`}
-              onMouseEnter={() => setActiveIndex(index)}
-            >
+                index === initialImages.length - 1 ? "img_end" : ""}`}onMouseEnter={() => setActiveIndex(index)}>
               <img src={src} alt={`banner-${index}`} />
             </div>
-            <div className="banner-pictures-item-line"></div>
-          </div>
+                <div className="banner-pictures-item-line"></div>
+            </div>
         );
       })}
     </div>

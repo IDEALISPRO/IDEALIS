@@ -1,8 +1,9 @@
+import { MarketNews } from "../../widgets";
 
 export const News = () => {
     return (
-        <div>
-            
+        <div className="container">
+            <MarketNews/>
         </div>
     );
 }

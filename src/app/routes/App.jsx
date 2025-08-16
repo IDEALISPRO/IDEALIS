@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AboutIDEALIS, HomePage } from '../../pages'
+import { AboutIDEALIS, HomePage, News } from '../../pages'
 import '../styles/app.scss';
 // import './App.css'
 import { ThemeProvider } from "@mui/material/styles";
@@ -17,6 +17,10 @@ function App() {
       path: "/about",
       element: <AboutIDEALIS/>,
     },
+    {
+      path: "/news",
+      element: <News/>
+    }
   ]
 
   return (    
