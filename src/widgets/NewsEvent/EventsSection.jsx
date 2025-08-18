@@ -11,7 +11,7 @@ export const EventsSection = () => {
 
   return (
     <section className="container events-section">
-      <h2 className="eventsTitle">СОБЫТИЯ И МЕРОПРИЯТИЯ IDEALIS</h2>
+      <h2 className="title">СОБЫТИЯ И МЕРОПРИЯТИЯ IDEALIS</h2>
       {events[2] && (
   <div className="cardLarge-2">
     <img

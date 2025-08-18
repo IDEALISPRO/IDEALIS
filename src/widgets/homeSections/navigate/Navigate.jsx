@@ -17,7 +17,7 @@ export const Navigate = () => {
 
   return (
     <section className="categories-navigate container">
-      <h2 className="categories-navigate__title">Категории недвижимости</h2>
+      <h2 className="title">Категории недвижимости</h2>
       <div className="categories-navigate__content">
         {categoriesArr?.map((obj) => (
           <NavigateCard

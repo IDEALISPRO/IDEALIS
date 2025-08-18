@@ -22,7 +22,7 @@ const text3 = 'Следите за последними изменениями �
 export const MarketNews = () => {
       return (
             <div className="container marketNews">
-                  <h1 className="marketNews_title">Новости рынка недвижимости</h1>
+                  <h1 className="title">Новости рынка недвижимости</h1>
                   <div className="marketNews_cart">
                         <div className="marketNews_card">
                               <img className="marketNews_image" src={img1} alt=""/>

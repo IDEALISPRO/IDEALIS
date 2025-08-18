@@ -38,7 +38,7 @@ export const HotOffers = () => {
   return (
     <div className='container hotOffers'>
 
-        <h1 className='hotOffers__title'>Горячие предложения</h1>
+        <h1 className='title'>Горячие предложения</h1>
 
         <div className='hotOffers__list'>
             {
