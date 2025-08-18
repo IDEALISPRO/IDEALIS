@@ -5,3 +5,4 @@ export { Navigate } from './homeSections/navigate/Navigate.jsx';
 export { HotOffers } from './hotOffers/HotOffers';
 export { MarketNews } from "./news/MarketNews"
 export {EventsSection } from "./NewsEvent/EventsSection";
+export { MissionsValues } from './aboutIDEALISSections/missionsValues/MissionsValues'
