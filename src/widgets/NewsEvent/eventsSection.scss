@@ -1,43 +1,163 @@
 .events-section {
   padding: 40px 0;
 
-  &__title {
-    font-size: 28px;
+
+  .eventsTitle {
     font-weight: 700;
+    font-size: 57px;
+    text-transform: uppercase;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 36px;
   }
+  .cardLarge-2 {
+    display: none;
+    flex-direction: column;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 10px;
+    overflow: hidden;
+    width: 43.48%;
+    border-radius: 10px;
+    width: 424px;
+  .Img {
+    width: 423px;
+    height: 385px; 
+    border-radius: 15px;
+  }
+
+  .Card-description {
+    font-weight: 500;
+    line-height: 1.4;
+  }
+}
 
   .card-container {
     display: flex;
     justify-content: center;
     gap: 20px;
     flex-wrap: nowrap;
-    align-items: flex-end; // чтобы выровнять по низу, если нужно
+    align-items: flex-start;
+
+
   }
 
   &__card {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    border-radius: 10px;
     overflow: hidden;
+    
+    .Img {
+      display: block;
+      width: 100%;
+      object-fit: cover; 
+      border-radius: 15px;
+    }
+
+    .Card-description {
+      font-weight: 500;
+      line-height: 1.4;
+    }
   }
 
-  &__card--small {
+  .cardSmall {
     width: 277px;
     border-radius: 10px;
+    margin-top: 200px;
+
+    .Img {
+      height: 200px; 
+    }
   }
 
-  &__card--medium {
+  .cardMedium {
     width: 277px;
     border-radius: 10px;
-    margin-bottom: 50px;
+    margin-top: 100px;
+
+    .Img {
+      height: 239px; 
+    }
   }
 
-  &__card--large {
+  .cardLarge {
     width: 574px;
     border-radius: 10px;
-    margin-bottom: 50px;
+
+    .Img {
+      height: 385px; 
+    }
   }
+  
+
+  @media (max-width: 1024px) {
+    .eventsTitle{
+      font-size: 40px;
+    }
+    .card-container{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+    .cardLarge{
+      display:none;
+    }
+    .cardLarge-2{
+      display: flex;
+      // left: 30%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .eventsTitle{
+      font-size: 27px;
+    }
+    .cardLarge-2{
+      position: relative; 
+      // left: 22%;
+    }
+  }
+
+  @media (max-width: 699px) {
+  .eventsTitle {
+    font-size: 18px;
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px; 
+  }
+
+  .cardMedium {
+    width: 90%;
+    margin-top: 0;
+    margin-left: 5%;
+    .Img{
+      height: 200px;
+    }
+  }
+  .cardSmall {
+    width: 90%;
+    margin-top: 0;
+    margin-left: 5%;
+  }
+  .cardLarge {
+    display: none;
+  }
+  .Card-description{
+    font-size: 12px;
+  }
+
+  .cardLarge-2 {
+    width: 340px;
+    // left: 3%;
+
+    .Img {
+      width: 340px;
+    }
+  }
+}
+
 }
