@@ -11,10 +11,10 @@ import {
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 
-import slide1 from "./swaggerImg/slide1.svg";
-import slide2 from "./swaggerImg/slide2.svg";
-import slide3 from "./swaggerImg/slide3.svg";
-import slide4 from "./swaggerImg/slide4.svg";
+import slide1 from "../../shared/swaggerImg/slide1";
+import slide2 from "../../shared/swaggerImg/slide2";
+import slide3 from "../../shared/swaggerImg/slide3";
+import slide4 from "../../shared/swaggerImg/slide4";
 
 export const Swagger = () => {
   const Slides = [
