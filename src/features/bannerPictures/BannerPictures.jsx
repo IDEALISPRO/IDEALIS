@@ -33,8 +33,8 @@ export const BannerPictures = () => {
           <div key={index} className="banner-pictures-block">
             <div
               className={`banner-pictures-item ${
-                activeIndex === index ? "active" : ""
-              } ${isNeighbor ? "neighbor" : ""} ${
+                activeIndex === index ? "activee" : ""
+              } ${isNeighbor ? "neighborr" : ""} ${
                 index === initialImages.length - 1 ? "img_end" : ""
               }`}
               onMouseEnter={() => setActiveIndex(index)}
