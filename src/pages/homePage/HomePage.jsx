@@ -3,7 +3,7 @@ import { FilterWidget } from "../../widgets/FilterWidget/FilterWidget";
 export const HomePage = () => {
     return (
         <div className="container">
-            <FilterWidget />
+            {/* <FilterWidget /> */}
         </div>
     );
 }

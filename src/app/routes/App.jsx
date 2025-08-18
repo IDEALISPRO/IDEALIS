@@ -4,8 +4,8 @@ import '../styles/app.scss';
 // import './App.css'
 import { ThemeProvider } from "@mui/material/styles";
 import {theme} from "../../shared/SiteTheme/SiteTheme"; 
-
-function App() {
+import { Header } from "../../widgets";
+ function App() {
   const routesArr = [
     {
       path: "/",
@@ -20,7 +20,7 @@ function App() {
   return (    
   <ThemeProvider theme={theme}>
     <BrowserRouter>
-      {/* <Header /> */}
+      <Header/>
       <Routes>
         <Route index element={<HomePage />} />
         {routesArr?.map((item, index) => (
