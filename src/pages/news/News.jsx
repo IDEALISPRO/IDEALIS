@@ -1,4 +1,4 @@
-import { HotOffers, MarketNews } from '../../widgets';
+import { HotOffers, MarketNews , EventsSection } from '../../widgets';
 
 export const News = () => {
     return (
