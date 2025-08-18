@@ -4,14 +4,9 @@ import "./swagger.scss";
 import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
-import "swiper/scss/autoplay";
-import "swiper/scss/effect-fade";
 import {
-  EffectCoverflow,
   Navigation,
   Pagination,
-  Autoplay,
-  EffectFade,
 } from "swiper/modules";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
