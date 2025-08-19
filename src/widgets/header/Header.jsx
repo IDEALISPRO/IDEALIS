@@ -12,7 +12,7 @@ import ru from "../../shared/ru.svg";
 import kg from "../../shared/kg.svg";
 import en from "../../shared/en.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-
+import { MiniMenu } from "./miniMenu/MinieMenu";
 export const Header = () => {
   const { t, i18n } = useTranslation();
 
@@ -22,16 +22,20 @@ export const Header = () => {
     { code: "en", label: "English", flag: en },
   ];
 
-  const currentLang = languages.find((lang) => lang.code === i18n.language) || languages[0];
+  const currentLang =
+    languages.find((lang) => lang.code === i18n.language) || languages[0];
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const menuRef = useRef(null); // Reference to the mobile menu
+  const menuRef = useRef(null);
 
-  // Close menu on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target) && menuOpen) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        menuOpen
+      ) {
         setMenuOpen(false);
       }
     };
@@ -42,7 +46,6 @@ export const Header = () => {
     };
   }, [menuOpen]);
 
-  // Auto-close menu when screen width > 1064px
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 1064 && menuOpen) {
@@ -51,7 +54,7 @@ export const Header = () => {
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Check on mount
+    handleResize();
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -67,13 +70,21 @@ export const Header = () => {
         <a className="linka" href="#pro" onClick={() => setMenuOpen(false)}>
           {t("menu.about")}
         </a>
-        <a className="linka" href="#services" onClick={() => setMenuOpen(false)}>
+        <a
+          className="linka"
+          href="#services"
+          onClick={() => setMenuOpen(false)}
+        >
           {t("menu.services")}
         </a>
         <a className="linka" href="#news" onClick={() => setMenuOpen(false)}>
           {t("menu.news")}
         </a>
-        <a className="linka" href="#contacts" onClick={() => setMenuOpen(false)}>
+        <a
+          className="linka"
+          href="#contacts"
+          onClick={() => setMenuOpen(false)}
+        >
           {t("menu.contacts")}
         </a>
         <a className="linka" href="#gallery" onClick={() => setMenuOpen(false)}>
@@ -83,10 +94,15 @@ export const Header = () => {
 
       <div className="header-right">
         <div className="lang-dropdown">
-          <button className="lang-button" onClick={() => setDropdownOpen(!dropdownOpen)}>
+          <button
+            className="lang-button"
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+          >
             {currentLang.label.slice(0, 2).toUpperCase()}
             <span className="arrow">
-              <MdOutlineKeyboardArrowDown className={`arrow-icon ${dropdownOpen ? "rotated" : ""}`} />
+              <MdOutlineKeyboardArrowDown
+                className={`arrow-icon ${dropdownOpen ? "rotated" : ""}`}
+              />
             </span>
           </button>
           {dropdownOpen && (
@@ -117,23 +133,43 @@ export const Header = () => {
           <FiX />
         </button>
 
-        <a className="mobile-link" href="#pro" onClick={() => setMenuOpen(false)}>
+        <a
+          className="mobile-link"
+          href="#pro"
+          onClick={() => setMenuOpen(false)}
+        >
           <img src={abideal} alt="" className="mobile-icon" />
           {t("menu.about")}
         </a>
-        <a className="mobile-link" href="#services" onClick={() => setMenuOpen(false)}>
+        <a
+          className="mobile-link"
+          href="#services"
+          onClick={() => setMenuOpen(false)}
+        >
           <img src={ysl} alt="" className="mobile-icon" />
           {t("menu.services")}
         </a>
-        <a className="mobile-link" href="#contacts" onClick={() => setMenuOpen(false)}>
+        <a
+          className="mobile-link"
+          href="#contacts"
+          onClick={() => setMenuOpen(false)}
+        >
           <img src={user} alt="" className="mobile-icon" />
           {t("menu.contacts")}
         </a>
-        <a className="mobile-link" href="#news" onClick={() => setMenuOpen(false)}>
+        <a
+          className="mobile-link"
+          href="#news"
+          onClick={() => setMenuOpen(false)}
+        >
           <img src={news} alt="" className="mobile-icon" />
           {t("menu.news")}
         </a>
-        <a className="mobile-link" href="#gallery" onClick={() => setMenuOpen(false)}>
+        <a
+          className="mobile-link"
+          href="#gallery"
+          onClick={() => setMenuOpen(false)}
+        >
           <img src={like} alt="" className="mobile-icon" />
           {t("menu.favorites")}
         </a>
@@ -179,6 +215,8 @@ export const Header = () => {
           Добавить объект
         </button>
       </div>
+
+      <MiniMenu />
     </header>
   );
 };
