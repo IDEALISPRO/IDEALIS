@@ -33,9 +33,13 @@
         line-height: 100%;
         font-size: 20px;
         border: none;
-        margin-top: 290px;
+        margin-top: 60px;
         cursor: pointer;
         transition: .3s;
+
+        &__top{
+            margin-top: 290px;
+        }
 
         &:hover{
             color: #00246B;

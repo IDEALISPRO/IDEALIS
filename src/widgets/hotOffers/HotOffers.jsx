@@ -3,7 +3,7 @@ import img1 from "../../shared/images/hotOffersImg1.png"
 import img2 from "../../shared/images/hotOffersImg2.png"
 import img3 from "../../shared/images/hotOffersImg3.png"
 import img4 from "../../shared/images/hotOffersImg4.png"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HotOfferCard } from '../../features/hotOffersCard/HotOfferCard';
 
 export const HotOffers = () => {
@@ -34,7 +34,6 @@ export const HotOffers = () => {
 
     const [activeId, setActiveId] = useState(cards[1].id);
 
-
   return (
     <div className='container hotOffers'>
 
@@ -55,7 +54,7 @@ export const HotOffers = () => {
             }
         </div>
 
-        <button className='hotOffers__btn'>Узнать больше</button>
+        <button className={`hotOffers__btn ${activeId ? 'hotOffers__btn__top' : ''}`}>Узнать больше</button>
     </div>
   )
 }
