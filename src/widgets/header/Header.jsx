@@ -216,7 +216,7 @@ export const Header = () => {
         </button>
       </div>
 
-      <MiniMenu />
+      {/* <MiniMenu /> */}
     </header>
   );
 };

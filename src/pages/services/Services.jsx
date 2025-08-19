@@ -7,7 +7,7 @@ export const Services = () => {
             {/* <Banner title={'Услуги'} description={'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'} /> */}
             <BannerPictures />
             <MiniMenu />
-            {/* <ServicesWidget /> */}
+            <ServicesWidget />
 
         </div>
     );

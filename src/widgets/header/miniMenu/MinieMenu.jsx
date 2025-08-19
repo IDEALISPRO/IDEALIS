@@ -10,7 +10,7 @@ export const MiniMenu = () => {
     const footer = document.querySelector('.foterAdmin');
 
     const handleScroll = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 400) {
         footer.classList.add('stick-top');
       } else {
         footer.classList.remove('stick-top');
