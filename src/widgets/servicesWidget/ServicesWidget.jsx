@@ -1,7 +1,7 @@
 import { Work } from "@mui/icons-material";
 import img from "../../shared/images/home.png";
 import { Acardion } from "../../features/";
-import "./servicesWidget.scss";
+import { Box, Typography } from "@mui/material";
 const data = [
     {
         id: 1,
@@ -32,14 +32,27 @@ const data = [
 
 export const ServicesWidget = () => {
     return (
-        <div 
-        className="container services-widget"
+        <Box
+            className="container "
+            sx={{
+                paddingTop: '150px'
+            }}
         >
-         <h2  className="services-widget-title">УСЛУГИ</h2>
-            <p className="services-widget-description">Наша компания уделяет большое внимание вашему личному комфорту и стремится стать надежным партнером на всех этапах вашего пути к осуществлению мечты. Наша главная задача обеспечить доступность и удобство в процессе строительства вашего идеального дома.</p> 
-          
+            <h2 className="title">УСЛУГИ</h2>
+            <Typography
+                sx={{
+                    fontWeight: 400,
+                    fontSize: { xs: '18px', sm: '20px', md: '24px', lg: '36px' },
+                    color: '#000',
+                    width: { xs: '100%', sm: '80%', md: '58%', lg: '50%' },
+                    marginBottom: '20px',
+                    ml: { xs: '0', sm: '40%', md: '60%', lg: '50%' },
+
+
+                }}>Наша компания уделяет большое внимание вашему личному комфорту и стремится стать надежным партнером на всех этапах вашего пути к осуществлению мечты. Наша главная задача обеспечить доступность и удобство в процессе строительства вашего идеального дома.</Typography>
+
             <Acardion data={data} />
 
-        </div>
+        </Box >
     );
 };
