@@ -45,9 +45,10 @@
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 576px) {
     .BannerTitle {
-      font-size: 100px;
+      font-size: 48px;
+margin-top: 101px;
     }
     .BannerDescription {
       font-size: 11px;

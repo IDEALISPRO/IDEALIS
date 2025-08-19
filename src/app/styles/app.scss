@@ -89,7 +89,7 @@ a {
 
 @media screen and (max-width: 768px) {
   .container {
-    max-width: 540px;
+    max-width: 640px;
   }
 
   .pageNavigation {
@@ -104,8 +104,9 @@ a {
     max-width: 100%;
     padding: 0 10px;
   }
-    .title {
+  .title {
     font-size: 36px;
     text-align: start;
+    padding-bottom: 30px;
   }
 }
