@@ -19,8 +19,9 @@ export const Acardion = ({ data }) => {
           expanded={expanded === id}
           onChange={handleChange(id)}
           sx={{
-            borderTop: "1px solid #e0e0e0",
-            borderBottom: "1px solid #e0e0e0"
+            borderTop: "2px solid #e0e0e0",
+            boxShadow: "none",
+            borderBottom: "2px solid #e0e0e0"
           }}
         >
           <AccordionSummary
