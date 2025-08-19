@@ -7,3 +7,4 @@ export { MarketNews } from "./news/MarketNews"
 export {EventsSection } from "./NewsEvent/EventsSection";
 export { MissionsValues } from './aboutIDEALISSections/missionsValues/MissionsValues'
 export {  ListAgents} from "./listAgents/ListAgents"
+export { MiniMenu } from "./header/miniMenu/MinieMenu";
