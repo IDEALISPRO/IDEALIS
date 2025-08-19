@@ -1,4 +1,5 @@
 .marketNews {
+  padding-top: 150px;
   &_title {
     text-align: center;
     font-size: 60px;
@@ -60,8 +61,8 @@
       min-width: 50px;
       height: 50px;
       border-radius: 50%;
-      background-color: #FFF;
-      border: 1px solid #00000099
+      background-color: #fff;
+      border: 1px solid #00000099;
     }
 
     &_text {
@@ -69,15 +70,14 @@
       font-family: "Montserrat", sans-serif;
       font-weight: 500;
       font-size: 21px;
-
     }
 
     &_btns {
       min-width: 50px;
       height: 50px;
       border-radius: 50%;
-      background-color: #FFF;
-      border: 1px solid #00000099
+      background-color: #fff;
+      border: 1px solid #00000099;
     }
   }
 
@@ -113,16 +113,16 @@
         width: 90%;
       }
     }
-    .second{
+    .second {
       align-items: start;
     }
-    
   }
-  
 }
 
 @media (max-width: 768px) and (min-width: 577px) {
   .marketNews {
+    padding-top: 120px;
+
     &_title {
       font-size: 48px;
     }
@@ -193,12 +193,12 @@
       border-radius: 10px;
     }
 
-    &_info{
+    &_info {
       align-items: center;
       padding-right: 0;
       gap: 0;
 
-      &_text{
+      &_text {
         width: 180px;
         font-size: 16px;
       }
@@ -216,7 +216,7 @@
       font-size: 35px;
     }
 
-    .second{
+    .second {
       align-items: center;
     }
   }
