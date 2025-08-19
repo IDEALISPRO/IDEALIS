@@ -1,9 +1,11 @@
-import { FilterWidget } from "../../widgets/FilterWidget/FilterWidget";
+import { ListAgents } from "../../widgets";
+import { FilterWidget, } from "../../widgets/FilterWidget/FilterWidget";
 
 export const HomePage = () => {
     return (
         <div className="container">
             <FilterWidget />
+            <ListAgents/>
         </div>
     );
 }
