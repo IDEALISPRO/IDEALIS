@@ -8,6 +8,7 @@ import { AboutIDEALIS,Services,Contacts, HomePage, News } from '../../pages'
 import '../styles/app.scss';
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../shared/SiteTheme/SiteTheme";
+import { Messenger } from '../../features';
 
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
       path: "/contacts",
       element: <Contacts />,
     },
+    {
+      path: "/services",
+      element: <Services />,
+    },
   ]
 
   return (
@@ -41,6 +46,7 @@ function App() {
           ))}
         </Routes>
         {/* <Footer /> */}
+        <Messenger/>
       </BrowserRouter>
 
     </ThemeProvider>

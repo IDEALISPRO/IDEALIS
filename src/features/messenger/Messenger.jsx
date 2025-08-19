@@ -2,7 +2,7 @@ import './messenger.scss';
 import { FaWhatsapp } from "react-icons/fa";
 import { MdOutlineMessage } from "react-icons/md";
 
-const Messenger = () => {
+export const Messenger = () => {
     const openWhatsApp = () => {
         const whatsappNumber = "996773446312";
         const message = encodeURIComponent("Здравствуйте! Хотелось бы узнать...");
@@ -29,4 +29,4 @@ const Messenger = () => {
     );
 }
 
-export default Messenger;
+ 
