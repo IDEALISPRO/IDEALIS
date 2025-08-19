@@ -1,10 +1,12 @@
 import {Contacts} from "../../widgets/";
+import { Rules } from "../../widgets/Rules/Rules";
 
 
 export const HomePage = () => {
     return (
         <div>
-            <Contacts />
+            {/* <Contacts /> */}
+            <Rules />
         </div>
     );
 }

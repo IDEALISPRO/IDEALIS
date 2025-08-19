@@ -25,7 +25,7 @@ function App() {
         ))}
       </Routes>
       {/* <ScrollButton /> */}
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   )
 }
