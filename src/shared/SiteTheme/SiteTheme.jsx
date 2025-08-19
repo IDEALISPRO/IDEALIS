@@ -69,8 +69,11 @@ export const theme = createTheme({
       letterSpacing: "-0.00833em",
     },
     h3: {
-      fontSize: "3rem",
-      fontWeight: 400,
+      fontSize: "2.5rem",
+      fontFamily: "Roboto Condensed",
+      fontWeight: 500,
+      leadingTrim: "none",
+      lineHeight: "100%",
     },
     h4: {
       fontSize: "2.125rem",
@@ -91,7 +94,6 @@ export const theme = createTheme({
       leadingTrim: "none",
       lineHeight: "100%",
       letterSpacing: "-6%",
-
     },
     subtitle2: {
       fontSize: "0.875rem",
@@ -169,7 +171,7 @@ export const theme = createTheme({
             color: "#fff",
             "&:hover": {
               backgroundColor: "#09306A", // фикс: оставить фон при наведении
-            }
+            },
           },
         },
       },
@@ -187,4 +189,3 @@ export const theme = createTheme({
     },
   },
 });
-
