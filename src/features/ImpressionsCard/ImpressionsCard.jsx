@@ -12,7 +12,6 @@ export const ImpressionsCard = ({
   price,
 }) => {
   const [liked, setLiked] = useState(false);
-  const [activeTab, setActiveTab] = useState("24 часа");
 
   const HandleLike = () => {
     setLiked(!liked);
@@ -32,6 +31,33 @@ export const ImpressionsCard = ({
           <p className="objCard__info__desc">{description}</p>
           <p className="objCard__info__price">{price}</p>
         </div>
+
+        <div className="statistics none">
+        <div className="statistics__line"></div>
+        <div className="statistics__content">
+          <h3 className="statistics__title">Статистика</h3>
+
+          <div className="statistics__row">
+            <span>Просмотры:</span>
+            <div className="statistics__time-indicators">
+              <span>154</span>
+            </div>
+          </div>
+          <div className="statistics__row">
+            <span>В избранное:</span>
+            <div className="statistics__time-indicators">
+              <span>6</span>
+            </div>
+          </div>
+          <div className="statistics__row">
+            <span>Обращения:</span>
+            <div className="statistics__time-indicators">
+              <span>6</span>
+            </div>
+          </div>
+          <p className="statistics__date">Последний показ: 02.08.2025</p>
+        </div>
+      </div>
 
         <div className="objCard__buttons">
           <button className="objCard__buttons__more">Подробнее</button>
@@ -71,7 +97,6 @@ export const ImpressionsCard = ({
             </div>
           </div>
           <p className="statistics__date">Последний показ: 02.08.2025</p>
-          {/* <button className="statistics__more_btnnn_mobile">Подробнее</button> */}
         </div>
       </div>
     </div>

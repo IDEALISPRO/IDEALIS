@@ -34,8 +34,6 @@ const data = [
       return (
           <div className='container impressions'>
   
-             
-  
               <div className="impressions__cards">
                   {
                       data.map((item) => (

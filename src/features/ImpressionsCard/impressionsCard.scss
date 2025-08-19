@@ -1,7 +1,24 @@
+.impressionItem {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 90px;
+  border-bottom: 1px solid #00000066;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border: 1px solid black;
+  border-radius: 10px;
+  max-width: 1400px;
+  width: 100% !important;
+  position: relative;
+}
+
 .objCard {
+  order: 1;
   max-width: 426px;
   width: 100%;
   height: auto;
+
   &__img {
     width: 500px;
     object-fit: cover;
@@ -10,6 +27,7 @@
     border-radius: 12px;
     margin-bottom: 5px;
   }
+
   &__info {
     margin-left: 40px;
     display: flex;
@@ -18,6 +36,7 @@
     margin-bottom: 25px;
     max-width: 400px;
     width: 100%;
+
     &__title {
       margin-top: -30px;
       max-width: 300px;
@@ -26,6 +45,7 @@
       font-weight: 500;
       font-size: 19px;
     }
+
     &__location {
       display: flex;
       align-items: center;
@@ -34,11 +54,13 @@
       font-weight: 400;
       font-size: 15px;
       margin-left: -5px;
+
       &__mark {
         width: 11px;
         margin-right: 10px;
       }
     }
+
     &__desc {
       font-family: Inter;
       font-weight: 400;
@@ -46,6 +68,7 @@
       color: #00000099;
       margin-bottom: 10px;
     }
+
     &__price {
       font-family: Inter;
       font-weight: 600;
@@ -110,26 +133,13 @@
   }
 }
 
-.impressionItem {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  gap: 90px;
-  border-bottom: 1px solid #00000066;
-  padding-bottom: 20px;
-  margin-bottom: 30px;
-  border: 1px solid black;
-  border-radius: 10px;
-  max-width: 1400px;
-  width: 100% !important;
-  position: relative;
-}
-
 .statistics {
+  order: 2;
   display: flex;
   gap: 20px;
   align-items: flex-start;
   width: 70%;
+
   &__line {
     width: 1px;
     background: #163659;
@@ -154,6 +164,7 @@
     font-weight: 600;
     margin-bottom: 15px;
   }
+
   &__rows-container {
     margin-left: 20px;
   }
@@ -182,6 +193,10 @@
     color: #000000;
     font-family: Inter;
   }
+}
+
+.none{
+  display: none;
 }
 
 @media (max-width: 992px) {
@@ -216,6 +231,7 @@
     }
   }
 }
+
 @media (max-width: 768px) {
   .impressionItem {
     flex-direction: column;
@@ -226,7 +242,9 @@
     max-width: 100%;
     margin: 0;
   }
+
   .objCard {
+    order: 2;
     max-width: 100%;
     width: 100%;
     padding: 16px;
@@ -272,10 +290,6 @@
     }
 
     &__buttons {
-      &__phone,
-      &__like {
-        display: none;
-      }
 
       &__more {
         width: 100%;
@@ -286,6 +300,8 @@
   }
 
   .statistics {
+    display: none;
+    order: 1;
     width: 100%;
     padding: 16px;
     border-top: 1px solid #eee;
@@ -327,7 +343,8 @@
       display: none;
     }
   }
+
+  .none{
+    display: block;
+  }
 }
-    
-
-
