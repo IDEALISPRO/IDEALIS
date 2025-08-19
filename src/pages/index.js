@@ -7,5 +7,6 @@ export { CreateObject } from './createObject/CreateObject';
 export { Favorites } from './favorites/Favorites';
 export { NewBuilding } from './newBuilding/NewBuilding';
 export { News } from './news/News';
+
 export { ObjectDetail } from './objectDetail/ObjectDetail';
 export { Services } from './services/Services';
