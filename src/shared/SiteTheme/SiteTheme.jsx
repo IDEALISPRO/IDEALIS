@@ -4,7 +4,7 @@ export const theme = createTheme({
   palette: {
     mode: "light", // "dark" или "light"
     primary: {
-      main: "#00246B;",
+      main: "#00246B",
       light: "#00246B",
       dark: "#5a1dbf",
       contrastText: "#fff",
@@ -184,6 +184,21 @@ export const theme = createTheme({
           fontStyle: "medium",
           borderRadius: "8px",
           fontSize: "16px",
+        },
+      },
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: {
+          borderRadius: "8px",
+        },
+        selected: {
+          backgroundColor: "#163659",
+          color: "#fff",
+          borderColor: "#163659",
+          "&:hover": {
+            backgroundColor: "#12294d",
+          },
         },
       },
     },
