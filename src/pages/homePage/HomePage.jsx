@@ -1,8 +1,7 @@
 import { Navigate } from "../../widgets";
 import { FilterWidget } from "../../widgets/FilterWidget/FilterWidget";
 import { Banner, BannerPictures } from "../../features";
-import { Contacts } from "../../widgets/";
-
+import { ObjectsSections } from "../../widgets";
 
 export const HomePage = () => {
     return (
@@ -12,6 +11,7 @@ export const HomePage = () => {
             <Navigate />
 
             <FilterWidget />
+            <ObjectsSections />
         </div>
     );
 }

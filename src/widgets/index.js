@@ -8,6 +8,9 @@ export { MissionsValues } from './aboutIDEALISSections/missionsValues/MissionsVa
 export {  ListAgents} from "./listAgents/ListAgents"
 export { MiniMenu } from "./header/miniMenu/MinieMenu";
 
+export { ObjectsSections } from './homeSections/objectsSection/ObjectsSections';
+
+
 export {Footer} from './footer/Footer';
 
 export {Contacts} from './contacts/Contacts';
