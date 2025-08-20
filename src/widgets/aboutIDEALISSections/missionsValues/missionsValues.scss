@@ -1,0 +1,25 @@
+
+
+.mv-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+   
+   
+    .mv-text{
+        font-family: Oswald;
+        font-size: 40px;
+        margin: 20px 0;
+    }
+    .mv-lines{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .line{
+            margin: 5px;
+        }
+        .third-line{ 
+            display: flex;
+            gap: 10px;
+        }
+    }}
