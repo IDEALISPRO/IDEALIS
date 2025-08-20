@@ -18,7 +18,7 @@
     }
 }
 
-.active{
+.activeCard{
     width: 335px;
     transition: .3s;
     transform: scale(1.3) translateY(11.5%);
@@ -41,7 +41,7 @@
         display: none;
     }
 
-    .active{
+    .activeCard{
         width: 235px;
         height: 337px; 
         transform: none;
@@ -67,7 +67,7 @@
         }
     }
 
-    .active{
+    .activeCard{
         img{
             height: 200px;
         }
