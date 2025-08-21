@@ -14,3 +14,5 @@ export { ObjectsSections } from './homeSections/objectsSection/ObjectsSections';
 export {Footer} from './footer/Footer';
 
 export {Contacts} from './contacts/Contacts';
+export {Advantages} from './aboutSections/advantages/Advantages.jsx';
+export {Articles} from './aboutSections/articles/Articles.jsx';
