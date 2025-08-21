@@ -3,13 +3,13 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import '../styles/app.scss';
 import { Header } from "../../widgets";
-// import './App.css'
 import { AboutIDEALIS,Services,Contacts, HomePage, News } from '../../pages'
 import '../styles/app.scss';
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../shared/SiteTheme/SiteTheme";
 import { Messenger } from '../../features';
 
+import { Footer } from "../../widgets";
 
 function App() {
   const routesArr = [
@@ -47,6 +47,7 @@ function App() {
         </Routes>
         {/* <Footer /> */}
         <Messenger/>
+        <Footer/> 
       </BrowserRouter>
 
     </ThemeProvider>

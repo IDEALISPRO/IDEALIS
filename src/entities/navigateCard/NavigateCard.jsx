@@ -1,23 +1,27 @@
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const NavigateCard = ({ activeSelect, setActiveSelect, type, title, id, images }) => {
+    const isActive = activeSelect === id;
+
+    const handleClick = () => {
+        setActiveSelect(id);
+    };
+
     return (
         <div
-            className={`categories-navigate__item 
-                ${activeSelect === id ? 'active' : ''}`}
-            onMouseEnter={() => setActiveSelect(id)}
-            onMouseLeave={() => setActiveSelect(null)}
-            style={{ minHeight: '120px' }}
+            className={`categories-navigate__item ${isActive ? 'active' : ''}`}
+            onClick={handleClick}
+            style={{ minHeight: '120px', cursor: "pointer" }}
         >
             <AnimatePresence mode="wait">
-                {activeSelect === id ? (
+                {isActive ? (
                     <motion.div
                         key="hover"
                         className="categories-navigate__hover"
-                        initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
-                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        initial={{ opacity: 0, scaleY: 0 }}
+                        animate={{ opacity: 1, scaleY: 1 }}
+                        exit={{ opacity: 0, scaleY: 0 }}
+                        transition={{ duration: 0.3 }}
                     >
                         <div className="categories-navigate__hover-item">
                             <img className="categories-navigate__hover-img" src={images.first_image} alt={title} />
@@ -38,10 +42,10 @@ export const NavigateCard = ({ activeSelect, setActiveSelect, type, title, id, i
                     <motion.div
                         key="default"
                         className="categories-navigate__default"
-                        initial={{ opacity: 0, y: -10, filter: "blur(6px)" }}
-                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, y: 10, filter: "blur(6px)" }}
-                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        initial={{ opacity: 0, scaleY: 0 }}
+                        animate={{ opacity: 1, scaleY: 1 }}
+                        exit={{ opacity: 0, scaleY: 0 }}
+                        transition={{ duration: 0.3 }}
                     >
                         <h2 className={`categories-navigate__default-title ${type === 'check' ? 'categories-navigate__default-title--check' : ''}`}>
                             {title}
@@ -51,4 +55,4 @@ export const NavigateCard = ({ activeSelect, setActiveSelect, type, title, id, i
             </AnimatePresence>
         </div>
     )
-}
+};

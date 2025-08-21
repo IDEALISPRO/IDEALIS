@@ -1,4 +1,3 @@
-
 export { Header } from  "./header/Header";
 export { ServicesWidget } from './servicesWidget/ServicesWidget';
 export { Navigate } from './homeSections/navigate/Navigate.jsx';
@@ -8,3 +7,10 @@ export {EventsSection } from "./NewsEvent/EventsSection";
 export { MissionsValues } from './aboutIDEALISSections/missionsValues/MissionsValues'
 export {  ListAgents} from "./listAgents/ListAgents"
 export { MiniMenu } from "./header/miniMenu/MinieMenu";
+
+export { ObjectsSections } from './homeSections/objectsSection/ObjectsSections';
+
+
+export {Footer} from './footer/Footer';
+
+export {Contacts} from './contacts/Contacts';

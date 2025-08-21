@@ -11,7 +11,7 @@ export const HotOfferCard = ({image, description, isActive, onClick, description
   }
 
   return (
-    <div onClick={onClick} className={`hotOffersCard ${isActive ? 'active' : ''}`}>
+    <div onClick={onClick} className={`hotOffersCard ${isActive ? 'activeCard' : ''}`}>
             <img className='hotOffersCard__img' src={image} alt="image" />
             
             <h3 className='hotOffersCard__description'>{TextWidth(description)}</h3>
