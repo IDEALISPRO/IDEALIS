@@ -12,7 +12,8 @@ import ru from "../../shared/ru.svg";
 import kg from "../../shared/kg.svg";
 import en from "../../shared/en.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { MiniMenu } from "./miniMenu/MinieMenu";
+import { NavLink } from "react-router-dom";
+
 export const Header = () => {
   const { t, i18n } = useTranslation();
 
@@ -21,6 +22,29 @@ export const Header = () => {
     { code: "kg", label: "Кыргызча", flag: kg },
     { code: "en", label: "English", flag: en },
   ];
+
+  const links = [
+    {
+      text: 'about',
+      link: '/about'
+    },
+    {
+      text: 'services',
+      link: '/services'
+    },
+    {
+      text: 'news',
+      link: '/news'
+    },
+    {
+      text: 'contacts',
+      link: '/contacts'
+    },
+    {
+      text: 'favorites',
+      link: '/favorites'
+    },
+  ]
 
   const currentLang =
     languages.find((lang) => lang.code === i18n.language) || languages[0];
@@ -63,33 +87,27 @@ export const Header = () => {
   return (
     <header className="container header">
       <div className="header-logo">
-        <img className="imglogo" src={logo} alt="Logo" />
+        <NavLink to={'/'}>
+          <img className="imglogo" src={logo} alt="Logo" />
+
+        </NavLink>
       </div>
 
       <nav className="header-nav">
-        <a className="linka" href="#pro" onClick={() => setMenuOpen(false)}>
-          {t("menu.about")}
-        </a>
-        <a
-          className="linka"
-          href="#services"
-          onClick={() => setMenuOpen(false)}
-        >
-          {t("menu.services")}
-        </a>
-        <a className="linka" href="#news" onClick={() => setMenuOpen(false)}>
-          {t("menu.news")}
-        </a>
-        <a
-          className="linka"
-          href="#contacts"
-          onClick={() => setMenuOpen(false)}
-        >
-          {t("menu.contacts")}
-        </a>
-        <a className="linka" href="#gallery" onClick={() => setMenuOpen(false)}>
-          {t("menu.favorites")}
-        </a>
+
+        {
+          links && 
+          links.map((item, index) => (
+            <NavLink
+              key={index}
+              className="linka"
+              to={`${item.link}`}
+              onClick={() => setMenuOpen(false)}
+            >
+              {t(`menu.${item.text}`)}
+            </NavLink>
+          ))
+        }
       </nav>
 
       <div className="header-right">
