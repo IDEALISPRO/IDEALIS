@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./miniMenu.scss";
 import { GrHomeRounded } from "react-icons/gr";
 import { RiHeartLine } from "react-icons/ri";
@@ -6,23 +6,37 @@ import { CiCirclePlus } from "react-icons/ci";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
 
 export const MiniMenu = () => {
+  const menuRef = useRef(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
+
   useEffect(() => {
-    const footer = document.querySelector('.foterAdmin');
-
     const handleScroll = () => {
-      if (window.scrollY > 100) {
-        footer.classList.add('stick-top');
-      } else {
-        footer.classList.remove('stick-top');
-      }
+      setScrolled(window.scrollY > 100);
     };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const footer = document.querySelector(".footer");
+    if (footer) {
+      const observer = new IntersectionObserver(
+        ([entry]) => setFooterVisible(entry.isIntersecting),
+        { threshold: 0.1 }
+      );
+      observer.observe(footer);
+      return () => observer.unobserve(footer);
+    }
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="foterAdmin">
+    <div
+      ref={menuRef}
+      className={`foterAdmin ${scrolled ? "stick-top" : ""} ${
+        footerVisible ? "footer-visible" : ""
+      } show`}
+    >
       <div className="footer-nav">
         <a href="#home" className="footer-link">
           <span className="icon"><GrHomeRounded size={30} /></span>
@@ -44,3 +58,5 @@ export const MiniMenu = () => {
     </div>
   );
 };
+
+export default MiniMenu;

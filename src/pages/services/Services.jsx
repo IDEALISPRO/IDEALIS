@@ -1,4 +1,4 @@
-import { ServicesWidget, MiniMenu } from "../../widgets";
+import { ServicesWidget,  } from "../../widgets";
 import { Banner, BannerPictures } from "../../features";
 
 export const Services = () => {
@@ -6,7 +6,7 @@ export const Services = () => {
         <div>
             <Banner title={'Услуги'} description={'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'} />
             <BannerPictures />
-            <MiniMenu />
+           
             <ServicesWidget />
 
         </div>
