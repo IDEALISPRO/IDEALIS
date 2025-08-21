@@ -1,61 +1,36 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./articles.scss";
 
-import preview from "../../shared/img/articles.mp4";
-import preview2 from "../../shared/img/articles-2.mp4";
-import preview3 from "../../shared/img/articles-3.mp4";
-
 const videos = [
-  { id: 1, src: preview, title: "Дома из бруса Афины" },
-  { id: 2, src: preview2, title: "Дома из бруса Афины" },
-  { id: 3, src: preview3, title: "Дома из бруса Афины" },
-  { id: 4, src: preview2, title: "Дома из бруса Афины" },
+  { id: 1, youtubeId: "VR7Gyji8RVo", title: "Дома из бруса Афины" },
+  { id: 2, youtubeId: "xv3qEi3rBqg", title: "Дома из бруса Афины" },
+  { id: 3, youtubeId: "KP4LoBFMNmw", title: "Дома из бруса Афины" },
+  { id: 4, youtubeId: "A92uM-WAbWY", title: "Дома из бруса Афины" },
+  { id: 5, youtubeId: "g_Y9ZV-y3bM", title: "Дома из бруса Афины" },
+  { id: 6, youtubeId: "G3zIcX54UlY", title: "Дома из бруса Афины" },
+  { id: 7, youtubeId: "_hHwN1S2NF4", title: "Дома из бруса Афины" },
 ];
 
 export function Articles() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [videoSrc, setVideoSrc] = useState("");
   const [canSlidePrev, setCanSlidePrev] = useState(false);
   const [canSlideNext, setCanSlideNext] = useState(true);
-
-  const openModal = (src) => {
-    setVideoSrc(src);
-    setIsModalOpen(true);
-  };
-
-  useEffect(() => {
-    if(isModalOpen){
-        document.body.style.overflow = "hidden";
-    } else {
-        document.body.style.overflow = "auto";
-    }
-
-    return () => {
-        document.body.style.overflow = "auto"; 
-      }
-  }, [isModalOpen]);
-
-
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setVideoSrc("");
-  };
 
   const handleSwiper = (swiper) => {
     setCanSlidePrev(!swiper.isBeginning);
     setCanSlideNext(!swiper.isEnd);
   };
 
+  const openYouTube = (youtubeId) => {
+    window.open(`https://www.youtube.com/watch?v=${youtubeId}`, "_blank");
+  };
+
   return (
     <div className="articles-slider container">
-      <h2 className="articles-slider__title">
-        ВИДЕО И СТАТЬИ С ЭКСПЕРТАМИ
-      </h2>
+      <h2 className="articles-slider__title">ВИДЕО И СТАТЬИ С ЭКСПЕРТАМИ</h2>
 
       <div className="articles-slider__container">
         <Swiper
@@ -68,7 +43,7 @@ export function Articles() {
           }}
           breakpoints={{
             320: { slidesPerView: 1 },
-            576: { slidesPerView: 3 },
+            576: { slidesPerView: 2 },
             768: { slidesPerView: 3 },
             1024: { slidesPerView: 3 },
           }}
@@ -79,10 +54,15 @@ export function Articles() {
             <SwiperSlide key={video.id}>
               <div
                 className="articles-slider__card"
-                onClick={() => openModal(video.src)}
+                onClick={() => openYouTube(video.youtubeId)}
               >
                 <div className="articles-slider__video-wrapper">
-                  <video src={video.src} className="articles-slider__video" muted />
+                  <img
+                    src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
+                    alt={video.title}
+                    className="articles-slider__thumbnail"
+                    style={{ cursor: "pointer" , height: "200px"}}
+                  />
                   <div className="articles-slider__play"></div>
                 </div>
                 <p className="articles-slider__caption">{video.title}</p>
@@ -106,20 +86,6 @@ export function Articles() {
           →
         </button>
       </div>
-
-      {isModalOpen && (
-        <div className="articles-slider__modal">
-          <div className="articles-slider__modal-content">
-            <button
-              className="articles-slider__modal-close"
-              onClick={closeModal}
-            >
-              ✕
-            </button>
-            <video src={videoSrc} controls autoPlay className="articles-slider__video"></video>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

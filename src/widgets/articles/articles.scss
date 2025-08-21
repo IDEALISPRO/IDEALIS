@@ -28,6 +28,8 @@
   
     &__card {
       cursor: pointer;
+
+
      
     }
   
@@ -35,6 +37,10 @@
       position: relative;
       border-radius: 8px;
       overflow: hidden;
+
+      &__thumbnail{
+        max-height: 100px;
+      }
     }
   
     &__video {
@@ -105,7 +111,6 @@
 
         @media (max-width: 576px) {
             right: 0px;
-              
           }
       }
     }
