@@ -35,14 +35,15 @@ export const ServicesWidget = () => {
         <Box
             className="container "
             sx={{
-                paddingTop: { xs: '97px', md: '150px', }
+                paddingTop: { xs: '97px', md: '150px', },
+                mb:{ xs: '80px', md: '100px', }
             }}
         >
             <h2 className="title">УСЛУГИ</h2>
             <Typography
                 sx={{
                     fontWeight: 400,
-                    fontSize: { xs: '18px', sm: '20px', md: '24px', lg: '36px' },
+                    fontSize: { xs: '18px', sm: '20px', md: '22px', lg: '34px' },
                     color: '#000',
                     width: { xs: '100%', sm: '60%', md: '60%', lg: '50%' },
                     marginBottom: '20px',

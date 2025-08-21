@@ -11,14 +11,9 @@
   position: fixed;
   height: 100px;
   bottom: 10px;
-  opacity: 0; 
+  display: none;
   transform: translateY(100px);
   z-index: 100;
-}
-
-.foterAdmin.show {
-  opacity: 1;
-  transform: translateY(0); 
 }
 
 .foterAdmin .footer-nav {
@@ -50,6 +45,7 @@
 @media screen and (max-width: 576px) {
   .foterAdmin {
     bottom: 0;
+    display: block;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
     transition: all 1s ease;
