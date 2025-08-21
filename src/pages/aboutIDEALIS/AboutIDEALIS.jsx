@@ -1,7 +1,6 @@
-import React from "react";
-
 import { BannerPictures, Banner} from "../../features";
-import { MissionsValues } from "../../widgets"
+import { Advantages, Articles, MissionsValues } from "../../widgets"
+
 export const AboutIDEALIS = () => {
   return (
     <div>
@@ -9,6 +8,8 @@ export const AboutIDEALIS = () => {
 
       <BannerPictures />{" "}
       <MissionsValues />
+      <Advantages />
+      <Articles />
     </div>
   );
 };

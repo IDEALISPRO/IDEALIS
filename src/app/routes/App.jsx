@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import '../styles/app.scss';
 import { Header } from "../../widgets";
-import { AboutIDEALIS,Services,Contacts, HomePage, News } from '../../pages'
+import { AboutIDEALIS, Services,Contacts, HomePage, News, Favorites } from '../../pages'
 import '../styles/app.scss';
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../shared/SiteTheme/SiteTheme";
@@ -32,6 +32,10 @@ function App() {
     {
       path: "/services",
       element: <Services />,
+    },
+    {
+      path: "/favorites",
+      element: <Favorites />,
     },
   ]
 
