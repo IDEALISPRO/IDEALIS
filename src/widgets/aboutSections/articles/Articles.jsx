@@ -5,9 +5,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "./articles.scss";
 
-import preview from "../../shared/img/articles.mp4";
-import preview2 from "../../shared/img/articles-2.mp4";
-import preview3 from "../../shared/img/articles-3.mp4";
+import preview from "../../../shared/img/articles.mp4";
+import preview2 from "../../../shared/img/articles-2.mp4";
+import preview3 from "../../../shared/img/articles-3.mp4";
 
 const videos = [
   { id: 1, src: preview, title: "Дома из бруса Афины" },
