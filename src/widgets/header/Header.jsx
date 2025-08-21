@@ -13,7 +13,7 @@ import kg from "../../shared/kg.svg";
 import en from "../../shared/en.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-
+import {MiniMenu} from "../index"
 export const Header = () => {
   const { t, i18n } = useTranslation();
 
