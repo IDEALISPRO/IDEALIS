@@ -1,6 +1,7 @@
 import React from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import { useMediaQuery } from "@mui/material";
 
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import "./adFreeCard.scss";
@@ -30,13 +31,15 @@ const imgList = [
   },
 ];
 export const AdFreeCard = () => {
+  const isSmall = useMediaQuery("(max-width:600px)");
+  const isMedium = useMediaQuery("(max-width:900px)");
   return (
     <div className="card">
       <div className="card-block1 block1">
         <ImageList
-          sx={{ width: "100%", height: 400 }}
+          className="img-list"
           cols={5}
-          rowHeight={190}
+          rowHeight={isSmall ? 90 : isMedium ? 140 : 190}
           gap={12}
           variant="quilted"
         >
@@ -56,11 +59,8 @@ export const AdFreeCard = () => {
           ))}
           <ImageListItem
             rows={0.8}
-            style={{
-              marginTop: -95,
-            }}
           >
-            <img src={img4} alt="" style={{ borderRadius: 8 }} />
+            <img src={img4} alt="" style={{ borderRadius: 8 }}  className="item-img"/>
           </ImageListItem>
         </ImageList>
         <h3 className="block1-title">+996 775 65 65 98</h3>
@@ -93,6 +93,7 @@ export const AdFreeCard = () => {
           <img src={location} alt="" className="location-img" />
           <span>г. Бишкек, мкр. Ала-Тоо, ул. Южная магистраль, 45</span>
         </div>
+        <button className="second-btn">Подробнее</button>
       </div>
     </div>
   );
