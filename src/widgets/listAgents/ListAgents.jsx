@@ -9,17 +9,13 @@ import Paper from '@mui/material/Paper';
 import Pagination from '@mui/material/Pagination';
 
 const allRows = [
-    { agency: 'ОсОО «Город Будущего»', object: 'ЖК «Панорама»', year: 2026, manager: 'Тимур Абдрахманов', contact: '+996 700 456 789' },
-    { agency: 'ОсОО «АльфаСтрой»', object: 'ЖК «Сары-Таш»', year: 2025, manager: 'Каныкей Мамбетова', contact: '+996 555 123 000' },
-    { agency: 'ОсОО «Город Будущего»', object: 'ЖК «Панорама»', year: 2026, manager: 'Тимур Абдрахманов', contact: '+996 700 456 789' },
-    { agency: 'ОсОО «АльфаСтрой»', object: 'ЖК «Сары-Таш»', year: 2025, manager: 'Каныкей Мамбетова', contact: '+996 555 123 000' },
-    { agency: 'ОсОО «Город Будущего»', object: 'ЖК «Панорама»', year: 2026, manager: 'Тимур Абдрахманов', contact: '+996 700 456 789' },
-    { agency: 'ОсОО «АльфаСтрой»', object: 'ЖК «Сары-Таш»', year: 2025, manager: 'Каныкей Мамбетова', contact: '+996 555 123 000' },
-    { agency: 'ОсОО «Город Будущего»', object: 'ЖК «Панорама»', year: 2026, manager: 'Тимур Абдрахманов', contact: '+996 700 456 789' },
-    { agency: 'ОсОО «АльфаСтрой»', object: 'ЖК «Сары-Таш»', year: 2025, manager: 'Каныкей Мамбетова', contact: '+996 555 123 000' },
-    { agency: 'ОсОО «Город Будущего»', object: 'ЖК «Панорама»', year: 2026, manager: 'Тимур Абдрахманов', contact: '+996 700 456 789' },
-    { agency: 'ОсОО «АльфаСтрой»', object: 'ЖК «Сары-Таш»', year: 2025, manager: 'Каныкей Мамбетова', contact: '+996 555 123 000' },
-    { agency: 'ОсОО «Город Будущего»', object: 'ЖК «Панорама»', year: 2026, manager: 'Тимур Абдрахманов', contact: '+996 700 456 789' },
+    { agency: 'ОсОО «Город Будущего»', object_name: 'ЖК «Панорама»', delivery_year: 2026, manager: 'Тимур Абдрахманов', contact_phone: '+996 700 456 789' },
+    { agency: 'ОсОО «Город Будущего»', object_name: 'ЖК «Панорама»', delivery_year: 2026, manager: 'Тимур Абдрахманов', contact_phone: '+996 700 456 789' },
+    { agency: 'ОсОО «Город Будущего»', object_name: 'ЖК «Панорама»', delivery_year: 2026, manager: 'Тимур Абдрахманов', contact_phone: '+996 700 456 789' },
+    { agency: 'ОсОО «Город Будущего»', object_name: 'ЖК «Панорама»', delivery_year: 2026, manager: 'Тимур Абдрахманов', contact_phone: '+996 700 456 789' },
+    { agency: 'ОсОО «Город Будущего»', object_name: 'ЖК «Панорама»', delivery_year: 2026, manager: 'Тимур Абдрахманов', contact_phone: '+996 700 456 789' },
+    { agency: 'ОсОО «Город Будущего»', object_name: 'ЖК «Панорама»', delivery_year: 2026, manager: 'Тимур Абдрахманов', contact_phone: '+996 700 456 789' },
+    { agency: 'ОсОО «Город Будущего»', object_name: 'ЖК «Панорама»', delivery_year: 2026, manager: 'Тимур Абдрахманов', contact_phone: '+996 700 456 789' },
 ];
 
 const rowsPerPage = 8;
@@ -43,7 +39,7 @@ const bodyCellStyle = {
 export const ListAgents = () => {
     const [page, setPage] = React.useState(1);
 
-    const handleChange = ( value) => {
+    const handleChange = (value) => {
         setPage(value);
     };
 
@@ -67,14 +63,14 @@ export const ListAgents = () => {
                         {paginatedRows.map((row, index) => (
                             <TableRow key={`${row.agency}-${index}`} sx={{ '& td': bodyCellStyle }}>
                                 <TableCell>{row.agency}</TableCell>
-                                <TableCell>{row.object}</TableCell>
-                                <TableCell>{row.year}</TableCell>
+                                <TableCell>{row.object_name}</TableCell>
+                                <TableCell>{row.delivery_year}</TableCell>
                                 <TableCell>{row.manager}</TableCell>
-                                <TableCell>{row.contact}</TableCell>
+                                <TableCell>{row.contact_phone}</TableCell>
                                 <TableCell sx={{
                                     textDecoration: 'underline',
-                                    cursor:"pointer"
-                                }} >Скачать</TableCell>
+                                    cursor: "pointer"
+                                }}  >Скачать</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
