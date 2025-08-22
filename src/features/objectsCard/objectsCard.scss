@@ -1,6 +1,8 @@
 .objCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 426px;
-    height: auto;
 
     &__img {
         width: 100%;

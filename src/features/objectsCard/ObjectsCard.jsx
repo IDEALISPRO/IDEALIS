@@ -5,7 +5,7 @@ import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { useState } from 'react';
 
-export const ObjectsCard = ({ img, title, location, description, price }) => {
+export const ObjectsCard = ({ img, title, location, description, price, count }) => {
 
     const [liked, setLiked] = useState(false);
 
@@ -14,14 +14,22 @@ export const ObjectsCard = ({ img, title, location, description, price }) => {
         setLiked(!liked)
     }
 
+    const TextWidth = (text) => {
+        if (text.length > 58) {
+            return text.slice(0, 30) + '...';
+        } else {
+            return text
+        }
+    }
+
     return (
         <div className='objCard'>
             <img className='objCard__img' src={img} alt={title} loading='lazy' />
 
             <div className='objCard__info'>
-                <h3 className='objCard__info__title'>{title}</h3>
+                <h3 className='objCard__info__title'>{TextWidth(title)}</h3>
                 <p className='objCard__info__location'><img className='objCard__info__location__mark' src={loca} alt="" loading='lazy' />{location}</p>
-                <p className='objCard__info__desc'>{description}</p>
+                <p className='objCard__info__desc'>{TextWidth(description)}</p>
                 <p className='objCard__info__price'>{price}</p>
             </div>
 

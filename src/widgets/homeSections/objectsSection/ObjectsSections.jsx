@@ -1,101 +1,17 @@
 import { ObjectsCard, ObjectsBtn } from '../../../features/index';
 import img from '../../../shared/img/objImg.png';
 import './objects.scss';
-
-const data = [
-    {
-        id: 1,
-        img: img,
-        title: 'Готовые квартиры с ремонтом',
-        location: 'Аламедин-1, ул. Тыныстанова',
-        description: '1 комн • 38 м²',
-        price: '3 400 000 сом',
-        liked: false,
-    },
-    {
-        id: 2,
-        img: img,
-        title: 'Готовые квартиры с ремонтом',
-        location: 'Аламедин-1, ул. Тыныстанова',
-        description: '1 комн • 38 м²',
-        price: '3 400 000 сом',
-        liked: false,
-    },
-    {
-        id: 3,
-        img: img,
-        title: 'Готовые квартиры с ремонтом',
-        location: 'Аламедин-1, ул. Тыныстанова',
-        description: '1 комн • 38 м²',
-        price: '3 400 000 сом',
-        liked: false,
-    },
-    {
-        id: 4,
-        img: img,
-        title: 'Готовые квартиры с ремонтом',
-        location: 'Аламедин-1, ул. Тыныстанова',
-        description: '1 комн • 38 м²',
-        price: '3 400 000 сом',
-        liked: false,
-    },
-    {
-        id: 5,
-        img: img,
-        title: 'Готовые квартиры с ремонтом',
-        location: 'Аламедин-1, ул. Тыныстанова',
-        description: '1 комн • 38 м²',
-        price: '3 400 000 сом',
-        liked: false,
-    },
-    {
-        id: 6,
-        img: img,
-        title: 'Готовые квартиры с ремонтом',
-        location: 'Аламедин-1, ул. Тыныстанова',
-        description: '1 комн • 38 м²',
-        price: '3 400 000 сом',
-        liked: false,
-    },
-    {
-        id: 7,
-        img: img,
-        title: 'Готовые квартиры с ремонтом',
-        location: 'Аламедин-1, ул. Тыныстанова',
-        description: '1 комн • 38 м²',
-        price: '3 400 000 сом',
-        liked: false,
-    },
-    {
-        id: 8,
-        img: img,
-        title: 'Готовые квартиры с ремонтом',
-        location: 'Аламедин-1, ул. Тыныстанова',
-        description: '1 комн • 38 м²',
-        price: '3 400 000 сом',
-        liked: false,
-    },
-    {
-        id: 9,
-        img: img,
-        title: 'Готовые квартиры с ремонтом',
-        location: 'Аламедин-1, ул. Тыныстанова',
-        description: '1 комн • 38 м²',
-        price: '3 400 000 сом',
-        liked: false,
-    },
-    {
-        id: 10,
-        img: img,
-        title: 'Готовые квартиры с ремонтом',
-        location: 'Аламедин-1, ул. Тыныстанова',
-        description: '1 комн • 38 м²',
-        price: '3 400 000 сом',
-        liked: false,
-    }
-]
+import { ObjectsStore } from '../../../app/zustand/ObjectsStore';
+import { useEffect } from 'react';
 
 export const ObjectsSections = () => {
+
+    const { objects, loading, error, objectsFetch } = ObjectsStore();
+
+    useEffect(() => {
+        objectsFetch();
+    }, [objectsFetch]);
+    
     return (
         <div className='container objects'>
 
@@ -108,24 +24,25 @@ export const ObjectsSections = () => {
                 <div className="objects__info">
                     <p className='objects__info__res'>Результаты</p>
 
-                    <p className='objects__info__count'>{data[0].id}-{data[9].id} из 12118 найденных объектов</p>
-                    <p className='objects__info__mobile'>{data[9].id} найденных объектов</p>
+                    <p className='objects__info__count'>{objects.length}-{objects.length} из {objects.length} найденных объектов</p>
+                    <p className='objects__info__mobile'>{objects.length}найденных объектов</p>
                 </div>
             </div>
 
             <div className="objects__cards">
                 {
-                    data.map((item) => (
-                        <ObjectsCard
-                            key={item.id}
-                            img={item.img}
-                            title={item.title}
-                            location={item.location}
-                            description={item.description}
-                            price={item.price}
-                            liked={item.liked}
-                        />
-                    ))
+                objects.slice(0,10).map((item) => (
+                    <ObjectsCard
+                    key={item.id}
+                    img={img}
+                    title={item.title}
+                    location={item.userId}
+                    description={item.body}
+                    price={"3 400 000 сом"}
+                    liked={false}
+                    count={10}
+                    />
+                ))
                 }
                 <ObjectsBtn />
             </div>
