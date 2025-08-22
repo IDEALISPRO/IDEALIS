@@ -75,7 +75,12 @@
 
 @media screen and (max-width: 576px) {
   .banner-pictures {
-    margin-top: 120px;
+    margin-top: 220px;
+    height: 120px;
+
+    &-item.activee img{
+      height: 220px;
+    }
 
     &-block {
       &:nth-child(4),

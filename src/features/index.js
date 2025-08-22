@@ -7,3 +7,5 @@ export {Messenger}  from "./messenger/Messenger"
  
 export { ObjectsCard } from './objectsCard/ObjectsCard';
 export { ObjectsBtn } from './objectsBtn/ObjectsBtn';
+
+export { HotOfferCard } from './hotOffersCard/HotOfferCard';

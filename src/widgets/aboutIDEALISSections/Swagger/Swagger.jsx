@@ -1,4 +1,3 @@
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./swagger.scss";
 import "swiper/scss";
@@ -9,10 +8,10 @@ import { Navigation, Pagination } from "swiper/modules";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 
-import slide1 from "../../shared/swaggerImg/slide1.svg";
-import slide2 from "../../shared/swaggerImg/slide2.svg";
-import slide3 from "../../shared/swaggerImg/slide3.svg";
-import slide4 from "../../shared/swaggerImg/slide4.svg";
+import slide1 from "../../../shared/swaggerImg/slide1.svg";
+import slide2 from "../../../shared/swaggerImg/slide2.svg";
+import slide3 from "../../../shared/swaggerImg/slide3.svg";
+import slide4 from "../../../shared/swaggerImg/slide4.svg";
 
 export const Swagger = () => {
   const Slides = [

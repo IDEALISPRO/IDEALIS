@@ -1,10 +1,10 @@
+import { useState } from 'react';
 import './hotOffers.scss';
-import img1 from "../../shared/images/hotOffersImg1.png"
-import img2 from "../../shared/images/hotOffersImg2.png"
-import img3 from "../../shared/images/hotOffersImg3.png"
-import img4 from "../../shared/images/hotOffersImg4.png"
-import React, { useState } from 'react';
-import { HotOfferCard } from '../../features/hotOffersCard/HotOfferCard';
+import img1 from "../../../shared/images/hotOffersImg1.png"
+import img3 from "../../../shared/images/hotOffersImg3.png"
+import img2 from "../../../shared/images/hotOffersImg2.png"
+import img4 from "../../../shared/images/hotOffersImg4.png"
+import { HotOfferCard } from '../../../features';
 
 export const HotOffers = () => {
     

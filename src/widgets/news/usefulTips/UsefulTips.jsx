@@ -1,6 +1,6 @@
-import img from "../../shared/images/home.png";
-import { Acardion } from "../../features/";
-import { Box, Typography } from "@mui/material";
+import { Acardion } from "../../../features"
+import img from "../../../shared/images/home.png";
+
 const data = [
     {
         id: 1,
@@ -28,30 +28,14 @@ const data = [
     }
 ]
 
-export const ServicesWidget = () => {
-    return (
-        <Box
-            className="container "
-            sx={{
-                paddingTop: { xs: '97px', md: '150px', },
-                mb:{ xs: '80px', md: '100px', }
-            }}
-        >
-            <h2 className="title">УСЛУГИ</h2>
-            <Typography
-                sx={{
-                    fontWeight: 400,
-                    fontSize: { xs: '18px', sm: '20px', md: '22px', lg: '34px' },
-                    color: '#000',
-                    width: { xs: '100%', sm: '60%', md: '60%', lg: '50%' },
-                    marginBottom: '20px',
-                    ml: { xs: '0', sm: '40%', md: '40%', lg: '50%' },
+export const UsefulTips = () => {
+  return (
+    <section>
+        <h2 className="title">Полезные советы</h2>
 
+        <Acardion data={data} />
 
-                }}>Наша компания уделяет большое внимание вашему личному комфорту и стремится стать надежным партнером на всех этапах вашего пути к осуществлению мечты. Наша главная задача обеспечить доступность и удобство в процессе строительства вашего идеального дома.</Typography>
-
-            <Acardion data={data} />
-
-        </Box >
-    );
-};
+    </section>
+  )
+}
+ 

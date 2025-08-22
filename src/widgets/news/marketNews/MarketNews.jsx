@@ -1,10 +1,8 @@
-import React from "react";
-import img1 from "../../shared/images/marketNewsImg1.jpg";
-import img2 from "../../shared/images/marketNewsImg2.jpg";
-import img3 from "../../shared/images/marketNewsImg3.jpg";
+import img1 from "../../../shared/images/marketNewsImg1.jpg";
+import img2 from "../../../shared/images/marketNewsImg2.jpg";
+import img3 from "../../../shared/images/marketNewsImg3.jpg";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import "./marketNews.scss";
-import { height, width } from "@mui/system";
 
 const MinText = (text) => {
       if (text.length > 80) {
@@ -14,7 +12,6 @@ const MinText = (text) => {
       }
 }
 
-// const fsfse = 'fsefse'
 const text = 'Следите за последними изменениями цен, трендами и новостями рынка в Кыргызстане'
 const text2 = 'Аналитика, законы, тенденции — всё, что важно знать о рынке недвижимости.'
 const text3 = 'Следите за последними изменениями цен, трендами и новостями рынка в Кыргызстане'

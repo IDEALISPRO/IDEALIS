@@ -1,7 +1,6 @@
 import { BannerPictures, Banner} from "../../features";
-import { Advantages, Articles, MissionsValues } from "../../widgets"
+import { Advantages, Articles, MissionsValues, Swagger } from "../../widgets"
 
-import { Swagger } from "../../widgets/Swagger/Swagger";
 export const AboutIDEALIS = () => {
   return (
     <div className="container">

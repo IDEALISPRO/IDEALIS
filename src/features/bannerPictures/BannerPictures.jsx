@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./bannerPictures.scss";
 
 import img1 from "../../shared/images/img1.png";
