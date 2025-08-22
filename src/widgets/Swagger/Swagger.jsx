@@ -23,6 +23,7 @@ export const Swagger = () => {
     { img: slide1, name: "Смирнов Александр", position: "Мастер по проектированию" },
     { img: slide3, name: "Смирнов Александр", position: "Мастер по проектированию" },
     { img: slide2, name: "Смирнов Александр", position: "Мастер по проектированию" },
+    { img: slide1, name: "Смирнов Александр", position: "Мастер по проектированию" },
   ];
 
   return (
@@ -46,14 +47,16 @@ export const Swagger = () => {
           modules={[Navigation, Pagination]}
           className="mySwiper"
           breakpoints={{
-            1420: { slidesPerView: 5 },
-            1380: { slidesPerView: 3 },
-            710: { slidesPerView: 1 },
+            0: { slidesPerView: 1, centeredSlides: false },      
+            980: { slidesPerView: 3, centeredSlides: true },    
+            1400: { slidesPerView: 5, centeredSlides: true },  
           }}
         >
           {Slides.map((slide, i) => (
             <SwiperSlide key={i} className="slider">
-              <img src={slide.img} alt="user" className="slider-img" />
+              <div className="slider-img">
+                <img src={slide.img} alt="user" />
+              </div>
               <h4 className="slider-title">{slide.name}</h4>
               <p className="slider-text">{slide.position}</p>
             </SwiperSlide>
