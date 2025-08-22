@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AboutIDEALIS, HomePage } from '../../pages'
 import '../styles/app.scss';
+
 // import './App.css'
 import { ThemeProvider } from "@mui/material/styles";
 import {theme} from "../../shared/SiteTheme/SiteTheme"; 
