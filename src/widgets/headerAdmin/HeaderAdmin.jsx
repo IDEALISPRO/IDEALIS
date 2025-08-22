@@ -48,7 +48,7 @@ export const HeaderAdmin = ({ activeTab = "published", onTabChange }) => {
                 className="user-profile__action-btn"
                 title="Редактировать"
               >
-                <FaPen size={16} />
+                <FaPen size={13} />
               </button>
               <button
                 className="user-profile__action-btn"
@@ -65,13 +65,13 @@ export const HeaderAdmin = ({ activeTab = "published", onTabChange }) => {
             <p className="support-info__title">Служба поддержки IDEAīīS</p>
             <p className="support-info__email">IDEAKIS@GMAIL.COM</p>
           </div>
+
         </div>
+        
+        <img className="header-admin__support none" src={supp} alt="icon" loading="lazy"/>
 
         <div className="header-admin__actions">
           <button className="add-object-btn">Добавить объект</button>
-          <button className="phone-btn">
-            <img src={supp} alt="" />
-          </button>
         </div>
       </div>
 
