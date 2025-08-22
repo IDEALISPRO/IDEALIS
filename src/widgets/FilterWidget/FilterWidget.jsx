@@ -25,12 +25,33 @@ function valuetext(value) {
 const minDistance = 1000;
 
 export const FilterWidget = () => {
+  // 1. Храним значения всех селектов в одном объекте
+  const [selects, setSelects] = useState({
+    dealType: "",          // Тип сделки
+    estateType: "",        // Тип недвижимости
+    rooms: "",             // Количество комнат
+    district: "",          // Район
+    houseSeries: "",       // Серия дома
+    agent: "",             // Агент
+    status: "",            // Статус объекта
+    extra: "",             // Дополнительные фильтры
+    repair: "",            // Состояние ремонта
+  });
+
+  // 2. Одна функция для всех селектов
+  const handleSelectChange = (event) => {
+    const { name, value } = event.target;
+    setSelects((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const handleSearchClick = () => {
     alert("Иконка поиска нажата!");
   };
 
   const [alignment, setAlignment] = React.useState('left');
-  const [age, setAge] = React.useState('');
   const [value1, setValue1] = React.useState([100000, 1000000]);
   const [currency, setCurrency] = React.useState('som');
   const [open, setOpen] = useState(false);
@@ -61,6 +82,7 @@ export const FilterWidget = () => {
     event.preventDefault();
     setFormData({
       age,
+      type,
       value1,
       currency,
       alignment,
@@ -137,8 +159,102 @@ export const FilterWidget = () => {
               <Grid container columnSpacing={2}>
                 <Grid item size={{ xs: 4 }}>
                   <Select
-                    value={age}
-                    onChange={handleChange}
+                    name="dealType"
+                    value={selects.dealType}
+                    onChange={handleSelectChange}
+                    displayEmpty
+                    sx={{ width: "100%" }}
+                    fullWidth
+                    inputProps={{ 'aria-label': 'Without label' }}
+                  >
+                    <MenuItem value="">
+                      <em>Тип сделки</em>
+                    </MenuItem>
+                    <MenuItem value="buy">Покупка</MenuItem>
+                    <MenuItem value="rent">Аренда</MenuItem>
+                  </Select>
+                </Grid>
+
+                <Grid item size={{ xs: 4 }}>
+                  <Select
+                    name="estateType"
+                    value={selects.estateType}
+                    onChange={handleSelectChange}
+                    displayEmpty
+                    sx={{ width: "100%" }}
+                    fullWidth
+                    inputProps={{ 'aria-label': 'Without label' }}
+                  >
+                    <MenuItem value="">
+                      <em>Тип недвижимости</em>
+                    </MenuItem>
+                    <MenuItem value="flat">Квартира</MenuItem>
+                    <MenuItem value="house">Дом</MenuItem>
+                  </Select>
+                </Grid>
+
+                <Grid item size={{ xs: 4 }}>
+                  <Select
+                    name="rooms"
+                    value={selects.rooms}
+                    onChange={handleSelectChange}
+                    displayEmpty
+                    sx={{ width: "100%" }}
+                    fullWidth
+                    inputProps={{ 'aria-label': 'Without label' }}
+                  >
+                    <MenuItem value="">
+                      <em>Количество комнат</em>
+                    </MenuItem>
+                    <MenuItem value="1">1</MenuItem>
+                    <MenuItem value="2">2</MenuItem>
+                    <MenuItem value="3">3</MenuItem>
+                    <MenuItem value="4">4+</MenuItem>
+                  </Select>
+                </Grid>
+              </Grid>
+              <Grid container columnSpacing={2} alignItems="center">
+                <Grid item size={{ xs: 4 }}>
+                  <Select
+                    name="district"
+                    value={selects.district}
+                    onChange={handleSelectChange}
+                    displayEmpty
+                    sx={{ width: "100%" }}
+                    fullWidth
+                    inputProps={{ 'aria-label': 'Without label' }}
+                  >
+                    <MenuItem value="">
+                      <em>Район</em>
+                    </MenuItem>
+                    <MenuItem value="center">Центр</MenuItem>
+                    <MenuItem value="south">Юг</MenuItem>
+                  </Select>
+                </Grid>
+
+                <Grid item size={{ xs: 4 }}>
+                  <Select
+                    name="houseSeries"
+                    value={selects.houseSeries}
+                    onChange={handleSelectChange}
+                    displayEmpty
+                    sx={{ width: "100%" }}
+                    fullWidth
+                    inputProps={{ 'aria-label': 'Without label' }}
+                  >
+                    <MenuItem value="">
+                      <em>Серия дома</em>
+                    </MenuItem>
+                    <MenuItem value="series1">Серия 1</MenuItem>
+                    <MenuItem value="series2">Серия 2</MenuItem>
+                  </Select>
+                </Grid>
+
+                <Grid item size={{ xs: 4 }}>
+                  <Select
+                    name="agent"
+                    value={selects.agent}
+                    onChange={handleSelectChange}
                     displayEmpty
                     sx={{ width: "100%" }}
                     fullWidth
@@ -147,101 +263,8 @@ export const FilterWidget = () => {
                     <MenuItem value="">
                       <em>Агент</em>
                     </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </Grid>
-
-                <Grid item size={{ xs: 4 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    sx={{ width: "100%" }}
-                    fullWidth
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </Grid>
-
-                <Grid item size={{ xs: 4 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    sx={{ width: "100%" }}
-                    fullWidth
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </Grid>
-              </Grid>
-
-              <Grid container columnSpacing={2} alignItems="center">
-                <Grid item size={{ xs: 4 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    sx={{ width: "100%" }}
-                    fullWidth
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </Grid>
-
-                <Grid item size={{ xs: 4 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    sx={{ width: "100%" }}
-                    fullWidth
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </Grid>
-
-                <Grid item size={{ xs: 4 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    sx={{ width: "100%" }}
-                    fullWidth
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    <MenuItem value="agent1">Иванов</MenuItem>
+                    <MenuItem value="agent2">Петров</MenuItem>
                   </Select>
                 </Grid>
               </Grid>
@@ -294,8 +317,8 @@ export const FilterWidget = () => {
 
             <Grid item size={{ xs: 12, md: 6 }} sx={{ gap: "18px", display: "grid" }}>
               <Select
-                value={age}
-                onChange={handleChange}
+                value={selects.status}
+                onChange={handleSelectChange}
                 displayEmpty
                 sx={{ width: "100%" }}
                 fullWidth
@@ -309,8 +332,8 @@ export const FilterWidget = () => {
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
               <Select
-                value={age}
-                onChange={handleChange}
+                value={selects.extra}
+                onChange={handleSelectChange}
                 displayEmpty
                 sx={{ width: "100%" }}
                 fullWidth
@@ -324,8 +347,8 @@ export const FilterWidget = () => {
                 <MenuItem value={30}>Thirty</MenuItem>
               </Select>
               <Select
-                value={age}
-                onChange={handleChange}
+                value={selects.repair}
+                onChange={handleSelectChange}
                 displayEmpty
                 sx={{ width: "100%" }}
                 fullWidth
