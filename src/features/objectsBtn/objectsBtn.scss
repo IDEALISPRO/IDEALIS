@@ -1,0 +1,139 @@
+.objectsMoreBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 426px;
+    border-width: 2px;
+    height: 470px;
+    border-radius: 16px;
+    border: 1px solid #163659;
+    gap: 22px;
+    background: #fff;
+    transition: .3s;
+    cursor: pointer;
+
+    &:hover {
+        transition: .3s;
+        background-color: #163659;
+        color: #fff;
+        
+        .objectsMoreBtn__btn {
+            background-color: #163659;
+            border: 1px solid #fff;
+
+            &__icon{
+                color: #fff;
+            }
+        }
+    }
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        border: 2px solid #163659;
+
+        &__icon{
+            color: #163659;
+        }
+    }
+
+    &__text {
+        font-family: Inter;
+        font-weight: 400;
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width:1400px) {
+    .objectsMoreBtn {
+        margin-bottom: 75px;
+    }
+}
+
+
+@media screen and (max-width:992px) {
+    .objectsMoreBtn {
+        width: 350px;
+        height: 420px;
+
+        &__btn {
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .objectsMoreBtn {
+        width: 265px;
+        height: 300px;
+        margin-bottom: 30px;
+
+        &__btn {
+            width: 130px;
+            height: 130px;
+        }
+
+        &__text {
+            font-size: 18px
+        }
+    }
+}
+
+@media screen and (max-width:576px) {
+    .objectsMoreBtn {
+        width: 200px;
+        height: 235px;
+
+        &__btn {
+            width: 100px;
+            height: 100px;
+
+            &__svg {
+                width: 50px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:440px) {
+    .objectsMoreBtn {
+        width: 165px;
+        height: 200px;
+
+        &__btn {
+            width: 80px;
+            height: 80px;
+
+            &__svg {
+                width: 30px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:414px) {
+    .objectsMoreBtn {
+        width: 140px;
+        height: 180px;  
+
+        &__btn {
+            width: 70px;
+            height: 70px;
+
+            &__svg {
+                width: 20px;
+            }
+        }
+
+        &__text{
+            font-size: 12px;
+        }
+    }
+}

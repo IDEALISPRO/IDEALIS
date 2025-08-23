@@ -1,10 +1,10 @@
 import { HeaderAdmin } from "../../widgets";
-// import { FilterWidget } from "../../widgets/FilterWidget/FilterWidget";
+import { FilterWidget } from "../../widgets/FilterWidget/FilterWidget";
 
 export const HomePage = () => {
     return (
         <div className="container">
-            {/* <FilterWidget /> */}
+            <FilterWidget />
             <HeaderAdmin/>
         </div>
     );
