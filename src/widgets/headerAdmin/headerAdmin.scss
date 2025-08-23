@@ -4,6 +4,10 @@
   margin-bottom: 20px;
   padding: 0 20px;
 
+  .btnSp {
+    display: none;
+  }
+
   &__top {
     width: 100%;
     display: grid;
@@ -159,27 +163,6 @@
   }
 }
 
-.phone-btn {
-  width: 48px;
-  height: 48px;
-  border: 1px solid #e8e8e8;
-  background: #ffffff;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #666666;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: none;
-
-  &:hover {
-    background: #f5f5f5;
-    border-color: #d0d0d0;
-    color: #333333;
-  }
-}
-
 .nav-tabs {
   &__container {
     display: flex;
@@ -210,20 +193,6 @@
     color: #163659;
     font-weight: 600;
   }
-
-  &:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-  }
-
-  &:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
-}
-
-.nav-tab {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media screen and (max-width: 992px) {
@@ -296,10 +265,6 @@
     padding: 0 10px;
   }
 
-  .nav-tab {
-    font-size: 14px;
-  }
-
   .support-info {
     height: 85px;
     padding: 0 6px;
@@ -312,9 +277,29 @@
 }
 
 @media screen and (max-width: 576px) {
+  .header-admin {
+    .btnSp {
+      display: block; 
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+    }
+  }
+
+  .header-admin__support {
+    display: none;
+  }
+
+  .none {
+    width: 80px;
+    display: block;
+  }
+
   .user-profile {
     padding: 0 10px;
     border: none;
+
     &__avatar {
       width: 65px;
       height: 65px;
@@ -334,24 +319,9 @@
     }
   }
 
-  .header-admin__support {
-    display: none;
-  }
-  .btn {
-    border: none;
-   
-  }
-  .none {
-    width: 80px;
-    display: block;
-  }
   .add-object-btn {
     width: 100%;
     font-size: 19px;
-  }
-
-  .support-info {
-    width: 10px;
   }
 
   .header-admin__top {
@@ -361,13 +331,16 @@
       "actions nav";
     gap: 10px;
   }
+
   .header-admin__user-info {
     width: 100%;
     grid-area: info;
   }
+
   .header-admin__actions {
     grid-area: actions;
   }
+
   .header-admin__navigation {
     grid-area: nav;
   }

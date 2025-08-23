@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { RxExit } from "react-icons/rx";
 import { FaPen } from "react-icons/fa";
-import supp from "../../shared/img/поддержка.png";
+import supp from "../../shared/img/поддержка (1).png";
 import "./HeaderAdmin.scss";
 import logoAdmin from "../../shared/img/logoAdmin.png";
+
 export const HeaderAdmin = ({ activeTab = "published", onTabChange }) => {
   const [currentTab, setCurrentTab] = useState(activeTab);
 
@@ -66,12 +67,15 @@ export const HeaderAdmin = ({ activeTab = "published", onTabChange }) => {
             <p className="support-info__email">IDEAKIS@GMAIL.COM</p>
           </div>
         </div>
+
+        <button className="btnSp">
           <img
             className="header-admin__support none"
             src={supp}
             alt="icon"
             loading="lazy"
           />
+        </button>
 
         <div className="header-admin__actions">
           <button className="add-object-btn">Добавить объект</button>
