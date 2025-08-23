@@ -5,6 +5,7 @@ import '../styles/app.scss';
 // import './App.css'
 import { ThemeProvider } from "@mui/material/styles";
 import {theme} from "../../shared/SiteTheme/SiteTheme"; 
+import { HeaderAdmin } from "../../widgets";
 
 function App() {
   const routesArr = [
@@ -22,6 +23,7 @@ function App() {
   <ThemeProvider theme={theme}>
     <BrowserRouter>
       {/* <Header /> */}
+      <HeaderAdmin />
       <Routes>
         <Route index element={<HomePage />} />
         {routesArr?.map((item, index) => (

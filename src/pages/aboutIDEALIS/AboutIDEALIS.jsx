@@ -1,11 +1,10 @@
-// import { Reviews } from "../../widgets";
-import { HeaderAdmin } from "../../widgets";
+import { Reviews } from "../../widgets";
 
 export const AboutIDEALIS = () => {
     return (
-        <div>
-            {/* <Reviews /> */}
-            <HeaderAdmin/>
+        <div className="container">
+            <Reviews />
+
 
         </div>
     );

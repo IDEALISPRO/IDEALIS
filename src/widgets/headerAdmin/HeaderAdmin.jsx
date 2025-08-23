@@ -5,29 +5,32 @@ import "./HeaderAdmin.scss";
 import logoAdmin from "../../shared/img/logoAdmin.png";
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
+// import { useTranslation } from "react-i18next";  
 
 export const HeaderAdmin = () => {
+  // const { t } = useTranslation(); 
+
   const linksAdmin = [
-    { name: "Опубликованные", path: "/" },
-    { name: "Без рекламы", path: "/" },
-    { name: "Заявки на рекламу", path: "/" },
-    { name: "Ожидающие подтверждения", path: "/" },
-    { name: "Удаленные", path: "/" },
-    { name: "Мои", path: "/" },
-    { name: "Продажи", path: "/" },
-    { name: "Сохраненные поиски", path: "/" },
-    { name: "Другие ищут", path: "/" },
-    { name: "Показы", path: "/" },
-    { name: "Юристы", path: "/" },
-    { name: "Список агентов новостройки", path: "/" },
-    { name: "Правила", path: "/" },
-    { name: "Видеоуроки", path: "/" },
+    { name: "published", path: "/about" },
+    { name: "without_ads", path: "/" },
+    { name: "advertising_requests", path: "/" },
+    { name: "pending_approval", path: "/" },
+    { name: "deleted", path: "/" },
+    { name: "my_listings", path: "/" },
+    { name: "sales", path: "/" },
+    { name: "saved_searches", path: "/" },
+    { name: "others_searching", path: "/" },
+    { name: "views", path: "/" },
+    { name: "lawyers", path: "/" },
+    { name: "new_list", path: "/" },
+    { name: "rules", path: "/" },
+    { name: "video", path: "/" },
   ];
 
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [ setMenuOpen] = useState(false);
 
   return (
-    <div className="header-admin">
+    <div className="header-admin container">
       <div className="header-admin__top">
         <div className="header-admin__user-info">
           <div className="user-profile">
@@ -39,16 +42,10 @@ export const HeaderAdmin = () => {
               <p className="user-profile__phone">+996 999 999 999</p>
             </div>
             <div className="user-profile__actions">
-              <button
-                className="user-profile__action-btn"
-                title="Редактировать"
-              >
+              <button className="user-profile__action-btn" title="Редактировать">
                 <FaPen size={13} />
               </button>
-              <button
-                className="user-profile__action-btn"
-                title="Внешняя ссылка"
-              >
+              <button className="user-profile__action-btn" title="Внешняя ссылка">
                 <RxExit size={16} />
               </button>
             </div>
@@ -88,7 +85,8 @@ export const HeaderAdmin = () => {
                 to={item.path}
                 onClick={() => setMenuOpen(false)}
               >
-                {item.name}
+                {/* {t(item.name)}  */}
+                {item.name} 
               </NavLink>
             ))}
           </div>
