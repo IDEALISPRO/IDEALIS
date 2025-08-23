@@ -29,6 +29,15 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 
+    scrollbar-width: thin;
+    scrollbar-color: #163659 transparent;
+
+    &::-webkit-scrollbar-button {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    
     &::-webkit-scrollbar {
       height: 4px;
     }
@@ -42,6 +51,7 @@
       border-radius: 2px;
     }
   }
+
 }
 
 .none {
@@ -192,6 +202,7 @@
   &--active {
     color: #163659;
     font-weight: 600;
+    font-size: 23px;
   }
 }
 
@@ -279,7 +290,7 @@
 @media screen and (max-width: 576px) {
   .header-admin {
     .btnSp {
-      display: block; 
+      display: block;
       border: none;
       background: transparent;
       padding: 0;

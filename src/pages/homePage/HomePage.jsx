@@ -1,11 +1,10 @@
-import { HeaderAdmin } from "../../widgets";
 // import { FilterWidget } from "../../widgets/FilterWidget/FilterWidget";
 
 export const HomePage = () => {
     return (
         <div className="container">
             {/* <FilterWidget /> */}
-            <HeaderAdmin/>
+            <h1>dsa</h1>
         </div>
     );
 }

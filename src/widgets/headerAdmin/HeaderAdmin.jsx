@@ -1,36 +1,30 @@
-import React, { useState } from "react";
 import { RxExit } from "react-icons/rx";
 import { FaPen } from "react-icons/fa";
 import supp from "../../shared/img/поддержка.svg";
 import "./HeaderAdmin.scss";
 import logoAdmin from "../../shared/img/logoAdmin.png";
+import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
 
-export const HeaderAdmin = ({ activeTab = "published", onTabChange }) => {
-  const [currentTab, setCurrentTab] = useState(activeTab);
-
-  const tabs = [
-    { id: "published", label: "Опубликованные" },
-    { id: "no-ads", label: "Без рекламы" },
-    { id: "ad-requests", label: "Заявки на рекламу" },
-    { id: "pending", label: "Ожидающие подтверждения" },
-    { id: "deleted", label: "Удаленные" },
-    { id: "my", label: "Мои" },
-    { id: "sales", label: "Продажи" },
-    { id: "saved-searches", label: "Сохраненные поиски" },
-    { id: "others-search", label: "Другие ищут" },
-    { id: "views", label: "Показы" },
-    { id: "lawyers", label: "Юристы" },
-    { id: "agents-list", label: "Список агентов новостройки" },
-    { id: "rules", label: "Правила" },
-    { id: "video-lessons", label: "Видеоуроки" },
+export const HeaderAdmin = () => {
+  const linksAdmin = [
+    { name: "Опубликованные", path: "/" },
+    { name: "Без рекламы", path: "/" },
+    { name: "Заявки на рекламу", path: "/" },
+    { name: "Ожидающие подтверждения", path: "/" },
+    { name: "Удаленные", path: "/" },
+    { name: "Мои", path: "/" },
+    { name: "Продажи", path: "/" },
+    { name: "Сохраненные поиски", path: "/" },
+    { name: "Другие ищут", path: "/" },
+    { name: "Показы", path: "/" },
+    { name: "Юристы", path: "/" },
+    { name: "Список агентов новостройки", path: "/" },
+    { name: "Правила", path: "/" },
+    { name: "Видеоуроки", path: "/" },
   ];
 
-  const handleTabClick = (tabId) => {
-    setCurrentTab(tabId);
-    if (onTabChange) {
-      onTabChange(tabId);
-    }
-  };
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="header-admin">
@@ -85,16 +79,17 @@ export const HeaderAdmin = ({ activeTab = "published", onTabChange }) => {
       <div className="header-admin__navigation">
         <div className="nav-tabs">
           <div className="nav-tabs__container">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                className={`nav-tab ${
-                  currentTab === tab.id ? "nav-tab--active" : ""
-                }`}
-                onClick={() => handleTabClick(tab.id)}
+            {linksAdmin.map((item, index) => (
+              <NavLink
+                key={index}
+                className={({ isActive }) =>
+                  `nav-tab ${isActive ? "nav-tab--active" : ""}`
+                }
+                to={item.path}
+                onClick={() => setMenuOpen(false)}
               >
-                {tab.label}
-              </button>
+                {item.name}
+              </NavLink>
             ))}
           </div>
         </div>
