@@ -7,7 +7,7 @@ import './missionsValues.scss';
 export const MissionsValues = () => {
     return (
     <section className="mv-container">
-        <h4 className="mv-text">
+        <h4 className="title">
         МИССИИ И ЦЕННОСТИ
         </h4>
 

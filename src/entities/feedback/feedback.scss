@@ -1,25 +1,25 @@
-
-
 .form-container{
     border: 2px solid #163659;
     border-radius: 20px;
-    padding: 45px;
+    padding: 75px;
     display: flex;
     align-items: center;
     flex-direction: column;
     text-align: center;
-    // margin: 0 30%;
     color: #163659;
-
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto 80px auto;
     h2{
-        font-size: 45px;
+        font-size: 55px;
         font-weight: 750;
     }
 
     h4{
-        font-size: 20px;
+        font-size: 28px;
         margin: 10px 0;
         font-weight: 500;
+        width: 90%;
     }
 
     .checkbox{
@@ -41,7 +41,6 @@
             border: none;
             border-bottom: 1px solid black;
             width: 100%;
-            // margin-right: 270px;
             height: 20px;
             font-size: 18px;
 
@@ -83,19 +82,18 @@
 
 @media screen and (max-width: 1200px) {
     .form-container{
-        margin: 0 15%;
+        padding: 45px;
     }
 }
 @media screen and (max-width: 900px) {
     .form-container{
-        margin: 0 10%;
+        padding: 45px;
     }
     .checkbox{
         justify-content: center;
     }
 
     .form-container{
-        margin: 0 4%;
         h2{
             font-size: 35px;
         }
@@ -104,20 +102,8 @@
         }
     }
 }
-// @media screen and (max-width: 570px) {
-//     .form-container{
-//         margin: 0 4%;
-//         h2{
-//             font-size: 35px;
-//         }
-//         .btn-form{
-//             font-size: 20px;
-//         }
-//     }
-// }
 @media screen and (max-width: 570px) {
     .form-container{
-            margin: 0 2%;
         h2{
             font-size: 22px;
             font-weight: 850;
