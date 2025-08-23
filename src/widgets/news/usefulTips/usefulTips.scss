@@ -1,0 +1,9 @@
+.usefulTips {
+  margin-bottom: 100px;
+}
+
+@media (max-width: 576px) {
+  .usefulTips {
+    margin-bottom: 50px;
+  }
+}
