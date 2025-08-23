@@ -1,6 +1,7 @@
 .accordion {
   background: transparent !important;
   box-shadow: none !important;
+  
   &-summary {
     &-content {
       display: flex;
@@ -68,5 +69,12 @@
     &-item {
       margin-left: 10px !important;
     }
+  }
+}
+
+
+.MuiAccordion-root {
+  &::before {
+    display: none; 
   }
 }
