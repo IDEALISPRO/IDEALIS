@@ -5,7 +5,7 @@ import { MissionsValues } from "../../widgets";
 export const HomePage = () => {
     return (
         <div>
-            <Lawyers/>
+            <MissionsValues />
         </div>
     );
 }
