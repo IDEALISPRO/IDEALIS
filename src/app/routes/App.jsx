@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import '../styles/app.scss';
-import { Header } from "../../widgets";
+import { Header, Advantages, Article } from "../../widgets";
 import { AboutIDEALIS, Services,Contacts, HomePage, News, Favorites } from '../../pages'
 import '../styles/app.scss';
 import { ThemeProvider } from "@mui/material/styles";
@@ -24,6 +24,14 @@ function App() {
     {
       path: "/news",
       element: <News />,
+    },
+    {
+      path: "/article",
+      element: <Article />,
+    },
+    {
+      path: "/advantages",  
+      element: <Advantages />,
     },
     {
       path: "/contacts",
