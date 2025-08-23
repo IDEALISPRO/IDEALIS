@@ -1,7 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AboutIDEALIS, HomePage } from '../../pages'
 import '../styles/app.scss';
-// import './App.css'
+import { Header } from "../../widgets";
+import { AboutIDEALIS, Services, HomePage, News, Favorites, ContactsPage } from '../../pages'
+import '../styles/app.scss';
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "../../shared/SiteTheme/SiteTheme";
+import { Messenger } from '../../features';
+
+import { Footer } from "../../widgets";
 
 function App() {
   const routesArr = [
@@ -9,23 +15,44 @@ function App() {
       path: "/",
       element: <HomePage />,
     },
-      {
+    {
       path: "/about",
-      element: <AboutIDEALIS/>,
+      element: <AboutIDEALIS />,
+    },
+    {
+      path: "/news",
+      element: <News />,
+    },
+    {
+      path: "/contacts",
+      element: <ContactsPage />,
+    },
+    {
+      path: "/services",
+      element: <Services />,
+    },
+    {
+      path: "/favorites",
+      element: <Favorites />,
     },
   ]
 
   return (
-    <BrowserRouter>
-      {/* <Header /> */}
-      <Routes>
-        <Route index element={<HomePage />} />
-        {routesArr?.map((item, index) => (
-          <Route key={index} path={item.path} element={item.element} />
-        ))}
-      </Routes>
-      {/* <Footer /> */}
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route index element={<HomePage />} />
+          {routesArr?.map((item, index) => (
+            <Route key={index} path={item.path} element={item.element} />
+          ))}
+        </Routes>
+        {/* <Footer /> */}
+        <Messenger/>
+        <Footer/> 
+      </BrowserRouter>
+
+    </ThemeProvider>
   )
 }
 

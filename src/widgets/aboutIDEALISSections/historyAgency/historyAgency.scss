@@ -1,0 +1,78 @@
+.historyAgency_cont{
+    margin-top: 100px;
+
+    &_btns{
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        
+        button{
+            padding: 19px;
+            width: 100%;
+            background-color: transparent;
+            border-radius: 100px;
+            border: 2px solid #163658;
+            color: #163658;
+            font-size: 30px;
+            font-weight: 600;
+            transition: 0.3s all;
+            position: relative;
+
+            .connect{
+                position: absolute;
+                right: -25px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            &:last-child {
+                .connect {
+                    display: none;
+                }
+            }
+        }
+
+        .active{
+            background-color: #163658;
+            color: #FFFFFF;
+        }
+    }
+
+    &_content{
+        margin-top: 60px;
+        justify-content: space-between;
+        &_top{
+            width: 30%;
+            h2{
+                font-size: 60px;
+                font-family: 'Inter';
+                font-style: italic;
+                font-weight: 400;
+            }
+        }
+
+        &_bottom{
+            width: 60%;
+
+            img{
+                width: 100%;
+                object-fit: cover;
+            }
+            h3{
+                font-family: "Inter";
+                margin-top: 15px;
+                font-size: 26px;
+                font-weight: 600;
+            }
+
+            .detail_text{
+                gap: 20px;
+                p{
+                    padding: 15px 0;
+                    width: 48%;
+                    color: #00000099;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
