@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { RxExit } from "react-icons/rx";
 import { FaPen } from "react-icons/fa";
-import supp from "../../shared/img/поддержка (1).png";
+import supp from "../../shared/img/поддержка.svg";
 import "./HeaderAdmin.scss";
 import logoAdmin from "../../shared/img/logoAdmin.png";
 
