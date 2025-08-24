@@ -1,0 +1,230 @@
+.salesCard {
+  width: 426px;
+  height: auto;
+
+  .img {
+    position: relative;
+
+    .status {
+      position: absolute;
+      z-index: 1;
+      bottom: 20px;
+      left: 10px;
+      background-color: #cde8d2d7;
+      color: #48c95f;
+      padding: 8px 24px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-family: "Montserrat";
+    }
+  }
+
+  &__img {
+    width: 100%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    margin-bottom: 5px;
+  }
+
+  &__info {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-bottom: 25px;
+    text-align: left;
+
+    &__title {
+      width: 290px;
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 19px;
+    }
+
+    &__location {
+      display: flex;
+      align-items: center;
+      color: #00000099;
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+
+      &__mark {
+        width: 11px;
+        margin-right: 10px;
+      }
+    }
+
+    &__desc {
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      color: #00000099;
+      margin-bottom: 10px;
+    }
+
+    &__price {
+      font-family: Roboto Condensed;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 26px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+
+    &__more {
+      border-radius: 8px;
+      width: 100%;
+      height: 40px;
+      border: none;
+      color: #fff;
+      background-color: #163659;
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      cursor: pointer;
+
+      &:hover {
+        border: 1px solid #163659;
+        transition: 0.3s;
+        background-color: #fff;
+        color: #163659;
+      }
+    }
+
+    &__phone,
+    &__like {
+      width: 60px;
+      height: 40px;
+      border: 1px solid black;
+      border-radius: 4px;
+      background-color: #fff;
+      border-color: #00000066;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      path {
+        fill: white;
+        transition: 0.3s;
+        stroke: #00000066;
+      }
+
+      .red {
+        path {
+          fill: #c2c26d;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .salesCard {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .salesCard {
+    width: 265px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .salesCard {
+    width: 200px;
+
+    &__img {
+      object-fit: cover;
+    }
+
+    &__info {
+      margin-left: 0px;
+      row-gap: 5px;
+
+      &__title {
+        font-size: 16px;
+      }
+
+      &__location {
+        font-size: 10px;
+
+        &__mark {
+          width: 9px;
+          margin-right: 3px;
+        }
+      }
+
+      &__desc {
+        margin-bottom: 6px;
+        font-size: 10px;
+      }
+
+      &__price {
+        font-size: 16px;
+      }
+    }
+
+    &__buttons {
+      &__more {
+        font-size: 14px;
+        border-radius: 2.3px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .salesCard {
+    width: 165px;
+
+    &__info {
+      &__title {
+        width: 146px;
+      }
+    }
+
+    &__buttons {
+      &__more {
+        height: 24px;
+        font-size: 13px;
+      }
+
+      &__like,
+      &__phone {
+        width: 40px;
+        height: 24px;
+        border-radius: 1px;
+
+        img {
+          height: 14px;
+        }
+
+        svg {
+          height: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .salesCard {
+    width: 140px;
+
+    &__buttons {
+      gap: 9px;
+
+      &__more {
+        font-size: 10px;
+      }
+    }
+  }
+}

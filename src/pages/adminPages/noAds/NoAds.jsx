@@ -1,7 +1,21 @@
-import React from 'react'
+import { Box } from "@mui/material";
+import { AdFreeCard } from "../../../features";
 
 export const NoAds = () => {
   return (
-    <div>NoAds</div>
-  )
-}
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "60px",
+        mt: "40px",
+      }}
+      className="container"
+    >
+      <AdFreeCard />
+      <AdFreeCard />
+      <AdFreeCard />
+      <AdFreeCard />
+    </Box>
+  );
+};

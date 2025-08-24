@@ -1,20 +1,22 @@
-import "./objectsCard.scss";
+import "./deletedCard.scss";
 import loca from "../../shared/icons/location.svg";
 import FavoriteSharpIcon from "@mui/icons-material/FavoriteSharp";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import { useState } from "react";
 
-export const ObjectsCard = ({ img, title, location, description, price }) => {
+export const DeletedCard = ({ img, title, location, description, price }) => {
   const [liked, setLiked] = useState(false);
 
   const HandleLike = () => {
     console.log(liked);
     setLiked(!liked);
   };
-
   return (
-    <div className="objCard">
-      <img className="objCard__img" src={img} alt={title} loading="lazy" />
+    <div className="deletedCard">
+      <div className="img">
+        <img className="objCard__img" src={img} alt={title} loading="lazy" />
+        <span className="status">Удаленное</span>
+      </div>
 
       <div className="objCard__info">
         <h3 className="objCard__info__title">{title}</h3>
