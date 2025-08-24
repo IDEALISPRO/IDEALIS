@@ -1,15 +1,43 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import '../styles/app.scss';
+import "../styles/app.scss";
 import { Header } from "../../widgets";
-import { AboutIDEALIS, Services, HomePage, News, Favorites, ContactsPage, CreateObject } from '../../pages'
-import '../styles/app.scss';
+import {
+  AboutIDEALIS,
+  Services,
+  HomePage,
+  News,
+  Favorites,
+  ContactsPage,
+  CreateObject,
+  Login,
+  Published,
+  NoAds,
+  AdvertisingRequests,
+  PendingConfirmation,
+  Deleted,
+  MyObjects,
+  Sales,
+  SavedSearches,
+  OthersLooking,
+  Impressions,
+  Lawyers,
+  ListAgents,
+  Rules,
+  VideoTutorials,
+} from "../../pages";
+import "../styles/app.scss";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../shared/SiteTheme/SiteTheme";
-import { Messenger } from '../../features';
-
+import { Messenger } from "../../features";
 import { Footer } from "../../widgets";
+import Cookies from "js-cookie";
 
 function App() {
+  const token = Cookies.get("token");
+  const role = Cookies.get("role");
+
+  const isAuth = !!token;
+
   const routesArr = [
     {
       path: "/",
@@ -39,24 +67,105 @@ function App() {
       path: "/create-object",
       element: <CreateObject />,
     },
-  ]
+    {
+      path: "/admin",
+      element: <Login />,
+    },
+  ];
+
+  const adminRoutes = [
+    {
+      path: "/admin/published",
+      element: <Published />,
+    },
+    {
+      path: "/admin/no-ads",
+      element: <NoAds />,
+    },
+    {
+      path: "/admin/advertising-requests",
+      element: <AdvertisingRequests />,
+    },
+    {
+      path: "/admin/pending-confirmation",
+      element: <PendingConfirmation />,
+    },
+    {
+      path: "/admin/deleted",
+      element: <Deleted />,
+    },
+    {
+      path: "/admin/published",
+      element: <Published />,
+    },
+
+    {
+      path: "/admin/my-objects",
+      element: <MyObjects />,
+    },
+    {
+      path: "/admin/published",
+      element: <Published />,
+    },
+    {
+      path: "/admin/sales",
+      element: <Sales />,
+    },
+    {
+      path: "/admin/saved-searches",
+      element: <SavedSearches />,
+    },
+    {
+      path: "/admin/others-looking",
+      element: <OthersLooking />,
+    },
+    {
+      path: "/admin/impressions",
+      element: <Impressions />,
+    },
+    {
+      path: "/admin/lawyers",
+      element: <Lawyers />,
+    },
+    {
+      path: "/admin/list-agents",
+      element: <ListAgents />,
+    },
+    {
+      path: "/admin/published",
+      element: <Published />,
+    },
+    {
+      path: "/admin/rules",
+      element: <Rules />,
+    },
+    {
+      path: "/admin/video-tutorials",
+      element: <VideoTutorials />,
+    },
+  ];
 
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route index element={<HomePage />} />
-          {routesArr?.map((item, index) => (
+          {routesArr.map((item, index) => (
             <Route key={index} path={item.path} element={item.element} />
           ))}
-        </Routes>
-        <Messenger/>
-        <Footer/> 
-      </BrowserRouter>
 
+          {isAuth &&
+            adminRoutes.map((item, index) => (
+              <Route key={index} path={item.path} element={item.element} />
+            ))}
+
+          {!isAuth && <Route path="/admin" element={<Login />} />}
+        </Routes>
+        <Messenger />
+        <Footer />
+      </BrowserRouter>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -94,7 +94,7 @@ export const PhotoUpload = ({ setValue, errors }) => {
                 }}
               />
               <Typography
-                sx={{ fontSize: { xs: "16px", md: "18px" }, fontWeight: 600 }}
+                sx={{ fontSize: { xs: "16px", md: "18px" }, fontWeight: 600, color: '#000000' }}
               >
                 Добавьте фото
               </Typography>

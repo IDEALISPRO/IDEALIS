@@ -12,9 +12,13 @@ import ru from "../../shared/ru.svg";
 import kg from "../../shared/kg.svg";
 import en from "../../shared/en.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { NavLink } from "react-router-dom";
-import {MiniMenu} from "../index"
+import { NavLink, useLocation } from "react-router-dom";
+import { MiniMenu } from "../index";
+
 export const Header = () => {
+  const location = useLocation();
+  if (location.pathname.startsWith("/admin")) return null;
+
   const { t, i18n } = useTranslation();
 
   const languages = [
@@ -25,26 +29,26 @@ export const Header = () => {
 
   const links = [
     {
-      text: 'about',
-      link: '/about'
+      text: "about",
+      link: "/about",
     },
     {
-      text: 'services',
-      link: '/services'
+      text: "services",
+      link: "/services",
     },
     {
-      text: 'news',
-      link: '/news'
+      text: "news",
+      link: "/news",
     },
     {
-      text: 'contacts',
-      link: '/contacts'
+      text: "contacts",
+      link: "/contacts",
     },
     {
-      text: 'favorites',
-      link: '/favorites'
+      text: "favorites",
+      link: "/favorites",
     },
-  ]
+  ];
 
   const currentLang =
     languages.find((lang) => lang.code === i18n.language) || languages[0];
@@ -87,16 +91,13 @@ export const Header = () => {
   return (
     <header className="container header">
       <div className="header-logo">
-        <NavLink to={'/'}>
+        <NavLink to={"/"}>
           <img className="imglogo" src={logo} alt="Logo" />
-
         </NavLink>
       </div>
 
       <nav className="header-nav">
-
-        {
-          links && 
+        {links &&
           links.map((item, index) => (
             <NavLink
               key={index}
@@ -106,8 +107,7 @@ export const Header = () => {
             >
               {t(`menu.${item.text}`)}
             </NavLink>
-          ))
-        }
+          ))}
       </nav>
 
       <div className="header-right">
@@ -139,7 +139,7 @@ export const Header = () => {
             </ul>
           )}
         </div>
-        <NavLink to={'/create-object'}>
+        <NavLink to={"/create-object"}>
           <button className="header-login">Добавить объект</button>
         </NavLink>
         <button className="burger-btn" onClick={() => setMenuOpen(true)}>
