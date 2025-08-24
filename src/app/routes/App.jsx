@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../styles/app.scss";
-import { Header } from "../../widgets";
+import { Header, HeaderAdmin } from "../../widgets";
 import {
   AboutIDEALIS,
   Services,
@@ -68,7 +68,7 @@ function App() {
       element: <CreateObject />,
     },
     {
-      path: "/admin",
+      path: "/login",
       element: <Login />,
     },
   ];
@@ -95,17 +95,8 @@ function App() {
       element: <Deleted />,
     },
     {
-      path: "/admin/published",
-      element: <Published />,
-    },
-
-    {
       path: "/admin/my-objects",
       element: <MyObjects />,
-    },
-    {
-      path: "/admin/published",
-      element: <Published />,
     },
     {
       path: "/admin/sales",
@@ -132,10 +123,6 @@ function App() {
       element: <ListAgents />,
     },
     {
-      path: "/admin/published",
-      element: <Published />,
-    },
-    {
       path: "/admin/rules",
       element: <Rules />,
     },
@@ -149,6 +136,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header />
+        <HeaderAdmin />
         <Routes>
           {routesArr.map((item, index) => (
             <Route key={index} path={item.path} element={item.element} />

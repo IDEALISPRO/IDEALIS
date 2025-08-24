@@ -3,31 +3,33 @@ import { FaPen } from "react-icons/fa";
 import supp from "../../shared/img/поддержка.svg";
 import "./HeaderAdmin.scss";
 import logoAdmin from "../../shared/img/logoAdmin.png";
-import { NavLink } from "react-router-dom";
-import React, { useState } from "react";
-// import { useTranslation } from "react-i18next";  
+import { NavLink, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export const HeaderAdmin = () => {
-  // const { t } = useTranslation(); 
+  const location = useLocation();
+  if (!location.pathname.startsWith("/admin")) return null;
+  const { t } = useTranslation();
 
   const linksAdmin = [
-    { name: "published", path: "/about" },
-    { name: "without_ads", path: "/" },
-    { name: "advertising_requests", path: "/" },
-    { name: "pending_approval", path: "/" },
-    { name: "deleted", path: "/" },
-    { name: "my_listings", path: "/" },
-    { name: "sales", path: "/" },
-    { name: "saved_searches", path: "/" },
-    { name: "others_searching", path: "/" },
-    { name: "views", path: "/" },
-    { name: "lawyers", path: "/" },
-    { name: "new_list", path: "/" },
-    { name: "rules", path: "/" },
-    { name: "video", path: "/" },
+    { name: "published", path: "/admin/published" },
+    { name: "without_ads", path: "/admin/no-ads" },
+    { name: "advertising_requests", path: "/admin/advertising-requests" },
+    { name: "pending_approval", path: "/admin/pending-confirmation" },
+    { name: "deleted", path: "/admin/deleted" },
+    { name: "my_listings", path: "/admin/my-objects" },
+    { name: "sales", path: "/admin/sales" },
+    { name: "saved_searches", path: "/admin/saved-searches" },
+    { name: "others_searching", path: "/admin/others-looking" },
+    { name: "views", path: "/admin/impressions" },
+    { name: "lawyers", path: "/admin/lawyers" },
+    { name: "new_list", path: "/admin/list-agents" },
+    { name: "rules", path: "/admin/rules" },
+    { name: "video", path: "/admin/video-tutorials" },
   ];
 
-  const [ setMenuOpen] = useState(false);
+  // const [setMenuOpen] = useState(false);
 
   return (
     <div className="header-admin container">
@@ -42,10 +44,16 @@ export const HeaderAdmin = () => {
               <p className="user-profile__phone">+996 999 999 999</p>
             </div>
             <div className="user-profile__actions">
-              <button className="user-profile__action-btn" title="Редактировать">
+              <button
+                className="user-profile__action-btn"
+                title="Редактировать"
+              >
                 <FaPen size={13} />
               </button>
-              <button className="user-profile__action-btn" title="Внешняя ссылка">
+              <button
+                className="user-profile__action-btn"
+                title="Внешняя ссылка"
+              >
                 <RxExit size={16} />
               </button>
             </div>
@@ -83,10 +91,12 @@ export const HeaderAdmin = () => {
                   `nav-tab ${isActive ? "nav-tab--active" : ""}`
                 }
                 to={item.path}
-                onClick={() => setMenuOpen(false)}
+                // onClick={() => {
+                //   setMenuOpen(false);
+                //   e.preventDefault();
+                // }}
               >
-                {/* {t(item.name)}  */}
-                {item.name} 
+                {t(`adminLinks.${item.name}`)}
               </NavLink>
             ))}
           </div>

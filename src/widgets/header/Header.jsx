@@ -17,7 +17,11 @@ import { MiniMenu } from "../index";
 
 export const Header = () => {
   const location = useLocation();
-  if (location.pathname.startsWith("/admin")) return null;
+  if (
+    location.pathname.startsWith("/admin") ||
+    location.pathname.startsWith("/login")
+  )
+    return null;
 
   const { t, i18n } = useTranslation();
 

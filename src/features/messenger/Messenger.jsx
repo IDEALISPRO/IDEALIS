@@ -5,7 +5,12 @@ import { useLocation } from "react-router-dom";
 
 export const Messenger = () => {
   const location = useLocation();
-  if (location.pathname.startsWith("/admin")) return null;
+  if (
+    location.pathname.startsWith("/admin") ||
+    location.pathname.startsWith("/login")
+  )
+    return null;
+
   const openWhatsApp = () => {
     const whatsappNumber = "996773446312";
     const message = encodeURIComponent("Здравствуйте! Хотелось бы узнать...");

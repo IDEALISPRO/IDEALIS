@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./footer.scss";
 import { FaTelegramPlane, FaWhatsapp, FaVk, FaInstagram } from "react-icons/fa";
 import footerLogo from "../../shared/img/logogo.jpg";
@@ -7,8 +7,13 @@ import { Link, useLocation } from "react-router-dom";
 
 export const Footer = () => {
   const location = useLocation();
-  if (location.pathname.startsWith("/admin")) return null;
-  const footerRef = useRef()
+  if (
+    location.pathname.startsWith("/admin") ||
+    location.pathname.startsWith("/login")
+  )
+    return null;
+
+  const footerRef = useRef();
 
   useEffect(() => {
     const footer = footerRef.current;
@@ -35,7 +40,6 @@ export const Footer = () => {
   return (
     <div ref={footerRef} className="footer">
       <div className="sb__footer container section__padding">
-        {/* твой контент футера */}
         <div className="sb__footer-links">
           <div className="sb__footer-links-div">
             <h4>Ош</h4>
