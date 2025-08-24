@@ -1,0 +1,142 @@
+.swagger {
+  padding: 100px 0;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-title {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 50px;
+  }
+
+  &-nav {
+    display: flex;
+    gap: 20px;
+  }
+
+  .pagination{
+    text-align: center;
+    display: block;
+    margin-top: 25px;
+  }
+}
+
+.nav {
+  @media (max-width: 1000px) {
+    display: none;
+  }
+  &-prev {
+    color: #163659;
+    background-color: #fff;
+    border: 2px solid #163659;
+  }
+
+  &-next {
+    color: #fff;
+    background-color: #163659;
+    border: solid #163659;
+  }
+
+  .btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+}
+
+.mySwiper {
+  width: 100%;
+  height: 560px;
+  margin-top: 12px;
+  @media (max-width: 980px) {
+    height: 459px !important;
+  }
+  @media (max-width: 720px) {
+    height: 359px !important;
+  }
+
+  .swiper-slide:first-child {
+    padding-left: 360px;
+    @media (max-width: 1380px) {
+      padding-left: 440px !important;
+    }
+    @media (max-width: 1000px) {
+      padding-left: 0px !important;
+    }
+  }
+
+  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 15% !important;
+    height: 315px !important;
+    transition: all 0.3s;
+
+    @media (max-width: 1380px) {
+      width: 30% !important;
+      height: 385px !important;
+    }
+    @media (max-width: 980px) {
+      width: 100% !important;
+      height: 459px !important;
+    }
+    @media (max-width: 720px) {
+      width: 100% !important;
+      height: 359px !important;
+    }
+    
+    .slider-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      img{
+        width: 100%;
+        height: 100%;
+        object-position: top; 
+        object-fit: cover;
+      }
+    }
+  }
+
+  .swiper-slide-active {
+    width: 33% !important;
+    height: 528px !important;
+    margin-bottom: 20px;
+
+    @media (max-width: 1380px) {
+      width: 36% !important;
+    }
+    @media (max-width: 980px) {
+      width: 100% !important;
+      height: 459px !important;
+    }
+    @media (max-width: 720px) {
+      width: 100% !important;
+      height: 359px !important;
+    }
+
+    .slider-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .slider-title {
+      font-size: 22px;
+      text-align: start;
+    }
+  }
+}
+
