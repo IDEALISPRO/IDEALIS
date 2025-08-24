@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import '../styles/app.scss';
 import { Header } from "../../widgets";
-import { AboutIDEALIS, Services, HomePage, News, Favorites, ContactsPage } from '../../pages'
+import { AboutIDEALIS, Services, HomePage, News, Favorites, ContactsPage, CreateObject } from '../../pages'
 import '../styles/app.scss';
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../shared/SiteTheme/SiteTheme";
@@ -35,6 +35,10 @@ function App() {
       path: "/favorites",
       element: <Favorites />,
     },
+    {
+      path: "/create-object",
+      element: <CreateObject />,
+    },
   ]
 
   return (
@@ -47,7 +51,6 @@ function App() {
             <Route key={index} path={item.path} element={item.element} />
           ))}
         </Routes>
-        {/* <Footer /> */}
         <Messenger/>
         <Footer/> 
       </BrowserRouter>

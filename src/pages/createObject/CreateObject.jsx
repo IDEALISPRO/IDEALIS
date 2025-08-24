@@ -1,8 +1,9 @@
+import { CreateObjectForm } from "../../entities";
 
 export const CreateObject = () => {
     return (
-        <div>
-            
+        <div className="container">
+            <CreateObjectForm />
         </div>
     );
 }

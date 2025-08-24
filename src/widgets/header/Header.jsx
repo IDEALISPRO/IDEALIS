@@ -139,8 +139,9 @@ export const Header = () => {
             </ul>
           )}
         </div>
-
-        <button className="header-login">Добавить объект</button>
+        <NavLink to={'/create-object'}>
+          <button className="header-login">Добавить объект</button>
+        </NavLink>
         <button className="burger-btn" onClick={() => setMenuOpen(true)}>
           <FiMenu />
         </button>

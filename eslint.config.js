@@ -12,7 +12,9 @@ export default defineConfig([
       js.configs.recommended,
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
+      'plugin:prettier/recommended'
     ],
+    plugins: ['prettier'], 
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -24,6 +26,15 @@ export default defineConfig([
     },
     rules: {
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'prettier/prettier': ['error', { 
+        semi: true, 
+        singleQuote: false, 
+        trailingComma: 'es5', 
+        tabWidth: 2, 
+        printWidth: 80, 
+        bracketSpacing: true, 
+        arrowParens: 'always' 
+      }],
     },
   },
 ])

@@ -1,3 +1,5 @@
+@use '../../../app/styles/constants.scss' as *;
+
 .historyAgency_cont{
     margin-top: 100px;
 
@@ -5,6 +7,12 @@
         display: flex;
         justify-content: space-between;
         gap: 20px;
+        @include md{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            width: 90%;
+            margin: 0 auto;
+        }
         
         button{
             padding: 19px;
@@ -18,11 +26,19 @@
             transition: 0.3s all;
             position: relative;
 
+            @include xl2{
+                font-size: 14px;
+                padding: 12px;
+            }
+
             .connect{
                 position: absolute;
                 right: -25px;
                 top: 50%;
-                transform: translateY(-50%);
+                transform: translateY(-50%); 
+                @include md{
+                    display: none;
+                }
             }
             &:last-child {
                 .connect {
@@ -42,6 +58,9 @@
         justify-content: space-between;
         &_top{
             width: 30%;
+            @include xl{
+                display: none;
+            }
             h2{
                 font-size: 60px;
                 font-family: 'Inter';
@@ -52,6 +71,10 @@
 
         &_bottom{
             width: 60%;
+            @include xl{
+                width: 90%;
+                margin: 0 auto;
+            }
 
             img{
                 width: 100%;
@@ -66,11 +89,18 @@
 
             .detail_text{
                 gap: 20px;
+                @include md{
+                    width: 100%;
+                    display: block;
+                }
                 p{
                     padding: 15px 0;
                     width: 48%;
                     color: #00000099;
                     font-size: 18px;
+                    @include md{
+                        width: 100%;
+                    }
                 }
             }
         }
