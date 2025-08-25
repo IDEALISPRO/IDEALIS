@@ -4,7 +4,6 @@ import phone from '../../shared/icons/phone.svg';
 import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { useState } from 'react';
-
 export const ObjectsCard = ({ img, title, location, description, price }) => {
 
     const [liked, setLiked] = useState(false);
