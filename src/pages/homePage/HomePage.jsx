@@ -15,7 +15,7 @@ export const HomePage = () => {
       <BannerPictures />
       {/* <Navigate /> */}
 
-      {/* <FilterWidget /> */}
+      <FilterWidget />
       <ObjectsSections />
     </div>
   );

@@ -84,15 +84,23 @@ export const FilterWidget = () => {
           <Grid container spacing={2} alignItems="center">
             <Grid item size={{ xs: 8 }}>
               <TextField
-                fullWidth
                 id="outlined-basic"
                 label="Найти вариант мечты"
                 variant="outlined"
+                sx={{ width: "100%" }}
+                InputLabelProps={{
+                  sx: {
+                    width: "30%",      // ширина текста label
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  },
+                }}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        onClick={handleSearchClick}
+                        onClick={() => console.log("Search clicked")}
                         edge="end"
                         aria-label="search"
                       >
@@ -102,6 +110,7 @@ export const FilterWidget = () => {
                   ),
                 }}
               />
+
             </Grid>
             <Grid item size={{ xs: 4 }}>
               <Button fullWidth variant="contained" color="primary" type="submit">
@@ -367,7 +376,7 @@ export const FilterWidget = () => {
             </Grid>
 
           </Grid>
-          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "18px" }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: { xs: "5px", sm: "10px" }, marginTop: "18px" }}>
 
             <Button
               variant="outlined"
@@ -375,7 +384,7 @@ export const FilterWidget = () => {
               type="reset"
               sx={{
                 width: "100%",
-                padding: "14px 18px",
+                padding: { xs: "10px 2px", sm: "14px 18px" },
                 fontFamily: "Roboto Condensed",
                 backgroundColor: "transparent",
                 color: "primary.main",
@@ -386,7 +395,7 @@ export const FilterWidget = () => {
                   borderColor: "primary.main",
                   color: "primary.main",
                 },
-                mr: 2
+                // mr: 2
               }}
             >
               Сбросить фильтры
@@ -395,7 +404,10 @@ export const FilterWidget = () => {
               variant="contained"
               color="primary"
               type="submit"
-              sx={{ width: "100%", padding: "14px 18px", fontFamily: "Roboto Condensed" }}
+              sx={{
+                width: "100%", padding: { xs: "10px 2px", sm: "14px 18px" },
+                fontFamily: "Roboto Condensed"
+              }}
             >
               Применить фильтры
             </Button>
