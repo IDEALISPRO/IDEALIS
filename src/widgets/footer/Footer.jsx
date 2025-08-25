@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import "./footer.scss";
-import { FaTelegramPlane, FaWhatsapp, FaVk, FaInstagram } from "react-icons/fa";
+import { BsTelegram } from "react-icons/bs";
+import { BiLogoInstagramAlt } from "react-icons/bi";
+import { TbBrandWhatsappFilled } from "react-icons/tb";
+import { FaVk } from "react-icons/fa6";
+import {  } from "react-icons/bi";
 import footerLogo from "../../shared/img/logogo.jpg";
 import Geeks from "../../shared/img/geeks.png";
 import { Link } from "react-router-dom";
@@ -33,7 +37,6 @@ import { Link } from "react-router-dom";
   return (
     <div ref={footerRef} className="footer">
       <div className="sb__footer container section__padding">
-        {/* твой контент футера */}
         <div className="sb__footer-links">
           <div className="sb__footer-links-div">
             <h4>Ош</h4>
@@ -72,10 +75,10 @@ import { Link } from "react-router-dom";
             <div className="socialmedia">
               <h4>Соц сети</h4>
               <div className="socialsmedia-icon">
-                <a href="https://geeks.kg/" target="_blank" rel="noopener noreferrer"><FaTelegramPlane size={24} /></a>
-                <a href="https://geeks.kg/" target="_blank" rel="noopener noreferrer"><FaWhatsapp size={24} /></a>
+                <a href="https://geeks.kg/" target="_blank" rel="noopener noreferrer"><BsTelegram size={24} /></a>
+                <a href="https://geeks.kg/" target="_blank" rel="noopener noreferrer"><TbBrandWhatsappFilled size={24} /></a>
                 <a href="https://geeks.kg/" target="_blank" rel="noopener noreferrer"><FaVk size={24} /></a>
-                <a href="https://geeks.kg/" target="_blank" rel="noopener noreferrer"><FaInstagram size={24} /></a>
+                <a href="https://geeks.kg/" target="_blank" rel="noopener noreferrer"><BiLogoInstagramAlt size={24} /></a>
               </div>
             </div>
           </div>

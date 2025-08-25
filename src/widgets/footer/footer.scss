@@ -27,11 +27,12 @@ $link-color: rgb(175, 175, 179);
       text-align: left;
       margin-bottom: 2rem;
 
-      @media (max-width: 768px) {
+      @media (max-width: 857px) {
         display: flex;
         
       }
 
+      
       &-div {
         min-width: 120px;
         margin: 0 10px;
@@ -40,6 +41,11 @@ $link-color: rgb(175, 175, 179);
         color: $text-color;
         line-height: 1.5;
         gap: 0px;
+
+
+        @media (max-width: 360px) {
+        display: none;
+      }
 
         h4 {
           margin-bottom: 0px;
@@ -58,16 +64,29 @@ $link-color: rgb(175, 175, 179);
       .block2{
         color: #ffffff;
       }
+
+
+      @media (max-width: 360px) {
+        font-size: 18px;
+      }
     }
     }
 
     
     .sb__footer-links-div-text1{
-       max-width: 80%;
+       max-width: 25%;
       .text_1{
-        max-width: 80%;
+        max-width: 100%;
       }  
     }
+    .sb__footer-links-div-text2{
+       max-width: 25%;
+       
+      .text_1{
+        max-width: 100%;
+      }  
+    }
+
 
 
     .socialmedia {
@@ -152,7 +171,9 @@ $link-color: rgb(175, 175, 179);
     color: $link-color;
     text-decoration: none;
   }
-
+  * {
+    color: #fff !important;
+  }
 
   @media screen and (max-width: 768px) {
     
@@ -200,14 +221,14 @@ $link-color: rgb(175, 175, 179);
     }
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 454px) {
     .sb__footer-links {
       flex-direction: column;
       align-items: center;
 
+
       &-div {
-        margin: 10px 0;
-        text-align: center;
+        display: none;
       }
     }
   }

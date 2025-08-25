@@ -48,7 +48,7 @@ function App() {
           ))}
         </Routes>
         {/* <Footer /> */}
-        <Messenger/>
+        {/* <Messenger/> */}
         <Footer/> 
       </BrowserRouter>
 
