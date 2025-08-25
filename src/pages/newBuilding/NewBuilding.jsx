@@ -1,9 +1,9 @@
-import { ObjectsSections } from '../../widgets';
+import { NewBuildingsSection } from '../../widgets';
 
 export const NewBuilding = () => {
     return (
         <div>
-            <ObjectsSections />
+            <NewBuildingsSection />
         </div>
     );
 }
