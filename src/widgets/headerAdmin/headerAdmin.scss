@@ -89,14 +89,14 @@
   }
 
   &__name {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 600;
     color: #1a1a1a;
     margin: 0 0 2px 0;
   }
 
   &__phone {
-    font-size: 17px;
+    font-size: 15px;
     color: #666666;
     margin: 0;
   }
@@ -141,13 +141,13 @@
   background: #fafafa;
 
   &__title {
-    font-size: 24px;
+    font-size: 20px;
     color: #666666;
     margin: 0 0 4px 0;
   }
 
   &__email {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     color: #1a1a1a;
     margin: 0;
@@ -185,8 +185,8 @@
 .nav-tab {
   background: transparent;
   border: none;
-  padding: 16px 20px;
-  font-size: 25px;
+  padding: 16px 15px 5px;
+  font-size: 22px;
   color: #323232;
   cursor: pointer;
   transition: all 0.2s ease;
