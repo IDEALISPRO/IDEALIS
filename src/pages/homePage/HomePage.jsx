@@ -13,9 +13,9 @@ export const HomePage = () => {
         }
       />
       <BannerPictures />
-      <Navigate />
+      {/* <Navigate /> */}
 
-      <FilterWidget />
+      {/* <FilterWidget /> */}
       <ObjectsSections />
     </div>
   );

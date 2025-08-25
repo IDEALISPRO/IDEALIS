@@ -24,6 +24,7 @@ import {
   ListAgents,
   Rules,
   VideoTutorials,
+  EstateCategories,
 } from "../../pages";
 import "../styles/app.scss";
 import { ThemeProvider } from "@mui/material/styles";
@@ -66,6 +67,10 @@ function App() {
     {
       path: "/create-object",
       element: <CreateObject />,
+    },
+    {
+      path: "/estate-categories",
+      element: <EstateCategories />,
     },
     {
       path: "/login",

@@ -14,3 +14,4 @@ export { AdFreeCard } from "./adFree/AdFreeCard";
 export { DeletedCard } from "./deletedCard/DeletedCard";
 export { SalesCard } from "./salesCard/SalesCard";
 export { ImpressionCard } from "./impressionsCard/ImpressionCard";
+export { LawyersCard } from "./lawyers/LawyersCard";

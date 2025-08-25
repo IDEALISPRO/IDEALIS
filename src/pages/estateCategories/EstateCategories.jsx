@@ -1,6 +1,7 @@
-import { Banner, BannerPictures, ObjectsCard } from "../../features";
+import { useLocation } from "react-router-dom";
+import { Banner, ObjectsCard } from "../../features";
+import "./estateCategories.scss";
 import img from "../../shared/img/objImg.png";
-import "./favorites.scss";
 
 const data = [
   {
@@ -10,7 +11,7 @@ const data = [
     location: "Аламедин-1, ул. Тыныстанова",
     description: "1 комн • 38 м²",
     price: "3 400 000 сом",
-    liked: true,
+    liked: false,
   },
   {
     id: 2,
@@ -19,7 +20,7 @@ const data = [
     location: "Аламедин-1, ул. Тыныстанова",
     description: "1 комн • 38 м²",
     price: "3 400 000 сом",
-    liked: true,
+    liked: false,
   },
   {
     id: 3,
@@ -28,7 +29,7 @@ const data = [
     location: "Аламедин-1, ул. Тыныстанова",
     description: "1 комн • 38 м²",
     price: "3 400 000 сом",
-    liked: true,
+    liked: false,
   },
   {
     id: 4,
@@ -37,7 +38,7 @@ const data = [
     location: "Аламедин-1, ул. Тыныстанова",
     description: "1 комн • 38 м²",
     price: "3 400 000 сом",
-    liked: true,
+    liked: false,
   },
   {
     id: 5,
@@ -46,7 +47,7 @@ const data = [
     location: "Аламедин-1, ул. Тыныстанова",
     description: "1 комн • 38 м²",
     price: "3 400 000 сом",
-    liked: true,
+    liked: false,
   },
   {
     id: 6,
@@ -55,7 +56,7 @@ const data = [
     location: "Аламедин-1, ул. Тыныстанова",
     description: "1 комн • 38 м²",
     price: "3 400 000 сом",
-    liked: true,
+    liked: false,
   },
   {
     id: 7,
@@ -64,7 +65,7 @@ const data = [
     location: "Аламедин-1, ул. Тыныстанова",
     description: "1 комн • 38 м²",
     price: "3 400 000 сом",
-    liked: true,
+    liked: false,
   },
   {
     id: 8,
@@ -73,7 +74,7 @@ const data = [
     location: "Аламедин-1, ул. Тыныстанова",
     description: "1 комн • 38 м²",
     price: "3 400 000 сом",
-    liked: true,
+    liked: false,
   },
   {
     id: 9,
@@ -82,7 +83,7 @@ const data = [
     location: "Аламедин-1, ул. Тыныстанова",
     description: "1 комн • 38 м²",
     price: "3 400 000 сом",
-    liked: true,
+    liked: false,
   },
   {
     id: 10,
@@ -91,24 +92,24 @@ const data = [
     location: "Аламедин-1, ул. Тыныстанова",
     description: "1 комн • 38 м²",
     price: "3 400 000 сом",
-    liked: true,
+    liked: false,
   },
 ];
-export const Favorites = () => {
+export const EstateCategories = () => {
+  const location = useLocation();
   return (
-    <div className="container favorite__container">
+    <div className="container estate__categories">
       <Banner
-        title={"ИЗБРАННОЕ"}
+        title={location.state.title}
         description={
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
         }
       />
-      <BannerPictures />
       <div className="row objects">
         <p>Все</p>
         <p>12 объектов</p>
       </div>
-      <section className="favorite__cards">
+      <section className="estate__cards">
         {data.map((item) => (
           <ObjectsCard
             key={item.id}
