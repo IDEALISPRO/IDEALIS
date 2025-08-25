@@ -1,0 +1,106 @@
+@use "../../../app/styles/constants.scss" as *;
+
+.reviews {
+  margin: clamp(40px, 8vw, 100px) 0;
+
+  @include xl{
+    display: none;
+  }
+
+  &_title {
+    padding-bottom: 0;
+    font-size: clamp(20px, 2vw, 32px);
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: clamp(10px, 2vw, 20px);
+    margin-bottom: clamp(15px, 3vw, 20px);
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(10px, 2vw, 20px);
+
+    .reviews__item-text {
+      font-size: clamp(10px, 1vw, 14px);
+      line-height: 1.4;
+      width: 350px;
+
+      @include xl2{
+        width: 250px;
+      }
+    }
+  }
+
+  &__item {
+    background-color: #14375f;
+    padding: clamp(10px, 2vw, 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    max-width: clamp(260px, 40vw, 396px);
+    border: none;
+    border-radius: 8px;
+  }
+
+  &__avatar {
+    width: clamp(35px, 5vw, 50px);
+    height: clamp(35px, 5vw, 50px);
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: clamp(5px, 1.5vw, 10px);
+  }
+
+  &__item-title {
+    font-size: clamp(10px, 1vw, 14px);
+    font-weight: bold;
+    margin-bottom: clamp(5px, 1vw, 10px);
+    margin-left: 1px;
+    margin-top: clamp(40px, 8vw, 110px);
+    font-family: "Montserrat", sans-serif;
+  }
+
+  &__item-text {
+    font-size: clamp(10px, 1vw, 14px);
+    line-height: 1.4;
+  }
+
+  &__center {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+    background: transparent;
+    padding: clamp(5px, 2vw, 10px);
+    height: 100%;
+  }
+
+  &__main-text {
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1.4;
+    margin-bottom: clamp(10px, 2vw, 15px);
+    height: auto;
+    max-width: 700px;
+    opacity: 1;
+    color: #163659;
+    @include lg {
+      font-size: 18px;
+    }
+    @include xl {
+      font-size: 16px;
+    }
+  }
+
+  &__sub-text {
+    opacity: 1;
+    color: #163659;
+    font-size: clamp(10px, 1.5vw, 12px);
+  }
+}
