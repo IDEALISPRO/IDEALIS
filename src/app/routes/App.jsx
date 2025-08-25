@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import '../styles/app.scss';
 import { Header } from "../../widgets";
-import { AboutIDEALIS, Services, HomePage, News, Favorites, ContactsPage } from '../../pages'
+import { AboutIDEALIS, Services, HomePage, News, Favorites, ContactsPage,ApplicationForm } from '../../pages'
 import '../styles/app.scss';
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../shared/SiteTheme/SiteTheme";
@@ -34,6 +34,10 @@ function App() {
     {
       path: "/favorites",
       element: <Favorites />,
+    },
+    {
+      path: "/application",
+      element: <ApplicationForm/>,
     },
   ]
 
