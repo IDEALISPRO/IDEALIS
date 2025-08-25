@@ -23,3 +23,4 @@ export { HistoryAgency } from "./aboutIDEALISSections/historyAgency/HistoryAgenc
 export { HeaderAdmin } from "./headerAdmin/HeaderAdmin.jsx";
 export { Reviews } from "./reviews/Reviews.jsx";
 export { Comments } from "./aboutIDEALISSections/comments/Comments.jsx";
+export { NavigateMobile } from "./homeSections/navigateMobile/NavigateMobile.jsx";
