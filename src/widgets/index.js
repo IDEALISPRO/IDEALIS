@@ -5,7 +5,7 @@ export { HotOffers } from "./news/hotOffers/HotOffers.jsx";
 export { MarketNews } from "./news/marketNews/MarketNews.jsx";
 export { EventsSection } from "./NewsEvent/EventsSection";
 export { MissionsValues } from "./aboutIDEALISSections/missionsValues/MissionsValues";
-export { ListAgents } from "./listAgents/ListAgents";
+export { ListAgentsSection } from "./listAgents/ListAgentsSection.jsx";
 export { MiniMenu } from "./header/miniMenu/MinieMenu";
 
 export { ObjectsSections } from "./homeSections/objectsSection/ObjectsSections";

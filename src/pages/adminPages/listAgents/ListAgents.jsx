@@ -1,7 +1,9 @@
-import React from 'react'
+import { ListAgentsSection } from '../../../widgets'
 
 export const ListAgents = () => {
   return (
-    <div>ListAgents</div>
+    <div className='container'>
+      <ListAgentsSection />
+    </div>
   )
 }
