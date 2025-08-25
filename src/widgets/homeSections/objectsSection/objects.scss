@@ -79,7 +79,6 @@
     .objects {
         &__cards {
             grid-template-columns: repeat(2, auto);
-            padding: 0 10px;
         }
 
         &__title {
@@ -96,6 +95,9 @@
 
 @media screen and (max-width:768px) {
     .objects {
+        &__cards {
+            grid-template-columns: repeat(1, auto);
+        }
         &__title {
             padding-bottom: 24px;
 

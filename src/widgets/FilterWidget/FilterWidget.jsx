@@ -64,7 +64,6 @@ export const FilterWidget = () => {
       value1,
       currency,
       alignment,
-      // добавьте другие поля если нужно
     });
     setOpen(true);
   };
@@ -85,15 +84,23 @@ export const FilterWidget = () => {
           <Grid container spacing={2} alignItems="center">
             <Grid item size={{ xs: 8 }}>
               <TextField
-                fullWidth
                 id="outlined-basic"
                 label="Найти вариант мечты"
                 variant="outlined"
+                sx={{ width: "100%" }}
+                InputLabelProps={{
+                  sx: {
+                    width: "30%",      // ширина текста label
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  },
+                }}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        onClick={handleSearchClick}
+                        onClick={() => console.log("Search clicked")}
                         edge="end"
                         aria-label="search"
                       >
@@ -103,6 +110,7 @@ export const FilterWidget = () => {
                   ),
                 }}
               />
+
             </Grid>
             <Grid item size={{ xs: 4 }}>
               <Button fullWidth variant="contained" color="primary" type="submit">
@@ -111,147 +119,160 @@ export const FilterWidget = () => {
             </Grid>
 
           </Grid>
-          <ToggleButtonGroup
-            value={alignment}
-            exclusive
-            onChange={handleAlignment}
-            aria-label="text alignment"
-            fullWidth
-            sx={{ width: "100%", margin: "18px 0px", fontFamily: "Roboto Condensed", border: "1px solid #00000066" }}
+          <Box
+            sx={{
+              display: { xs: "none", sm: "block" }
+            }}
           >
-            <ToggleButton value="left" sx={{ flex: 4 }}>
-              ВСЕ ОБЪЕКТЫ
-            </ToggleButton>
-            <ToggleButton value="center" sx={{ flex: 4 }}>
-              ВЫКУПНЫЕ ВАРИАНТЫ
-            </ToggleButton>
-            <ToggleButton value="right" sx={{ flex: 4 }}>
-              ТОП-50
-            </ToggleButton>
-            <ToggleButton value="justify" sx={{ flex: 4 }}>
-              ГОРЯЧИЕ ВАРИАНТЫ
-            </ToggleButton>
-          </ToggleButtonGroup>
+
+
+            <ToggleButtonGroup
+              value={alignment}
+              exclusive
+              onChange={handleAlignment}
+              aria-label="text alignment"
+              fullWidth
+
+              sx={{ width: "100%", margin: "18px 0px", fontFamily: "Roboto Condensed", border: "1px solid #00000066" }}
+            >
+              <ToggleButton value="left" sx={{ flex: 4 }}>
+                ВСЕ ОБЪЕКТЫ
+              </ToggleButton>
+              <ToggleButton value="center" sx={{ flex: 4 }}>
+                ВЫКУПНЫЕ ВАРИАНТЫ
+              </ToggleButton>
+              <ToggleButton value="right" sx={{ flex: 4 }}>
+                ТОП-50
+              </ToggleButton>
+              <ToggleButton value="justify" sx={{ flex: 4 }}>
+                ГОРЯЧИЕ ВАРИАНТЫ
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
           <Box component="section" alignItems="center" container>
-            <Grid sx={{ gap: "18px", display: "grid" }}>
-              <Grid container columnSpacing={2}>
-                <Grid item size={{ xs: 4 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    sx={{ width: "100%" }}
-                    fullWidth
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      <em>Агент</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </Grid>
+            <Grid container columnSpacing={2} sx={{
+              marginTop: {
+                xs: "20px", sm: "0px"
 
-                <Grid item size={{ xs: 4 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    sx={{ width: "100%" }}
-                    fullWidth
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </Grid>
-
-                <Grid item size={{ xs: 4 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    sx={{ width: "100%" }}
-                    fullWidth
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </Grid>
+              }, gap: "8px", display: "flex", justifyContent: "space-between"
+            }}>
+              <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+                <Select
+                  value={age}
+                  onChange={handleChange}
+                  displayEmpty
+                  sx={{ width: "100%" }}
+                  fullWidth
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem value="">
+                    <em>Агент</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
               </Grid>
 
-              <Grid container columnSpacing={2} alignItems="center">
-                <Grid item size={{ xs: 4 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    sx={{ width: "100%" }}
-                    fullWidth
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </Grid>
+              <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+                <Select
+                  value={age}
+                  onChange={handleChange}
+                  displayEmpty
+                  sx={{ width: "100%" }}
+                  fullWidth
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </Grid>
 
-                <Grid item size={{ xs: 4 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    sx={{ width: "100%" }}
-                    fullWidth
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </Grid>
+              <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+                <Select
+                  value={age}
+                  onChange={handleChange}
+                  displayEmpty
+                  sx={{ width: "100%" }}
+                  fullWidth
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </Grid>
 
-                <Grid item size={{ xs: 4 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    sx={{ width: "100%" }}
-                    fullWidth
-                    inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </Grid>
+              <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+                <Select
+                  value={age}
+                  onChange={handleChange}
+                  displayEmpty
+                  sx={{ width: "100%" }}
+                  fullWidth
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </Grid>
+
+              <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+                <Select
+                  value={age}
+                  onChange={handleChange}
+                  displayEmpty
+                  sx={{ width: "100%" }}
+                  fullWidth
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </Grid>
+
+              <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+                <Select
+                  value={age}
+                  onChange={handleChange}
+                  displayEmpty
+                  sx={{ width: "100%" }}
+                  fullWidth
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
               </Grid>
             </Grid>
           </Box>
-          <Grid container spacing={2} sx={{ width: "100%", marginTop: "18px" }}>
+          <Grid container spacing={2} sx={{
+
+            width: "100%", marginTop: "18px"
+          }}>
             <Grid item size={{ xs: 12, md: 6 }} sx={{ padding: "25px 0px" }}>
               <Box component="section" sx={{ padding: "0px 24px", border: '1px solid #00000066', borderRadius: 2, gap: "8px", display: "grid" }}>
-                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <Typography variant="h6" sx={{ marginTop: "18px" }}>Цена</Typography>
+                <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center" }}>
+                  <Typography variant="h6">Цена</Typography>
                   <Typography variant="body1" color="divider" sx={{ margin: "18px 0px" }}>Валюта:
                     <ToggleButtonGroup
                       value={currency}
@@ -269,11 +290,25 @@ export const FilterWidget = () => {
                     </ToggleButtonGroup></Typography>
                 </Box>
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <Typography color="primary" variant="subtitle1" component="span">
+                  <Typography color="primary"
+                    sx={
+                      {
+                        fontSize: { sm: "18px", md: "28px" },
+                        fontWeight: { sm: 400, md: 600 },
+                        fontFamily: "Roboto Condensed"
+                      }
+                    }
+                  >
                     От {value1[0].toLocaleString('ru-RU')} сом
                   </Typography>
 
-                  <Typography color="primary" variant="subtitle1" component="span" sx={{ marginRight: "64px" }}>
+                  <Typography color="primary" sx={
+                    {
+                      fontSize: { sm: "18px", md: "28px" },
+                      fontWeight: { sm: 400, md: 600 },
+                      fontFamily: "Roboto Condensed"
+                    }
+                  }>
                     До {value1[1].toLocaleString('ru-RU')} сом
                   </Typography>
 
@@ -341,7 +376,7 @@ export const FilterWidget = () => {
             </Grid>
 
           </Grid>
-          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "18px" }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: { xs: "5px", sm: "10px" }, marginTop: "18px" }}>
 
             <Button
               variant="outlined"
@@ -349,7 +384,7 @@ export const FilterWidget = () => {
               type="reset"
               sx={{
                 width: "100%",
-                padding: "14px 18px",
+                padding: { xs: "10px 2px", sm: "14px 18px" },
                 fontFamily: "Roboto Condensed",
                 backgroundColor: "transparent",
                 color: "primary.main",
@@ -360,7 +395,7 @@ export const FilterWidget = () => {
                   borderColor: "primary.main",
                   color: "primary.main",
                 },
-                mr: 2
+                // mr: 2
               }}
             >
               Сбросить фильтры
@@ -369,13 +404,17 @@ export const FilterWidget = () => {
               variant="contained"
               color="primary"
               type="submit"
-              sx={{ width: "100%", padding: "14px 18px", fontFamily: "Roboto Condensed" }}
+              sx={{
+                width: "100%", padding: { xs: "10px 2px", sm: "14px 18px" },
+                fontFamily: "Roboto Condensed"
+              }}
             >
               Применить фильтры
             </Button>
           </Box>
         </section>
       </form>
+
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Данные фильтра</DialogTitle>
         <DialogContent>

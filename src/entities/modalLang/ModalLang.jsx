@@ -1,12 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import './modalLang.scss';
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
-
 import ru from '../../shared/img/Frame 54.svg';
 import kg from '../../shared/img/kg.svg';
 import en from '../../shared/img/en.svg';
 
-const ModalLang = ({ HandleModal }) => {
+export const ModalLang = ({ HandleModal }) => {
   const { i18n } = useTranslation();
 
   const handleChangeLang = (value) => {
@@ -45,5 +43,3 @@ const ModalLang = ({ HandleModal }) => {
     </div>
   );
 };
-
-export default ModalLang;

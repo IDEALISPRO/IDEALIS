@@ -5,5 +5,21 @@
     "news": "Новости",
     "contacts": "Контакты",
     "favorites": "Избранное"
+  },
+  "adminLinks": {
+    "published": "Опубликованные",
+    "without_ads": "Без рекламы",
+    "advertising_requests": "Заявки на рекламу",
+    "pending_approval": "Ожидающие подтверждения",
+    "deleted": "Удаленные",
+    "my_listings": "Мои",
+    "sales": "Продажи",
+    "saved_searches": "Сохраненные поиски",
+    "others_searching": "Другие ищут",
+    "views": "Показы",
+    "new_list": "Список агентов новостройки",
+    "rules": "Правила",
+    "video": "Видеоуроки",
+    "lawyers": "Юристы"
   }
 }

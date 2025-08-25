@@ -116,14 +116,12 @@
 
 @media screen and (max-width:768px) {
     .objCard {
-        width: 265px;
+        width: 100%;
     }
 }
 
 @media screen and (max-width:576px) {
     .objCard {
-        width: 200px;
-
         &__img {
             object-fit: cover;
         }
@@ -167,8 +165,6 @@
 
 @media screen and (max-width:440px) {
     .objCard {
-        width: 165px;
-
         &__info {
             &__title {
                 width: 146px;
@@ -203,8 +199,6 @@
 
 @media screen and (max-width:414px) {
     .objCard {
-        width: 140px;
-
         &__buttons {
             gap: 9px;
 

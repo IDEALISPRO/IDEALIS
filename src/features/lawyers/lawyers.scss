@@ -1,0 +1,215 @@
+.card-lawyers {
+  display: flex;
+  padding: 20px;
+  border: 1px solid #323232;
+  border-radius: 12px;
+  margin: 40px 0;
+
+  .btn-lawyers {
+    font-size: 24px;
+    padding: 13px 34%;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    background-color: #163659;
+    border: 2px solid #163659;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s all;
+  }
+
+  .btn-lawyers:hover {
+    background-color: white;
+    color: #163659;
+  }
+
+  p {
+    color: #323232af;
+    font-weight: 400;
+  }
+
+  .left-card-lawyers {
+    padding-right: 7%;
+    img {
+      width: 500px;
+      border-radius: 12px;
+    }
+    h3 {
+      margin: 10px 0;
+    }
+    h4 {
+      margin: 20px 0;
+    }
+  }
+
+  .line-lawyers {
+    height: 500px;
+    border: 1px solid #163659a8;
+    border-radius: 1px;
+  }
+
+  .right-card-lawyers {
+    padding-left: 7%;
+    padding-top: 50px;
+
+    .specialization {
+      h2 {
+        color: #323232;
+        font-weight: 600;
+        font-size: 32px;
+      }
+      li {
+        color: #868686;
+        margin: 10px 0;
+        font-size: 18.5px;
+      }
+      li::before {
+        content: "-";
+        margin-right: 10px;
+      }
+    }
+
+    .address-lawyers {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 200px;
+
+      p {
+        font-size: 25px;
+      }
+
+      .gps-lawyers {
+        color: #868686;
+        font-size: 35px;
+      }
+    }
+
+    .btn-for-mobile {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .card-lawyers {
+    .btn-lawyers {
+      padding: 13px 30%;
+    }
+    .left-card-lawyers {
+      // padding-right: 4%;
+      img {
+        width: 400px;
+      }
+      h3 {
+        margin: 5px 0;
+      }
+      h4 {
+        margin: 10px 0;
+      }
+    }
+    .right-card-lawyers {
+      // padding-left: 4%;
+      .address-lawyers {
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .card-lawyers {
+    .line-lawyers {
+      height: 400px;
+    }
+    .btn-lawyers {
+      padding: 13px 25%;
+    }
+    .left-card-lawyers {
+      img {
+        width: 300px;
+      }
+    }
+    .right-card-lawyers {
+      .address-lawyers {
+        p {
+          font-size: 14px;
+        }
+        .gps-lawyers {
+          font-size: 30px;
+        }
+        margin-bottom: 20px;
+      }
+      .specialization {
+        h2 {
+          font-size: 26px;
+        }
+        li {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card-lawyers {
+    .left-card-lawyers {
+      img {
+        width: 200px;
+      }
+    }
+    .line-lawyers {
+      height: 300px;
+    }
+    .btn-lawyers {
+      padding: 10px 20%;
+      font-size: 15px;
+      .gps-lawyers {
+        font-size: 15px;
+      }
+    }
+    .right-card-lawyers {
+      .address-lawyers {
+        margin-top: 50px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .card-lawyers {
+    padding: 0;
+    margin: 10px;
+    border: none;
+    display: block;
+
+    .btn-lawyers {
+      width: 100%;
+      justify-content: center;
+    }
+    .left-card-lawyers {
+      padding: 0;
+      .btn-for-dec {
+        display: none;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .line-lawyers {
+      width: 100%;
+      height: 0;
+      margin: 10px 0;
+    }
+    .right-card-lawyers {
+      padding: 0;
+      .btn-for-mobile {
+        display: flex;
+      }
+    }
+  }
+}

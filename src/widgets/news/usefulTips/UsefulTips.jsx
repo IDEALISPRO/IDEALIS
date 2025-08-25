@@ -1,6 +1,6 @@
 import { Acardion } from "../../../features"
 import img from "../../../shared/images/home.png";
-
+import "./usefulTips.scss"
 const data = [
     {
         id: 1,
@@ -30,7 +30,7 @@ const data = [
 
 export const UsefulTips = () => {
   return (
-    <section>
+    <section className="usefulTips">
         <h2 className="title">Полезные советы</h2>
 
         <Acardion data={data} />

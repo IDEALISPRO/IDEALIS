@@ -3,7 +3,7 @@
     font-family: "Montserrat";
     font-weight: 700;
     font-style: normal;
-    font-size: 190px;
+    font-size: 150px;
     text-align: center;
     line-height: 100%;
     letter-spacing: 0;
@@ -25,7 +25,17 @@
     margin: 20px auto 65px;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1400px) {
+    .BannerTitle {
+      font-size: 100px;
+    }
+    .BannerDescription {
+      font-size: 24px;
+      max-width: 75%;
+    }
+  }
+
+  @media (max-width: 1200px) {
     .BannerTitle {
       font-size: 96px;
     }
@@ -35,7 +45,7 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .BannerTitle {
       font-size: 48px;
     }
@@ -45,7 +55,7 @@
     }
   }
 
-  @media (max-width: 576px) {
+  @media (max-width: 726px) {
     .BannerTitle {
       margin-top: 101px;
     }
@@ -55,7 +65,7 @@
     }
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 526px) {
     .BannerTitle {
       font-size: 24px;
     }

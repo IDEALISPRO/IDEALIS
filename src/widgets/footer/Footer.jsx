@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./footer.scss";
 import { BsTelegram } from "react-icons/bs";
 import { BiLogoInstagramAlt } from "react-icons/bi";
@@ -7,10 +7,17 @@ import { FaVk } from "react-icons/fa6";
 import {  } from "react-icons/bi";
 import footerLogo from "../../shared/img/logogo.jpg";
 import Geeks from "../../shared/img/geeks.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
- export const Footer = () => {
-  const footerRef = useRef(null);
+export const Footer = () => {
+  const location = useLocation();
+  if (
+    location.pathname.startsWith("/admin") ||
+    location.pathname.startsWith("/login")
+  )
+    return null;
+
+  const footerRef = useRef();
 
   useEffect(() => {
     const footer = footerRef.current;
@@ -46,21 +53,34 @@ import { Link } from "react-router-dom";
 
           <div className="sb__footer-links-div-text1">
             <h4 className="text_1">
-              Начните сотрудничество с IDEALIS — найдём идеальную недвижимость для вас.
+              Начните сотрудничество с IDEALIS — найдём идеальную недвижимость
+              для вас.
             </h4>
           </div>
 
           <div className="sb__footer-links-div-buttons">
             <div className="block2">
-              <Link to="/"><h4>Главная</h4></Link>
-              <Link to="/about"><h4>Про IDEALIS</h4></Link>
-              <Link to="/services"><h4>Услуги</h4></Link>
+              <Link to="/">
+                <h4>Главная</h4>
+              </Link>
+              <Link to="/about">
+                <h4>Про IDEALIS</h4>
+              </Link>
+              <Link to="/services">
+                <h4>Услуги</h4>
+              </Link>
             </div>
             <div className="block1">
-              <Link to="/news"><h4>Новости</h4></Link>
-              <Link to="/contacts"><h4>Контакты</h4></Link>
+              <Link to="/news">
+                <h4>Новости</h4>
+              </Link>
+              <Link to="/contacts">
+                <h4>Контакты</h4>
+              </Link>
               <div className="izbrannoe">
-                <Link to="/favorites"><h4>Избранное</h4></Link>
+                <Link to="/favorites">
+                  <h4>Избранное</h4>
+                </Link>
               </div>
             </div>
           </div>
@@ -90,15 +110,22 @@ import { Link } from "react-router-dom";
 
         <hr />
 
-        <a href="https://geeks.kg/" target="_blank" rel="noopener noreferrer" className="footer-madeby">
+        <a
+          href="https://geeks.kg/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="footer-madeby"
+        >
           <img src={Geeks} alt="Geeks Logo" className="geeks-logo" />
           <span>
-            MADE BY <strong><br />GEEKS</strong>
+            MADE BY{" "}
+            <strong>
+              <br />
+              GEEKS
+            </strong>
           </span>
         </a>
       </div>
     </div>
   );
 };
-
- 

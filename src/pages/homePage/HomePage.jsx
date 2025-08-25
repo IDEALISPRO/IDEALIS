@@ -4,15 +4,19 @@ import { Banner, BannerPictures } from "../../features";
 import { ObjectsSections } from "../../widgets";
 
 export const HomePage = () => {
-    return (
-        <div className="container">
-            <Banner title={'IDEALIS'} description={'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'} />
-            <BannerPictures />
-            <Navigate />
+  return (
+    <div className="container">
+      <Banner
+        title={"IDEALIS"}
+        description={
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        }
+      />
+      <BannerPictures />
+      {/* <Navigate /> */}
 
-            <FilterWidget />
-            <ObjectsSections />
-        </div>
-    );
-}
-
+      <FilterWidget />
+      <ObjectsSections />
+    </div>
+  );
+};
