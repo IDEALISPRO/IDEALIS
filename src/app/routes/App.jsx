@@ -40,7 +40,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header />
+        {/* <Header /> */}
         <Routes>
           <Route index element={<HomePage />} />
           {routesArr?.map((item, index) => (
@@ -49,7 +49,7 @@ function App() {
         </Routes>
         {/* <Footer /> */}
         {/* <Messenger/> */}
-        <Footer/> 
+        {/* <Footer/>  */}
       </BrowserRouter>
 
     </ThemeProvider>

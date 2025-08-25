@@ -1,0 +1,61 @@
+import { useEffect, useState } from 'react'
+import './searchreq.scss'
+import Pagination from '@mui/material/Pagination';
+import data from './list.json'
+
+export function SearchRequests() {
+  const itemsPerPage = 9
+  const [page, setPage] = useState(1)
+  const [list, setList] = useState([])
+
+  useEffect(() => {
+    const sorted = [...data].sort((a, b) => b.req - a.req)
+    setList(sorted)
+  }, [])
+
+  const startIndex = (page - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const currentItems = list.slice(startIndex, endIndex)
+
+  const handleChange = (_, value) => {
+    setPage(value)
+  }
+
+  return (
+    <div className='container search-req'>
+      <div className="title-div">
+        <p className='title-text'>Формулировка</p>
+        <p className='title-text'>Число запросов</p>
+      </div>
+      <div className='list'>
+        {currentItems.map((item, index) => (
+          <div 
+            key={startIndex + index} 
+            className={`list-card`}
+          >
+            <div className="text-block">
+              <p className='name-text'>{item.name}</p>
+            </div>
+            <div className="text-block">
+              <p className='req-text'>{item.req}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className='pagination-div'>
+        <Pagination className='pagination'
+          count={Math.ceil(list.length / itemsPerPage)} 
+          page={page}
+          onChange={handleChange}
+          variant="outlined" 
+          size='large'
+          shape="rounded" 
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        />
+      </div>
+    </div>
+  )
+}
