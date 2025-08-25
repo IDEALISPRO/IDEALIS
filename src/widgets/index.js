@@ -20,3 +20,4 @@ export { Reviews } from "./aboutIDEALISSections/reviews/Reviews.jsx";
 export { Comments } from "./aboutIDEALISSections/comments/Comments.jsx";
 export { NavigateMobile } from "./homeSections/navigateMobile/NavigateMobile.jsx";
 export { ReviewsMobile } from "./aboutIDEALISSections/reviewsMobile/ReviewsMobile.jsx";
+export { SearchReq } from "./admin/searchReq/SearchReq.jsx";

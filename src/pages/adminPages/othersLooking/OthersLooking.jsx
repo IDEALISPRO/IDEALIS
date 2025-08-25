@@ -1,7 +1,9 @@
-import React from 'react'
+import { SearchReq } from "../../../widgets";
 
 export const OthersLooking = () => {
   return (
-    <div>OthersLooking</div>
-  )
-}
+    <div className="container">
+      <SearchReq />
+    </div>
+  );
+};

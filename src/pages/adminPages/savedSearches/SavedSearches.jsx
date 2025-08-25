@@ -1,7 +1,9 @@
-import React from 'react'
+import { SearchReq } from "../../../widgets";
 
 export const SavedSearches = () => {
   return (
-    <div>SavedSearches</div>
-  )
-}
+    <div className="container">
+      <SearchReq />
+    </div>
+  );
+};
