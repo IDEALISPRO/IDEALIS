@@ -96,6 +96,10 @@
 
 @media screen and (max-width:768px) {
     .objects {
+        &__cards {
+            grid-template-columns: repeat(1, auto);
+            padding: 0 10px;
+        }
         &__title {
             padding-bottom: 24px;
 

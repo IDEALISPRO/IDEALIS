@@ -1,7 +1,11 @@
-import React from 'react'
+import { LawyersCard } from "../../../features"
 
 export const Lawyers = () => {
   return (
-    <div>Lawyers</div>
+    <div className="container">
+      <LawyersCard />
+      <LawyersCard />
+      <LawyersCard />
+    </div>
   )
 }

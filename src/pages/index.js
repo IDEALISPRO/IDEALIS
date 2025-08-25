@@ -10,6 +10,7 @@ export { News } from "./news/News";
 export { ObjectDetail } from "./objectDetail/ObjectDetail";
 export { Services } from "./services/Services";
 export { Login } from "./adminPages/login/Login";
+export { EstateCategories } from "./estateCategories/EstateCategories";
 
 // admin
 export { AdvertisingRequests } from "./adminPages/advertisingRequests/AdvertisingRequests";

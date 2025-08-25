@@ -4,12 +4,19 @@ import FavoriteSharpIcon from "@mui/icons-material/FavoriteSharp";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import { useState } from "react";
 
-export const ObjectsCard = ({ img, title, location, description, price }) => {
-  const [liked, setLiked] = useState(false);
+export const ObjectsCard = ({
+  img,
+  title,
+  location,
+  description,
+  price,
+  liked,
+}) => {
+  const [like, setLike] = useState(liked);
 
   const HandleLike = () => {
-    console.log(liked);
-    setLiked(!liked);
+    console.log(like);
+    setLike(!like);
   };
 
   return (
@@ -38,7 +45,7 @@ export const ObjectsCard = ({ img, title, location, description, price }) => {
         </button>
         <button onClick={HandleLike} className={"objCard__buttons__like"}>
           <FavoriteSharpIcon
-            className={`objCard__buttons__like__icon ${liked ? `red` : ""}`}
+            className={`objCard__buttons__like__icon ${like ? `red` : ""}`}
           />
         </button>
       </div>

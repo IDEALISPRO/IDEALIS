@@ -22,3 +22,4 @@ export { UsefulTips } from "./news/usefulTips/UsefulTips";
 export { HistoryAgency } from "./aboutIDEALISSections/historyAgency/HistoryAgency";
 export { HeaderAdmin } from "./headerAdmin/HeaderAdmin.jsx";
 export { Reviews } from "./reviews/Reviews.jsx";
+export { Comments } from "./aboutIDEALISSections/comments/Comments.jsx";
