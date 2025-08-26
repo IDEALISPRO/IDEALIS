@@ -1,9 +1,7 @@
+import { useParams } from "react-router-dom";
 
 export const ObjectDetail = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-}
+  const { id } = useParams();
 
+  return <div></div>;
+};

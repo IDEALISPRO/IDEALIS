@@ -77,7 +77,9 @@ export const HeaderAdmin = () => {
         </button>
 
         <div className="header-admin__actions">
-          <button className="add-object-btn">Добавить объект</button>
+          <NavLink to={"/admin/add-object"}>
+            <button className="add-object-btn">Добавить объект</button>
+          </NavLink>
         </div>
       </div>
 

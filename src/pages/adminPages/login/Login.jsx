@@ -1,20 +1,21 @@
-import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { TextField, Button, MenuItem, Box, Typography } from "@mui/material";
-import Cookies from "js-cookie";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import { userLogin } from "../../../app/store/reducers/auth/authThunks";
 
 const schema = yup.object().shape({
   email: yup.string().email("Некорректный email").required("Введите email"),
   password: yup
     .string()
-    .min(6, "Минимум 6 символов")
+    .min(1, "Минимум 6 символов")
     .required("Введите пароль"),
-  role: yup.string().oneOf(["admin", "manager"], "Выберите роль").required(),
 });
 
 export const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const {
@@ -26,11 +27,17 @@ export const Login = () => {
     defaultValues: { email: "", password: "", role: "" },
   });
 
-  const onSubmit = (data) => {
-    Cookies.set("token", "fake-jwt-token", { expires: 1 });
-    Cookies.set("role", data.role, { expires: 1 });
-
-    navigate("/admin/published");
+  const onSubmit = async (data) => {
+    try {
+      const response = await dispatch(userLogin(data)).unwrap();
+      // Cookies.set("token", response.access);
+      // Cookies.set("refresh", response.refresh);
+      // Cookies.set("role", response.role);
+      navigate("/admin/published");
+      return response;
+    } catch (error) {
+      return { error };
+    }
   };
   return (
     <Box
@@ -87,7 +94,7 @@ export const Login = () => {
           )}
         />
 
-        <Controller
+        {/* <Controller
           name="role"
           control={control}
           render={({ field }) => (
@@ -104,7 +111,7 @@ export const Login = () => {
               <MenuItem value="manager">Менеджер</MenuItem>
             </TextField>
           )}
-        />
+        /> */}
 
         <Button
           type="submit"

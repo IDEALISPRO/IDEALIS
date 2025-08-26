@@ -1,20 +1,25 @@
-import './rules.scss';
+import { useDispatch } from "react-redux";
+import "./rules.scss";
+import { useEffect } from "react";
+import { rulesGet } from "../../../app/store/reducers/admin/rules/rulesThunks";
+import { useRules } from "../../../app/store/reducers/admin/rules/rulesSlice";
 
 export const Rules = () => {
+  const dispatch = useDispatch();
+  const { rules } = useRules();
+  console.log(rules);
+
+  useEffect(() => {
+    dispatch(rulesGet());
+  }, [dispatch]);
   return (
     <div className="container rules">
-      <h1>ПРАВИЛА</h1>
-      <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-      </p>
+      {rules && (
+        <>
+          <h1>{rules.title}</h1>
+          <p>{rules.content}</p>
+        </>
+      )}
     </div>
   );
 };
