@@ -6,7 +6,7 @@ const characteristicOptions = {
   Communications: ["Газ", "Электричество", "Отопление"],
   offers: ["Срочная продажа"],
   furniture: ["Да", "Нет"],
-  Square: ["1 м2", "2 м2", "3 м2", "4 м2"],
+  Square: ["1 m2", "2 m2", "3 m2", "4 m2"],
 };
 
 const selectOptions = {

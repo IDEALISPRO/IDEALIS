@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
 
 import { schema } from "./validation";
 import { PhotoUpload } from "./components/PhotoUpload";
@@ -9,7 +10,7 @@ import { FormFields } from "./components/FormFields";
 import { Characteristics } from "./components/Characteristics";
 import { OwnerContacts } from "./components/OwnerContacts";
 import { SubmitButtons } from "./components/SubmitButtons";
-import { useDispatch } from "react-redux";
+
 import { createObjectThunk } from "../../app/store/reducers/admin/createObject/createObjectThunk";
 
 export const CreateObjectForm = () => {
@@ -50,14 +51,14 @@ export const CreateObjectForm = () => {
 
   const onSubmit = async (data) => {
     console.log("Form submitted:", data);
+
     const newObject = {
-      images: data.photos,
+      images: data.photos, 
       title: data.description,
-      area_m2: data.Square,
+      area_m2: Number(data.Square),
       floor: data.Floor,
       floors_total: data.NumberRooms,
       price: data.price,
-      // urgent: data.offers,
       city: data.IntersectionStreets,
       district: data.District,
       street: data.IntersectionStreets,
@@ -68,11 +69,9 @@ export const CreateObjectForm = () => {
       house_series: data.HomeSeries,
       repair_state: data.repairs,
     };
+
     dispatch(createObjectThunk(newObject));
   };
-
-  console.log(errors);
-  
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
@@ -88,7 +87,7 @@ export const CreateObjectForm = () => {
       <FormFields control={control} errors={errors} />
       <Characteristics control={control} errors={errors} />
       <OwnerContacts control={control} errors={errors} />
-      <SubmitButtons onSubmit={handleSubmit(onSubmit)}/>
+      <SubmitButtons />
     </Box>
   );
 };
