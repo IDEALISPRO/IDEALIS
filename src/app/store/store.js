@@ -7,6 +7,7 @@ import agentsReducer from "./reducers/admin/agents/agentsSlice";
 import publishedReducer from "./reducers/admin/published/publishedSlice";
 import savedSearchedReducer from "./reducers/admin/savedSearches/savedSearchesSlice";
 import bannerReducer from "./reducers/admin/homeSlice/homeSlice";
+import headerReducer from "./reducers/admin/header/headerSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export const store = configureStore({
     published: publishedReducer,
     savedSearched: savedSearchedReducer,
     banner: bannerReducer,
+    header: headerReducer,
   },
 });
