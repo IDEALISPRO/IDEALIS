@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { BASE_URL } from "./constants";
 
 const axiosApi = axios.create({
-  baseURL: `${BASE_URL}${i18n.language}/api/v1/`,
+  baseURL: `${BASE_URL}/api/`,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -18,7 +18,7 @@ axiosApi.interceptors.request.use((config) => {
 });
 
 const axiosProfile = axios.create({
-  baseURL: `${BASE_URL}/api/v1/`,
+  baseURL: `${BASE_URL}/api/`,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",

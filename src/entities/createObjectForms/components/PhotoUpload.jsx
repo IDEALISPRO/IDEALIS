@@ -7,10 +7,29 @@ export const PhotoUpload = ({ setValue, errors }) => {
 
   const handleFileChange = (e) => {
     const files = e.target.files ? Array.from(e.target.files) : [];
-    setValue("photos", files, { shouldValidate: true });
 
     const previews = files.map((file) => URL.createObjectURL(file));
     setPreview(previews);
+
+    if (files.length === 0) {
+      setValue("photos", []);
+      return;
+    }
+
+    const photosBase64 = [];
+    let loadedCount = 0;
+
+    files.forEach((file, index) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        photosBase64[index] = { url: [event.target.result] }; 
+        loadedCount++;
+        if (loadedCount === files.length) {
+          setValue("photos", photosBase64, { shouldValidate: true });
+        }
+      };
+      reader.readAsDataURL(file);
+    });
   };
 
   return (
@@ -94,7 +113,11 @@ export const PhotoUpload = ({ setValue, errors }) => {
                 }}
               />
               <Typography
-                sx={{ fontSize: { xs: "16px", md: "18px" }, fontWeight: 600, color: '#000000' }}
+                sx={{
+                  fontSize: { xs: "16px", md: "18px" },
+                  fontWeight: 600,
+                  color: "#000000",
+                }}
               >
                 Добавьте фото
               </Typography>
@@ -116,7 +139,7 @@ export const PhotoUpload = ({ setValue, errors }) => {
         {preview.length > 1 && (
           <Box
             sx={{
-              width: { sm: "100%", md: '65%' },
+              width: { sm: "100%", md: "65%" },
               display: "grid",
               gridTemplateColumns: {
                 xs: "repeat(2, 1fr)",

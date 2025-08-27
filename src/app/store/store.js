@@ -5,6 +5,9 @@ import videoTutorialsReducer from "./reducers/admin/videoTutorials/videoTutorial
 import rulesReducer from "./reducers/admin/rules/rulesSlice";
 import agentsReducer from "./reducers/admin/agents/agentsSlice";
 import publishedReducer from "./reducers/admin/published/publishedSlice";
+import servicesReducer from "./reducers/admin/services/servicesSlice";
+import newsReducer from "./reducers/admin/news/newsSlice";
+// import savedSearchedReducer from "./reducers/admin/savedSearches/savedSearchesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +17,7 @@ export const store = configureStore({
     rules: rulesReducer,
     agents: agentsReducer,
     published: publishedReducer,
+    services: servicesReducer,
+    news: newsReducer,
   },
 });

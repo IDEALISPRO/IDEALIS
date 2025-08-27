@@ -1,10 +1,13 @@
-import './banner.scss';
+import "./banner.scss";
 
 export function Banner({ title, description }) {
   return (
-    <div className='Banner'>
-      <p className='BannerTitle'>{title}</p>
-      <p className='BannerDescription'>{description}</p>
+    <div className="Banner">
+      <p className="BannerTitle">{title}</p>
+      <p
+        className="BannerDescription"
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
     </div>
   );
 }
