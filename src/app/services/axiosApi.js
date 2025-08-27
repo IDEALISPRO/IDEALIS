@@ -1,6 +1,7 @@
 import axios from "axios";
 import i18n from "../../i18n/i18n";
 import { BASE_URL } from "./constants";
+import Cookies from "js-cookie";
 
 const axiosApi = axios.create({
   baseURL: `${BASE_URL}${i18n.language}/api/v1/`,
@@ -16,4 +17,13 @@ axiosApi.interceptors.request.use((config) => {
   return config;
 });
 
-export default axiosApi;
+const axiosProfile = axios.create({
+  baseURL: `${BASE_URL}/api/v1/`,
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${Cookies.get("token") || ""}`,
+  },
+});
+
+export { axiosApi, axiosProfile };

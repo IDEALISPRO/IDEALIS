@@ -1,6 +1,7 @@
-import axios from "axios";
-import { BASE_URL } from "../../../services/constants";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import { axiosProfile } from "../../../services/axiosApi";
+import { BASE_URL } from "../../../services/constants";
 
 export const userLogin = createAsyncThunk(
   "auth/userLogin",
@@ -22,8 +23,35 @@ export const getUser = createAsyncThunk(
   "auth/getSelf",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`${BASE_URL}/api/v1/users/me/`);
+      const { data } = await axiosProfile.get(`/users/me/`);
       return data;
+    } catch (e) {
+      console.log(e);
+      return rejectWithValue(e.response?.data || e.message);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  "auth/updateSelf",
+  async (user, { rejectWithValue }) => {
+    try {
+      const formData = new FormData();
+      const keys = Object.keys(user);
+      keys.forEach((key) => {
+        const value = user[key];
+        if (value !== null) {
+          formData.append(key, value);
+        }
+      });
+      console.log(formData);
+
+      const { data: response } = await axiosProfile.patch(
+        `/users/me/`,
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      return response;
     } catch (e) {
       console.log(e);
       return rejectWithValue(e.response?.data || e.message);
