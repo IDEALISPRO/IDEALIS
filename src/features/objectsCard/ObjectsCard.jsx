@@ -18,7 +18,6 @@ export const ObjectsCard = ({
     console.log(like);
     setLike(!like);
   };
-  console.log(img);
 
   return (
     <div className="objCard">

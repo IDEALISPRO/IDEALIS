@@ -1,4 +1,4 @@
-import { HotOffers, MarketNews, EventsSection, UsefulTips } from '../../widgets';
+import { HotOffers, MarketNews, EventsSection, UsefulTips, Articles } from '../../widgets';
 import { Banner, BannerPictures } from "../../features";
 
 export const News = () => {
@@ -10,6 +10,7 @@ export const News = () => {
             <MarketNews />
             <EventsSection />
             <UsefulTips />
+            <Articles />
             
         </div>
     );

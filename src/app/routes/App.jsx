@@ -25,6 +25,7 @@ import {
   Rules,
   VideoTutorials,
   EstateCategories,
+  ObjectDetail,
 } from "../../pages";
 import "../styles/app.scss";
 import { ThemeProvider } from "@mui/material/styles";
@@ -64,10 +65,6 @@ function App() {
       path: "/favorites",
       element: <Favorites />,
     },
-    // {
-    //   path: "/create-object",
-    //   element: <CreateObject />,
-    // },
     {
       path: "/estate-categories",
       element: <EstateCategories />,
@@ -75,6 +72,10 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/objectDetail/:id",
+      element: <ObjectDetail />,
     },
   ];
 
