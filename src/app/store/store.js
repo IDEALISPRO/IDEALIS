@@ -6,6 +6,7 @@ import rulesReducer from "./reducers/admin/rules/rulesSlice";
 import agentsReducer from "./reducers/admin/agents/agentsSlice";
 import publishedReducer from "./reducers/admin/published/publishedSlice";
 import savedSearchedReducer from "./reducers/admin/savedSearches/savedSearchesSlice";
+import headerReducer from './reducers/admin/header/headerSlice'
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     agents: agentsReducer,
     published: publishedReducer,
     savedSearched: savedSearchedReducer,
+    header: headerReducer,
   },
 });

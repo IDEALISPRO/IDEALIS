@@ -13,7 +13,7 @@ const axiosApi = axios.create({
 
 axiosApi.interceptors.request.use((config) => {
   config.headers["Accept-Language"] = i18n.language;
-  config.baseURL = `${BASE_URL}/api/v1/`;
+  config.baseURL = `${BASE_URL}/api/`;
   return config;
 });
 
