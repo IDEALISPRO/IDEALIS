@@ -1,29 +1,39 @@
-import './advantages.scss';
+import { useDispatch } from "react-redux";
+import "./advantages.scss";
+import { useEffect, useMemo } from "react";
+import { advantagesGet } from "../../../app/store/reducers/public/about/aboutThunks";
+import { useAbout } from "../../../app/store/reducers/public/about/aboutSlice";
 
 export function Advantages() {
-  const advantagesData = [
-    { type: 'circle', title: 'Владелец', text: 'Подтвержденное жилье' },
-    { type: 'square', title: 'Архитектор', text: 'Студия Е Архитекторов' },
-    { type: 'square', title: 'Архитектор', text: 'Студия Е Архитекторов' },
-    { type: 'circle', title: 'Владелец', text: 'Подтвержденное жилье' },
-    { type: 'square', title: 'Архитектор', text: 'Студия Е Архитекторов' },
-  ];
+  const dispatch = useDispatch();
+  const { advantage } = useAbout();
+
+  useEffect(() => {
+    dispatch(advantagesGet());
+  }, [dispatch]);
+
+  const advantagesWithType = useMemo(() => {
+    return (advantage || []).map((item) => ({
+      ...item,
+      type: Math.random() > 0.5 ? "circle" : "square",
+    }));
+  }, [advantage]);
 
   return (
-    <div className='advantages container'>
+    <div className="advantages container">
       <div className="advantages__header">
-      <h3 className='advantages__title'>ПРЕИМУЩЕСТВА</h3>
-      <p className='advantages__text'>«Стелла» — шестиэтажное здание, включающее пять уровней конструкции типа IIIA над одноуровневым подиумом типа IA.</p>
+        <h3 className="advantages__title">ПРЕИМУЩЕСТВА</h3>
+        <p className="advantages__text">{advantage && advantage[0]?.preface}</p>
       </div>
+
       <div className="advantages__box">
-        {advantagesData.map((item, index) => (
+        {advantagesWithType.map((item, index) => (
           <div
             key={index}
             className={
-              item.type === 'circle'
-                ? 'advantages__circle'
-                : 'advantages__square-box'
-                
+              item.type === "circle"
+                ? "advantages__circle"
+                : "advantages__square-box"
             }
           >
             <p className="advantages__item-title">{item.title}</p>

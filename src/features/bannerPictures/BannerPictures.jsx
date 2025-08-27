@@ -1,17 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { bannerGet } from "../../app/store/reducers/admin/homeSlice/homeThunk";
-import { useBanner } from "../../app/store/reducers/admin/homeSlice/homeSlice";
 import "./bannerPictures.scss";
 
-export const BannerPictures = ({images}) => {
-
-  
-  console.log(images);
-  
+export const BannerPictures = ({ images }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const image = images|| [];
+  const image = images || [];
 
   useEffect(() => {
     if (image.length > 0) {
@@ -19,14 +11,14 @@ export const BannerPictures = ({images}) => {
     }
   }, [image]);
 
-
   return (
     <div
       className="banner-pictures container"
       onMouseLeave={() => setActiveIndex(Math.floor(image.length / 2))}
     >
       {image.map((src, index) => {
-        const isNeighbor = index === activeIndex - 1 || index === activeIndex + 1;
+        const isNeighbor =
+          index === activeIndex - 1 || index === activeIndex + 1;
 
         return (
           <div key={index} className="banner-pictures-block">

@@ -3,7 +3,6 @@ import { FilterWidget } from "../../widgets/FilterWidget/FilterWidget";
 import { Banner, BannerPictures } from "../../features";
 import { ObjectsSections } from "../../widgets";
 import { useEffect } from "react";
-
 import { useDispatch } from "react-redux";
 import { bannerGet } from "../../app/store/reducers/admin/homeSlice/homeThunk"; 
 import { useBanner } from "../../app/store/reducers/admin/homeSlice/homeSlice"; 

@@ -7,9 +7,17 @@ import {
 } from "../../widgets";
 import { Banner, BannerPictures } from "../../features";
 import { useBanner } from "../../app/store/reducers/admin/homeSlice/homeSlice";
+import { useEffect } from "react";
+import { bannerGet } from "../../app/store/reducers/admin/homeSlice/homeThunk";
+import { useDispatch } from "react-redux";
 
 export const News = () => {
+  const dispatch = useDispatch();
   const { banner } = useBanner();
+
+  useEffect(() => {
+    dispatch(bannerGet());
+  }, [dispatch]);
 
   return (
     <div className="container">

@@ -1,6 +1,11 @@
 import "./reviews.scss";
 import img1 from "../../../shared/img/avatar1.jpg";
 import img2 from "../../../shared/img/avatar2.jpg";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { teamGet } from "../../../app/store/reducers/public/about/aboutThunks";
+import { useAbout } from "../../../app/store/reducers/public/about/aboutSlice";
+
 export const Reviews = () => {
   const reviewsData = [
     {
@@ -24,6 +29,7 @@ export const Reviews = () => {
       text: "Вы можете начать строительство дома сегодня, а уже завтра — поехать покупать сумки.",
     },
   ];
+  
   return (
     <div className="reviews">
       <div className="reviews__wrapper">

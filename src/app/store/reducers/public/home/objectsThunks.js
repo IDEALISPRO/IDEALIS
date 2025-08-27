@@ -1,12 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosApi } from "../../../../services/AxiosPub";
 
-
-export const bannerGet = createAsyncThunk(
-  "banner/get",
+export const objectsGet = createAsyncThunk(
+  "contact/get",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axiosApi.get(`/v4/main/banners/`);
+      const { data } = await axiosApi.get(`/v2/base/listings/`);
       return data;
     } catch (e) {
       console.log(e);

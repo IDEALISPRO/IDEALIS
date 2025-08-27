@@ -8,6 +8,9 @@ import publishedReducer from "./reducers/admin/published/publishedSlice";
 import savedSearchedReducer from "./reducers/admin/savedSearches/savedSearchesSlice";
 import bannerReducer from "./reducers/admin/homeSlice/homeSlice";
 import headerReducer from "./reducers/admin/header/headerSlice";
+import aboutReducer from "./reducers/public/about/aboutSlice";
+import contactReducer from './reducers/public/contact/contactSlice';
+import objectsReducer from './reducers/public/home/objectsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +23,8 @@ export const store = configureStore({
     savedSearched: savedSearchedReducer,
     banner: bannerReducer,
     header: headerReducer,
+    about: aboutReducer,
+    contact: contactReducer,
+    objects: objectsReducer,
   },
 });

@@ -2,10 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { bannerGet } from "./homeThunk";
 
-
-
 const initialState = {
-  banner: [],  
+  banner: [],
   loading: false,
   error: null,
 };
@@ -20,7 +18,6 @@ const bannerSlice = createSlice({
         state.loading = true;
       })
       .addCase(bannerGet.fulfilled, (state, { payload }) => {
-         console.log( payload);
         state.loading = false;
         state.banner = payload;
       })

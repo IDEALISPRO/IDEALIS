@@ -1,6 +1,8 @@
 import './contacts.scss'
 
-export const Contacts = () => {
+export const Contacts = ({contact}) => {
+  console.log(contact);
+  
   return (
     <div className="contacts-container container">
       <div className="contacts-top">

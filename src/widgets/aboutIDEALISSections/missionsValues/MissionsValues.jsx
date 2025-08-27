@@ -1,110 +1,70 @@
-import React, { useState } from 'react';
-import { Grid } from '@mui/material';
-import { TooltipButton } from '../../../features';
-import './missionsValues.scss';
+import { useEffect, useState } from "react";
+import { Grid } from "@mui/material";
+import { TooltipButton } from "../../../features";
+import "./missionsValues.scss";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useDispatch } from "react-redux";
+import { missionValuesGet } from "../../../app/store/reducers/public/about/aboutThunks";
+import { useAbout } from "../../../app/store/reducers/public/about/aboutSlice";
 
 export const MissionsValues = () => {
   const isSmall = useMediaQuery("(max-width:655px)");
   const [activeIndex, setActiveIndex] = useState(null);
+  const dispatch = useDispatch();
+  const { missionValues } = useAbout();
 
   const handleToggle = (index) => {
-    setActiveIndex((prev) => (prev === index ? null : index)); 
+    setActiveIndex((prev) => (prev === index ? null : index));
   };
+
+  useEffect(() => {
+    dispatch(missionValuesGet());
+  }, [dispatch]);
 
   return (
     <section className="mv-container">
-      <h4 className="mv-text">
-        МИССИИ И ЦЕННОСТИ
-      </h4>
+      <h4 className="mv-text">МИССИИ И ЦЕННОСТИ</h4>
 
       <div className="mv-lines">
-        <TooltipButton
-          text="Управление дизайном"
-          tooltipText="ОТРАСЛЬ, СОЗРЕВШАЯ ДЛЯ ПЕРЕРЫВА"
-          discText="888Строительство — одна из наименее цифровизированных отраслей в мире. Наша цель — сократить разрыв между технологическим уровнем отрасли и её потенциалом."
-          trigger={isSmall ? "click" : "hover"}
-          isActive={activeIndex === 0}
-          onToggle={() => handleToggle(0)}
-        />
+        {missionValues.slice(0, 2).map((mission, index) => (
+          <TooltipButton
+            key={index}
+            text={mission.title}
+            allText={mission.description}
+            tooltipText={mission.tooltip}
+            trigger={isSmall ? "click" : "hover"}
+            isActive={activeIndex === index}
+            onToggle={() => handleToggle(index)}
+          />
+        ))}
 
-        <TooltipButton
-          text="Инновации"
-          tooltipText="ОТРАСЛЬ, СОЗРЕВШАЯ ДЛЯ ПЕРЕРЫВА"
-          discText="777Строительство — одна из наименее цифровизированных отраслей в мире. Наша цель — сократить разрыв между технологическим уровнем отрасли и её потенциалом."
-          trigger={isSmall ? "click" : "hover"}
-          isActive={activeIndex === 1}
-          onToggle={() => handleToggle(1)}
-        />
-
-        {isSmall ? (
-          <>
-            <Grid container className="third-line">
-              <Grid item className="mobille-line">
+        <Grid container className="third-line">
+          {missionValues.slice(2, 4).map((mission, index) => {
+            const realIndex = index + 2;
+            return (
+              <Grid item key={index} className={isSmall ? "mobille-line" : ""}>
                 <TooltipButton
-                  text="Развитие"
-                  tooltipText="ОТРАСЛЬ, СОЗРЕВШАЯ ДЛЯ ПЕРЕРЫВА"
-                  discText="666Строительство — одна из наименее цифровизированных отраслей в мире. Наша цель — сократить разрыв между технологическим уровнем отрасли и её потенциалом."
-                  trigger="click"
-                  isActive={activeIndex === 2}
-                  onToggle={() => handleToggle(2)}
+                  text={mission.title}
+                  allText={mission.description}
+                  tooltipText={mission.tooltip}
+                  trigger={isSmall ? "click" : "hover"}
+                  isActive={activeIndex === realIndex}
+                  onToggle={() => handleToggle(realIndex)}
                 />
               </Grid>
-              <Grid item className="mobile-line">
-                <TooltipButton
-                  text="Защита"
-                  tooltipText="ОТРАСЛЬ, СОЗРЕВШАЯ ДЛЯ ПЕРЕРЫВА"
-                  discText="555Строительство — одна из наименее цифровизированных отраслей в мире. Наша цель — сократить разрыв между технологическим уровнем отрасли и её потенциалом."
-                  trigger="click"
-                  isActive={activeIndex === 3}
-                  onToggle={() => handleToggle(3)}
-                />
-              </Grid>
-            </Grid>
+            );
+          })}
+        </Grid>
 
-            <TooltipButton
-              text="План + Контроль"
-              tooltipText="ОТРАСЛЬ, СОЗРЕВШАЯ ДЛЯ ПЕРЕРЫВА"
-              discText="444Строительство — одна из наименее цифровизированных отраслей в мире. Наша цель — сократить разрыв между технологическим уровнем отрасли и её потенциалом."
-              trigger="click"
-              isActive={activeIndex === 4}
-              onToggle={() => handleToggle(4)}
-            />
-          </>
-        ) : (
-          <>
-            <Grid container className="third-line">
-              <Grid item>
-                <TooltipButton
-                  text="План + Контроль"
-                  tooltipText="ОТРАСЛЬ, СОЗРЕВШАЯ ДЛЯ ПЕРЕРЫВА"
-                  discText="333Строительство — одна из наименее цифровизированных отраслей в мире. Наша цель — сократить разрыв между технологическим уровнем отрасли и её потенциалом."
-                  trigger="hover"
-                  isActive={activeIndex === 5}
-                  onToggle={() => handleToggle(5)}
-                />
-              </Grid>
-              <Grid item>
-                <TooltipButton
-                  text="Защита"
-                  tooltipText="ОТРАСЛЬ, СОЗРЕВШАЯ ДЛЯ ПЕРЕРЫВА"
-                  discText="222Строительство — одна из наименее цифровизированных отраслей в мире. Наша цель — сократить разрыв между технологическим уровнем отрасли и её потенциалом."
-                  trigger="hover"
-                  isActive={activeIndex === 6}
-                  onToggle={() => handleToggle(6)}
-                />
-              </Grid>
-            </Grid>
-
-            <TooltipButton
-              text="Развитие"
-              tooltipText="ОТРАСЛЬ, СОЗРЕВШАЯ ДЛЯ ПЕРЕРЫВА"
-              discText="111Строительство — одна из наименее цифровизированных отраслей в мире. Наша цель — сократить разрыв между технологическим уровнем отрасли и её потенциалом."
-              trigger="hover"
-              isActive={activeIndex === 7}
-              onToggle={() => handleToggle(7)}
-            />
-          </>
+        {missionValues[4] && (
+          <TooltipButton
+            text={values[4].title}
+            allText={values[4].description}
+            tooltipText={values[4].tooltip}
+            trigger={isSmall ? "click" : "hover"}
+            isActive={activeIndex === 4}
+            onToggle={() => handleToggle(4)}
+          />
         )}
       </div>
     </section>
