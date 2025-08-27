@@ -5,6 +5,9 @@ import obj2 from "../../shared/object/obj2.jpg";
 import obj3 from "../../shared/object/obj3.jpg";
 import agent from "../../shared/object/agent.jpg";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { Feedback, ModalImg } from "../../entities";
+import { useState } from "react";
+
 export const ObjectDetail = () => {
   const { id } = useParams();
   const imgs = [
@@ -21,17 +24,18 @@ export const ObjectDetail = () => {
       img: obj3,
     },
   ];
+  const [open, setOpen] = useState(false);
   return (
     <div className="container object__detail">
       <section className="object row">
-        <div className="object_img">
+        <div className="object_img" onClick={() => setOpen(!open)}>
           <div className="object_img_main">
             <img src={obj3} alt="" />
           </div>
           <div className="object_img_others">
             {imgs.map((img) => (
-              <div className="img">
-                <img src={img.img} key={img.id} alt="" />
+              <div className="img" key={img.id}>
+                <img src={img.img} alt="" />
               </div>
             ))}
           </div>
@@ -41,7 +45,7 @@ export const ObjectDetail = () => {
               <p>Изменено: 30.04.25</p>
               <p>ID 123456</p>
             </div>
-            <div>
+            <div className="row view">
               <RemoveRedEyeIcon />
               27
             </div>
@@ -81,12 +85,12 @@ export const ObjectDetail = () => {
               <span>Район и адрес:</span>Южная Магистраль/Советская
             </p>
           </div>
-          <div>
-            <p>цена</p>
-            <h2>$200,000</h2>
-          </div>
+          <h2>$200,000</h2>
         </div>
       </section>
+
+      <Feedback />
+      <ModalImg isOpen={open} setOpen={setOpen} images={imgs} />
     </div>
   );
 };
