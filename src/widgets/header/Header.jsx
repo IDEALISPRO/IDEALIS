@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./header.scss";
-import logo from "../../shared/logoHeader.png";
 import { useTranslation } from "react-i18next";
 import { FiMenu, FiX } from "react-icons/fi";
-import abideal from "../../shared/Book (1).svg";
-import ysl from "../../shared/Profile (1).svg";
-import user from "../../shared/Characteristics (1).svg";
-import news from "../../shared/Info abt Practice (2).svg";
-import like from "../../shared/Info abt Practice (3).svg";
 import ru from "../../shared/ru.svg";
 import kg from "../../shared/kg.svg";
 import en from "../../shared/en.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { NavLink, useLocation } from "react-router-dom";
 import { MiniMenu } from "../index";
+
+
+import { useDispatch } from "react-redux";
+
+import { headerGet } from "../../app/store/reducers/admin/header/headerThunk";
+import { useHeader } from "../../app/store/reducers/admin/header/headerSlice";
 
 export const Header = () => {
   const location = useLocation();
@@ -23,35 +23,19 @@ export const Header = () => {
   )
     return null;
 
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const { header, loading, error } = useHeader();
+
+ 
+  useEffect(() => {
+    dispatch(headerGet());
+  }, [dispatch]);
 
   const languages = [
     { code: "ru", label: "Русский", flag: ru },
     { code: "kg", label: "Кыргызча", flag: kg },
     { code: "en", label: "English", flag: en },
-  ];
-
-  const links = [
-    {
-      text: "about",
-      link: "/about",
-    },
-    {
-      text: "services",
-      link: "/services",
-    },
-    {
-      text: "news",
-      link: "/news",
-    },
-    {
-      text: "contacts",
-      link: "/contacts",
-    },
-    {
-      text: "favorites",
-      link: "/favorites",
-    },
   ];
 
   const currentLang =
@@ -63,19 +47,13 @@ export const Header = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target) &&
-        menuOpen
-      ) {
+      if (menuRef.current && !menuRef.current.contains(event.target) && menuOpen) {
         setMenuOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
 
   useEffect(() => {
@@ -86,32 +64,43 @@ export const Header = () => {
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, [menuOpen]);
 
   return (
     <header className="container header">
       <div className="header-logo">
         <NavLink to={"/"}>
-          <img className="imglogo" src={logo} alt="Logo" />
+          {header?.logo ? (
+            <img className="imglogo" src={header.logo} alt="Logo" />
+          ) : (
+            <span>{header?.main || "IDEALIS"}</span>
+          )}
         </NavLink>
       </div>
 
       <nav className="header-nav">
-        {links &&
-          links.map((item, index) => (
-            <NavLink
-              key={index}
-              className="linka"
-              to={`${item.link}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              {t(`menu.${item.text}`)}
+        {loading && <span>Загрузка...</span>}
+        {error && <span className="error">Ошибка загрузки</span>}
+        {header && (
+          <>
+            <NavLink to="/about" className="linka">
+              {header.about_idealis}
             </NavLink>
-          ))}
+            <NavLink to="/services" className="linka">
+              {header.services}
+            </NavLink>
+            <NavLink to="/news" className="linka">
+              {header.news}
+            </NavLink>
+            <NavLink to="/contacts" className="linka">
+              {header.contacts}
+            </NavLink>
+            <NavLink to="/favorites" className="linka">
+              {header.favorite}
+            </NavLink>
+          </>
+        )}
       </nav>
 
       <div className="header-right">
@@ -151,51 +140,31 @@ export const Header = () => {
         </button>
       </div>
 
+     
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`} ref={menuRef}>
         <button className="close-btn" onClick={() => setMenuOpen(false)}>
           <FiX />
         </button>
 
-        <a
-          className="mobile-link"
-          href="#pro"
-          onClick={() => setMenuOpen(false)}
-        >
-          <img src={abideal} alt="" className="mobile-icon" />
-          {t("menu.about")}
-        </a>
-        <a
-          className="mobile-link"
-          href="#services"
-          onClick={() => setMenuOpen(false)}
-        >
-          <img src={ysl} alt="" className="mobile-icon" />
-          {t("menu.services")}
-        </a>
-        <a
-          className="mobile-link"
-          href="#contacts"
-          onClick={() => setMenuOpen(false)}
-        >
-          <img src={user} alt="" className="mobile-icon" />
-          {t("menu.contacts")}
-        </a>
-        <a
-          className="mobile-link"
-          href="#news"
-          onClick={() => setMenuOpen(false)}
-        >
-          <img src={news} alt="" className="mobile-icon" />
-          {t("menu.news")}
-        </a>
-        <a
-          className="mobile-link"
-          href="#gallery"
-          onClick={() => setMenuOpen(false)}
-        >
-          <img src={like} alt="" className="mobile-icon" />
-          {t("menu.favorites")}
-        </a>
+        {header && (
+          <>
+            <NavLink className="mobile-link" to="/about" onClick={() => setMenuOpen(false)}>
+              {header.about_idealis}
+            </NavLink>
+            <NavLink className="mobile-link" to="/services" onClick={() => setMenuOpen(false)}>
+              {header.services}
+            </NavLink>
+            <NavLink className="mobile-link" to="/contacts" onClick={() => setMenuOpen(false)}>
+              {header.contacts}
+            </NavLink>
+            <NavLink className="mobile-link" to="/news" onClick={() => setMenuOpen(false)}>
+              {header.news}
+            </NavLink>
+            <NavLink className="mobile-link" to="/favorites" onClick={() => setMenuOpen(false)}>
+              {header.favorite}
+            </NavLink>
+          </>
+        )}
 
         <div className="mobile-lang">
           <div

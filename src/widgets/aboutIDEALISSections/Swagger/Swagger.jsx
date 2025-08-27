@@ -12,26 +12,74 @@ import slide1 from "../../../shared/swaggerImg/slide1.svg";
 import slide2 from "../../../shared/swaggerImg/slide2.svg";
 import slide3 from "../../../shared/swaggerImg/slide3.svg";
 import slide4 from "../../../shared/swaggerImg/slide4.svg";
+import { useDispatch } from "react-redux";
+import { useAbout } from "../../../app/store/reducers/public/about/aboutSlice";
+import { useEffect } from "react";
+import { teamGet } from "../../../app/store/reducers/public/about/aboutThunks";
 
 export const Swagger = () => {
   const Slides = [
-    { img: slide1, name: "Смирнов Александр", position: "Мастер по проектированию" },
-    { img: slide2, name: "Смирнов Александр", position: "Мастер по проектированию" },
-    { img: slide3, name: "Смирнов Александр", position: "Мастер по проектированию" },
-    { img: slide4, name: "Смирнов Александр", position: "Мастер по проектированию" },
-    { img: slide1, name: "Смирнов Александр", position: "Мастер по проектированию" },
-    { img: slide3, name: "Смирнов Александр", position: "Мастер по проектированию" },
-    { img: slide2, name: "Смирнов Александр", position: "Мастер по проектированию" },
-    { img: slide1, name: "Смирнов Александр", position: "Мастер по проектированию" },
+    {
+      img: slide1,
+      name: "Смирнов Александр",
+      position: "Мастер по проектированию",
+    },
+    {
+      img: slide2,
+      name: "Смирнов Александр",
+      position: "Мастер по проектированию",
+    },
+    {
+      img: slide3,
+      name: "Смирнов Александр",
+      position: "Мастер по проектированию",
+    },
+    {
+      img: slide4,
+      name: "Смирнов Александр",
+      position: "Мастер по проектированию",
+    },
+    {
+      img: slide1,
+      name: "Смирнов Александр",
+      position: "Мастер по проектированию",
+    },
+    {
+      img: slide3,
+      name: "Смирнов Александр",
+      position: "Мастер по проектированию",
+    },
+    {
+      img: slide2,
+      name: "Смирнов Александр",
+      position: "Мастер по проектированию",
+    },
+    {
+      img: slide1,
+      name: "Смирнов Александр",
+      position: "Мастер по проектированию",
+    },
   ];
+  const dispatch = useDispatch();
+  const { teams } = useAbout();
+
+  console.log(teams);
+
+  useEffect(() => {
+    dispatch(teamGet());
+  }, [dispatch]);
 
   return (
     <div className="swagger">
       <div className="swagger-header">
         <h3 className="swagger-title">КОМАНДА</h3>
         <div className="swagger-nav nav">
-          <button className="nav-prev btn"><ArrowBackRoundedIcon /></button>
-          <button className="nav-next btn"><ArrowForwardRoundedIcon /></button>
+          <button className="nav-prev btn">
+            <ArrowBackRoundedIcon />
+          </button>
+          <button className="nav-next btn">
+            <ArrowForwardRoundedIcon />
+          </button>
         </div>
       </div>
 
@@ -46,17 +94,19 @@ export const Swagger = () => {
           modules={[Navigation, Pagination]}
           className="mySwiper"
           breakpoints={{
-            0: { slidesPerView: 1, centeredSlides: false },      
-            980: { slidesPerView: 3, centeredSlides: true },    
-            1400: { slidesPerView: 5, centeredSlides: true },  
+            0: { slidesPerView: 1, centeredSlides: false },
+            980: { slidesPerView: 3, centeredSlides: true },
+            1400: { slidesPerView: 5, centeredSlides: true },
           }}
         >
-          {Slides.map((slide, i) => (
+          {
+            teams && 
+          teams.map((slide, i) => (
             <SwiperSlide key={i} className="slider">
               <div className="slider-img">
-                <img src={slide.img} alt="user" />
+                <img src={slide.image} alt="user" />
               </div>
-              <h4 className="slider-title">{slide.name}</h4>
+              <h4 className="slider-title">{slide.full_name}</h4>
               <p className="slider-text">{slide.position}</p>
             </SwiperSlide>
           ))}

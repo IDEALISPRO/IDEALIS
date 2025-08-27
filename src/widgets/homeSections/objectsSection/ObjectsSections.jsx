@@ -1,101 +1,47 @@
+import { useDispatch } from "react-redux";
 import { ObjectsCard, ObjectsBtn } from "../../../features/index";
-import img from "../../../shared/img/objImg.png";
 import "./objects.scss";
-
-const data = [
-  {
-    id: 1,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 2,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 3,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 4,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 5,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 6,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 7,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 8,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 9,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 10,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-];
+import { useEffect, useState } from "react";
+import { objectsGet } from "../../../app/store/reducers/public/home/objectsThunks";
+import { useObjects } from "../../../app/store/reducers/public/home/objectsSlice";
 
 export const ObjectsSections = () => {
+  const dispatch = useDispatch();
+  const { objects } = useObjects();
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    dispatch(objectsGet());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (objects?.length) {
+      const likedIds = JSON.parse(localStorage.getItem("likedIds")) || [];
+      const withLiked = objects.map((obj) => ({
+        ...obj,
+        liked: likedIds.includes(obj.id),
+      }));
+      setData(withLiked);
+    }
+  }, [objects]);
+
+  const toggleLike = (id) => {
+    setData((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, liked: !item.liked } : item
+      )
+    );
+
+    const likedIds = JSON.parse(localStorage.getItem("likedIds")) || [];
+    if (likedIds.includes(id)) {
+      const newIds = likedIds.filter((itemId) => itemId !== id);
+      localStorage.setItem("likedIds", JSON.stringify(newIds));
+    } else {
+      localStorage.setItem("likedIds", JSON.stringify([...likedIds, id]));
+    }
+  };
+
   return (
     <div className=" objects">
       <div className="flex-cont">
@@ -110,26 +56,33 @@ export const ObjectsSections = () => {
           <p className="objects__info__res">Результаты</p>
 
           <p className="objects__info__count">
-            {data[0].id}-{data[9].id} из 12118 найденных объектов
+            {data[0]?.id}{" "}
+            {data?.length && data?.length > 9 ? `-${data[9]?.id}` : ""} из{" "}
+            {data?.length} найденных объектов
           </p>
           <p className="objects__info__mobile">
-            {data[9].id} найденных объектов
+            {data[9]?.id} найденных объектов
           </p>
         </div>
       </div>
 
       <div className="objects__cards">
-        {data.map((item) => (
-          <ObjectsCard
-            key={item.id}
-            img={item.img}
-            title={item.title}
-            location={item.location}
-            description={item.description}
-            price={item.price}
-            liked={item.liked}
-          />
-        ))}
+        {data &&
+          data.slice(0, 10).map((item) => (
+            <ObjectsCard
+              key={item.id}
+              img={item.images}
+              title={item.title}
+              district={item.district}
+              street={item.street}
+              city={item.city}
+              rooms={item.rooms}
+              area_m2={item.area_m2}
+              price={item.price}
+              liked={item.liked}
+              onLike={() => toggleLike(item.id)} 
+            />
+          ))}
         <ObjectsBtn />
       </div>
     </div>

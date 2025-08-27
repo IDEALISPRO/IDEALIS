@@ -1,125 +1,67 @@
+import { useDispatch } from "react-redux";
+import { useBanner } from "../../app/store/reducers/admin/homeSlice/homeSlice";
+import { bannerGet } from "../../app/store/reducers/admin/homeSlice/homeThunk";
 import { Banner, BannerPictures, ObjectsCard } from "../../features";
-import img from "../../shared/img/objImg.png";
 import "./favorites.scss";
+import { useEffect, useState } from "react";
+import { objectsGet } from "../../app/store/reducers/public/home/objectsThunks";
+import { useObjects } from "../../app/store/reducers/public/home/objectsSlice";
 
-const data = [
-  {
-    id: 1,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: true,
-  },
-  {
-    id: 2,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: true,
-  },
-  {
-    id: 3,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: true,
-  },
-  {
-    id: 4,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: true,
-  },
-  {
-    id: 5,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: true,
-  },
-  {
-    id: 6,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: true,
-  },
-  {
-    id: 7,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: true,
-  },
-  {
-    id: 8,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: true,
-  },
-  {
-    id: 9,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: true,
-  },
-  {
-    id: 10,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: true,
-  },
-];
 export const Favorites = () => {
+  const dispatch = useDispatch();
+  const { banner } = useBanner();
+  const { objects } = useObjects();
+  console.log(objects);
+  
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    dispatch(bannerGet());
+    dispatch(objectsGet());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const likedIds = JSON.parse(localStorage.getItem("likedIds")) || [];
+    const favs = objects?.filter((obj) => likedIds.includes(obj.id));
+    setFavorites(favs);
+  }, [objects]);
+
+  const handleRemoveLike = (id) => {
+    const likedIds = JSON.parse(localStorage.getItem("likedIds")) || [];
+    const newIds = likedIds.filter((itemId) => itemId !== id);
+    localStorage.setItem("likedIds", JSON.stringify(newIds));
+
+    setFavorites((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
     <div className="container favorite__container">
-      <Banner
-        title={"ИЗБРАННОЕ"}
-        description={
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-        }
-      />
-      <BannerPictures />
+      <Banner title={banner[5]?.site_name} description={banner[5]?.slogan} />
+      <BannerPictures images={banner[5]?.banner_photos} />
       <div className="row objects">
         <p>Все</p>
-        <p>12 объектов</p>
+        <p>{favorites.length} объектов</p>
       </div>
       <section className="favorite__cards">
-        {data.map((item) => (
-          <ObjectsCard
-            key={item.id}
-            img={item.img}
-            title={item.title}
-            location={item.location}
-            description={item.description}
-            price={item.price}
-            liked={item.liked}
-          />
-        ))}
+        {favorites.length > 0 ? (
+          favorites.map((item) => (
+            <ObjectsCard
+              key={item.id}
+              images={item?.images}
+              title={item.title}
+              district={item.district}
+              street={item.street}
+              city={item.city}
+              rooms={item.rooms}
+              area_m2={item.area_m2}
+              price={item.price}
+              liked={true}
+              onLike={() => handleRemoveLike(item.id)}
+            />
+          ))
+        ) : (
+          <p>Нет избранных объектов</p>
+        )}
       </section>
     </div>
   );

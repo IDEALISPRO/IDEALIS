@@ -42,6 +42,7 @@ export const NavigateMobile = () => {
       {links &&
         links.map((link) => (
           <NavLink
+            key={link.id}
             to={"/estate-categories"}
             state={{ title: link.text }}
             onClick={(e) => e.stopPropagation()}

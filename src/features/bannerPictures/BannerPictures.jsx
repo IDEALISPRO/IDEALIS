@@ -1,17 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./bannerPictures.scss";
 
 export const BannerPictures = ({ images }) => {
-  const initialImages = window.innerWidth <= 576 ? images.slice(0, 9) : images;
-  const middle = Math.floor(initialImages?.length / 2);
-  const [activeIndex, setActiveIndex] = useState(middle);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const image = images || [];
+
+  useEffect(() => {
+    if (image.length > 0) {
+      setActiveIndex(Math.floor(image.length / 2));
+    }
+  }, [image]);
 
   return (
     <div
       className="banner-pictures container"
-      onMouseLeave={() => setActiveIndex(middle)}
+      onMouseLeave={() => setActiveIndex(Math.floor(image.length / 2))}
     >
-      {initialImages?.map((item, index) => {
+      {image.map((src, index) => {
         const isNeighbor =
           index === activeIndex - 1 || index === activeIndex + 1;
 
@@ -21,11 +26,11 @@ export const BannerPictures = ({ images }) => {
               className={`banner-pictures-item ${
                 activeIndex === index ? "activee" : ""
               } ${isNeighbor ? "neighborr" : ""} ${
-                index === initialImages?.length - 1 ? "img_end" : ""
+                index === image.length - 1 ? "img_end" : ""
               }`}
               onMouseEnter={() => setActiveIndex(index)}
             >
-              <img src={item.image} alt={`banner-${item.id}`} />
+              <img src={src} alt={`banner-${index}`} />
             </div>
             <div className="banner-pictures-item-line"></div>
           </div>

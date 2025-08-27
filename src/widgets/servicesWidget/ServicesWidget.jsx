@@ -1,4 +1,3 @@
-import img from "../../shared/images/home.png";
 import { Acardion } from "../../features/";
 import { Box, Typography } from "@mui/material";
 import { useServices } from "../../app/store/reducers/admin/services/servicesSlice";
