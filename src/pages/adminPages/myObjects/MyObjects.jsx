@@ -1,6 +1,10 @@
-import './myObjects.scss';
-import img from '../../../shared/img/objImg.png';
-import { ObjectsCard } from '../../../features';
+import "./myObjects.scss";
+import img from "../../../shared/img/objImg.png";
+import { ObjectsCard } from "../../../features";
+import { useAuth } from "../../../app/store/reducers/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getUser } from "../../../app/store/reducers/auth/authThunks";
 
 const data = [
   {
@@ -95,14 +99,20 @@ const data = [
   },
 ];
 export const MyObjects = () => {
+  const dispatch = useDispatch();
+  const { user: data } = useAuth();
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
   return (
     <div className="container my__objects">
-      {data.map((item) => (
+      {data?.listings.map((item) => (
         <ObjectsCard
           key={item.id}
-          img={item.img}
+          img={item.images[0]}
           title={item.title}
-          location={item.location}
+          location={`г. ${item.city}, мкр. ${item.district}, ул. ${item.street}, 
+            ${item.house}`}
           description={item.description}
           price={item.price}
           liked={item.liked}

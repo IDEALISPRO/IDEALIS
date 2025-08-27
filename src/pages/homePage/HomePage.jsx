@@ -10,22 +10,22 @@ import { useBanner } from "../../app/store/reducers/admin/homeSlice/homeSlice";
 
 export const HomePage = () => {
   const dispatch = useDispatch();
-  const { banner, loading, error } = useBanner(); // берём из redux slice
-
+  const { banner, loading, error } = useBanner(); 
+  
+  
+  
   useEffect(() => {
-    dispatch(bannerGet()); // запрос на API при монтировании
+    dispatch(bannerGet()); 
   }, [dispatch]);
-
-  if (loading) return <p>Загрузка баннера...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
-
+  console.log(banner);
+  
   return (
     <div className="container">
       <Banner
-        title={banner?.site_name}
-        description={banner?.slogan}
+        title={banner[0]?.site_name}
+        description={banner[0]?.slogan}
       />
-      <BannerPictures pictures={banner?.banner_photo || []} />
+      <BannerPictures images={banner[0]?.banner_photos} />
 
       <Navigate />
       <NavigateMobile />

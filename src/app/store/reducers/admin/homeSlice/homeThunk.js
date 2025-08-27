@@ -4,12 +4,15 @@ import { axiosApi } from "../../../../services/AxiosPub";
 
 export const bannerGet = createAsyncThunk(
   "banner/get",
-  async (_, thunkAPI) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const res = await axiosApi.get('/v4/main/banners');
-      return res.data; 
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.response?.data || err.message);
+      const { data } = await axiosApi.get(`/v4/main/banners/`);
+      console.log(data);
+      
+      return data;
+    } catch (e) {
+      console.log(e);
+      return rejectWithValue(e.response?.data || e.message);
     }
   }
 );

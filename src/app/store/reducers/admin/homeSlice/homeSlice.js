@@ -5,7 +5,7 @@ import { bannerGet } from "./homeThunk";
 
 
 const initialState = {
-  banner: null,  
+  banner: [],  
   loading: false,
   error: null,
 };
@@ -20,8 +20,9 @@ const bannerSlice = createSlice({
         state.loading = true;
       })
       .addCase(bannerGet.fulfilled, (state, { payload }) => {
+         console.log( payload);
         state.loading = false;
-        state.banner = payload[0] || null;
+        state.banner = payload;
       })
       .addCase(bannerGet.rejected, (state, { payload }) => {
         state.loading = false;

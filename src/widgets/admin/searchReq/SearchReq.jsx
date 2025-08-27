@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import "./searchreq.scss";
 import Pagination from "@mui/material/Pagination";
-import data from "./list.json";
+import { useLocation, useNavigate } from "react-router-dom";
+// import data from "./list.json";
 
-export const SearchReq = () => {
+export const SearchReq = ({ list: data }) => {
   const itemsPerPage = 9;
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
@@ -21,6 +22,9 @@ export const SearchReq = () => {
     setPage(value);
   };
 
+  const { pathname } = useLocation();
+  // console.log(pathname);
+
   return (
     <div className="search-req">
       <div className="title-div">
@@ -31,10 +35,12 @@ export const SearchReq = () => {
         {currentItems.map((item, index) => (
           <div key={startIndex + index} className={`list-card`}>
             <div className="text-block">
-              <p className="name-text">{item.name}</p>
+              <p className="name-text">
+                {pathname === "/admin/others-looking" ? item.term : item.query}
+              </p>
             </div>
             <div className="text-block">
-              <p className="req-text">{item.req}</p>
+              <p className="req-text">{item.count}</p>
             </div>
           </div>
         ))}

@@ -10,6 +10,7 @@ export const ImpressionCard = ({
   location,
   description,
   price,
+  stats,
 }) => {
   const [liked, setLiked] = useState(false);
 
@@ -19,7 +20,12 @@ export const ImpressionCard = ({
   return (
     <div className="impressionItem">
       <div className="impressionCard">
-        <img className="impressionCard__img" src={img} alt={title} loading="lazy" />
+        <img
+          className="impressionCard__img"
+          src={img.image_url}
+          alt={title}
+          loading="lazy"
+        />
 
         <div className="impressionCard__info">
           <h3 className="impressionCard__info__title">{title}</h3>
@@ -39,22 +45,24 @@ export const ImpressionCard = ({
             <div className="statistics__row">
               <span>Просмотры:</span>
               <div className="statistics__time-indicators">
-                <span>154</span>
+                <span>{stats.views}</span>
               </div>
             </div>
             <div className="statistics__row">
               <span>В избранное:</span>
               <div className="statistics__time-indicators">
-                <span>6</span>
+                <span>{stats.favorites}</span>
               </div>
             </div>
             <div className="statistics__row">
               <span>Обращения:</span>
               <div className="statistics__time-indicators">
-                <span>6</span>
+                <span>{stats.contacts}</span>
               </div>
             </div>
-            <p className="statistics__date">Последний показ: 02.08.2025</p>
+            <p className="statistics__date">
+              Последний показ: {stats.last_show_at}
+            </p>
           </div>
         </div>
 
@@ -63,7 +71,10 @@ export const ImpressionCard = ({
           <button className="impressionCard__buttons__phone">
             <LocalPhoneIcon className="impressionCard__buttons__phone__icon" />
           </button>
-          <button onClick={HandleLike} className="impressionCard__buttons__like">
+          <button
+            onClick={HandleLike}
+            className="impressionCard__buttons__like"
+          >
             <FavoriteSharpIcon
               className={`impressionCard__buttons__like__icon ${liked ? `red` : ""}`}
             />
@@ -80,22 +91,24 @@ export const ImpressionCard = ({
           <div className="statistics__row">
             <span>Просмотры:</span>
             <div className="statistics__time-indicators">
-              <span>154</span>
+              <span>{stats.views}</span>
             </div>
           </div>
           <div className="statistics__row">
             <span>В избранное:</span>
             <div className="statistics__time-indicators">
-              <span>6</span>
+              <span>{stats.favorites}</span>
             </div>
           </div>
           <div className="statistics__row">
             <span>Обращения:</span>
             <div className="statistics__time-indicators">
-              <span>6</span>
+              <span>{stats.contacts}</span>
             </div>
           </div>
-          <p className="statistics__date">Последний показ: 02.08.2025</p>
+          <p className="statistics__date">
+            Последний показ: {stats.last_show_at}
+          </p>
         </div>
       </div>
     </div>
