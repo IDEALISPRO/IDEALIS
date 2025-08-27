@@ -90,7 +90,7 @@ export const FilterWidget = () => {
                 sx={{ width: "100%" }}
                 InputLabelProps={{
                   sx: {
-                    width: "30%",      // ширина текста label
+                    width: "30%",      
                     whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",

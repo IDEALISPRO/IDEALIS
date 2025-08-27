@@ -10,14 +10,11 @@ import { useBanner } from "../../app/store/reducers/admin/homeSlice/homeSlice";
 
 export const HomePage = () => {
   const dispatch = useDispatch();
-  const { banner, loading, error } = useBanner(); 
-  
-  
+  const { banner } = useBanner(); 
   
   useEffect(() => {
     dispatch(bannerGet()); 
   }, [dispatch]);
-  console.log(banner);
   
   return (
     <div className="container">

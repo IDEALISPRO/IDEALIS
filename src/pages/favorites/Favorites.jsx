@@ -1,3 +1,4 @@
+import { useBanner } from "../../app/store/reducers/admin/homeSlice/homeSlice";
 import { Banner, BannerPictures, ObjectsCard } from "../../features";
 import img from "../../shared/img/objImg.png";
 import "./favorites.scss";
@@ -95,15 +96,12 @@ const data = [
   },
 ];
 export const Favorites = () => {
+  const { banner } = useBanner();
+
   return (
     <div className="container favorite__container">
-      <Banner
-        title={"ИЗБРАННОЕ"}
-        description={
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-        }
-      />
-      <BannerPictures />
+      <Banner title={banner[5]?.site_name} description={banner[5]?.slogan} />
+      <BannerPictures images={banner[5]?.banner_photos} />
       <div className="row objects">
         <p>Все</p>
         <p>12 объектов</p>
