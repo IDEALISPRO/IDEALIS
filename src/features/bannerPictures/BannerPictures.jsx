@@ -1,28 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { bannerGet } from "../../app/store/reducers/admin/homeSlice/homeThunk";
+import { useBanner } from "../../app/store/reducers/admin/homeSlice/homeSlice";
 import "./bannerPictures.scss";
 
-import img1 from "../../shared/images/img1.png";
-import img2 from "../../shared/images/img2.png";
-import img3 from "../../shared/images/img3.png";
-import img4 from "../../shared/images/img4.png";
-import img5 from "../../shared/images/img5.png";
-import img6 from "../../shared/images/img6.png";
-import img7 from "../../shared/images/img7.png";
-import img8 from "../../shared/images/img8.png";
-import img9 from "../../shared/images/img9.png";
+export const BannerPictures = ({images}) => {
 
-const allImages = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
+  
+  console.log(images);
+  
+  const [activeIndex, setActiveIndex] = useState(0);
 
-export const BannerPictures = () => {
-  const initialImages = window.innerWidth <= 576 ? allImages.slice(0, 9) : allImages;
-  const middle = Math.floor(initialImages.length / 2);
-  const [activeIndex, setActiveIndex] = useState(middle);
+  const image = images|| [];
+
+  useEffect(() => {
+    if (image.length > 0) {
+      setActiveIndex(Math.floor(image.length / 2));
+    }
+  }, [image]);
+
 
   return (
-    <div className="banner-pictures container"onMouseLeave={() => setActiveIndex(middle)}>
-      {initialImages.map((src, index) => {
-        const isNeighbor =
-          index === activeIndex - 1 || index === activeIndex + 1;
+    <div
+      className="banner-pictures container"
+      onMouseLeave={() => setActiveIndex(Math.floor(image.length / 2))}
+    >
+      {image.map((src, index) => {
+        const isNeighbor = index === activeIndex - 1 || index === activeIndex + 1;
 
         return (
           <div key={index} className="banner-pictures-block">
@@ -30,14 +34,14 @@ export const BannerPictures = () => {
               className={`banner-pictures-item ${
                 activeIndex === index ? "activee" : ""
               } ${isNeighbor ? "neighborr" : ""} ${
-                index === initialImages.length - 1 ? "img_end" : ""
+                index === image.length - 1 ? "img_end" : ""
               }`}
               onMouseEnter={() => setActiveIndex(index)}
             >
               <img src={src} alt={`banner-${index}`} />
             </div>
-                <div className="banner-pictures-item-line"></div>
-            </div>
+            <div className="banner-pictures-item-line"></div>
+          </div>
         );
       })}
     </div>
