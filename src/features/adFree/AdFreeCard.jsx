@@ -23,7 +23,7 @@ const imgList = [
     img: img4,
   },
 ];
-export const AdFreeCard = () => {
+export const AdFreeCard = ({ item }) => {
   return (
     <div className="card">
       <div className="card-block1 block1">
@@ -39,8 +39,8 @@ export const AdFreeCard = () => {
             sx={{ width: "48%", borderRadius: 2, overflow: "hidden" }}
           >
             <img
-              src={`${imgList[0]?.img}?w=400&h=400&fit=crop&auto=format`}
-              srcSet={`${imgList[0]?.img}?w=400&h=400&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.images[0]?.image_url}?w=400&h=400&fit=crop&auto=format`}
+              srcSet={`${item.images[0]?.image_url}?w=400&h=400&fit=crop&auto=format&dpr=2 2x`}
               alt=""
             />
           </ImageListItem>
@@ -54,23 +54,23 @@ export const AdFreeCard = () => {
               gap: "12px",
             }}
           >
-            {imgList
-              .filter((_, indx) => indx != 0)
+            {item?.images
+              ?.filter((_, indx) => indx != 0)
               .map((item, i) => (
                 <ImageListItem
                   key={i}
                   sx={{ borderRadius: 2, overflow: "hidden" }}
                 >
                   <img
-                    src={`${item.img}?w=400&h=400&fit=crop&auto=format`}
-                    srcSet={`${item.img}?w=400&h=400&fit=crop&auto=format&dpr=2 2x`}
+                    src={`${item.image_url}?w=400&h=400&fit=crop&auto=format`}
+                    srcSet={`${item.image_url}?w=400&h=400&fit=crop&auto=format&dpr=2 2x`}
                     alt=""
                   />
                 </ImageListItem>
               ))}
           </Box>
         </ImageList>
-        <h3 className="block1-title">+996 775 65 65 98</h3>
+        <h3 className="block1-title">{item?.owner_phone}</h3>
         <p className="block1-text">Собственник</p>
         <button className="block1-btn">Подробнее</button>
       </div>
@@ -80,17 +80,19 @@ export const AdFreeCard = () => {
           <li className="list-li">
             <span className="dotline__label">Площадь:</span>
             <span aria-hidden="true" className="dotline__leader" />
-            <span className="dotline__value">85 м²</span>
+            <span className="dotline__value">{item.area_m2}</span>
           </li>
           <li className="list-li">
             <span className="dotline__label">Этажность:</span>
             <span aria-hidden="true" className="dotline__leader" />
-            <span className="dotline__value">8 из 10</span>
+            <span className="dotline__value">
+              {item.floor} из {item.floors_total}
+            </span>
           </li>
           <li className="list-li">
             <span className="dotline__label">Цена:</span>
             <span aria-hidden="true" className="dotline__leader" />
-            <span className="dotline__value">7 200 000 с</span>
+            <span className="dotline__value">{item?.price} с</span>
           </li>
           <li className="list-li">
             Срочно:
@@ -99,7 +101,10 @@ export const AdFreeCard = () => {
         </ul>
         <div className="location">
           <img src={location} alt="" className="location-img" />
-          <span>г. Бишкек, мкр. Ала-Тоо, ул. Южная магистраль, 45</span>
+          <span>
+            г. {item.city}, мкр. {item.district}, ул. {item.street},{" "}
+            {item.house}
+          </span>
         </div>
         <button className="second-btn">Подробнее</button>
       </div>

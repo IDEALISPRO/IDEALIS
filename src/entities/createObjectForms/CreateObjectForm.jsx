@@ -9,8 +9,11 @@ import { FormFields } from "./components/FormFields";
 import { Characteristics } from "./components/Characteristics";
 import { OwnerContacts } from "./components/OwnerContacts";
 import { SubmitButtons } from "./components/SubmitButtons";
+import { useDispatch } from "react-redux";
+import { createObjectThunk } from "../../app/store/reducers/admin/createObject/createObjectThunk";
 
 export const CreateObjectForm = () => {
+  const dispatch = useDispatch();
   const {
     control,
     handleSubmit,
@@ -47,6 +50,25 @@ export const CreateObjectForm = () => {
 
   const onSubmit = async (data) => {
     console.log("Form submitted:", data);
+    const newObject = {
+      images: data.photos,
+      title: data.description,
+      area_m2: data.Square,
+      floor: data.Floor,
+      floors_total: data.NumberRooms,
+      price: data.price,
+      // urgent: data.offers,
+      city: data.IntersectionStreets,
+      district: data.District,
+      street: data.IntersectionStreets,
+      house: data.realEstate,
+      owner_phone: data.number,
+      deal_type: data.offers,
+      rooms: data.NumberRooms,
+      house_series: data.HomeSeries,
+      repair_state: data.repairs,
+    };
+    dispatch(createObjectThunk(newObject));
   };
 
   console.log(errors);

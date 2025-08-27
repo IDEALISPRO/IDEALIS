@@ -1,49 +1,60 @@
+import { useDispatch } from "react-redux";
 import { ImpressionCard } from "../../../features";
 import img from "../../../shared/images/ImpressionsImg1.png";
-import './impressions.scss';
+import "./impressions.scss";
+import { useAuth } from "../../../app/store/reducers/auth/authSlice";
+import { useEffect } from "react";
+import { getUser } from "../../../app/store/reducers/auth/authThunks";
 
-const data = [
-  {
-    id: 1,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 2,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 3,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-];
+// const data = [
+//   {
+//     id: 1,
+//     img: img,
+//     title: "Готовые квартиры с ремонтом",
+//     location: "Аламедин-1, ул. Тыныстанова",
+//     description: "1 комн • 38 м²",
+//     price: "3 400 000 сом",
+//     liked: false,
+//   },
+//   {
+//     id: 2,
+//     img: img,
+//     title: "Готовые квартиры с ремонтом",
+//     location: "Аламедин-1, ул. Тыныстанова",
+//     description: "1 комн • 38 м²",
+//     price: "3 400 000 сом",
+//     liked: false,
+//   },
+//   {
+//     id: 3,
+//     img: img,
+//     title: "Готовые квартиры с ремонтом",
+//     location: "Аламедин-1, ул. Тыныстанова",
+//     description: "1 комн • 38 м²",
+//     price: "3 400 000 сом",
+//     liked: false,
+//   },
+// ];
 export const Impressions = () => {
+  const dispatch = useDispatch();
+  const { user: data } = useAuth();
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
   return (
     <div className="container impressions">
       <div className="impressions__cards">
-        {data.map((item) => (
+        {data?.listings.map((item) => (
           <ImpressionCard
             key={item.id}
-            img={item.img}
+            img={item.images[0]}
             title={item.title}
-            location={item.location}
+            location={`г. ${item.city}, мкр. ${item.district}, ул. ${item.street}, 
+            ${item.house}`}
             description={item.description}
             price={item.price}
             liked={item.liked}
+            stats={item.stats}
           />
         ))}
       </div>

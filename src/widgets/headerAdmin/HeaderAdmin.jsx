@@ -11,9 +11,6 @@ import { getUser, updateUser } from "../../app/store/reducers/auth/authThunks";
 import { logout, useAuth } from "../../app/store/reducers/auth/authSlice";
 
 export const HeaderAdmin = () => {
-  const [state, setState] = useState({
-    avatar: File || null,
-  });
   const fileInputRef = React.useRef(null);
   const [preview, setPreview] = useState(null);
   const location = useLocation();
@@ -202,7 +199,9 @@ export const HeaderAdmin = () => {
         </button>
 
         <div className="header-admin__actions">
-          <button className="add-object-btn">Добавить объект</button>
+          <NavLink to={"/admin/add-object"}>
+            <button className="add-object-btn">Добавить объект</button>
+          </NavLink>
         </div>
       </div>
 

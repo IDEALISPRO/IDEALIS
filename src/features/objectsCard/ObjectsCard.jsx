@@ -18,10 +18,16 @@ export const ObjectsCard = ({
     console.log(like);
     setLike(!like);
   };
+  console.log(img);
 
   return (
     <div className="objCard">
-      <img className="objCard__img" src={img} alt={title} loading="lazy" />
+      <img
+        className="objCard__img"
+        src={img.image_url}
+        alt={title}
+        loading="lazy"
+      />
 
       <div className="objCard__info">
         <h3 className="objCard__info__title">{title}</h3>

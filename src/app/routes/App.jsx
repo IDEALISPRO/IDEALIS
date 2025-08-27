@@ -64,10 +64,10 @@ function App() {
       path: "/favorites",
       element: <Favorites />,
     },
-    {
-      path: "/create-object",
-      element: <CreateObject />,
-    },
+    // {
+    //   path: "/create-object",
+    //   element: <CreateObject />,
+    // },
     {
       path: "/estate-categories",
       element: <EstateCategories />,
@@ -134,6 +134,10 @@ function App() {
     {
       path: "/admin/video-tutorials",
       element: <VideoTutorials />,
+    },
+    {
+      path: "/admin/add-object",
+      element: <CreateObject />,
     },
   ];
 
