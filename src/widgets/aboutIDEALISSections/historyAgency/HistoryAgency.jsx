@@ -46,9 +46,9 @@ export const HistoryAgency = () => {
                   className="detail_text row"
                   dangerouslySetInnerHTML={{
                     __html:
-                      item?.description.length > 370
-                        ? item?.description.slice(0, 370) + "..."
-                        : item?.description,
+                      item?.description && item.description.length > 370
+                        ? item.description.slice(0, 370) + "..."
+                        : item?.description || "",
                   }}
                 ></div>
               </div>
