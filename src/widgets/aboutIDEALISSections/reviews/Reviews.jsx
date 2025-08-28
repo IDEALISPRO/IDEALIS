@@ -3,33 +3,20 @@ import img1 from "../../../shared/img/avatar1.jpg";
 import img2 from "../../../shared/img/avatar2.jpg";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { teamGet } from "../../../app/store/reducers/public/about/aboutThunks";
+import {
+  reviewsGet,
+  teamGet,
+} from "../../../app/store/reducers/public/about/aboutThunks";
 import { useAbout } from "../../../app/store/reducers/public/about/aboutSlice";
 
 export const Reviews = () => {
-  const reviewsData = [
-    {
-      avatar: img1,
-      title: "БЫСТРЫЕ СРОКИ",
-      text: "Вы можете начать строительство дома сегодня, а уже завтра — поехать покупать сумки.",
-    },
-    {
-      avatar: img2,
-      title: "БЫСТРЫЕ СРОКИ",
-      text: "Вы можете начать строительство дома сегодня, а уже завтра — поехать покупать сумки.",
-    },
-    {
-      avatar: img1,
-      title: "БЫСТРЫЕ СРОКИ",
-      text: "Вы можете начать строительство дома сегодня, а уже завтра — поехать покупать сумки.",
-    },
-    {
-      avatar: img2,
-      title: "БЫСТРЫЕ СРОКИ",
-      text: "Вы можете начать строительство дома сегодня, а уже завтра — поехать покупать сумки.",
-    },
-  ];
-  
+  const dispatch = useDispatch();
+  const { review } = useAbout();
+
+  useEffect(() => {
+    dispatch(reviewsGet());
+  }, [dispatch]);
+
   return (
     <div className="reviews">
       <div className="reviews__wrapper">
@@ -40,13 +27,15 @@ export const Reviews = () => {
         <div className="reviews__layout">
           <div className="reviews__item">
             <img
-              src={reviewsData[0].avatar}
+              src={review[0]?.photo}
               alt="Avatar"
               className="reviews__avatar"
             />
-            <h3 className="reviews__item-title">{reviewsData[0].title}</h3>
+            <h3 className="reviews__item-title">
+              {review[0]?.short_description}
+            </h3>
 
-            <p className="reviews__item-text">{reviewsData[0].text}</p>
+            <p className="reviews__item-text">{review[0]?.description}</p>
           </div>
 
           <div className="reviews__center">
@@ -62,27 +51,32 @@ export const Reviews = () => {
 
           <div className="reviews__item">
             <img
-              src={reviewsData[1].avatar}
+              src={review[1]?.photo}
               alt="Avatar"
               className="reviews__avatar"
             />
-            <h3 className="reviews__item-title">{reviewsData[1].title}</h3>
-            <p className="reviews__item-text">{reviewsData[1].text}</p>
+            <h3 className="reviews__item-title">
+              {review[1]?.short_description}
+            </h3>
+            <p className="reviews__item-text">{review[1]?.description}</p>
           </div>
         </div>
 
         <div className="reviews__bottom">
-          {reviewsData.slice(2).map((review, index) => (
-            <div className="reviews__item" key={index}>
-              <img
-                src={review.avatar}
-                alt="Avatar"
-                className="reviews__avatar"
-              />
-              <h3 className="reviews__item-title">{review.title}</h3>
-              <p className="reviews__item-text">{review.text}</p>
-            </div>
-          ))}
+          {review &&
+            review.slice(2, 5).map((review, index) => (
+              <div className="reviews__item" key={index}>
+                <img
+                  src={review.photo}
+                  alt="Avatar"
+                  className="reviews__avatar"
+                />
+                <h3 className="reviews__item-title">
+                  {review.short_description}
+                </h3>
+                <p className="reviews__item-text">{review.description}</p>
+              </div>
+            ))}
         </div>
       </div>
     </div>

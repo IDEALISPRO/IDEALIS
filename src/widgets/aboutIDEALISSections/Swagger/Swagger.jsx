@@ -8,62 +8,14 @@ import { Navigation, Pagination } from "swiper/modules";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 
-import slide1 from "../../../shared/swaggerImg/slide1.svg";
-import slide2 from "../../../shared/swaggerImg/slide2.svg";
-import slide3 from "../../../shared/swaggerImg/slide3.svg";
-import slide4 from "../../../shared/swaggerImg/slide4.svg";
 import { useDispatch } from "react-redux";
 import { useAbout } from "../../../app/store/reducers/public/about/aboutSlice";
 import { useEffect } from "react";
 import { teamGet } from "../../../app/store/reducers/public/about/aboutThunks";
 
 export const Swagger = () => {
-  const Slides = [
-    {
-      img: slide1,
-      name: "Смирнов Александр",
-      position: "Мастер по проектированию",
-    },
-    {
-      img: slide2,
-      name: "Смирнов Александр",
-      position: "Мастер по проектированию",
-    },
-    {
-      img: slide3,
-      name: "Смирнов Александр",
-      position: "Мастер по проектированию",
-    },
-    {
-      img: slide4,
-      name: "Смирнов Александр",
-      position: "Мастер по проектированию",
-    },
-    {
-      img: slide1,
-      name: "Смирнов Александр",
-      position: "Мастер по проектированию",
-    },
-    {
-      img: slide3,
-      name: "Смирнов Александр",
-      position: "Мастер по проектированию",
-    },
-    {
-      img: slide2,
-      name: "Смирнов Александр",
-      position: "Мастер по проектированию",
-    },
-    {
-      img: slide1,
-      name: "Смирнов Александр",
-      position: "Мастер по проектированию",
-    },
-  ];
   const dispatch = useDispatch();
   const { teams } = useAbout();
-
-  console.log(teams);
 
   useEffect(() => {
     dispatch(teamGet());
