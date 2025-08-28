@@ -31,9 +31,9 @@ export const Header = () => {
   }, [dispatch]);
 
   const languages = [
-    { code: "ru", label: "Русский", flag: ru },
-    { code: "kg", label: "Кыргызча", flag: kg },
-    { code: "en", label: "English", flag: en },
+    { code: "ru", label: "Ру", flag: ru },
+    { code: "kg", label: "Kg", flag: kg },
+    { code: "en", label: "En", flag: en },
   ];
 
   const currentLang =
