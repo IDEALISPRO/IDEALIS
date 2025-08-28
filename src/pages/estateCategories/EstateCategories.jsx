@@ -2,120 +2,52 @@ import { useLocation } from "react-router-dom";
 import { Banner, ObjectsCard } from "../../features";
 import "./estateCategories.scss";
 import img from "../../shared/img/objImg.png";
+import { useDispatch } from "react-redux";
+import { useObjects } from "../../app/store/reducers/public/home/objectsSlice";
+import { objectsGet } from "../../app/store/reducers/public/home/objectsThunks";
+import { useEffect } from "react";
 
-const data = [
-  {
-    id: 1,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 2,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 3,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 4,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 5,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 6,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 7,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 8,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 9,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-  {
-    id: 10,
-    img: img,
-    title: "Готовые квартиры с ремонтом",
-    location: "Аламедин-1, ул. Тыныстанова",
-    description: "1 комн • 38 м²",
-    price: "3 400 000 сом",
-    liked: false,
-  },
-];
 export const EstateCategories = () => {
   const location = useLocation();
+  console.log(location);
+  const dispatch = useDispatch();
+  const { objects } = useObjects();
+  // const listingTitle = getSumsByKind(clientDeals);
+
+  const listingCategoryTranslate = {
+    secondary: "Вторичное жильё",
+    newbuild: "Новостройки",
+    house: "Дома",
+    land: "Участки",
+    business: "Под бизнес",
+  };
+  console.log(location.state.title);
+
+  useEffect(() => {
+    dispatch(objectsGet({ category: location.state.title }));
+  }, [dispatch]);
   return (
     <div className="container estate__categories">
       <Banner
-        title={location.state.title}
+        title={
+          listingCategoryTranslate[location.state.title] || location.state.title
+        }
         description={
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
         }
       />
       <div className="row objects">
         <p>Все</p>
-        <p>12 объектов</p>
+        <p>{objects?.length} объектов</p>
       </div>
       <section className="estate__cards">
-        {data.map((item) => (
+        {objects.map((item) => (
           <ObjectsCard
             key={item.id}
-            img={item.img}
+            img={item?.images}
             title={item.title}
-            location={item.location}
+            location={`г. ${item.city}, мкр. ${item.district}, ул. ${item.street}, 
+            ${item.house}`}
             description={item.description}
             price={item.price}
             liked={item.liked}

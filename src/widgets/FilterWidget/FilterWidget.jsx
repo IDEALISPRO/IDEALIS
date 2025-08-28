@@ -154,7 +154,7 @@ export const FilterWidget = () => {
               </ToggleButton>
             </ToggleButtonGroup>
           </Box>
-          <Box component="section" alignItems="center" container>
+          <Box component="section" sx={{ alignItems: "center" }}>
             <Grid
               container
               columnSpacing={2}
@@ -305,18 +305,21 @@ export const FilterWidget = () => {
                   }}
                 >
                   <Typography variant="h6">Цена</Typography>
-                  <Typography
-                    variant="body1"
-                    color="divider"
-                    sx={{ margin: "18px 0px" }}
-                  >
-                    Валюта:
+                  <Box sx={{ margin: "18px 0px" }}>
+                    <Typography
+                      variant="body1"
+                      color="divider"
+                      component="span"
+                    >
+                      Валюта:
+                    </Typography>
                     <ToggleButtonGroup
                       value={currency}
                       exclusive
                       color="primary"
                       onChange={handleCurrency}
                       aria-label="text alignment"
+                      sx={{ marginLeft: 1 }}
                     >
                       <ToggleButton
                         value="som"
@@ -333,7 +336,7 @@ export const FilterWidget = () => {
                         Доллар
                       </ToggleButton>
                     </ToggleButtonGroup>
-                  </Typography>
+                  </Box>
                 </Box>
                 <Box
                   sx={{
@@ -482,10 +485,10 @@ export const FilterWidget = () => {
         <DialogContent>
           <div>Возраст: {formData.age?.toString()}</div>
           <div>
-            Цена: {formData.value1?.[0]} – {formData.value1?.[1]}
+            Цена: {formData.value1?.[0]?.toLocaleString()} – {formData.value1?.[1]?.toLocaleString()}
           </div>
-          <div>Валюта: {formData.currency}</div>
-          <div>Тип: {formData.alignment}</div>
+          <div>Валюта: {formData.currency?.toString()}</div>
+          <div>Тип: {formData.alignment?.toString()}</div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>OK</Button>
