@@ -8,10 +8,7 @@ import en from "../../shared/en.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { NavLink, useLocation } from "react-router-dom";
 import { MiniMenu } from "../index";
-
-
 import { useDispatch } from "react-redux";
-
 import { headerGet } from "../../app/store/reducers/admin/header/headerThunk";
 import { useHeader } from "../../app/store/reducers/admin/header/headerSlice";
 
@@ -27,7 +24,6 @@ export const Header = () => {
   const dispatch = useDispatch();
   const { header, loading, error } = useHeader();
 
- 
   useEffect(() => {
     dispatch(headerGet());
   }, [dispatch]);
@@ -47,7 +43,11 @@ export const Header = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target) && menuOpen) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        menuOpen
+      ) {
         setMenuOpen(false);
       }
     };
@@ -132,7 +132,7 @@ export const Header = () => {
             </ul>
           )}
         </div>
-        <NavLink to={"/create-object"}>
+        <NavLink to={"/create-object-public"}>
           <button className="header-login">Добавить объект</button>
         </NavLink>
         <button className="burger-btn" onClick={() => setMenuOpen(true)}>
@@ -140,7 +140,6 @@ export const Header = () => {
         </button>
       </div>
 
-     
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`} ref={menuRef}>
         <button className="close-btn" onClick={() => setMenuOpen(false)}>
           <FiX />
@@ -148,19 +147,39 @@ export const Header = () => {
 
         {header && (
           <>
-            <NavLink className="mobile-link" to="/about" onClick={() => setMenuOpen(false)}>
+            <NavLink
+              className="mobile-link"
+              to="/about"
+              onClick={() => setMenuOpen(false)}
+            >
               {header.about_idealis}
             </NavLink>
-            <NavLink className="mobile-link" to="/services" onClick={() => setMenuOpen(false)}>
+            <NavLink
+              className="mobile-link"
+              to="/services"
+              onClick={() => setMenuOpen(false)}
+            >
               {header.services}
             </NavLink>
-            <NavLink className="mobile-link" to="/contacts" onClick={() => setMenuOpen(false)}>
+            <NavLink
+              className="mobile-link"
+              to="/contacts"
+              onClick={() => setMenuOpen(false)}
+            >
               {header.contacts}
             </NavLink>
-            <NavLink className="mobile-link" to="/news" onClick={() => setMenuOpen(false)}>
+            <NavLink
+              className="mobile-link"
+              to="/news"
+              onClick={() => setMenuOpen(false)}
+            >
               {header.news}
             </NavLink>
-            <NavLink className="mobile-link" to="/favorites" onClick={() => setMenuOpen(false)}>
+            <NavLink
+              className="mobile-link"
+              to="/favorites"
+              onClick={() => setMenuOpen(false)}
+            >
               {header.favorite}
             </NavLink>
           </>

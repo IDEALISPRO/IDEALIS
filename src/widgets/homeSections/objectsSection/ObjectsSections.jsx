@@ -4,6 +4,7 @@ import "./objects.scss";
 import { useEffect, useState } from "react";
 import { objectsGet } from "../../../app/store/reducers/public/home/objectsThunks";
 import { useObjects } from "../../../app/store/reducers/public/home/objectsSlice";
+import { NavLink } from "react-router-dom";
 
 export const ObjectsSections = () => {
   const dispatch = useDispatch();
@@ -69,19 +70,21 @@ export const ObjectsSections = () => {
       <div className="objects__cards">
         {data &&
           data.slice(0, 10).map((item) => (
-            <ObjectsCard
-              key={item.id}
-              img={item.images}
-              title={item.title}
-              district={item.district}
-              street={item.street}
-              city={item.city}
-              rooms={item.rooms}
-              area_m2={item.area_m2}
-              price={item.price}
-              liked={item.liked}
-              onLike={() => toggleLike(item.id)} 
-            />
+            <NavLink to={`/objectDetail/${item.id}`}>
+              <ObjectsCard
+                key={item.id}
+                img={item.images}
+                title={item.title}
+                district={item.district}
+                street={item.street}
+                city={item.city}
+                rooms={item.rooms}
+                area_m2={item.area_m2}
+                price={item.price}
+                liked={item.liked}
+                onLike={() => toggleLike(item.id)}
+              />
+            </NavLink>
           ))}
         <ObjectsBtn />
       </div>
