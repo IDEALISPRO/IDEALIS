@@ -11,6 +11,7 @@ import headerReducer from "./reducers/admin/header/headerSlice";
 import aboutReducer from "./reducers/public/about/aboutSlice";
 import contactReducer from './reducers/public/contact/contactSlice';
 import objectsReducer from './reducers/public/home/objectsSlice';
+import detailReducer from './reducers/admin/detailObject/detailObjectSlice';
 
 export const store = configureStore({
   reducer: {
@@ -26,5 +27,6 @@ export const store = configureStore({
     about: aboutReducer,
     contact: contactReducer,
     objects: objectsReducer,
+    detail: detailReducer,
   },
 });
