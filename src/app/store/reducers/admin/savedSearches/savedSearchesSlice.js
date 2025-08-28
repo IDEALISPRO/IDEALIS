@@ -27,5 +27,6 @@ const savedSearchedSlice = createSlice({
   },
 });
 
-export const useSavedSearched = () => useSelector((state) => state.savedSearched);
+export const useSavedSearched = () =>
+  useSelector((state) => state.savedSearched);
 export default savedSearchedSlice.reducer;

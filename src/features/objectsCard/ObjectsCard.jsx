@@ -2,7 +2,7 @@ import "./objectsCard.scss";
 import loca from "../../shared/icons/location.svg";
 import FavoriteSharpIcon from "@mui/icons-material/FavoriteSharp";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import HideImageIcon from '@mui/icons-material/HideImage';
+import HideImageIcon from "@mui/icons-material/HideImage";
 
 export const ObjectsCard = ({
   img,
@@ -18,17 +18,16 @@ export const ObjectsCard = ({
 }) => {
   return (
     <div className="objCard">
-      {img ?  (
+      {img ? (
         <img
           className="objCard__img"
           src={img[0]?.url}
           alt={title}
           loading="lazy"
         />
-      ): (
+      ) : (
         <HideImageIcon />
-      )
-      }
+      )}
 
       <div className="objCard__info">
         <h3 className="objCard__info__title">{title}</h3>

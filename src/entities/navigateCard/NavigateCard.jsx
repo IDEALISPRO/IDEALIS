@@ -5,11 +5,18 @@ export const NavigateCard = ({
   activeSelect,
   setActiveSelect,
   type,
-  title,
+  category,
   id,
   images,
 }) => {
   const isActive = activeSelect === id;
+  const listingCategoryTranslate = {
+    secondary: "Вторичное жильё",
+    newbuild: "Новостройки",
+    house: "Дома",
+    land: "Участки",
+    business: "Под бизнес",
+  };
 
   const handleClick = () => {
     setActiveSelect(id);
@@ -25,7 +32,7 @@ export const NavigateCard = ({
         {isActive ? (
           <NavLink
             to={"/estate-categories"}
-            state={{ title: title }}
+            state={{ title: category?.title }}
             onClick={(e) => e.stopPropagation()}
           >
             <motion.div
@@ -39,20 +46,24 @@ export const NavigateCard = ({
               <div className="categories-navigate__hover-item">
                 <img
                   className="categories-navigate__hover-img"
-                  src={images.first_image}
-                  alt={title}
+                  src={images?.[0]?.url}
+                  alt={category?.title}
                 />
                 <img
                   className="categories-navigate__hover-img"
-                  src={images.second_image}
-                  alt={title}
+                  src={images?.[1]?.url}
+                  alt={category?.title}
                 />
               </div>
               <div className="categories-navigate__hover-item categories-navigate__hover-item--center">
                 <h2
-                  className={`categories-navigate__hover-item-title ${type === "check" ? "categories-navigate__hover-item-title--check" : ""}`}
+                  className={`categories-navigate__hover-item-title ${
+                    type === "check"
+                      ? "categories-navigate__hover-item-title--check"
+                      : ""
+                  }`}
                 >
-                  {title}
+                  {listingCategoryTranslate[category.title] || category.title}
                 </h2>
                 <p className="categories-navigate__hover-link">
                   Посмотреть все
@@ -61,13 +72,13 @@ export const NavigateCard = ({
               <div className="categories-navigate__hover-item">
                 <img
                   className="categories-navigate__hover-img"
-                  src={images.third_image}
-                  alt={title}
+                  src={images?.[2]?.url}
+                  alt={category?.title}
                 />
                 <img
                   className="categories-navigate__hover-img"
-                  src={images.last_image}
-                  alt={title}
+                  src={images?.[3]?.url}
+                  alt={category?.title}
                 />
               </div>
             </motion.div>
@@ -82,9 +93,13 @@ export const NavigateCard = ({
             transition={{ duration: 0.3 }}
           >
             <h2
-              className={`categories-navigate__default-title ${type === "check" ? "categories-navigate__default-title--check" : ""}`}
+              className={`categories-navigate__default-title ${
+                type === "check"
+                  ? "categories-navigate__default-title--check"
+                  : ""
+              }`}
             >
-              {title}
+              {listingCategoryTranslate[category?.title] || category?.title}
             </h2>
           </motion.div>
         )}

@@ -21,7 +21,7 @@ export const BannerPictures = ({ images }) => {
           index === activeIndex - 1 || index === activeIndex + 1;
 
         return (
-          <div key={index} className="banner-pictures-block">
+          <div key={src.id} className="banner-pictures-block">
             <div
               className={`banner-pictures-item ${
                 activeIndex === index ? "activee" : ""

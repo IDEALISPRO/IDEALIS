@@ -1,56 +1,72 @@
 import { Acardion } from "../../features/";
 import { Box, Typography } from "@mui/material";
-const data = [
-    {
-        id: 1,
-        shag: "Шаг 1",
-        work: "Начало работ",
-        title: "Консультация и планирование",
-        description: "На этом этапе наши профессионалы берутся за реализацию проекта. Мы гарантируем высочайшее качество строительства и монтажа каждой детали вашего дома или бани из карельской сухостойной сосны Кело.",
-        img: ''
-    },
-    {
-        id: 2,
-        shag: "Шаг 2",
-        work: "Начало работ",
-        title: "Консультация и планирование",
-        description: "На этом этапе наши профессионалы берутся за реализацию проекта. Мы гарантируем высочайшее качество строительства и монтажа каждой детали вашего дома или бани из карельской сухостойной сосны Кело.",
-        img: ''
-    },
-    {
-        id: 3,
-        shag: "Шаг 3",
-        work: "Начало работ",
-        title: "Консультация и планирование",
-        description: "На этом этапе наши профессионалы берутся за реализацию проекта. Мы гарантируем высочайшее качество строительства и монтажа каждой детали вашего дома или бани из карельской сухостойной сосны Кело.",
-        img: ''
-    }
-]
+import { useServices } from "../../app/store/reducers/admin/services/servicesSlice";
+import { useDispatch } from "react-redux";
+import {
+  getServicesBanner,
+  getServicesStep,
+} from "../../app/store/reducers/admin/services/servicesThunk";
+import { useEffect } from "react";
+// const data = [
+//   {
+//     id: 1,
+//     shag: "Шаг 1",
+//     work: "Начало работ",
+//     title: "Консультация и планирование",
+//     description:
+//       "На этом этапе наши профессионалы берутся за реализацию проекта. Мы гарантируем высочайшее качество строительства и монтажа каждой детали вашего дома или бани из карельской сухостойной сосны Кело.",
+//     img: img,
+//   },
+//   {
+//     id: 2,
+//     shag: "Шаг 2",
+//     work: "Начало работ",
+//     title: "Консультация и планирование",
+//     description:
+//       "На этом этапе наши профессионалы берутся за реализацию проекта. Мы гарантируем высочайшее качество строительства и монтажа каждой детали вашего дома или бани из карельской сухостойной сосны Кело.",
+//     img: img,
+//   },
+//   {
+//     id: 3,
+//     shag: "Шаг 3",
+//     work: "Начало работ",
+//     title: "Консультация и планирование",
+//     description:
+//       "На этом этапе наши профессионалы берутся за реализацию проекта. Мы гарантируем высочайшее качество строительства и монтажа каждой детали вашего дома или бани из карельской сухостойной сосны Кело.",
+//     img: img,
+//   },
+// ];
 
-export const ServicesWidget = () => {
-    return (
-        <Box
-            className="container "
-            sx={{
-                paddingTop: { xs: '97px', md: '150px', },
-                mb:{ xs: '80px', md: '100px', }
-            }}
-        >
-            <h2 className="title">УСЛУГИ</h2>
-            <Typography
-                sx={{
-                    fontWeight: 400,
-                    fontSize: { xs: '18px', sm: '20px', md: '22px', lg: '34px' },
-                    color: '#000',
-                    width: { xs: '100%', sm: '60%', md: '60%', lg: '50%' },
-                    marginBottom: '20px',
-                    ml: { xs: '0', sm: '40%', md: '40%', lg: '50%' },
+export const ServicesWidget = ({ title, description }) => {
+  const { stepList: data } = useServices();
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getServicesStep());
+  }, [dispatch]);
+  return (
+    <Box
+      className="container "
+      sx={{
+        paddingTop: { xs: "97px", md: "150px" },
+        mb: { xs: "80px", md: "100px" },
+      }}
+    >
+      <h2 className="title">{title}</h2>
+      <Typography
+        sx={{
+          fontWeight: 400,
+          fontSize: { xs: "18px", sm: "20px", md: "22px", lg: "34px" },
+          color: "#000",
+          width: { xs: "100%", sm: "60%", md: "60%", lg: "50%" },
+          marginBottom: "20px",
+          ml: { xs: "0", sm: "40%", md: "40%", lg: "50%" },
+        }}
+      >
+        {description}
+      </Typography>
 
-                }}>Наша компания уделяет большое внимание вашему личному комфорту и стремится стать надежным партнером на всех этапах вашего пути к осуществлению мечты. Наша главная задача обеспечить доступность и удобство в процессе строительства вашего идеального дома.</Typography>
-
-            <Acardion data={data} />
-
-        </Box >
-    );
+      <Acardion data={data} />
+    </Box>
+  );
 };
