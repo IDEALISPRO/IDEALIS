@@ -4,6 +4,7 @@ import {
   advantagesGet,
   agencyHistoryGet,
   missionValuesGet,
+  reviewsGet,
   teamGet,
 } from "./aboutThunks";
 
@@ -12,6 +13,7 @@ const initialState = {
   agencyHistory: [],
   missionValues: [],
   teams: [],
+  review: [],
   loading: false,
   error: null,
 };
@@ -63,6 +65,17 @@ const aboutSlice = createSlice({
         state.teams = payload;
       })
       .addCase(teamGet.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(reviewsGet.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(reviewsGet.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.review = payload;
+      })
+      .addCase(reviewsGet.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });
