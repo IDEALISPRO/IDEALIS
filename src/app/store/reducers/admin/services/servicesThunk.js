@@ -6,7 +6,7 @@ export const getServicesBanner = createAsyncThunk(
   "services/getBanner",
   async () => {
     try {
-      const { data } = await axiosApi.get("/v5/pages/services/");
+      const { data } = await axiosApi.get("/pages/services/");
       return data;
     } catch (e) {
       console.log(e);
@@ -19,7 +19,7 @@ export const getServicesStep = createAsyncThunk(
   "services/getStep",
   async () => {
     try {
-      const { data } = await axiosApi.get("/v5/pages/steps/");
+      const { data } = await axiosApi.get("/pages/steps/");
       return data;
     } catch (e) {
       console.log(e);

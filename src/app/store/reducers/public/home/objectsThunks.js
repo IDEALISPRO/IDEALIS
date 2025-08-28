@@ -5,7 +5,7 @@ export const objectsGet = createAsyncThunk(
   "contact/get",
   async (clientParams, { rejectWithValue }) => {
     try {
-      const { data } = await axiosApi.get(`/v2/base/listings/`, {
+      const { data } = await axiosApi.get(`/base/listings/`, {
         params: clientParams,
       });
       return data;

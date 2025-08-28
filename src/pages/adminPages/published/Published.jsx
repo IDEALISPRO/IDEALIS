@@ -9,7 +9,7 @@ import { publishedGet } from "../../../app/store/reducers/admin/published/publis
 export const Published = () => {
   const { list } = usePublished();
   const dispatch = useDispatch();
-  // const data = [
+
   //   {
   //     id: 1,
   //     img: img,

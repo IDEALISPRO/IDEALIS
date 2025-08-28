@@ -18,7 +18,7 @@ axiosApi.interceptors.request.use((config) => {
 });
 
 const axiosProfile = axios.create({
-  baseURL: `${BASE_URL}/api/`,
+  baseURL: `${BASE_URL}/api/v1/`,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",

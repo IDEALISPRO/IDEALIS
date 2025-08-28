@@ -3,9 +3,11 @@ import loca from "../../shared/icons/location.svg";
 import FavoriteSharpIcon from "@mui/icons-material/FavoriteSharp";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import HideImageIcon from "@mui/icons-material/HideImage";
+import { NavLink } from "react-router-dom";
 
 export const ObjectsCard = ({
   img,
+  id,
   title,
   district,
   street,
@@ -16,6 +18,9 @@ export const ObjectsCard = ({
   liked,
   onLike,
 }) => {
+
+  console.log(img);
+  
   return (
     <div className="objCard">
       {img ? (
@@ -45,7 +50,9 @@ export const ObjectsCard = ({
       </div>
 
       <div className="objCard__buttons">
-        <button className="objCard__buttons__more">Подробнее</button>
+        <NavLink className="objCard__buttons__more" to={`/objectDetail/${id}`}>
+          <button>Подробнее</button>
+        </NavLink>
         <button className="objCard__buttons__phone">
           <LocalPhoneIcon className="objCard__buttons__phone__icon" />
         </button>

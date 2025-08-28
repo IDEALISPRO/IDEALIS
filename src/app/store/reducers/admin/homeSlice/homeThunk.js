@@ -6,7 +6,7 @@ export const bannerGet = createAsyncThunk(
   "banner/get",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axiosApi.get(`/v4/main/banners/`);
+      const { data } = await axiosApi.get(`/main/banners/`);
       return data;
     } catch (e) {
       console.log(e);

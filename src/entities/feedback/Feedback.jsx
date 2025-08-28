@@ -3,6 +3,8 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form';
 import './feedback.scss'
+import { useDispatch } from 'react-redux';
+import { smsPosts } from '../../app/store/reducers/public/sendSms/sendSmsThunks';
 
 const registrationSchema = yup.object().shape({
   name: yup
@@ -23,20 +25,27 @@ const registrationSchema = yup.object().shape({
 });
 
 export const Feedback = () => {
+    const dispatch = useDispatch();
 
     const {
         register,
         handleSubmit,
         formState: { errors },
-        reset,
     } = useForm({
         resolver: yupResolver(registrationSchema),
     });
 
     const onSubmit = (data) => {
         console.log(data);
+        const message = {
+          name: data.name,
+          phone: data.number,
+          comment: data.comment,
+          agree: data.agreeToTerms,
+        };
+        dispatch(smsPosts(message));
         alert('Форма успешно отправлена!');
-        reset(); 
+        // reset(); 
     };
 
 

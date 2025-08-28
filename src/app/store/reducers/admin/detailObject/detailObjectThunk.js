@@ -6,7 +6,7 @@ export const detailGet = createAsyncThunk(
   "detail/get",
   async (id, thunkAPI) => {
     try {
-      const res = await axiosApi.get(`/v2/base/listings/${id}/`);
+      const res = await axiosApi.get(`/base/listings/${id}/`);
       return res.data; 
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || err.message);
