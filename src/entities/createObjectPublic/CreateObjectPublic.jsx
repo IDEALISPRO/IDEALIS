@@ -8,6 +8,7 @@ import { DescriptionField } from "./components/DescriptionField";
 import { Box, Typography } from "@mui/material";
 import { schema } from "./validation";
 import { TextFieldController } from "./components/TextFieldController";
+import "./createObjectPublic.scss";
 
 export const CreateObjectPublic = () => {
   const dispatch = useDispatch();
