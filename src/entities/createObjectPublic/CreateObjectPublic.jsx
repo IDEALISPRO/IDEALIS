@@ -97,8 +97,6 @@ export const CreateObjectPublic = () => {
         error={errors.number}
       />
       <DescriptionField control={control} errors={errors} />
-      {/* <Characteristics control={control} errors={errors} />
-      <OwnerContacts control={control} errors={errors} /> */}
       <SubmitButtons />
     </Box>
   );

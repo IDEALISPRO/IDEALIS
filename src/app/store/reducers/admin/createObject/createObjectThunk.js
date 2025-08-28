@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosProfile } from "../../../../services/AxiosPub";
 
-
 export const createObjectThunk = createAsyncThunk(
   "newObject/objectPost",
   async (newObject, { rejectWithValue }) => {
