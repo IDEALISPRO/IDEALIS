@@ -19,7 +19,6 @@ export const HomePage = () => {
     <div className="container">
       <Banner title={banner[0]?.site_name} description={banner[0]?.slogan} />
       <BannerPictures images={banner[0]?.banner_photos} />
-
       <Navigate />
       <NavigateMobile />
       <FilterWidget />

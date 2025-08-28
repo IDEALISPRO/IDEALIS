@@ -33,6 +33,7 @@ import { theme } from "../../shared/SiteTheme/SiteTheme";
 import { Messenger } from "../../features";
 import { Footer } from "../../widgets";
 import Cookies from "js-cookie";
+import { CreateObjectPublic } from "../../entities";
 
 function App() {
   const token = Cookies.get("token");
@@ -76,6 +77,10 @@ function App() {
     {
       path: "/objectDetail/:id",
       element: <ObjectDetail />,
+    },
+    {
+      path: "/create-object-public",
+      element: <CreateObjectPublic />,
     },
   ];
 
