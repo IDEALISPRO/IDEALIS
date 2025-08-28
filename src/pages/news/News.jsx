@@ -3,31 +3,30 @@ import {
   MarketNews,
   EventsSection,
   UsefulTips,
-  Articles,
 } from "../../widgets";
 import { Banner, BannerPictures } from "../../features";
-import { useBanner } from "../../app/store/reducers/admin/homeSlice/homeSlice";
-import { useEffect } from "react";
-import { bannerGet } from "../../app/store/reducers/admin/homeSlice/homeThunk";
+import { useNews } from "../../app/store/reducers/admin/news/newsSlice";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getNewsBanner } from "../../app/store/reducers/admin/news/newsThunk";
 
 export const News = () => {
+  const { list, loading, error } = useNews();
   const dispatch = useDispatch();
-  const { banner } = useBanner();
 
   useEffect(() => {
-    dispatch(bannerGet());
+    dispatch(getNewsBanner());
   }, [dispatch]);
 
   return (
     <div className="container">
-      <Banner title={banner[3]?.site_name} description={banner[3]?.slogan} />
-      <BannerPictures images={banner[3]?.banner_photos} />
+      <Banner title={list[0]?.title} description={list[0]?.description} />
+      <BannerPictures images={list[0]?.images} />
       <HotOffers />
       <MarketNews />
       <EventsSection />
       <UsefulTips />
-      <Articles />
+      {/* <Articles /> */}
     </div>
   );
 };

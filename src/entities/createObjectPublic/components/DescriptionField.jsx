@@ -1,6 +1,6 @@
+// DescriptionField.jsx
 import { Controller } from "react-hook-form";
 import { Typography, TextField, Checkbox, Box } from "@mui/material";
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export const DescriptionField = ({ control, errors }) => (
   <>
@@ -23,12 +23,9 @@ export const DescriptionField = ({ control, errors }) => (
         control={control}
         render={({ field }) => (
           <TextField
-            sx={{
-              mt: "15px",
-              width: "100%",
-            }}
+            sx={{ mt: "15px", width: "100%" }}
             {...field}
-            label="Напишите описание о недвижимосте"
+            label="Напишите описание о недвижимости"
             fullWidth
             error={!!errors.description}
             helperText={errors.description?.message}
@@ -36,25 +33,36 @@ export const DescriptionField = ({ control, errors }) => (
         )}
       />
 
-      <Box
-        className="form-box box"
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          border: "1px solid #ccc",
-          padding: '0 16px',
-          borderRadius: '8px',
-          mt: '14px'
-        }}
-      >
-        <Typography variant="body1">
-          Срочно{" "}
-          <span style={{ fontSize: "20", color: "#00000099" }}>(платно)</span>
-        </Typography>
-        <Checkbox {...label} />
-      </Box>
+      <Controller
+        name="urgent"
+        control={control}
+        render={({ field }) => (
+          <Box
+            className="form-box box"
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "1px solid #ccc",
+              padding: "0 16px",
+              borderRadius: "8px",
+              mt: "14px",
+            }}
+          >
+            <Typography variant="body1">
+              Срочно{" "}
+              <span style={{ fontSize: "20px", color: "#00000099" }}>
+                (платно)
+              </span>
+            </Typography>
+            <Checkbox
+              checked={field.value}
+              onChange={(e) => field.onChange(e.target.checked)}
+            />
+          </Box>
+        )}
+      />
     </Box>
   </>
 );

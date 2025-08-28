@@ -1,14 +1,15 @@
+// CreateObjectPublic.jsx
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { PhotoUpload } from "./components/PhotoUpload";
-import { FormFields } from "./components/FormFields";
 import { SubmitButtons } from "./components/SubmitButtons";
 import { DescriptionField } from "./components/DescriptionField";
 import { Box, Typography } from "@mui/material";
 import { schema } from "./validation";
 import { TextFieldController } from "./components/TextFieldController";
 import "./createObjectPublic.scss";
+import { createObjectThunk } from "../../app/store/reducers/admin/createObject/createObjectThunk";
 
 export const CreateObjectPublic = () => {
   const dispatch = useDispatch();
@@ -43,32 +44,37 @@ export const CreateObjectPublic = () => {
       allPrice: "",
       price: "",
       city: "",
+      address: "",
+      urgent: false,
     },
   });
 
   const onSubmit = async (data) => {
     console.log("Form submitted:", data);
 
-    // const newObject = {
-    //   images: data.photos,
-    //   title: data.description,
-    //   area_m2: Number(data.Square),
-    //   floor: data.Floor,
-    //   floors_total: data.NumberRooms,
-    //   price: data.price,
-    //   city: data.IntersectionStreets,
-    //   district: data.District,
-    //   street: data.IntersectionStreets,
-    //   house: data.realEstate,
-    //   owner_phone: data.number,
-    //   deal_type: data.offers,
-    //   rooms: data.NumberRooms,
-    //   house_series: data.HomeSeries,
-    //   repair_state: data.repairs,
-    // };
+    const newObject = {
+      images: data.photos,
+      title: null,
+      description: data.description,
+      area_m2: data.Square,
+      floor: data.Floor,
+      floors_total: null,
+      price: data.price,
+      city: null,
+      district: null,
+      street: data.address,
+      house: null,
+      owner_phone: data.number,
+      deal_type: null,
+      rooms: null,
+      house_series: null,
+      repair_state: null,
+      urgent: data.urgent,
+    };
 
-    // dispatch(createObjectThunk(newObject));
+    dispatch(createObjectThunk(newObject));
   };
+
   return (
     <Box
       className="container"
@@ -83,7 +89,49 @@ export const CreateObjectPublic = () => {
       </Typography>
 
       <PhotoUpload setValue={setValue} errors={errors} />
-      <FormFields control={control} errors={errors} />
+      <Typography
+        variant="h2"
+        sx={{ fontSize: "28px", fontWeight: 600, mt: "80px" }}
+      >
+        Описание *
+      </Typography>
+
+      <Box
+        sx={{
+          mt: "15px",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "20px",
+          justifyContent: "space-between",
+          alignItems: "start",
+        }}
+      >
+        <TextFieldController
+          name="address"
+          control={control}
+          label="Адрес"
+          error={errors.address}
+        />
+        <TextFieldController
+          name="Square"
+          control={control}
+          label="Площадь"
+          error={errors.Square}
+        />
+        <TextFieldController
+          name="Floor"
+          control={control}
+          label="Этажность"
+          error={errors.Floor}
+        />
+        <TextFieldController
+          name="price"
+          control={control}
+          label="Цена"
+          error={errors.price}
+        />
+      </Box>
+
       <Typography
         variant="h2"
         sx={{ fontSize: "28px", fontWeight: 600, mt: "80px" }}
@@ -96,9 +144,8 @@ export const CreateObjectPublic = () => {
         label="Телефон"
         error={errors.number}
       />
+
       <DescriptionField control={control} errors={errors} />
-      {/* <Characteristics control={control} errors={errors} />
-      <OwnerContacts control={control} errors={errors} /> */}
       <SubmitButtons />
     </Box>
   );

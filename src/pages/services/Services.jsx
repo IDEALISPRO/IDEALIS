@@ -1,24 +1,27 @@
-import { ServicesWidget } from "../../widgets";
-import { Banner, BannerPictures } from "../../features";
-import { useBanner } from "../../app/store/reducers/admin/homeSlice/homeSlice";
 import { useEffect } from "react";
-import { bannerGet } from "../../app/store/reducers/admin/homeSlice/homeThunk";
 import { useDispatch } from "react-redux";
+import { useServices } from "../../app/store/reducers/admin/services/servicesSlice";
+import { getServicesBanner } from "../../app/store/reducers/admin/services/servicesThunk";
+import { Banner, BannerPictures } from "../../features";
+import { ServicesWidget } from "../../widgets";
 
 export const Services = () => {
+  const { list } = useServices();
   const dispatch = useDispatch();
-  const { banner } = useBanner();
 
   useEffect(() => {
-    dispatch(bannerGet());
+    dispatch(getServicesBanner());
   }, [dispatch]);
 
   return (
     <div>
-      <Banner title={banner[2]?.site_name} description={banner[2]?.slogan} />
-      <BannerPictures images={banner[2]?.banner_photos} />
+      <Banner title={list[0]?.title} description={list[0]?.description} />
+      <BannerPictures images={list[0]?.images} />
 
-      <ServicesWidget />
+      <ServicesWidget
+        title={list[0]?.sub_title}
+        description={list[0]?.sub_description}
+      />
     </div>
   );
 };
