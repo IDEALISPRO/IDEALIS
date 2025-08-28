@@ -1,9 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import {PhotoUpload} from './components/PhotoUpload';
+import { PhotoUpload } from "./components/PhotoUpload";
+import { FormFields } from "./components/FormFields";
+import { SubmitButtons } from "./components/SubmitButtons";
+import { DescriptionField } from "./components/DescriptionField";
 import { Box, Typography } from "@mui/material";
 import { schema } from "./validation";
+import { TextFieldController } from "./components/TextFieldController";
 
 export const CreateObjectPublic = () => {
   const dispatch = useDispatch();
@@ -65,7 +69,11 @@ export const CreateObjectPublic = () => {
     // dispatch(createObjectThunk(newObject));
   };
   return (
-    <Box className="container" component="form" onSubmit={handleSubmit(onSubmit)}>
+    <Box
+      className="container"
+      component="form"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Typography
         variant="h2"
         sx={{ fontSize: "55px", fontWeight: 700, mt: "80px" }}
@@ -74,11 +82,23 @@ export const CreateObjectPublic = () => {
       </Typography>
 
       <PhotoUpload setValue={setValue} errors={errors} />
-      {/* <DescriptionField control={control} errors={errors} />
       <FormFields control={control} errors={errors} />
-      <Characteristics control={control} errors={errors} />
-      <OwnerContacts control={control} errors={errors} />
-      <SubmitButtons /> */}
+      <Typography
+        variant="h2"
+        sx={{ fontSize: "28px", fontWeight: 600, mt: "80px" }}
+      >
+        Номер телефона *
+      </Typography>
+      <TextFieldController
+        name="number"
+        control={control}
+        label="Телефон"
+        error={errors.number}
+      />
+      <DescriptionField control={control} errors={errors} />
+      {/* <Characteristics control={control} errors={errors} />
+      <OwnerContacts control={control} errors={errors} /> */}
+      <SubmitButtons />
     </Box>
   );
 };

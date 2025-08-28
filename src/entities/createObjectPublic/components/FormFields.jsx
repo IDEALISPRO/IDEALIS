@@ -9,7 +9,7 @@ export const FormFields = ({ control, errors }) => (
       variant="h2"
       sx={{ fontSize: "28px", fontWeight: 600, mt: "80px" }}
     >
-      Заполнение формы *
+      Описание *
     </Typography>
     <Box
       sx={{
@@ -21,28 +21,29 @@ export const FormFields = ({ control, errors }) => (
         alignItems: "start",
       }}
     >
-      {selectFields.map((field) => (
-        <SelectField
-          key={field.name}
-          name={field.name}
-          control={control}
-          label={field.label}
-          options={field.options}
-          error={errors[field.name]}
-        />
-      ))}
-
+      <TextFieldController
+        name="Square"
+        control={control}
+        label="Адресс"
+        error={errors.address}
+      />
       <TextFieldController
         name="Floor"
         control={control}
-        label="Этаж"
+        label="Площадь"
+        error={errors.Square}
+      />
+      <TextFieldController
+        name="Floor"
+        control={control}
+        label="Этажность"
         error={errors.Floor}
       />
       <TextFieldController
-        name="IntersectionStreets"
+        name="Price"
         control={control}
-        label="Пересечение улиц"
-        error={errors.IntersectionStreets}
+        label="Цена"
+        error={errors.Price}
       />
     </Box>
   </>

@@ -22,7 +22,7 @@ export const ContactsPage = () => {
     <div className="container">
       <Banner title={banner[4]?.site_name} description={banner[4]?.slogan} />
       <BannerPictures images={banner[4]?.banner_photos} />
-      <Contacts contact={contact} />
+      <Contacts contact={contact[0]} />
       <Feedback />
     </div>
   );
