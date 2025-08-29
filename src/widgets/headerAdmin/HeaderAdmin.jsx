@@ -1,7 +1,7 @@
 import { RxExit } from "react-icons/rx";
 import { FaCheck, FaPen } from "react-icons/fa";
 import supp from "../../shared/img/поддержка.svg";
-import "./HeaderAdmin.scss";
+import "./headerAdmin.scss";
 import logoAdmin from "../../shared/img/logoAdmin.png";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
