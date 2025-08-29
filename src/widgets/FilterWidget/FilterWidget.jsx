@@ -24,7 +24,7 @@ function valuetext(value) {
 }
 const minDistance = 1000;
 
-export const FilterWidget = () => {
+export const  FilterWidget = () => {
   const handleSearchClick = () => {
     alert("Иконка поиска нажата!");
   };
