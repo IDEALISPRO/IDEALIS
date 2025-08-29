@@ -53,7 +53,7 @@ export const CreateObjectForm = () => {
     console.log("Form submitted:", data);
 
     const newObject = {
-      images: data.photos, 
+      images: data.photos,
       title: data.description,
       area_m2: Number(data.Square),
       floor: data.Floor,
