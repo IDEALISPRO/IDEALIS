@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNews } from "../../app/store/reducers/admin/news/newsSlice";
 import { getNewsEvents } from "../../app/store/reducers/admin/news/newsThunk";
-import "./EventsSection.scss";
+import "./eventsSection.scss";
 // import data from "./api.json";
 
 export const EventsSection = () => {
