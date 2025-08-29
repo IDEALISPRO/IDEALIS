@@ -4,33 +4,18 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 export const PhotoUpload = ({ setValue, errors }) => {
   const [preview, setPreview] = useState([]);
-  const [photosBase64, setPhotosBase64] = useState([]);
+  const [photos, setPhotos] = useState([]);
 
   const handleFileChange = (e) => {
     const files = e.target.files ? Array.from(e.target.files) : [];
-    if (files.length === 0) return;
+    if (!files.length) return;
 
     const newPreviews = files.map((file) => URL.createObjectURL(file));
     setPreview((prev) => [...prev, ...newPreviews]);
 
-    let loadedCount = 0;
-    const newPhotosBase64 = [];
-
-    files.forEach((file, index) => {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        newPhotosBase64[index] = { url: [event.target.result] };
-        loadedCount++;
-        if (loadedCount === files.length) {
-          setPhotosBase64((prev) => {
-            const updated = [...prev, ...newPhotosBase64];
-            setValue("photos", updated, { shouldValidate: true });
-            return updated;
-          });
-        }
-      };
-      reader.readAsDataURL(file);
-    });
+    const updatedPhotos = [...photos, ...files];
+    setPhotos(updatedPhotos);
+    setValue("photos", updatedPhotos, { shouldValidate: true });
   };
 
   return (
@@ -43,7 +28,7 @@ export const PhotoUpload = ({ setValue, errors }) => {
           fontWeight: 600,
         }}
       >
-        Загрузите фото *{" "}
+        Загрузите фото *
         <Typography
           component="span"
           sx={{ color: "#00000080", fontSize: { xs: "14px", md: "18px" } }}
@@ -51,6 +36,9 @@ export const PhotoUpload = ({ setValue, errors }) => {
           (от 3 до 15)
         </Typography>
       </Typography>
+      {errors.photos && (
+        <FormHelperText error>{errors.photos.message}</FormHelperText>
+      )}
 
       <Box
         sx={{
@@ -70,11 +58,11 @@ export const PhotoUpload = ({ setValue, errors }) => {
             width: { sm: "100%", md: "30%" },
           }}
         >
-          {preview.length > 0 ? (
+          {preview.length > 3 ? (
             <>
               <Box
                 component="img"
-                src={preview[0]}
+                src={preview[preview.length - 1]}
                 alt="preview"
                 sx={{
                   width: "100%",
@@ -133,11 +121,7 @@ export const PhotoUpload = ({ setValue, errors }) => {
           )}
         </Button>
 
-        {errors.photos && (
-          <FormHelperText error>{errors.photos.message}</FormHelperText>
-        )}
-
-        {preview.length > 1 && (
+        {preview.length > 0 && (
           <Box
             sx={{
               width: { sm: "100%", md: "65%" },
@@ -149,7 +133,7 @@ export const PhotoUpload = ({ setValue, errors }) => {
               gap: "10px",
             }}
           >
-            {preview.slice(1).map((src, index) => (
+            {preview.map((src, index) => (
               <Box
                 key={index}
                 component="img"

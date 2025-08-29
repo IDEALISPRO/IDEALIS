@@ -38,6 +38,7 @@ import { CreateObjectPublic } from "../../entities";
 function App() {
   const token = Cookies.get("token");
   const role = Cookies.get("role");
+  const log = localStorage.getItem('');
 
   const isAuth = !!token;
 

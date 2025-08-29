@@ -9,8 +9,6 @@ export const Published = () => {
   const { list } = usePublished();
   const dispatch = useDispatch();
 
-  console.log(list);
-  
   useEffect(() => {
     dispatch(publishedGet());
   }, []);
@@ -18,7 +16,9 @@ export const Published = () => {
     <div className="container published">
       {list?.map((item) => (
         <ObjectsCard
+          type={'public'}
           key={item.id}
+          id={item.id}
           img={item.images[0]}
           title={item.title}
           location={`${item.district}, ул.${item.street}`}

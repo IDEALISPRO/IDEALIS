@@ -1,11 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosProfile } from "../../../../services/AxiosPub";
+import { axiosApi } from "../../../../services/AxiosPub";
 
 export const createObjectPublicThunk = createAsyncThunk(
   "newObject/objectPost",
-  async (newObject, { rejectWithValue }) => {
+  async (formData, { rejectWithValue }) => {
     try {
-      const { data } = await axiosProfile.post(`/base/listings/`, newObject);
+      const { data } = await axiosApi.post(`/base/listings/`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       return data;
     } catch (e) {
       console.log(e);

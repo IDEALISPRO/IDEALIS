@@ -1,10 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { PhotoUpload } from "./components/PhotoUpload";
 import { SubmitButtons } from "./components/SubmitButtons";
 import { DescriptionField } from "./components/DescriptionField";
-import { Box, Typography } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import { schema } from "./validation";
 import { TextFieldController } from "./components/TextFieldController";
 import "./createObjectPublic.scss";
@@ -51,28 +51,24 @@ export const CreateObjectPublic = () => {
   const onSubmit = async (data) => {
     console.log("Form submitted:", data);
 
-    const newObject = {
-      images: data.photos,
-      title: null,
-      description: data.description,
-      area_m2: data.Square,
-      floor: data.Floor,
-      floors_total: null,
-      price: data.price,
-      city: null,
-      district: null,
-      street: data.address,
-      house: null,
-      owner_phone: data.number,
-      deal_type: null,
-      rooms: null,
-      house_series: null,
-      repair_state: null,
-      urgent: data.urgent,
-    };
-    
+    const formData = new FormData();
 
-    dispatch(createObjectPublicThunk(newObject));
+    data.photos.forEach((file) => {
+      formData.append("images", file);
+    });
+
+    formData.append("description", data.description);
+    formData.append("area_m2", data.Square);
+    formData.append("floor", data.Floor);
+    formData.append("price", data.price);
+    formData.append("street", data.address);
+    formData.append("owner_phone", data.number);
+    formData.append("urgent", data.urgent);
+
+    console.log([...formData]); // проверить что все поля на месте
+
+    // диспатчим уже formData
+    dispatch(createObjectPublicThunk(formData));
   };
 
   return (
@@ -138,11 +134,31 @@ export const CreateObjectPublic = () => {
       >
         Номер телефона *
       </Typography>
-      <TextFieldController
+
+      <Controller
         name="number"
         control={control}
-        label="Телефон"
-        error={errors.number}
+        render={({ field }) => (
+          <TextField
+            sx={{ width: "50%" }}
+            {...field}
+            label="Телефон"
+            error={!!errors.number}
+            helperText={errors.number?.message}
+            onFocus={(e) => {
+              if (!field.value || !field.value.startsWith("+996")) {
+                field.onChange("+996");
+              }
+            }}
+            onChange={(e) => {
+              let value = e.target.value;
+              if (!value.startsWith("+996")) {
+                value = "+996" + value.replace(/\+996/g, "");
+              }
+              field.onChange(value);
+            }}
+          />
+        )}
       />
 
       <DescriptionField control={control} errors={errors} />

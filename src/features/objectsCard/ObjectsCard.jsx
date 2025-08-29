@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 
 export const ObjectsCard = ({
   img,
+  type,
   id,
   title,
   district,
@@ -18,7 +19,6 @@ export const ObjectsCard = ({
   liked,
   onLike,
 }) => {
-
   return (
     <div className="objCard">
       {img ? (
