@@ -30,9 +30,6 @@ export const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await dispatch(userLogin(data)).unwrap();
-      // Cookies.set("token", response.access);
-      // Cookies.set("refresh", response.refresh);
-      // Cookies.set("role", response.role);
       navigate("/admin/published");
       return response;
     } catch (error) {

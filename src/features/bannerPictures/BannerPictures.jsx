@@ -4,8 +4,6 @@ import "./bannerPictures.scss";
 export const BannerPictures = ({ images }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const image = images || [];
-  console.log(images);
-  
 
   useEffect(() => {
     if (image.length > 0) {

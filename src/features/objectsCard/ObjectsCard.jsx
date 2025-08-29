@@ -19,8 +19,6 @@ export const ObjectsCard = ({
   onLike,
 }) => {
 
-  console.log(img);
-  
   return (
     <div className="objCard">
       {img ? (
@@ -37,12 +35,16 @@ export const ObjectsCard = ({
       <div className="objCard__info">
         <h3 className="objCard__info__title">{title}</h3>
         <p className="objCard__info__location">
-          <img
-            className="objCard__info__location__mark"
-            src={loca}
-            alt=""
-            loading="lazy"
-          />
+          <NavLink
+            to={`/objectDetail/${id}`}
+          >
+            <img
+              className="objCard__info__location__mark"
+              src={loca}
+              alt=""
+              loading="lazy"
+            />
+          </NavLink>
           {`${district}, ${street}, ${city}`}
         </p>
         <p className="objCard__info__desc">{`${rooms} комн • ${area_m2} м²`}</p>
@@ -51,7 +53,9 @@ export const ObjectsCard = ({
 
       <div className="objCard__buttons">
         <NavLink className="objCard__buttons__more" to={`/objectDetail/${id}`}>
-          <button>Подробнее</button>
+          <button>
+            Подробнее
+            </button>
         </NavLink>
         <button className="objCard__buttons__phone">
           <LocalPhoneIcon className="objCard__buttons__phone__icon" />

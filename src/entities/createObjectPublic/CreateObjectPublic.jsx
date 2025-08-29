@@ -9,7 +9,7 @@ import { Box, Typography } from "@mui/material";
 import { schema } from "./validation";
 import { TextFieldController } from "./components/TextFieldController";
 import "./createObjectPublic.scss";
-import { createObjectThunk } from "../../app/store/reducers/admin/createObject/createObjectThunk";
+import { createObjectPublicThunk } from "../../app/store/reducers/admin/createObject/createObjectPublicThunks";
 
 export const CreateObjectPublic = () => {
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ export const CreateObjectPublic = () => {
       urgent: data.urgent,
     };
 
-    dispatch(createObjectThunk(newObject));
+    dispatch(createObjectPublicThunk(newObject));
   };
 
   return (
