@@ -26,6 +26,7 @@ import {
   VideoTutorials,
   EstateCategories,
   ObjectDetail,
+  CreateManager,
 } from "../../pages";
 import "../styles/app.scss";
 import { ThemeProvider } from "@mui/material/styles";
@@ -38,7 +39,7 @@ import { CreateObjectPublic } from "../../entities";
 function App() {
   const token = Cookies.get("token");
   const role = Cookies.get("role");
-  const log = localStorage.getItem('');
+  const log = localStorage.getItem("");
 
   const isAuth = !!token;
 
@@ -167,6 +168,14 @@ function App() {
               <Route key={index} path={item.path} element={item.element} />
             ))}
 
+          {/* {isAuth && role === "admin" && (
+            <Route
+              path={"/admin/create-manager/"}
+              element={<CreateManager />}
+            />
+          )} */}
+
+          <Route path={"/admin/create-manager/"} element={<CreateManager />} />
           {!isAuth && <Route path="/admin" element={<Login />} />}
         </Routes>
         <Messenger />
