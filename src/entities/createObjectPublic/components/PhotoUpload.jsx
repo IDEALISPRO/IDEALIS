@@ -4,28 +4,29 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 
 export const PhotoUpload = ({ setValue, errors }) => {
   const [preview, setPreview] = useState([]);
+  const [photosBase64, setPhotosBase64] = useState([]);
 
   const handleFileChange = (e) => {
     const files = e.target.files ? Array.from(e.target.files) : [];
+    if (files.length === 0) return;
 
-    const previews = files.map((file) => URL.createObjectURL(file));
-    setPreview(previews);
+    const newPreviews = files.map((file) => URL.createObjectURL(file));
+    setPreview((prev) => [...prev, ...newPreviews]);
 
-    if (files.length === 0) {
-      setValue("photos", []);
-      return;
-    }
-
-    const photosBase64 = [];
     let loadedCount = 0;
+    const newPhotosBase64 = [];
 
     files.forEach((file, index) => {
       const reader = new FileReader();
       reader.onload = (event) => {
-        photosBase64[index] = { url: [event.target.result] }; 
+        newPhotosBase64[index] = { url: [event.target.result] };
         loadedCount++;
         if (loadedCount === files.length) {
-          setValue("photos", photosBase64, { shouldValidate: true });
+          setPhotosBase64((prev) => {
+            const updated = [...prev, ...newPhotosBase64];
+            setValue("photos", updated, { shouldValidate: true });
+            return updated;
+          });
         }
       };
       reader.readAsDataURL(file);

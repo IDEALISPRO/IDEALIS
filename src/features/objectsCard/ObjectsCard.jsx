@@ -24,7 +24,7 @@ export const ObjectsCard = ({
       {img ? (
         <img
           className="objCard__img"
-          src={img[0]?.url}
+          src={img[0]?.url || img?.image_url}
           alt={title}
           loading="lazy"
         />
@@ -35,9 +35,7 @@ export const ObjectsCard = ({
       <div className="objCard__info">
         <h3 className="objCard__info__title">{title}</h3>
         <p className="objCard__info__location">
-          <NavLink
-            to={`/objectDetail/${id}`}
-          >
+          <NavLink to={`/objectDetail/${id}`}>
             <img
               className="objCard__info__location__mark"
               src={loca}
@@ -53,9 +51,7 @@ export const ObjectsCard = ({
 
       <div className="objCard__buttons">
         <NavLink className="objCard__buttons__more" to={`/objectDetail/${id}`}>
-          <button>
-            Подробнее
-            </button>
+          <button>Подробнее</button>
         </NavLink>
         <button className="objCard__buttons__phone">
           <LocalPhoneIcon className="objCard__buttons__phone__icon" />

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { detailGet } from "../../app/store/reducers/admin/detailObject/detailObjectThunk";
@@ -11,6 +11,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 export const ObjectDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const location = useLocation();
   const { detail, loading, error } = useDetail();
   const [open, setOpen] = useState(false);
   console.log(detail);
@@ -120,7 +121,7 @@ export const ObjectDetail = () => {
         </div>
       </section>
 
-      <Feedback />
+      {!location.pathname.startsWith("/admin") && <Feedback />}
 
       <ModalImg isOpen={open} setOpen={setOpen} images={detail?.images || []} />
     </div>

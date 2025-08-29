@@ -91,25 +91,6 @@ export const Login = () => {
           )}
         />
 
-        {/* <Controller
-          name="role"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              select
-              label="Роль"
-              fullWidth
-              margin="normal"
-              error={!!errors.role}
-              helperText={errors.role?.message}
-            >
-              <MenuItem value="admin">Админ</MenuItem>
-              <MenuItem value="manager">Менеджер</MenuItem>
-            </TextField>
-          )}
-        /> */}
-
         <Button
           type="submit"
           fullWidth

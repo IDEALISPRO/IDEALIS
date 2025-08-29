@@ -70,6 +70,7 @@ export const CreateObjectPublic = () => {
       repair_state: null,
       urgent: data.urgent,
     };
+    
 
     dispatch(createObjectPublicThunk(newObject));
   };

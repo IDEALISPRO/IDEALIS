@@ -24,7 +24,6 @@ export const Messenger = () => {
 
   return (
     <div>
-      {/* Кнопки */}
       <div className="iconsContainer">
         <button
           className="iconsContainer-btn messaging"
@@ -38,7 +37,6 @@ export const Messenger = () => {
         </button>
       </div>
 
-      {/* Сам чат */}
       {isChatOpen && (
         <div className="chat-popup">
           <div className="chat-header">
