@@ -23,7 +23,7 @@ export const Messenger = () => {
   };
 
   return (
-    <div>
+    <div className="messenger">
       <div className="iconsContainer">
         <button
           className="iconsContainer-btn messaging"

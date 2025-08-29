@@ -1,65 +1,79 @@
 .iconsContainer {
-    position: fixed;
-    right: 0;
-    bottom: 70px;
-    display: flex;
-    flex-direction: column; 
-    gap: 10px;
-    padding: 10px;
-
-    &-btn {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        border: none;
-        
-        &-icon {
-            width: 25px;
-            height: 25px;
-            color: #fff;
-        }
-    }
-
-    .whatsApp {
-        background: #48C95F;
-        svg{
-            color: #fff;
-        }
-    }
-    .messaging {
-        background-color: #9C88ff;
-        svg{
-            color: #fff;
-        }
-    }
-}
-
-.iconsContainer {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 20%;
+  right: 5%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 
   &-btn {
-    background: #fff;
-    border: none;
-    border-radius: 50%;
+    position: relative;
     width: 55px;
     height: 55px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border-radius: 50%;
+    border: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     &-icon {
       font-size: 28px;
-      color: #333;
+      color: #fff;
+      z-index: 1;
     }
 
-    &.whatsApp {
-      background: #25d366;
-      color: #fff;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 200, 255, 0.4);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      animation: ripple 2s infinite;
+      z-index: 0;
     }
+  }
+
+  .whatsApp {
+    background: #25d366;
+
+    &::after {
+      background: rgba(37, 211, 102, 0.4);
+    }
+  }
+
+  .messaging {
+    background: #9c88ff;
+
+    &::after {
+      background: rgba(156, 136, 255, 0.4);
+    }
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
   }
 }
 
@@ -71,7 +85,7 @@
   height: 500px;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -80,7 +94,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #9C88FF;
+    background: #9c88ff;
     color: #fff;
     padding: 10px;
     font-weight: 600;
