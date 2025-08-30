@@ -39,14 +39,12 @@ export const MiniMenu = () => {
       } show`}
     >
       <div className="footer-nav">
-        <a href="#home" className="footer-link">
-          <NavLink to={"/"} className="footer-link">
-            <span className="icon">
-              <GrHomeRounded size={30} />
-            </span>
-            Главная
-          </NavLink>
-        </a>
+        <NavLink to={"/"} className="footer-link">
+          <span className="icon">
+            <GrHomeRounded size={30} />
+          </span>
+          Главная
+        </NavLink>
         <NavLink to={"/favorites"} className="footer-link">
           <span className="icon">
             <RiHeartLine size={30} />
