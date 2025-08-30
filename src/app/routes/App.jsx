@@ -35,10 +35,14 @@ import { Messenger } from "../../features";
 import { Footer } from "../../widgets";
 import Cookies from "js-cookie";
 import { CreateObjectPublic } from "../../entities";
+import { publishedGet } from "../store/reducers/admin/published/publishedThunk";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 function App() {
   const token = Cookies.get("token");
   const role = Cookies.get("role");
+  const dispatch = useDispatch();
 
   const isAuth = !!token;
 
@@ -152,6 +156,12 @@ function App() {
     },
   ];
 
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(publishedGet());
+    }
+  }, [dispatch, isAuth]);
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -168,10 +178,7 @@ function App() {
             ))}
 
           {role === "admin" && (
-            <Route
-              path={"/admin/create-manager"}
-              element={<CreateManager />}
-            />
+            <Route path={"/admin/create-manager"} element={<CreateManager />} />
           )}
 
           {!isAuth && <Route path="/admin" element={<Login />} />}
