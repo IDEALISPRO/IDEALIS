@@ -3,11 +3,12 @@ import { axiosProfile } from "../../../../services/axiosApi";
 
 export const publishedGet = createAsyncThunk(
   "admin/published",
-  async (clientParams, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axiosProfile.get(`/users/listings/`, {
-        params: clientParams,
-      });
+      // const { data } = await axiosProfile.get(`/users/listings/`, {
+      //   params: clientParams,
+      // });
+      const { data } = await axiosProfile.get(`/users/listings/`);
       return data;
     } catch (e) {
       console.log(e);

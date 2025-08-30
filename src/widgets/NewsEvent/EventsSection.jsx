@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNews } from "../../app/store/reducers/admin/news/newsSlice";
 import { getNewsEvents } from "../../app/store/reducers/admin/news/newsThunk";
-import "./EventsSection.scss";
-// import data from "./api.json";
+import "./eventsSection.scss";
 
 export const EventsSection = () => {
   const { newsEvents: events } = useNews();
@@ -12,11 +11,6 @@ export const EventsSection = () => {
   useEffect(() => {
     dispatch(getNewsEvents());
   }, [dispatch]);
-  // const [events, setEvents] = useState([]);
-
-  // useEffect(() => {
-  //   setEvents(data);
-  // }, []);
 
   return (
     <section className="container events-section">

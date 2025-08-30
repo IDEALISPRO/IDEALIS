@@ -8,6 +8,7 @@ import en from "../../shared/en.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { NavLink, useLocation } from "react-router-dom";
 import { MiniMenu } from "../index";
+
 import { useDispatch } from "react-redux";
 import { headerGet } from "../../app/store/reducers/admin/header/headerThunk";
 import { useHeader } from "../../app/store/reducers/admin/header/headerSlice";
@@ -29,9 +30,9 @@ export const Header = () => {
   }, [dispatch]);
 
   const languages = [
-    { code: "ru", label: "Русский", flag: ru },
-    { code: "kg", label: "Кыргызча", flag: kg },
-    { code: "en", label: "English", flag: en },
+    { code: "ru", label: "Ру", flag: ru },
+    { code: "kg", label: "Kg", flag: kg },
+    { code: "en", label: "En", flag: en },
   ];
 
   const currentLang =
@@ -66,6 +67,17 @@ export const Header = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [menuOpen]);
+
+  // helper: change language, close dropdown/menu and reload the page
+  const changeLanguageAndReload = (code, closeMenu = false) => {
+    // i18n.changeLanguage returns a promise; wait for it to finish, then reload
+    i18n.changeLanguage(code).then(() => {
+      setDropdownOpen(false);
+      if (closeMenu) setMenuOpen(false);
+      // force full reload so server-rendered / fetched content updates
+      window.location.reload();
+    });
+  };
 
   return (
     <header className="container header">
@@ -121,10 +133,7 @@ export const Header = () => {
               {languages.map((lang) => (
                 <li
                   key={lang.code}
-                  onClick={() => {
-                    i18n.changeLanguage(lang.code);
-                    setDropdownOpen(false);
-                  }}
+                  onClick={() => changeLanguageAndReload(lang.code)}
                 >
                   {lang.label}
                 </li>
@@ -209,10 +218,7 @@ export const Header = () => {
                 <div
                   key={lang.code}
                   className="dropdown-item"
-                  onClick={() => {
-                    i18n.changeLanguage(lang.code);
-                    setDropdownOpen(false);
-                  }}
+                  onClick={() => changeLanguageAndReload(lang.code, true)}
                 >
                   <img src={lang.flag} alt="" className="flag-icon" />
                   <span>{lang.label}</span>

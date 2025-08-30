@@ -5,7 +5,7 @@ export const NavigateCard = ({
   activeSelect,
   setActiveSelect,
   type,
-  category,
+  title,
   id,
   images,
 }) => {
@@ -21,6 +21,7 @@ export const NavigateCard = ({
   const handleClick = () => {
     setActiveSelect(id);
   };
+  // console.log(title);
 
   return (
     <div
@@ -32,7 +33,7 @@ export const NavigateCard = ({
         {isActive ? (
           <NavLink
             to={"/estate-categories"}
-            state={{ title: category?.title }}
+            state={{ title: title?.title }}
             onClick={(e) => e.stopPropagation()}
           >
             <motion.div
@@ -47,12 +48,12 @@ export const NavigateCard = ({
                 <img
                   className="categories-navigate__hover-img"
                   src={images?.[0]?.url}
-                  alt={category?.title}
+                  alt={title}
                 />
                 <img
                   className="categories-navigate__hover-img"
                   src={images?.[1]?.url}
-                  alt={category?.title}
+                  alt={title}
                 />
               </div>
               <div className="categories-navigate__hover-item categories-navigate__hover-item--center">
@@ -63,7 +64,7 @@ export const NavigateCard = ({
                       : ""
                   }`}
                 >
-                  {listingCategoryTranslate[category.title] || category.title}
+                  {listingCategoryTranslate[title] || title}
                 </h2>
                 <p className="categories-navigate__hover-link">
                   Посмотреть все
@@ -73,12 +74,12 @@ export const NavigateCard = ({
                 <img
                   className="categories-navigate__hover-img"
                   src={images?.[2]?.url}
-                  alt={category?.title}
+                  alt={title}
                 />
                 <img
                   className="categories-navigate__hover-img"
                   src={images?.[3]?.url}
-                  alt={category?.title}
+                  alt={title}
                 />
               </div>
             </motion.div>
@@ -99,7 +100,7 @@ export const NavigateCard = ({
                   : ""
               }`}
             >
-              {listingCategoryTranslate[category?.title] || category?.title}
+              {listingCategoryTranslate[title] || title}
             </h2>
           </motion.div>
         )}

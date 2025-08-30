@@ -6,10 +6,27 @@ import "./modalImg.scss";
 import { useRef } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useEffect } from "react";
 
 export const ModalImg = ({ images, isOpen, setOpen }) => {
   const swiperRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
+
+
+
   return (
     <div className="modal-overlay">
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -21,9 +38,9 @@ export const ModalImg = ({ images, isOpen, setOpen }) => {
           modules={[Navigation]}
           className="carousel"
         >
-          {images.map((img, index) => (
-            <SwiperSlide key={index}>
-              <img src={img.img} alt={`slide-${index}`} />
+          {images?.length > 0 && images.map((img, id) => (
+            <SwiperSlide key={id}>
+              <img src={img.img || img.url} alt="" />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -1,5 +1,6 @@
+// DescriptionField.jsx
 import { Controller } from "react-hook-form";
-import { Typography, TextField, FormControlLabel, Checkbox } from "@mui/material";
+import { Typography, TextField, Checkbox, Box } from "@mui/material";
 
 export const DescriptionField = ({ control, errors }) => (
   <>
@@ -10,15 +11,58 @@ export const DescriptionField = ({ control, errors }) => (
       О вас *
     </Typography>
 
-    <Controller
-      name="agreement"
-      control={control}
-      render={({ field }) => (
-        <FormControlLabel
-          control={<Checkbox {...field} checked={field.value || false} />}
-          label="Согласен с условиями"
-        />
-      )}
-    />
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: { xs: "1fr ", sm: "repeat(2, 1fr)" },
+        gap: "20px",
+      }}
+    >
+      <Controller
+        name="description"
+        control={control}
+        render={({ field }) => (
+          <TextField
+            sx={{ mt: "15px", width: "100%" }}
+            {...field}
+            label="Напишите описание о недвижимости"
+            fullWidth
+            error={!!errors.description}
+            helperText={errors.description?.message}
+          />
+        )}
+      />
+
+      <Controller
+        name="urgent"
+        control={control}
+        render={({ field }) => (
+          <Box
+            className="form-box box"
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              border: "1px solid #ccc",
+              padding: "0 16px",
+              borderRadius: "8px",
+              mt: "14px",
+            }}
+          >
+            <Typography variant="body1">
+              Срочно{" "}
+              <span style={{ fontSize: "20px", color: "#00000099" }}>
+                (платно)
+              </span>
+            </Typography>
+            <Checkbox
+              checked={field.value}
+              onChange={(e) => field.onChange(e.target.checked)}
+            />
+          </Box>
+        )}
+      />
+    </Box>
   </>
 );

@@ -6,6 +6,8 @@ import { useState } from "react";
 
 export const DeletedCard = ({ img, title, location, description, price }) => {
   const [liked, setLiked] = useState(false);
+  console.log(img);
+  
 
   const HandleLike = () => {
     console.log(liked);
@@ -14,33 +16,38 @@ export const DeletedCard = ({ img, title, location, description, price }) => {
   return (
     <div className="deletedCard">
       <div className="img">
-        <img className="objCard__img" src={img} alt={title} loading="lazy" />
+        <img
+          className="deletedCard__img"
+          src={img.image_url}
+          alt={title}
+          loading="lazy"
+        />
         <span className="status">Удаленное</span>
       </div>
 
-      <div className="objCard__info">
-        <h3 className="objCard__info__title">{title}</h3>
-        <p className="objCard__info__location">
+      <div className="deletedCard__info">
+        <h3 className="deletedCard__info__title">{title}</h3>
+        <p className="deletedCard__info__location">
           <img
-            className="objCard__info__location__mark"
+            className="deletedCard__info__location__mark"
             src={loca}
             alt=""
             loading="lazy"
           />
           {location}
         </p>
-        <p className="objCard__info__desc">{description}</p>
-        <p className="objCard__info__price">{price}</p>
+        <p className="deletedCard__info__desc">{description}</p>
+        <p className="deletedCard__info__price">{price}</p>
       </div>
 
-      <div className="objCard__buttons">
-        <button className="objCard__buttons__more">Подробнее</button>
-        <button className="objCard__buttons__phone">
-          <LocalPhoneIcon className="objCard__buttons__phone__icon" />
+      <div className="deletedCard__buttons">
+        <button className="deletedCard__buttons__more">Подробнее</button>
+        <button className="deletedCard__buttons__phone">
+          <LocalPhoneIcon className="deletedCard__buttons__phone__icon" />
         </button>
-        <button onClick={HandleLike} className={"objCard__buttons__like"}>
+        <button onClick={HandleLike} className={"deletedCard__buttons__like"}>
           <FavoriteSharpIcon
-            className={`objCard__buttons__like__icon ${liked ? `red` : ""}`}
+            className={`deletedCard__buttons__like__icon ${liked ? `red` : ""}`}
           />
         </button>
       </div>

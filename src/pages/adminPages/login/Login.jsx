@@ -30,9 +30,6 @@ export const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await dispatch(userLogin(data)).unwrap();
-      // Cookies.set("token", response.access);
-      // Cookies.set("refresh", response.refresh);
-      // Cookies.set("role", response.role);
       navigate("/admin/published");
       return response;
     } catch (error) {
@@ -93,25 +90,6 @@ export const Login = () => {
             />
           )}
         />
-
-        {/* <Controller
-          name="role"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              select
-              label="Роль"
-              fullWidth
-              margin="normal"
-              error={!!errors.role}
-              helperText={errors.role?.message}
-            >
-              <MenuItem value="admin">Админ</MenuItem>
-              <MenuItem value="manager">Менеджер</MenuItem>
-            </TextField>
-          )}
-        /> */}
 
         <Button
           type="submit"

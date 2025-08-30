@@ -34,6 +34,9 @@ export const Favorites = () => {
     setFavorites((prev) => prev.filter((item) => item.id !== id));
   };
 
+  console.log(favorites);
+  
+
   return (
     <div className="container favorite__container">
       <Banner title={banner[5]?.site_name} description={banner[5]?.slogan} />
@@ -47,7 +50,7 @@ export const Favorites = () => {
           favorites.map((item) => (
             <ObjectsCard
               key={item.id}
-              images={item?.images}
+              img={item?.images}
               title={item.title}
               district={item.district}
               street={item.street}

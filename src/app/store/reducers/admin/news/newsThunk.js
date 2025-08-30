@@ -3,7 +3,7 @@ import { axiosApi } from "../../../../services/axiosApi";
 
 export const getNewsBanner = createAsyncThunk("news/getBanner", async () => {
   try {
-    const { data } = await axiosApi.get("/v5/pages/news/");
+    const { data } = await axiosApi.get("/pages/news/");
     return data;
   } catch (e) {
     console.log(e);
@@ -13,7 +13,7 @@ export const getNewsBanner = createAsyncThunk("news/getBanner", async () => {
 
 export const getHotDeals = createAsyncThunk("news/getHotDeals", async () => {
   try {
-    const { data } = await axiosApi.get("/v5/pages/hot_deals/");
+    const { data } = await axiosApi.get("/pages/hot_deals/");
     return data;
   } catch (e) {
     console.log(e);
@@ -25,7 +25,7 @@ export const getMarketNews = createAsyncThunk(
   "news/getMarketNews",
   async () => {
     try {
-      const { data } = await axiosApi.get("/v5/pages/realty_updates/");
+      const { data } = await axiosApi.get("/pages/realty_updates/");
       return data;
     } catch (e) {
       console.log(e);
@@ -38,7 +38,7 @@ export const getNewsEvents = createAsyncThunk(
   "news/getNewsEvents",
   async () => {
     try {
-      const { data } = await axiosApi.get("/v5/pages/happening/");
+      const { data } = await axiosApi.get("/pages/happening/");
       return data;
     } catch (e) {
       console.log(e);
@@ -51,7 +51,7 @@ export const getUsefulTips = createAsyncThunk(
   "news/getUsefulTips",
   async () => {
     try {
-      const { data } = await axiosApi.get("/v5/pages/useful_tips/");
+      const { data } = await axiosApi.get("/pages/useful_tips/");
       return data;
     } catch (e) {
       console.log(e);

@@ -7,13 +7,12 @@ import agentsReducer from "./reducers/admin/agents/agentsSlice";
 import publishedReducer from "./reducers/admin/published/publishedSlice";
 import servicesReducer from "./reducers/admin/services/servicesSlice";
 import newsReducer from "./reducers/admin/news/newsSlice";
-// import savedSearchedReducer from "./reducers/admin/savedSearches/savedSearchesSlice";
-// import savedSearchedReducer from "./reducers/admin/savedSearches/savedSearchesSlice";
 import bannerReducer from "./reducers/admin/homeSlice/homeSlice";
 import headerReducer from "./reducers/admin/header/headerSlice";
 import aboutReducer from "./reducers/public/about/aboutSlice";
 import contactReducer from "./reducers/public/contact/contactSlice";
 import objectsReducer from "./reducers/public/home/objectsSlice";
+import detailReducer from './reducers/admin/detailObject/detailObjectSlice';
 
 export const store = configureStore({
   reducer: {
@@ -31,5 +30,6 @@ export const store = configureStore({
     about: aboutReducer,
     contact: contactReducer,
     objects: objectsReducer,
+    detail: detailReducer,
   },
 });

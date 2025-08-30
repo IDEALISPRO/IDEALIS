@@ -145,6 +145,10 @@ function App() {
       path: "/admin/add-object",
       element: <CreateObject />,
     },
+    {
+      path: "/admin/objectDetail/:id",
+      element: <ObjectDetail />,
+    },
   ];
 
   return (

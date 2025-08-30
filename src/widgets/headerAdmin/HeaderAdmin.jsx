@@ -1,32 +1,108 @@
 import { RxExit } from "react-icons/rx";
 import { FaCheck, FaPen } from "react-icons/fa";
 import supp from "../../shared/img/поддержка.svg";
-import "./HeaderAdmin.scss";
+import "./headerAdmin.scss";
 import logoAdmin from "../../shared/img/logoAdmin.png";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { getUser, updateUser } from "../../app/store/reducers/auth/authThunks";
 import { logout, useAuth } from "../../app/store/reducers/auth/authSlice";
 
 export const HeaderAdmin = () => {
-  const fileInputRef = React.useRef(null);
+  const fileInputRef = useRef(null);
   const [preview, setPreview] = useState(null);
   const location = useLocation();
-  if (!location.pathname.startsWith("/admin")) return null;
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
-
   const [form, setForm] = useState({
-    name: user?.name || "",
-    phone_number: user?.phone_number || "",
-    avatar_url: user?.avatar_url || "",
-    avatar: File || null,
+    name: "",
+    phone_number: "",
+    avatar_url: "",
+    avatar: null,
   });
+
+  useEffect(() => {
+    if (user) {
+      setForm({
+        name: user.name || "",
+        phone_number: user.phone_number || "",
+        avatar_url: user.avatar_url || "",
+        avatar: null,
+      });
+    }
+  }, [user]);
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    return () => {
+      if (preview) URL.revokeObjectURL(preview);
+    };
+  }, [preview]);
+
+  const onFormSubmit = async () => {
+    try {
+      const updatedUser = await dispatch(updateUser(form)).unwrap();
+      setIsEditing(false);
+      setForm({
+        name: updatedUser.name,
+        phone_number: updatedUser.phone_number,
+        avatar_url: updatedUser.avatar_url,
+        avatar: null,
+      });
+      setPreview(null);
+    } catch {
+      alert("Ошибка обновления клиента");
+    }
+  };
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleDivClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const onFileChange = (e) => {
+    const { files } = e.target;
+    if (files && files[0]) {
+      const file = files[0];
+      setForm((prev) => ({
+        ...prev,
+        avatar: file,
+        avatar_url: "",
+      }));
+      setPreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleEditClick = async () => {
+    if (isEditing) {
+      await onFormSubmit();
+    } else {
+      setForm({
+        name: user?.name || "",
+        phone_number: user?.phone_number || "",
+        avatar_url: user?.avatar_url || "",
+        avatar: null,
+      });
+      setPreview(null);
+    }
+    setIsEditing((prev) => !prev);
+  };
+
+  if (!location.pathname.startsWith("/admin")) return null;
 
   const linksAdmin = [
     { name: "published", path: "/admin/published" },
@@ -45,55 +121,6 @@ export const HeaderAdmin = () => {
     { name: "video", path: "/admin/video-tutorials" },
   ];
 
-  const onFormSubmit = async () => {
-    try {
-      // console.log(state);
-
-      await dispatch(updateUser(form)).unwrap();
-      setIsEditing(false);
-      dispatch(getUser());
-    } catch {
-      alert("Ошибка обновления клиента");
-    }
-  };
-
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleDivClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
-
-  const onFileChange = (e) => {
-    const { name, files } = e.target;
-    if (files && files[0]) {
-      const file = files[0];
-      setForm((prev) => ({
-        ...prev,
-        avatar: file,
-        avatar_url: "",
-      }));
-      setPreview(URL.createObjectURL(file));
-    }
-  };
-  // const onFileChange1 = (e) => {
-  //   const { name, files } = e.target;
-  //   setState((prev) => ({
-  //     ...prev,
-  //     [name]: files[0],
-  //   }));
-  // };
-
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
-
-  // const [setMenuOpen] = useState(false);
-
   return (
     <div className="header-admin container">
       <div className="header-admin__top">
@@ -108,7 +135,6 @@ export const HeaderAdmin = () => {
                     alt="avatar"
                     onClick={handleDivClick}
                   />
-
                   <input
                     type="file"
                     style={{ display: "none" }}
@@ -118,7 +144,10 @@ export const HeaderAdmin = () => {
                   />
                 </>
               ) : (
-                <img src={user?.avatar_url || logoAdmin} alt="Аслан" />
+                <img
+                  src={user?.avatar_url || logoAdmin}
+                  alt={user?.name || "avatar"}
+                />
               )}
             </div>
             <div
@@ -148,23 +177,11 @@ export const HeaderAdmin = () => {
                 </>
               )}
             </div>
-
             <div className="user-profile__actions">
               <button
                 className="user-profile__action-btn"
                 title="Редактировать"
-                onClick={() => {
-                  setIsEditing((prev) => !prev);
-                  if (isEditing) {
-                    onFormSubmit();
-                  } else {
-                    setForm({
-                      name: user?.name || "",
-                      phone_number: user?.phone_number || "",
-                      avatar_url: user?.avatar_url || File,
-                    });
-                  }
-                }}
+                onClick={handleEditClick}
               >
                 {isEditing ? <FaCheck size={13} /> : <FaPen size={13} />}
               </button>
@@ -174,7 +191,7 @@ export const HeaderAdmin = () => {
                   navigate("/login");
                 }}
                 className="user-profile__action-btn"
-                title="Внешняя ссылка"
+                title="Выйти"
               >
                 <RxExit size={16} />
               </button>
@@ -215,10 +232,6 @@ export const HeaderAdmin = () => {
                   `nav-tab ${isActive ? "nav-tab--active" : ""}`
                 }
                 to={item.path}
-                // onClick={() => {
-                //   setMenuOpen(false);
-                //   e.preventDefault();
-                // }}
               >
                 {t(`adminLinks.${item.name}`)}
               </NavLink>

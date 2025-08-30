@@ -5,6 +5,7 @@ export const SubmitButtons = () => (
     sx={{
       width: { sm: "100%", lg: "60%" },
       display: "flex",
+      justifyContent: 'center',
       flexDirection: { xs: "column", sm: "row" },
       gap: { xs: "15px", sm: "20px" },
       m: { xs: "30px 0", sm: "50px auto" },

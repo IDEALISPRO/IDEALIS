@@ -5,7 +5,7 @@ export const missionValuesGet = createAsyncThunk(
   "missionValues/get",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axiosApi.get(`/v3/aboutidealis/mission-values/`);
+      const { data } = await axiosApi.get(`/aboutidealis/mission-values/`);
       return data;
     } catch (e) {
       console.log(e);
@@ -18,7 +18,7 @@ export const agencyHistoryGet = createAsyncThunk(
   "agencyHistory/get",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axiosApi.get(`/v3/aboutidealis/agency-history/`);
+      const { data } = await axiosApi.get(`/aboutidealis/agency-history/`);
       return data;
     } catch (e) {
       console.log(e);
@@ -31,7 +31,7 @@ export const advantagesGet = createAsyncThunk(
   "advantages/get",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axiosApi.get(`/v3/aboutidealis/advantages/`);
+      const { data } = await axiosApi.get(`/aboutidealis/advantages/`);
       return data;
     } catch (e) {
       console.log(e);
@@ -44,7 +44,7 @@ export const teamGet = createAsyncThunk(
   "team/get",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axiosApi.get(`/v3/aboutidealis/team/`);
+      const { data } = await axiosApi.get(`/aboutidealis/team/`);
       return data;
     } catch (e) {
       console.log(e);
@@ -57,7 +57,7 @@ export const reviewsGet = createAsyncThunk(
   "reviews/get",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axiosApi.get(`/v3/aboutidealis/reviews/`);
+      const { data } = await axiosApi.get(`/aboutidealis/reviews/`);
       return data;
     } catch (e) {
       console.log(e);

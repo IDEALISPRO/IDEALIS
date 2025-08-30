@@ -13,3 +13,16 @@ export const agentsGet = createAsyncThunk(
     }
   }
 );
+
+export const getAgentsWithoutToken = createAsyncThunk(
+  "agent/getWithoutToken",
+  async () => {
+    try {
+      const { data } = await axiosProfile.get(`/users/agents/`);
+      return data;
+    } catch (e) {
+      console.log(e);
+      return rejectWithValue(e.response?.data || e.message);
+    }
+  }
+);

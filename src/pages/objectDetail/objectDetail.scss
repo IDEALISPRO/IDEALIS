@@ -70,6 +70,10 @@
           border-radius: 50%;
           object-fit: cover;
         }
+        svg {
+          width: 100px;
+          height: 100px;
+        }
       }
 
       &_text {
