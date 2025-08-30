@@ -27,6 +27,8 @@ import {
   EstateCategories,
   ObjectDetail,
   CreateManager,
+  ChangeObject,
+  ChangeAdminObject,
 } from "../../pages";
 import "../styles/app.scss";
 import { ThemeProvider } from "@mui/material/styles";
@@ -152,7 +154,7 @@ function App() {
     },
     {
       path: "/admin/objectDetail/:id",
-      element: <ObjectDetail />,
+      element: <ChangeAdminObject />,
     },
   ];
 

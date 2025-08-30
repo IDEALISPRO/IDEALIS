@@ -13,6 +13,7 @@ import aboutReducer from "./reducers/public/about/aboutSlice";
 import contactReducer from "./reducers/public/contact/contactSlice";
 import objectsReducer from "./reducers/public/home/objectsSlice";
 import detailReducer from './reducers/admin/detailObject/detailObjectSlice';
+import detailObjectReducer from './reducers/admin/changeAdminObject/changeAdminObjectSlice';
 
 export const store = configureStore({
   reducer: {
@@ -31,5 +32,6 @@ export const store = configureStore({
     contact: contactReducer,
     objects: objectsReducer,
     detail: detailReducer,
+    detailObject: detailObjectReducer,
   },
 });

@@ -73,7 +73,7 @@ export const AdFreeCard = ({ item }) => {
               ))}
           </Box>
         </ImageList>
-        <h3 className="block1-title">{item?.owner_phone}</h3>
+        {/* <h3 className="block1-title">{item?.owner_phone}</h3> */}
         <p className="block1-text">Собственник</p>
         <button className="block1-btn">
           <NavLink to={`/admin/objectDetail/${item.id}`}>Подробнее</NavLink>
@@ -99,10 +99,10 @@ export const AdFreeCard = ({ item }) => {
             <span aria-hidden="true" className="dotline__leader" />
             <span className="dotline__value">{item?.price} с</span>
           </li>
-          <li className="list-li">
+          {/* <li className="list-li">
             Срочно:
             <input type="checkbox" className="list-checkbox" />
-          </li>
+          </li> */}
         </ul>
         <div className="location">
           <img src={location} alt="" className="location-img" />

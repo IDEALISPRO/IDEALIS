@@ -28,3 +28,4 @@ export { Sales } from "./adminPages/sales/Sales";
 export { SavedSearches } from "./adminPages/savedSearches/SavedSearches";
 export { VideoTutorials } from "./adminPages/videoTutorials/VideoTutorials";
 export { CreateManager } from "./adminPages/createManager/CreateManager";
+export { ChangeAdminObject } from "./adminPages/changeObject/ChangeAdminObject";

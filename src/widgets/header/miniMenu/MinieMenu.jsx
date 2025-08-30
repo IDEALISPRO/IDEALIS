@@ -45,18 +45,17 @@ export const MiniMenu = () => {
           </span>
           Главная
         </NavLink>
-        <NavLink to={"/favorites"} className="footer-link">
-          <span className="icon">
-            <RiHeartLine size={30} />
-          </span>
-          Избранное
-        </NavLink>
-
         <NavLink to={"/create-object-public"} className="footer-link">
           <span className="icon">
             <CiCirclePlus size={30} />
           </span>
           Подать
+        </NavLink>
+        <NavLink to={"/favorites"} className="footer-link">
+          <span className="icon">
+            <RiHeartLine size={30} />
+          </span>
+          Избранное
         </NavLink>
       </div>
     </div>
