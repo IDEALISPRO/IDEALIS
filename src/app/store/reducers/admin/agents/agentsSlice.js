@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
-import { agentsGet } from "./agentsThunks";
+import { agentsGet, getAgentsWithoutToken } from "./agentsThunks";
+import { get } from "react-hook-form";
 
 const initialState = {
   agents: [],
   loading: false,
   error: null,
+  list: [],
 };
 
 const agentsSlice = createSlice({
@@ -21,6 +23,17 @@ const agentsSlice = createSlice({
       state.agents = payload;
     });
     builder.addCase(agentsGet.rejected, (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    });
+    builder.addCase(getAgentsWithoutToken.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getAgentsWithoutToken.fulfilled, (state, { payload }) => {
+      state.loading = false;
+      state.list = payload;
+    });
+    builder.addCase(getAgentsWithoutToken.rejected, (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     });

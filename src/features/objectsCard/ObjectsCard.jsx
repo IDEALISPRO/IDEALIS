@@ -34,7 +34,7 @@ export const ObjectsCard = ({
       {img ? (
         <img
           className="objCard__img"
-          src={img[0]?.url || img?.image_url}
+          src={img?.url || img?.image_url}
           alt={title}
           loading="lazy"
           onClick={goToDetail}

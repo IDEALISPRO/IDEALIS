@@ -93,7 +93,7 @@ export const ObjectsSections = () => {
                 manager={item.manager?.phone_number}
                 key={item.id}
                 id={item.id}
-                img={item.images}
+                img={item.images[0]}
                 title={item.title}
                 district={item.district}
                 street={item.street}
