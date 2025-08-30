@@ -38,9 +38,7 @@ export const ObjectsSections = () => {
         if (!data?.stats) return;
 
         const newItem = {
-          stats: {
-            favorites: (data.stats.favorites ?? 0) + 1,
-          },
+          favorites: 1,
         };
 
         dispatch(detailLikesPatch({ id, newObject: newItem }));

@@ -27,12 +27,8 @@ export const ObjectDetail = () => {
           if (!data?.stats) return;
 
           const newItem = {
-            stats: {
-              views: (data.stats.views ?? 0) + 1,
-              favorites: data.stats.favorites ?? 0,
-              contacts: data.stats.contacts ?? 0,
-              last_show_at: data.stats.last_show_at || new Date().toISOString(),
-            },
+            views: 1,
+            last_show_at: data.stats.last_show_at || new Date().toISOString(),
           };
 
           dispatch(detailViewPatch({ id, newObject: newItem }));

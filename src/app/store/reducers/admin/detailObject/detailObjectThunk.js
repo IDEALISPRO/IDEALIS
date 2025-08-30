@@ -18,7 +18,7 @@ export const detailViewPatch = createAsyncThunk(
   "detailView/patch",
   async ({id, newObject}, thunkAPI) => {
     try {
-      const res = await axiosApi.patch(`/base/listings/${id}/`, newObject);
+      const res = await axiosApi.patch(`/users/stats/${id}/`, newObject);
       return res.data; 
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || err.message);
@@ -31,7 +31,7 @@ export const detailContactsPatch = createAsyncThunk(
   "detailContacts/patch",
   async ({id, newObject}, thunkAPI) => {
     try {
-      const res = await axiosApi.patch(`/base/listings/${id}/`, newObject);
+      const res = await axiosApi.patch(`/users/stats/${id}/`, newObject);
       return res.data; 
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || err.message);
@@ -43,7 +43,7 @@ export const detailLikesPatch = createAsyncThunk(
   "detailLikes/patch",
   async ({id, newObject}, thunkAPI) => {
     try {
-      const res = await axiosApi.patch(`/base/listings/${id}/`, newObject);
+      const res = await axiosApi.patch(`/users/stats/${id}/`, newObject);
       return res.data; 
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || err.message);

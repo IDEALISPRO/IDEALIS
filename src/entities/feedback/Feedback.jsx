@@ -55,12 +55,11 @@ export const Feedback = ({ id, stats }) => {
       });
 
       const newStats = {
-        ...stats,
-        contacts: (stats?.contacts ?? 0) + 1,
+        contacts: 1,
       };
 
       await dispatch(
-        detailContactsPatch({ id, newObject: { stats: newStats } })
+        detailContactsPatch({ id, newObject: newStats})
       );
 
       reset();
