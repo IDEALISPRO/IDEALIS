@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { Banner, ObjectsCard } from "../../features";
 import "./estateCategories.scss";
-import img from "../../shared/img/objImg.png";
 import { useDispatch } from "react-redux";
 import { useObjects } from "../../app/store/reducers/public/home/objectsSlice";
 import { objectsGet } from "../../app/store/reducers/public/home/objectsThunks";
@@ -12,7 +11,6 @@ export const EstateCategories = () => {
   console.log(location);
   const dispatch = useDispatch();
   const { objects } = useObjects();
-  // const listingTitle = getSumsByKind(clientDeals);
 
   const listingCategoryTranslate = {
     secondary: "Вторичное жильё",

@@ -8,12 +8,10 @@ import {
   detailGet,
   detailLikesPatch,
 } from "../../../app/store/reducers/admin/detailObject/detailObjectThunk";
-import { useDetail } from "../../../app/store/reducers/admin/detailObject/detailObjectSlice";
 
 export const ObjectsSections = () => {
   const dispatch = useDispatch();
   const { objects } = useObjects();
-  const { detail, loading, error } = useDetail();
 
   const [data, setData] = useState([]);
 
