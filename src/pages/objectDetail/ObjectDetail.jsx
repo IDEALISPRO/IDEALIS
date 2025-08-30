@@ -1,7 +1,10 @@
 import { useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { detailGet } from "../../app/store/reducers/admin/detailObject/detailObjectThunk";
+import {
+  detailGet,
+  detailViewPatch,
+} from "../../app/store/reducers/admin/detailObject/detailObjectThunk";
 import { useDetail } from "../../app/store/reducers/admin/detailObject/detailObjectSlice";
 import { Feedback, ModalImg } from "../../entities";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
@@ -18,7 +21,22 @@ export const ObjectDetail = () => {
 
   useEffect(() => {
     if (id) {
-      dispatch(detailGet(id));
+      dispatch(detailGet(id))
+        .unwrap()
+        .then((data) => {
+          if (!data?.stats) return;
+
+          const newItem = {
+            stats: {
+              views: (data.stats.views ?? 0) + 1,
+              favorites: data.stats.favorites ?? 0,
+              contacts: data.stats.contacts ?? 0,
+              last_show_at: data.stats.last_show_at || new Date().toISOString(),
+            },
+          };
+
+          dispatch(detailViewPatch({ id, newObject: newItem }));
+        });
     }
   }, [id, dispatch]);
 
@@ -121,7 +139,9 @@ export const ObjectDetail = () => {
         </div>
       </section>
 
-      {!location.pathname.startsWith("/admin") && <Feedback />}
+      {!location.pathname.startsWith("/admin") && (
+        <Feedback id={id} stats={detail.stats} />
+      )}
 
       <ModalImg isOpen={open} setOpen={setOpen} images={detail?.images || []} />
     </div>

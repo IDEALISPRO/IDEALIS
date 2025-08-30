@@ -3,7 +3,7 @@ import loca from "../../shared/icons/location.svg";
 import FavoriteSharpIcon from "@mui/icons-material/FavoriteSharp";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import HideImageIcon from "@mui/icons-material/HideImage";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export const ObjectsCard = ({
   img,
@@ -18,8 +18,17 @@ export const ObjectsCard = ({
   price,
   liked,
   onLike,
-  manager
+  manager,
 }) => {
+  const navigate = useNavigate();
+  const goToDetail = () => {
+    if (type === "public") {
+      navigate(`/admin/objectDetail/${id}`);
+    } else {
+      navigate(`/objectDetail/${id}`);
+    }
+  };
+
   return (
     <div className="objCard">
       {img ? (
@@ -28,6 +37,7 @@ export const ObjectsCard = ({
           src={img[0]?.url || img?.image_url}
           alt={title}
           loading="lazy"
+          onClick={goToDetail}
         />
       ) : (
         <HideImageIcon />
@@ -35,23 +45,28 @@ export const ObjectsCard = ({
 
       <div className="objCard__info">
         <h3 className="objCard__info__title">{title}</h3>
-        <p className="objCard__info__location">
-          <NavLink to={`/objectDetail/${id}`}>
-            <img
-              className="objCard__info__location__mark"
-              src={loca}
-              alt=""
-              loading="lazy"
-            />
-          </NavLink>
+        <div className="objCard__info__location" onClick={goToDetail}>
+          <img
+            className="objCard__info__location__mark"
+            src={loca}
+            alt=""
+            loading="lazy"
+          />
           {`${district}, ${street}, ${city}`}
-        </p>
+        </div>
         <p className="objCard__info__desc">{`${rooms} комн • ${area_m2} м²`}</p>
         <p className="objCard__info__price">{price} сом</p>
       </div>
 
       <div className="objCard__buttons">
-        <NavLink className="objCard__buttons__more" to={`/objectDetail/${id}`}>
+        <NavLink
+          className="objCard__buttons__more"
+          to={
+            type == "public"
+              ? `/admin/objectDetail/${id}`
+              : `/objectDetail/${id}`
+          }
+        >
           <button>Подробнее</button>
         </NavLink>
         <button className="objCard__buttons__phone">

@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { ToastContainer } from "react-toastify";
+import { detailContactsPatch } from "../../app/store/reducers/admin/detailObject/detailObjectThunk";
 
 const registrationSchema = yup.object().shape({
   name: yup
@@ -25,8 +26,9 @@ const registrationSchema = yup.object().shape({
     .required(),
 });
 
-export const Feedback = () => {
+export const Feedback = ({ id, stats }) => {
   const dispatch = useDispatch();
+  console.log(id, stats);
 
   const {
     register,
@@ -37,12 +39,12 @@ export const Feedback = () => {
     resolver: yupResolver(registrationSchema),
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (formData) => {
     const message = {
-      name: data.name,
-      phone: data.number,
-      comment: data.comment,
-      agree: data.agreeToTerms,
+      name: formData.name,
+      phone: formData.number,
+      comment: formData.comment,
+      agree: formData.agreeToTerms,
     };
 
     try {
@@ -51,6 +53,16 @@ export const Feedback = () => {
         position: "top-right",
         autoClose: 3000,
       });
+
+      const newStats = {
+        ...stats,
+        contacts: (stats?.contacts ?? 0) + 1,
+      };
+
+      await dispatch(
+        detailContactsPatch({ id, newObject: { stats: newStats } })
+      );
+
       reset();
     } catch (error) {
       toast.error("Ошибка при отправке формы!", {

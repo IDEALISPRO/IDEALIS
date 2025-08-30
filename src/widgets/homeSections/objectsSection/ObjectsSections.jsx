@@ -4,10 +4,16 @@ import "./objects.scss";
 import { useEffect, useState } from "react";
 import { objectsGet } from "../../../app/store/reducers/public/home/objectsThunks";
 import { useObjects } from "../../../app/store/reducers/public/home/objectsSlice";
+import {
+  detailGet,
+  detailLikesPatch,
+} from "../../../app/store/reducers/admin/detailObject/detailObjectThunk";
+import { useDetail } from "../../../app/store/reducers/admin/detailObject/detailObjectSlice";
 
 export const ObjectsSections = () => {
   const dispatch = useDispatch();
   const { objects } = useObjects();
+  const { detail, loading, error } = useDetail();
 
   const [data, setData] = useState([]);
 
@@ -15,7 +21,6 @@ export const ObjectsSections = () => {
     dispatch(objectsGet());
   }, [dispatch]);
   console.log(data);
-  
 
   useEffect(() => {
     if (objects?.length) {
@@ -29,6 +34,19 @@ export const ObjectsSections = () => {
   }, [objects]);
 
   const toggleLike = (id) => {
+    dispatch(detailGet(id))
+      .unwrap()
+      .then((data) => {
+        if (!data?.stats) return;
+
+        const newItem = {
+          stats: {
+            favorites: (data.stats.favorites ?? 0) + 1,
+          },
+        };
+
+        dispatch(detailLikesPatch({ id, newObject: newItem }));
+      });
     setData((prev) =>
       prev.map((item) =>
         item.id === id ? { ...item, liked: !item.liked } : item
