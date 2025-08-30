@@ -19,6 +19,7 @@ export const HeaderAdmin = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
+  const role = localStorage.getItem("role");
   const [form, setForm] = useState({
     name: "",
     phone_number: "",
@@ -105,20 +106,20 @@ export const HeaderAdmin = () => {
   if (!location.pathname.startsWith("/admin")) return null;
 
   const linksAdmin = [
-    { name: "published", path: "/admin/published" },
-    { name: "without_ads", path: "/admin/no-ads" },
-    { name: "advertising_requests", path: "/admin/advertising-requests" },
-    { name: "pending_approval", path: "/admin/pending-confirmation" },
-    { name: "deleted", path: "/admin/deleted" },
-    { name: "my_listings", path: "/admin/my-objects" },
-    { name: "sales", path: "/admin/sales" },
-    { name: "saved_searches", path: "/admin/saved-searches" },
-    { name: "others_searching", path: "/admin/others-looking" },
-    { name: "views", path: "/admin/impressions" },
-    { name: "lawyers", path: "/admin/lawyers" },
-    { name: "new_list", path: "/admin/list-agents" },
-    { name: "rules", path: "/admin/rules" },
-    { name: "video", path: "/admin/video-tutorials" },
+    { name: "published", path: "/admin/published/" },
+    { name: "without_ads", path: "/admin/no-ads/" },
+    { name: "advertising_requests", path: "/admin/advertising-requests/" },
+    { name: "pending_approval", path: "/admin/pending-confirmation/" },
+    { name: "deleted", path: "/admin/deleted/" },
+    { name: "my_listings", path: "/admin/my-objects/" },
+    { name: "sales", path: "/admin/sales/" },
+    { name: "saved_searches", path: "/admin/saved-searches/" },
+    { name: "others_searching", path: "/admin/others-looking/" },
+    { name: "views", path: "/admin/impressions/" },
+    { name: "lawyers", path: "/admin/lawyers/" },
+    { name: "new_list", path: "/admin/list-agents/" },
+    { name: "rules", path: "/admin/rules/" },
+    { name: "video", path: "/admin/video-tutorials/" },
   ];
 
   return (
@@ -236,6 +237,17 @@ export const HeaderAdmin = () => {
                 {t(`adminLinks.${item.name}`)}
               </NavLink>
             ))}
+
+            {role === "admin" && (
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-tab ${isActive ? "nav-tab--active" : ""}`
+                }
+                to={"/admin/create-manager"}
+              >
+                {t(`adminLinks.create_manager`)}
+              </NavLink>
+            )}
           </div>
         </div>
       </div>

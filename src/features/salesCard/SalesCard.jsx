@@ -17,7 +17,7 @@ export const SalesCard = ({ img, title, location, description, price }) => {
       <div className="img">
         <img
           className="salesCard__img"
-          src={img.image_url}
+          src={img?.image_url}
           alt={title}
           loading="lazy"
         />

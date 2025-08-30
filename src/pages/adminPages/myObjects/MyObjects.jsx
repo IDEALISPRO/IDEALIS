@@ -109,6 +109,7 @@ export const MyObjects = () => {
       {data?.listings.map((item) => (
         <ObjectsCard
           key={item.id}
+          id={item.id}
           img={item.images[0]}
           title={item.title}
           location={`г. ${item.city}, мкр. ${item.district}, ул. ${item.street}, 

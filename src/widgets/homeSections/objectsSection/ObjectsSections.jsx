@@ -14,6 +14,8 @@ export const ObjectsSections = () => {
   useEffect(() => {
     dispatch(objectsGet());
   }, [dispatch]);
+  console.log(data);
+  
 
   useEffect(() => {
     if (objects?.length) {
@@ -72,6 +74,7 @@ export const ObjectsSections = () => {
             .slice(0, 10)
             .map((item) => (
               <ObjectsCard
+                manager={item.manager?.phone_number}
                 key={item.id}
                 id={item.id}
                 img={item.images}

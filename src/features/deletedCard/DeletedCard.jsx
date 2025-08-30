@@ -7,7 +7,6 @@ import { useState } from "react";
 export const DeletedCard = ({ img, title, location, description, price }) => {
   const [liked, setLiked] = useState(false);
   console.log(img);
-  
 
   const HandleLike = () => {
     console.log(liked);
@@ -18,7 +17,7 @@ export const DeletedCard = ({ img, title, location, description, price }) => {
       <div className="img">
         <img
           className="deletedCard__img"
-          src={img.image_url}
+          src={img?.image_url}
           alt={title}
           loading="lazy"
         />

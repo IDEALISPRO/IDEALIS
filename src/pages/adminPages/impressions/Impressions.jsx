@@ -6,35 +6,6 @@ import { useAuth } from "../../../app/store/reducers/auth/authSlice";
 import { useEffect } from "react";
 import { getUser } from "../../../app/store/reducers/auth/authThunks";
 
-// const data = [
-//   {
-//     id: 1,
-//     img: img,
-//     title: "Готовые квартиры с ремонтом",
-//     location: "Аламедин-1, ул. Тыныстанова",
-//     description: "1 комн • 38 м²",
-//     price: "3 400 000 сом",
-//     liked: false,
-//   },
-//   {
-//     id: 2,
-//     img: img,
-//     title: "Готовые квартиры с ремонтом",
-//     location: "Аламедин-1, ул. Тыныстанова",
-//     description: "1 комн • 38 м²",
-//     price: "3 400 000 сом",
-//     liked: false,
-//   },
-//   {
-//     id: 3,
-//     img: img,
-//     title: "Готовые квартиры с ремонтом",
-//     location: "Аламедин-1, ул. Тыныстанова",
-//     description: "1 комн • 38 м²",
-//     price: "3 400 000 сом",
-//     liked: false,
-//   },
-// ];
 export const Impressions = () => {
   const dispatch = useDispatch();
   const { user: data } = useAuth();

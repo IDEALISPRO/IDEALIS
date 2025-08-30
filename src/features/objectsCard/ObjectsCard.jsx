@@ -18,6 +18,7 @@ export const ObjectsCard = ({
   price,
   liked,
   onLike,
+  manager
 }) => {
   return (
     <div className="objCard">
@@ -54,7 +55,9 @@ export const ObjectsCard = ({
           <button>Подробнее</button>
         </NavLink>
         <button className="objCard__buttons__phone">
-          <LocalPhoneIcon className="objCard__buttons__phone__icon" />
+          <a href={`tel:${manager}`}>
+            <LocalPhoneIcon className="objCard__buttons__phone__icon" />
+          </a>
         </button>
         <button onClick={onLike} className="objCard__buttons__like">
           <FavoriteSharpIcon

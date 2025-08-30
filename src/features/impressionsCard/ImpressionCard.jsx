@@ -22,7 +22,7 @@ export const ImpressionCard = ({
       <div className="impressionCard">
         <img
           className="impressionCard__img"
-          src={img.image_url}
+          src={img?.image_url}
           alt={title}
           loading="lazy"
         />
