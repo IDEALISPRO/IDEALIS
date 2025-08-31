@@ -1,9 +1,7 @@
-import { Box, Typography } from "@mui/material";
-import { SelectField } from "./SelectField";
-import { TextFieldController } from "./TextFieldController";
+import { Box, Typography, TextField, MenuItem } from "@mui/material";
 import { characteristics } from "../fields";
 
-export const Characteristics = ({ control, errors }) => (
+export const Characteristics = ({ formData, handleChange }) => (
   <>
     <Typography
       variant="h2"
@@ -22,13 +20,12 @@ export const Characteristics = ({ control, errors }) => (
       }}
     >
       {characteristics.map((field) => (
-        <SelectField
+        <TextField
           key={field.name}
-          name={field.name}
-          control={control}
+          select
           label={field.label}
-          options={field.options}
-          error={errors[field.name]}
+          value={formData[field.name] || ""}
+          onChange={(e) => handleChange(field.name, e.target.value)}
           sx={{
             width: {
               xs: "100%",
@@ -37,71 +34,65 @@ export const Characteristics = ({ control, errors }) => (
               lg: "32%",
             },
           }}
-        />
+        >
+          {field.options.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </TextField>
       ))}
 
-      <TextFieldController
-        name="area_m2"
-        control={control}
-        label="полшадь"
-        sx={{
-          width: {
-            xs: "50%",
-            sm: "32%",
-          },
-        }}
+      <TextField
+        label="Площадь"
+        type="number"
+        value={formData.area_m2 || ""}
+        onChange={(e) => handleChange("area_m2", e.target.value)}
+        sx={{ width: { xs: "50%", sm: "32%" } }}
       />
 
-      <SelectField
-        name="TypePayment"
-        control={control}
+      <TextField
+        select
         label="Вид платежа"
-        options={["Наличные", "Безналичные", "Ипотека"]}
-        error={errors.TypePayment}
-        sx={{
-          width: {
-            xs: "100%",
-            sm: "49%",
-          },
-        }}
-      />
-      <SelectField
-        name="ObjectStatus"
-        control={control}
+        value={formData.TypePayment || ""}
+        onChange={(e) => handleChange("TypePayment", e.target.value)}
+        sx={{ width: { xs: "100%", sm: "49%" } }}
+      >
+        {["Наличные", "Безналичные", "Ипотека"].map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </TextField>
+
+      <TextField
+        select
         label="Статус объекта"
-        options={["Сдан", "На стадии строительства"]}
-        error={errors.ObjectStatus}
-        sx={{
-          width: {
-            xs: "100%",
-            sm: "49%",
-          },
-        }}
+        value={formData.ObjectStatus || ""}
+        onChange={(e) => handleChange("ObjectStatus", e.target.value)}
+        sx={{ width: { xs: "100%", sm: "49%" } }}
+      >
+        {["Сдан", "На стадии строительства"].map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </TextField>
+
+      <TextField
+        label="Общая цена"
+        type="number"
+        value={formData.price || ""}
+        onChange={(e) => handleChange("price", e.target.value)}
+        sx={{ width: { xs: "100%", sm: "49%" } }}
       />
 
-      <TextFieldController
-        name="price"
-        control={control}
-        label="Общая цена"
-        error={errors.price}
-        sx={{
-          width: {
-            xs: "100%",
-            sm: "49%",
-          },
-        }}
-      />
-      <TextFieldController
-        name="allPrice"
-        control={control}
+      <TextField
         label="Цена на руки"
-        error={errors.allPrice}
-        sx={{
-          width: {
-            xs: "100%",
-            sm: "49%",
-          },
-        }}
+        type="number"
+        value={formData.allPrice || ""}
+        onChange={(e) => handleChange("allPrice", e.target.value)}
+        sx={{ width: { xs: "100%", sm: "49%" } }}
       />
     </Box>
   </>

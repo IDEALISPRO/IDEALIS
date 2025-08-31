@@ -69,11 +69,17 @@ export const ObjectsCard = ({
         >
           <button>Подробнее</button>
         </NavLink>
-        <button className="objCard__buttons__phone">
-          <a href={`tel:${manager}`}>
+        {type === "public" ? (
+          <button className="objCard__buttons__phone">
             <LocalPhoneIcon className="objCard__buttons__phone__icon" />
-          </a>
-        </button>
+          </button>
+        ) : (
+          <button className="objCard__buttons__phone">
+            <a href={`tel:${manager}`}>
+              <LocalPhoneIcon className="objCard__buttons__phone__icon" />
+            </a>
+          </button>
+        )}
         <button onClick={onLike} className="objCard__buttons__like">
           <FavoriteSharpIcon
             className={`objCard__buttons__like__icon ${liked ? "red" : ""}`}

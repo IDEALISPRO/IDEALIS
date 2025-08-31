@@ -37,8 +37,6 @@ import { CreateObjectPublic } from "../../entities";
 
 
 function App() {
-
-
   const routesArr = [
     { path: "/", element: <HomePage /> },
     { path: "/about", element: <AboutIDEALIS /> },

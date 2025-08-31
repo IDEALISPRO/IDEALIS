@@ -1,7 +1,6 @@
-import { Box } from "@mui/material";
-import { TextFieldController } from "./TextFieldController";
+import { Box, TextField } from "@mui/material";
 
-export const OwnerContacts = ({ control, errors }) => (
+export const OwnerContacts = ({ formData, handleChange }) => (
   <Box
     sx={{
       mt: "60px",
@@ -12,17 +11,17 @@ export const OwnerContacts = ({ control, errors }) => (
       alignItems: "start",
     }}
   >
-    <TextFieldController
-      name="userName"
-      control={control}
+    <TextField
       label="ФИО"
-      error={errors.userName}
+      value={formData.userName || ""}
+      onChange={(e) => handleChange("userName", e.target.value)}
+      sx={{ width: { xs: "100%", sm: "48%" } }}
     />
-    <TextFieldController
-      name="number"
-      control={control}
+    <TextField
       label="Телефон"
-      error={errors.number}
+      value={formData.number || ""}
+      onChange={(e) => handleChange("number", e.target.value)}
+      sx={{ width: { xs: "100%", sm: "48%" } }}
     />
   </Box>
 );

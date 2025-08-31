@@ -1,4 +1,3 @@
-import { Controller } from "react-hook-form";
 import {
   FormControl,
   InputLabel,
@@ -9,34 +8,26 @@ import {
 
 export const SelectDistrict = ({
   name,
-  control,
   label,
   options,
+  value,
+  onChange,
   error,
-  sx = {
-    width: {
-      xs: "100%",
-      sm: "48%",
-      md: "48%",
-      lg: "32%",
-    },
-  },
+  sx,
 }) => (
-  <Controller
-    name={name}
-    control={control}
-    render={({ field }) => (
-      <FormControl fullWidth margin="0" error={!!error} sx={sx}>
-        <InputLabel>{label}</InputLabel>
-        <Select {...field} label={label}>
-          {options.map((option, i) => (
-            <MenuItem key={i} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
-        <FormHelperText>{error?.message}</FormHelperText>
-      </FormControl>
-    )}
-  />
+  <FormControl fullWidth margin="0" error={!!error} sx={sx}>
+    <InputLabel>{label}</InputLabel>
+    <Select
+      value={value || ""}
+      label={label}
+      onChange={(e) => onChange(name, e.target.value)}
+    >
+      {options.map((option, i) => (
+        <MenuItem key={i} value={option.value}>
+          {option.label}
+        </MenuItem>
+      ))}
+    </Select>
+    <FormHelperText>{error || ""}</FormHelperText>
+  </FormControl>
 );

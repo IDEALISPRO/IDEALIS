@@ -11,6 +11,8 @@ export const userLogin = createAsyncThunk(
         `${BASE_URL}/api/v1/users/login/`,
         credentials
       );
+      console.log(data);
+      
       return data;
     } catch (e) {
       console.log(e);

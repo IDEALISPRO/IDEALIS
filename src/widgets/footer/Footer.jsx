@@ -7,8 +7,6 @@ import { FaVk } from "react-icons/fa6";
 import footerLogo from "../../shared/img/logogo.jpg";
 import Geeks from "../../shared/img/geeks.png";
 import { Link, useLocation } from "react-router-dom";
-
-
 import { useHeader } from "../../app/store/reducers/admin/header/headerSlice";
 
 export const Footer = () => {
@@ -20,10 +18,7 @@ export const Footer = () => {
     return null;
 
   const footerRef = useRef();
-
   const { header } = useHeader(); 
-  console.log(header);
-
   
   useEffect(() => {
     const footer = footerRef.current;
@@ -117,7 +112,7 @@ export const Footer = () => {
     
         <div className="footer-logo-div">
           {header?.logo ? (
-            <img src={header.logo} alt="IDEALIS" className="footer-logo" />
+            <img src={header.image_icon} alt="IDEALIS" className="footer-logo" />
           ) : (
             <img src={footerLogo} alt="IDEALIS" className="footer-logo" />
           )}
@@ -125,7 +120,6 @@ export const Footer = () => {
 
         <hr />
 
-        {/* нижний блок */}
         <a
           href="https://geeks.kg/"
           target="_blank"

@@ -1,4 +1,5 @@
 .Banner {
+  text-align: center;
   .BannerTitle {
     font-family: "Montserrat";
     font-weight: 700;
@@ -23,6 +24,9 @@
     text-transform: uppercase;
     max-width: 71%;
     margin: 20px auto 65px;
+  }
+  .logo {
+    width: 70%;
   }
 
   @media (max-width: 1400px) {

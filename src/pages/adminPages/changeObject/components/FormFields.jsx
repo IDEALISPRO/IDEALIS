@@ -1,33 +1,27 @@
-import { Box, Typography } from "@mui/material";
-import { SelectField } from "./SelectField";
-import { TextFieldController } from "./TextFieldController";
-import { selectFields } from "../fields";
+import { Box, Typography, TextField, MenuItem } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAgents } from "../../../../app/store/reducers/admin/agents/agentsSlice";
 import { getAgentsWithoutToken } from "../../../../app/store/reducers/admin/agents/agentsThunks";
 import { axiosApi } from "../../../../app/services/axiosApi";
-import { SelectDistrict } from "./SelectDistrict";
+import { selectFields } from "../fields";
 
-export const FormFields = ({ control, errors }) => {
+export const FormFields = ({ formData, handleChange }) => {
   const { list } = useAgents();
   const dispatch = useDispatch();
   const [district, setDistrict] = useState([]);
 
   useEffect(() => {
     dispatch(getAgentsWithoutToken());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     axiosApi
       .get("/users/raion/")
-      .then(({ data }) => {
-        setDistrict(data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+      .then(({ data }) => setDistrict(data))
+      .catch((e) => console.log(e));
   }, []);
+
   return (
     <>
       <Typography
@@ -36,6 +30,7 @@ export const FormFields = ({ control, errors }) => {
       >
         Заполнение формы *
       </Typography>
+
       <Box
         sx={{
           mt: "15px",
@@ -46,45 +41,64 @@ export const FormFields = ({ control, errors }) => {
           alignItems: "start",
         }}
       >
-        <SelectField
-          name={"Agent"}
-          control={control}
-          label={"Агент"}
-          options={list.map((item) => item.name)}
-          error={errors["Agent"]}
-        />
+        <TextField
+          select
+          label="Агент"
+          value={formData.Agent || ""}
+          onChange={(e) => handleChange("Agent", e.target.value)}
+          sx={{ width: { xs: "100%", sm: "48%" } }}
+        >
+          {list.map((item) => (
+            <MenuItem key={item.id} value={item.name}>
+              {item.name}
+            </MenuItem>
+          ))}
+        </TextField>
+
         {selectFields.map((field) => (
-          <SelectField
+          <TextField
             key={field.name}
-            name={field.name}
-            control={control}
+            select
             label={field.label}
-            options={field.options}
-            error={errors[field.name]}
-          />
+            value={formData[field.name] || ""}
+            onChange={(e) => handleChange(field.name, e.target.value)}
+            sx={{ width: { xs: "100%", sm: "48%" } }}
+          >
+            {field.options.map((option) => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </TextField>
         ))}
 
-        <SelectDistrict
-          name={"District"}
-          control={control}
-          label={"Район"}
-          options={district.map((item) => ({
-            value: item.id,
-            label: item.title,
-          }))}
+        <TextField
+          select
+          label="Район"
+          value={formData.District || ""}
+          onChange={(e) => handleChange("District", e.target.value)}
+          sx={{ width: { xs: "100%", sm: "48%" } }}
+        >
+          {district.map((item) => (
+            <MenuItem key={item.id} value={item.id}>
+              {item.title}
+            </MenuItem>
+          ))}
+        </TextField>
+
+        <TextField
+          label="Этаж"
+          type="number"
+          value={formData.Floor || ""}
+          onChange={(e) => handleChange("Floor", e.target.value)}
+          sx={{ width: { xs: "100%", sm: "48%" } }}
         />
 
-        <TextFieldController
-          name="Floor"
-          control={control}
-          label="Этаж"
-          error={errors.Floor}
-        />
-        <TextFieldController
-          name="IntersectionStreets"
-          control={control}
+        <TextField
           label="Пересечение улиц"
-          error={errors.IntersectionStreets}
+          value={formData.IntersectionStreets || ""}
+          onChange={(e) => handleChange("IntersectionStreets", e.target.value)}
+          sx={{ width: { xs: "100%", sm: "48%" } }}
         />
       </Box>
     </>

@@ -1,7 +1,6 @@
-import { Controller } from "react-hook-form";
 import { Typography, TextField } from "@mui/material";
 
-export const DescriptionField = ({ control, errors }) => (
+export const DescriptionField = ({ value, onChange }) => (
   <>
     <Typography
       variant="h2"
@@ -10,25 +9,19 @@ export const DescriptionField = ({ control, errors }) => (
       Описание *
     </Typography>
 
-    <Controller
-      name="description"
-      control={control}
-      render={({ field }) => (
-        <TextField
-          sx={{
-            mt: '15px',
-            width: {
-              xs: "100%",
-              sm: "60%",
-            },
-          }}
-          {...field}
-          label="Напишите описание о недвижимосте"
-          fullWidth
-          error={!!errors.description}
-          helperText={errors.description?.message}
-        />
-      )}
+    <TextField
+      sx={{
+        mt: "15px",
+        width: {
+          xs: "100%",
+          sm: "60%",
+        },
+      }}
+      label="Напишите описание о недвижимости"
+      fullWidth
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      rows={2}
     />
   </>
 );

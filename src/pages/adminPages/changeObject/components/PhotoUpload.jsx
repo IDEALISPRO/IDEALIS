@@ -9,10 +9,9 @@ import {
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-export const PhotoUpload = ({ value = [], onChange, errors }) => {
+export const PhotoUpload = ({ value = [], onChange }) => {
   const [preview, setPreview] = useState([]);
 
-  // обновляем превью при изменении value (например, если пришли данные с бэка)
   useEffect(() => {
     if (!value || value.length === 0) {
       setPreview([]);
@@ -20,15 +19,14 @@ export const PhotoUpload = ({ value = [], onChange, errors }) => {
     }
 
     const initialPreviews = value.map((photo) => {
-      if (typeof photo === "string") return photo; // уже сохранённые URL
-      if (photo instanceof File) return URL.createObjectURL(photo); // новые загруженные
+      if (typeof photo === "string") return photo;
+      if (photo instanceof File) return URL.createObjectURL(photo);
       return photo.url || photo.image_url || "";
     });
 
     setPreview(initialPreviews);
   }, [value]);
 
-  // загрузка файлов
   const handleFileChange = (e) => {
     const files = e.target.files ? Array.from(e.target.files) : [];
     if (files.length === 0) return;
@@ -40,10 +38,8 @@ export const PhotoUpload = ({ value = [], onChange, errors }) => {
       return;
     }
 
-    // обновляем форму
     onChange(updatedValue);
 
-    // локально добавляем превью для новых файлов
     const newPreviews = files.map((file) => URL.createObjectURL(file));
     setPreview((prev) => [...prev, ...newPreviews]);
   };
@@ -52,7 +48,9 @@ export const PhotoUpload = ({ value = [], onChange, errors }) => {
     const updatedPhotos = value.filter((_, index) => index !== indexToRemove);
     onChange(updatedPhotos);
 
-    const updatedPreview = preview.filter((_, index) => index !== indexToRemove);
+    const updatedPreview = preview.filter(
+      (_, index) => index !== indexToRemove
+    );
     setPreview(updatedPreview);
   };
 
@@ -85,7 +83,6 @@ export const PhotoUpload = ({ value = [], onChange, errors }) => {
           mt: 2,
         }}
       >
-        {/* Главное фото */}
         {preview.length > 0 && (
           <Box
             sx={{
@@ -129,7 +126,6 @@ export const PhotoUpload = ({ value = [], onChange, errors }) => {
           </Box>
         )}
 
-        {/* Сетка миниатюр + кнопка добавления */}
         <Box
           sx={{
             width: { sm: "100%", md: preview.length > 0 ? "65%" : "100%" },
@@ -214,7 +210,7 @@ export const PhotoUpload = ({ value = [], onChange, errors }) => {
         </Box>
       </Box>
 
-      <FormHelperText error>{errors.photos?.message}</FormHelperText>
+      {/* <FormHelperText error>{errors.photos?.message}</FormHelperText> */}
     </>
   );
 };
