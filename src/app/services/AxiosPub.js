@@ -23,7 +23,7 @@ axiosApi.interceptors.request.use((config) => {
 const axiosProfile = axios.create({
   baseURL: `${BASE_URL}/api/v1/`,
   headers: {
-    "Content-Type": "application/json",
+    // "Content-Type": "application/json",
     Accept: "application/json",
     Authorization: `Bearer ${Cookies.get("token")}`,
   },

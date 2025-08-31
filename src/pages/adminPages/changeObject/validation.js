@@ -6,7 +6,7 @@ const characteristicOptions = {
   Communications: ["Газ", "Электричество", "Отопление"],
   offers: ["Срочная продажа"],
   furniture: ["Да", "Нет"],
-  Square: ["1 m2", "2 m2", "3 m2", "4 m2"],
+  Square: [1, 2, 3, 4],
 };
 
 const selectOptions = {
@@ -44,11 +44,6 @@ export const schema = yup.object().shape({
     .string()
     .oneOf(characteristicOptions.furniture, "Выберите наличие мебели")
     .required("Обязательное поле"), //
-  Square: yup
-    .string()
-    .oneOf(characteristicOptions.Square, "Выберите корректную площадь")
-    .required("Обязательное поле"), //
-
   deal: yup
     .string()
     .oneOf(selectOptions.deal, "Выберите корректный тип сделки")
@@ -65,10 +60,6 @@ export const schema = yup.object().shape({
     .string()
     .oneOf(selectOptions.HomeSeries, "Выберите серию дома")
     .required("Обязательное поле"), //
-
-  photos: yup.mixed().test("required", "Загрузите от 3 до 15 фото", (value) => {
-    return value && value.length >= 3 && value.length <= 15;
-  }), //
   TypePayment: yup.string().required("Выберите вид платежа"), //
   ObjectStatus: yup.string().required("Укажите статус объекта"), //
   description: yup.string().required("Введите описание"), //

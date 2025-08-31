@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { getUser, updateUser } from "../../app/store/reducers/auth/authThunks";
 import { logout, useAuth } from "../../app/store/reducers/auth/authSlice";
+import Cookies from "js-cookie";
 
 export const HeaderAdmin = () => {
   const fileInputRef = useRef(null);
@@ -18,8 +19,10 @@ export const HeaderAdmin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useAuth();
+  console.log(user);
+  
   const [isEditing, setIsEditing] = useState(false);
-  const role = localStorage.getItem("role");
+  const role = Cookies.get("role");
   const [form, setForm] = useState({
     name: "",
     phone_number: "",
@@ -245,7 +248,17 @@ export const HeaderAdmin = () => {
                 }
                 to={"/admin/create-manager"}
               >
-                {t(`adminLinks.create_manager`)}
+                Создание менеджера
+              </NavLink>
+            )}
+            {role === "admin" && (
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-tab ${isActive ? "nav-tab--active" : ""}`
+                }
+                to={"/admin/all-manager"}
+              >
+                Все менеджера
               </NavLink>
             )}
           </div>

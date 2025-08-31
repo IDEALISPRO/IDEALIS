@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import { getUser, updateUser, userLogin } from "./authThunks";
+
 const initialState = {
   loading: false,
   login: null,

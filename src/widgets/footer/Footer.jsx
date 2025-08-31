@@ -22,6 +22,9 @@ export const Footer = () => {
   const footerRef = useRef();
 
   const { header } = useHeader(); 
+  console.log(header);
+
+  
   useEffect(() => {
     const footer = footerRef.current;
     if (!footer) return;

@@ -62,10 +62,6 @@ export const schema = yup.object().shape({
     .string()
     .oneOf(selectOptions.NumberRooms, "Выберите корректное количество комнат")
     .required("Обязательное поле"),//
-  Agent: yup
-    .string()
-    .oneOf(selectOptions.Agent, "Выберите агента")
-    .required("Обязательное поле"),//
   District: yup
     .string()
     .oneOf(selectOptions.District, "Выберите район")

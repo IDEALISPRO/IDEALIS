@@ -20,12 +20,7 @@ export const objectPatch = createAsyncThunk(
     try {
       const { data } = await axiosProfile.patch(
         `/users/listings/${id}/`,
-        newItem,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        newItem
       );
       return data;
     } catch (e) {
@@ -34,3 +29,9 @@ export const objectPatch = createAsyncThunk(
     }
   }
 );
+
+// {
+//   headers: {
+//     "Content-Type": "multipart/form-data",
+//   },
+// }

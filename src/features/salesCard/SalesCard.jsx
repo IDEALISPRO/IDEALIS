@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export const SalesCard = ({ img, title, location, description, price }) => {
   const [liked, setLiked] = useState(false);
-  console.log(img);
 
   const HandleLike = () => {
     console.log(liked);

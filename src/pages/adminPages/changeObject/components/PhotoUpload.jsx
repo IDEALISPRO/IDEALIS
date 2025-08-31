@@ -1,47 +1,59 @@
 import { useEffect, useState } from "react";
-import { Box, Button, Typography, FormHelperText } from "@mui/material";
+import {
+  Box,
+  Typography,
+  FormHelperText,
+  Button,
+  IconButton,
+} from "@mui/material";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import CancelIcon from "@mui/icons-material/Cancel";
 
-export const PhotoUpload = ({ setValue, errors, value = [] }) => {
+export const PhotoUpload = ({ value = [], onChange, errors }) => {
   const [preview, setPreview] = useState([]);
 
+  // обновляем превью при изменении value (например, если пришли данные с бэка)
   useEffect(() => {
-    if (value && value.length > 0) {
-      // поддержка строк (base64/URL) и объектов с image_url
-      const initialPreviews = value.map((photo) =>
-        typeof photo === "string" ? photo : photo.image_url || photo.url || ""
-      );
-      setPreview(initialPreviews);
-      setValue("photos", initialPreviews); // фиксируем в react-hook-form
-    }
-  }, [value, setValue]);
-
-  const handleFileChange = (e) => {
-    const files = e.target.files ? Array.from(e.target.files) : [];
-
-    if (files.length === 0) {
+    if (!value || value.length === 0) {
       setPreview([]);
-      setValue("photos", []);
       return;
     }
 
-    const previews = files.map((file) => URL.createObjectURL(file));
-    setPreview(previews);
-
-    const photosBase64 = [];
-    let loadedCount = 0;
-
-    files.forEach((file, index) => {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        photosBase64[index] = event.target.result; // base64 строка
-        loadedCount++;
-        if (loadedCount === files.length) {
-          setValue("photos", photosBase64, { shouldValidate: true });
-        }
-      };
-      reader.readAsDataURL(file);
+    const initialPreviews = value.map((photo) => {
+      if (typeof photo === "string") return photo; // уже сохранённые URL
+      if (photo instanceof File) return URL.createObjectURL(photo); // новые загруженные
+      return photo.url || photo.image_url || "";
     });
+
+    setPreview(initialPreviews);
+  }, [value]);
+
+  // загрузка файлов
+  const handleFileChange = (e) => {
+    const files = e.target.files ? Array.from(e.target.files) : [];
+    if (files.length === 0) return;
+
+    const updatedValue = [...value, ...files];
+
+    if (updatedValue.length > 15) {
+      console.log("Достигнут лимит в 15 фотографий");
+      return;
+    }
+
+    // обновляем форму
+    onChange(updatedValue);
+
+    // локально добавляем превью для новых файлов
+    const newPreviews = files.map((file) => URL.createObjectURL(file));
+    setPreview((prev) => [...prev, ...newPreviews]);
+  };
+
+  const handleRemovePhoto = (indexToRemove) => {
+    const updatedPhotos = value.filter((_, index) => index !== indexToRemove);
+    onChange(updatedPhotos);
+
+    const updatedPreview = preview.filter((_, index) => index !== indexToRemove);
+    setPreview(updatedPreview);
   };
 
   return (
@@ -54,11 +66,12 @@ export const PhotoUpload = ({ setValue, errors, value = [] }) => {
           fontWeight: 600,
         }}
       >
-        Загрузите фото *{" "}
+        Загрузите фото *
         <Typography
           component="span"
           sx={{ color: "#00000080", fontSize: { xs: "14px", md: "18px" } }}
         >
+          {" "}
           (от 3 до 15)
         </Typography>
       </Typography>
@@ -72,97 +85,65 @@ export const PhotoUpload = ({ setValue, errors, value = [] }) => {
           mt: 2,
         }}
       >
-        <Button
-          variant="contained"
-          component="label"
-          sx={{
-            p: 0,
-            bgcolor: "#F1F1F9",
-            width: { sm: "100%", md: "30%" },
-          }}
-        >
-          {preview.length > 0 ? (
-            <>
-              <Box
-                component="img"
-                src={preview[0]} // ✅ всегда строка
-                alt="preview"
-                sx={{
-                  width: "100%",
-                  height: {
-                    xs: "300px",
-                    sm: "500px",
-                    md: "300px",
-                    lg: "400px",
-                  },
-                  objectFit: "cover",
-                  borderRadius: 2,
-                }}
-              />
-              <input
-                type="file"
-                hidden
-                multiple
-                accept="image/*"
-                onChange={handleFileChange}
-              />
-            </>
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                p: { xs: 4, md: 10 },
-              }}
-            >
-              <AddAPhotoIcon
-                sx={{
-                  mb: 2,
-                  fontSize: { xs: "64px", md: "96px" },
-                  color: "#00000099",
-                }}
-              />
-              <Typography
-                sx={{
-                  fontSize: { xs: "16px", md: "18px" },
-                  fontWeight: 600,
-                  color: "#000000",
-                }}
-              >
-                Добавьте фото
-              </Typography>
-              <input
-                type="file"
-                hidden
-                multiple
-                accept="image/*"
-                onChange={handleFileChange}
-              />
-            </Box>
-          )}
-        </Button>
-
-        {errors.photos && (
-          <FormHelperText error>{errors.photos.message}</FormHelperText>
-        )}
-
-        {preview.length > 1 && (
+        {/* Главное фото */}
+        {preview.length > 0 && (
           <Box
             sx={{
-              width: { sm: "100%", md: "65%" },
-              display: "grid",
-              gridTemplateColumns: {
-                xs: "repeat(2, 1fr)",
-                sm: "repeat(auto-fill, minmax(120px, 1fr))",
-              },
-              gap: "10px",
+              p: 0,
+              bgcolor: "#F1F1F9",
+              width: { sm: "100%", md: "30%" },
+              borderRadius: 2,
+              overflow: "hidden",
+              position: "relative",
+              minHeight: "300px",
             }}
           >
-            {preview.slice(1).map((src, index) => (
+            <Box
+              component="img"
+              src={preview[0]}
+              alt="preview"
+              sx={{
+                width: "100%",
+                height: {
+                  xs: "300px",
+                  sm: "500px",
+                  md: "300px",
+                  lg: "400px",
+                },
+                objectFit: "cover",
+              }}
+            />
+            <IconButton
+              onClick={() => handleRemovePhoto(0)}
+              sx={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                bgcolor: "rgba(255, 255, 255, 0.7)",
+                "&:hover": { bgcolor: "rgba(255, 255, 255, 0.9)" },
+                zIndex: 2,
+              }}
+            >
+              <CancelIcon color="error" />
+            </IconButton>
+          </Box>
+        )}
+
+        {/* Сетка миниатюр + кнопка добавления */}
+        <Box
+          sx={{
+            width: { sm: "100%", md: preview.length > 0 ? "65%" : "100%" },
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(2, 1fr)",
+              sm: "repeat(auto-fill, minmax(120px, 1fr))",
+            },
+            gap: "10px",
+          }}
+        >
+          {preview.slice(1).map((src, index) => (
+            <Box key={index} sx={{ position: "relative" }}>
               <Box
-                key={index}
                 component="img"
                 src={src}
                 alt={`preview-${index}`}
@@ -173,10 +154,67 @@ export const PhotoUpload = ({ setValue, errors, value = [] }) => {
                   borderRadius: 2,
                 }}
               />
-            ))}
-          </Box>
-        )}
+              <IconButton
+                onClick={() => handleRemovePhoto(index + 1)}
+                sx={{
+                  position: "absolute",
+                  top: 4,
+                  right: 4,
+                  bgcolor: "rgba(255, 255, 255, 0.7)",
+                  "&:hover": { bgcolor: "rgba(255, 255, 255, 0.9)" },
+                  zIndex: 2,
+                }}
+              >
+                <CancelIcon color="error" fontSize="small" />
+              </IconButton>
+            </Box>
+          ))}
+
+          {preview.length < 15 && (
+            <Button
+              variant="contained"
+              component="label"
+              sx={{
+                p: 0,
+                bgcolor: "#F1F1F9",
+                borderRadius: 2,
+                minHeight: "150px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                "&:hover": { bgcolor: "#e0e0e0" },
+              }}
+            >
+              <AddAPhotoIcon
+                sx={{
+                  mb: 1,
+                  fontSize: { xs: "48px", md: "64px" },
+                  color: "#00000099",
+                }}
+              />
+              <Typography
+                sx={{
+                  fontSize: { xs: "14px", md: "16px" },
+                  fontWeight: 600,
+                  color: "#000000",
+                }}
+              >
+                Добавить фото
+              </Typography>
+              <input
+                type="file"
+                hidden
+                multiple
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+            </Button>
+          )}
+        </Box>
       </Box>
+
+      <FormHelperText error>{errors.photos?.message}</FormHelperText>
     </>
   );
 };

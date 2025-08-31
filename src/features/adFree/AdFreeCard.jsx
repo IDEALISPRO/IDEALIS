@@ -10,22 +10,8 @@ import location from "../../shared/location.svg";
 import { Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
-const imgList = [
-  {
-    img: img1,
-  },
-  {
-    img: img2,
-  },
-  {
-    img: img3,
-  },
-  {
-    img: img4,
-  },
-];
+
 export const AdFreeCard = ({ item }) => {
-  console.log(item);
 
   return (
     <div className="card">
@@ -73,11 +59,10 @@ export const AdFreeCard = ({ item }) => {
               ))}
           </Box>
         </ImageList>
-        {/* <h3 className="block1-title">{item?.owner_phone}</h3> */}
         <p className="block1-text">Собственник</p>
-        <button className="block1-btn">
-          <NavLink to={`/admin/objectDetail/${item.id}`}>Подробнее</NavLink>
-        </button>
+        <NavLink to={`/admin/objectDetail/${item.id}`}>
+          <button className="block1-btn">Подробнее</button>
+        </NavLink>
       </div>
       <div className="card-block2 block2">
         <h3 className="block2-title">Данные*</h3>
