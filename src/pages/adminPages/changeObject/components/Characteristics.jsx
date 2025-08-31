@@ -91,7 +91,7 @@ export const Characteristics = ({ formData, handleChange }) => (
         label="Цена на руки"
         type="number"
         value={formData.allPrice || ""}
-        onChange={(e) => handleChange("allPrice", e.target.value)}
+        onChange={(e) => handleChange("typepayment", e.target.value)}
         sx={{ width: { xs: "100%", sm: "49%" } }}
       />
     </Box>

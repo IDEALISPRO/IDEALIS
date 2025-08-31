@@ -97,7 +97,7 @@ export const FormFields = ({ formData, handleChange }) => {
         <TextField
           label="Пересечение улиц"
           value={formData.IntersectionStreets || ""}
-          onChange={(e) => handleChange("IntersectionStreets", e.target.value)}
+          onChange={(e) => handleChange("district", e.target.value)}
           sx={{ width: { xs: "100%", sm: "48%" } }}
         />
       </Box>

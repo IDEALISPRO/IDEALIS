@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import {
-  Box,
-  Typography,
-  FormHelperText,
-  Button,
-  IconButton,
-} from "@mui/material";
+import { Box, Typography, Button, IconButton } from "@mui/material";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import CancelIcon from "@mui/icons-material/Cancel";
+
+const fileToBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 
 export const PhotoUpload = ({ value = [], onChange }) => {
   const [preview, setPreview] = useState([]);
@@ -19,19 +21,22 @@ export const PhotoUpload = ({ value = [], onChange }) => {
     }
 
     const initialPreviews = value.map((photo) => {
-      if (typeof photo === "string") return photo;
-      if (photo instanceof File) return URL.createObjectURL(photo);
-      return photo.url || photo.image_url || "";
+      if (typeof photo === "string") return photo; 
+      if (photo.url) return photo.url; 
+      return "";
     });
 
     setPreview(initialPreviews);
   }, [value]);
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const files = e.target.files ? Array.from(e.target.files) : [];
     if (files.length === 0) return;
 
-    const updatedValue = [...value, ...files];
+    const base64Files = await Promise.all(
+      files.map((file) => fileToBase64(file))
+    );
+    const updatedValue = [...value, ...base64Files];
 
     if (updatedValue.length > 15) {
       console.log("Достигнут лимит в 15 фотографий");
@@ -39,9 +44,7 @@ export const PhotoUpload = ({ value = [], onChange }) => {
     }
 
     onChange(updatedValue);
-
-    const newPreviews = files.map((file) => URL.createObjectURL(file));
-    setPreview((prev) => [...prev, ...newPreviews]);
+    setPreview((prev) => [...prev, ...base64Files]);
   };
 
   const handleRemovePhoto = (indexToRemove) => {
@@ -78,7 +81,6 @@ export const PhotoUpload = ({ value = [], onChange }) => {
         sx={{
           display: "flex",
           gap: "20px",
-          alignItems: "start",
           flexDirection: { xs: "column", md: "row" },
           mt: 2,
         }}
@@ -101,12 +103,7 @@ export const PhotoUpload = ({ value = [], onChange }) => {
               alt="preview"
               sx={{
                 width: "100%",
-                height: {
-                  xs: "300px",
-                  sm: "500px",
-                  md: "300px",
-                  lg: "400px",
-                },
+                height: { xs: "300px", sm: "500px", md: "300px", lg: "400px" },
                 objectFit: "cover",
               }}
             />
@@ -116,8 +113,8 @@ export const PhotoUpload = ({ value = [], onChange }) => {
                 position: "absolute",
                 top: 8,
                 right: 8,
-                bgcolor: "rgba(255, 255, 255, 0.7)",
-                "&:hover": { bgcolor: "rgba(255, 255, 255, 0.9)" },
+                bgcolor: "rgba(255,255,255,0.7)",
+                "&:hover": { bgcolor: "rgba(255,255,255,0.9)" },
                 zIndex: 2,
               }}
             >
@@ -131,8 +128,8 @@ export const PhotoUpload = ({ value = [], onChange }) => {
             width: { sm: "100%", md: preview.length > 0 ? "65%" : "100%" },
             display: "grid",
             gridTemplateColumns: {
-              xs: "repeat(2, 1fr)",
-              sm: "repeat(auto-fill, minmax(120px, 1fr))",
+              xs: "repeat(2,1fr)",
+              sm: "repeat(auto-fill,minmax(120px,1fr))",
             },
             gap: "10px",
           }}
@@ -156,8 +153,8 @@ export const PhotoUpload = ({ value = [], onChange }) => {
                   position: "absolute",
                   top: 4,
                   right: 4,
-                  bgcolor: "rgba(255, 255, 255, 0.7)",
-                  "&:hover": { bgcolor: "rgba(255, 255, 255, 0.9)" },
+                  bgcolor: "rgba(255,255,255,0.7)",
+                  "&:hover": { bgcolor: "rgba(255,255,255,0.9)" },
                   zIndex: 2,
                 }}
               >
@@ -209,8 +206,6 @@ export const PhotoUpload = ({ value = [], onChange }) => {
           )}
         </Box>
       </Box>
-
-      {/* <FormHelperText error>{errors.photos?.message}</FormHelperText> */}
     </>
   );
 };

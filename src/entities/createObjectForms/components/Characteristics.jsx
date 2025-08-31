@@ -40,6 +40,20 @@ export const Characteristics = ({ control, errors }) => (
         />
       ))}
 
+      <TextFieldController
+        name="Square"
+        control={control}
+        label="Площадь"
+        sx={{
+          width: {
+            xs: "100%",
+            sm: "48%",
+            md: "48%",
+            lg: "32%",
+          },
+        }}
+      />
+
       <SelectField
         name="TypePayment"
         control={control}

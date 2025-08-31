@@ -45,11 +45,6 @@ export const schema = yup.object().shape({
     .string()
     .oneOf(characteristicOptions.furniture, "Выберите наличие мебели")
     .required("Обязательное поле"),//
-  Square: yup
-    .string()
-    .oneOf(characteristicOptions.Square, "Выберите корректную площадь")
-    .required("Обязательное поле"),//
-
   deal: yup
     .string()
     .oneOf(selectOptions.deal, "Выберите корректный тип сделки")
@@ -61,10 +56,6 @@ export const schema = yup.object().shape({
   NumberRooms: yup
     .string()
     .oneOf(selectOptions.NumberRooms, "Выберите корректное количество комнат")
-    .required("Обязательное поле"),//
-  District: yup
-    .string()
-    .oneOf(selectOptions.District, "Выберите район")
     .required("Обязательное поле"),//
   HomeSeries: yup
     .string()

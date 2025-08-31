@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-
 import { schema } from "./validation";
 import { PhotoUpload } from "./components/PhotoUpload";
 import { DescriptionField } from "./components/DescriptionField";
@@ -52,25 +51,32 @@ export const CreateObjectForm = () => {
   const onSubmit = async (data) => {
     console.log("Form submitted:", data);
 
-    const newObject = {
-      images: data.photos,
-      title: data.description,
-      area_m2: Number(data.Square),
-      floor: data.Floor,
-      floors_total: data.NumberRooms,
-      price: data.price,
-      city: data.IntersectionStreets,
-      district: data.District,
-      street: data.IntersectionStreets,
-      house: data.realEstate,
-      owner_phone: data.number,
-      deal_type: data.offers,
-      rooms: data.NumberRooms,
-      house_series: data.HomeSeries,
-      repair_state: data.repairs,
-    };
+    const formData = new FormData();
 
-    dispatch(createObjectThunk(newObject));
+    data.photos.forEach((file) => {
+      formData.append("images", file); 
+    });
+
+    formData.append("title", data.description);
+    formData.append("area_m2", Number(data.Square));
+    formData.append("communications", data.Communications);
+    formData.append("document", data.Documents);
+    formData.append("est_mebel", data.furniture);
+    formData.append("floor", data.Floor);
+    formData.append("floors_total", data.NumberRooms);
+    formData.append("price", data.price);
+    formData.append("city", data.IntersectionStreets);
+    formData.append("district", data.District);
+    formData.append("street", data.IntersectionStreets);
+    formData.append("house", data.realEstate);
+    formData.append("owner_phone", data.number);
+    formData.append("deal_type", data.offers);
+    formData.append("rooms", data.NumberRooms);
+    formData.append("house_series", data.HomeSeries);
+    formData.append("repair_state", data.repairs);
+    formData.append("typepayment", data.TypePayment);
+
+    dispatch(createObjectThunk(formData));
   };
 
   return (

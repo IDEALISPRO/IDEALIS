@@ -1,18 +1,28 @@
-import { Box, Typography } from "@mui/material";
+import { Box, MenuItem, TextField, Typography } from "@mui/material";
 import { SelectField } from "./SelectField";
 import { TextFieldController } from "./TextFieldController";
 import { selectFields } from "../fields";
 import { useAgents } from "../../../app/store/reducers/admin/agents/agentsSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAgentsWithoutToken } from "../../../app/store/reducers/admin/agents/agentsThunks";
+import { axiosApi } from "../../../app/services/AxiosPub";
+import { Controller } from "react-hook-form";
 
 export const FormFields = ({ control, errors }) => {
   const { list } = useAgents();
   const dispatch = useDispatch();
+  const [district, setDistrict] = useState([]);
 
   useEffect(() => {
     dispatch(getAgentsWithoutToken());
+  }, []);
+
+  useEffect(() => {
+    axiosApi
+      .get("/users/raion/")
+      .then(({ data }) => setDistrict(data))
+      .catch((e) => console.log(e));
   }, []);
   return (
     <>
@@ -49,6 +59,27 @@ export const FormFields = ({ control, errors }) => {
             error={errors[field.name]}
           />
         ))}
+
+        <Controller
+          name="District"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              select
+              label="Город"
+              error={!!errors.District}
+              helperText={errors.District?.message}
+              sx={{ width: { xs: "100%", sm: "48%", md: "48%", lg: "32%" } }}
+            >
+              {district.map((item) => (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.title}
+                </MenuItem>
+              ))}
+            </TextField>
+          )}
+        />
 
         <TextFieldController
           name="Floor"

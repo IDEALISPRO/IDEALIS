@@ -1,35 +1,42 @@
 import { useState } from "react";
-import { Box, Button, Typography, FormHelperText } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  FormHelperText,
+  IconButton,
+} from "@mui/material";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import CloseIcon from "@mui/icons-material/Close";
 
 export const PhotoUpload = ({ setValue, errors }) => {
   const [preview, setPreview] = useState([]);
+  const [photos, setPhotos] = useState([]);
 
   const handleFileChange = (e) => {
     const files = e.target.files ? Array.from(e.target.files) : [];
+    if (!files.length) return;
 
-    const previews = files.map((file) => URL.createObjectURL(file));
-    setPreview(previews);
+    const newPreviews = files.map((file) => URL.createObjectURL(file));
+    const newPhotos = [...photos, ...files];
 
-    if (files.length === 0) {
-      setValue("photos", []);
-      return;
-    }
+    setPreview([...preview, ...newPreviews]);
+    setPhotos(newPhotos);
 
-    const photosBase64 = [];
-    let loadedCount = 0;
+    // ✅ сохраняем как File[] в react-hook-form
+    setValue("photos", newPhotos, { shouldValidate: true });
+  };
 
-    files.forEach((file, index) => {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        photosBase64[index] = { url: [event.target.result] }; 
-        loadedCount++;
-        if (loadedCount === files.length) {
-          setValue("photos", photosBase64, { shouldValidate: true });
-        }
-      };
-      reader.readAsDataURL(file);
-    });
+  const handleRemove = (index) => {
+    const newPhotos = [...photos];
+    const newPreview = [...preview];
+    newPhotos.splice(index, 1);
+    newPreview.splice(index, 1);
+
+    setPhotos(newPhotos);
+    setPreview(newPreview);
+
+    setValue("photos", newPhotos, { shouldValidate: true });
   };
 
   return (
@@ -42,7 +49,7 @@ export const PhotoUpload = ({ setValue, errors }) => {
           fontWeight: 600,
         }}
       >
-        Загрузите фото *{" "}
+        Загрузите фото *
         <Typography
           component="span"
           sx={{ color: "#00000080", fontSize: { xs: "14px", md: "18px" } }}
@@ -50,6 +57,10 @@ export const PhotoUpload = ({ setValue, errors }) => {
           (от 3 до 15)
         </Typography>
       </Typography>
+
+      {errors.photos && (
+        <FormHelperText error>{errors.photos.message}</FormHelperText>
+      )}
 
       <Box
         sx={{
@@ -63,30 +74,42 @@ export const PhotoUpload = ({ setValue, errors }) => {
         <Button
           variant="contained"
           component="label"
-          sx={{
-            p: 0,
-            bgcolor: "#F1F1F9",
-            width: { sm: "100%", md: "30%" },
-          }}
+          sx={{ p: 0, bgcolor: "#F1F1F9", width: { sm: "100%", md: "30%" } }}
         >
           {preview.length > 0 ? (
-            <>
+            <Box
+              sx={{
+                width: "100%",
+                height: { xs: 300, sm: 500, md: 300, lg: 400 },
+                position: "relative",
+                borderRadius: 2,
+                overflow: "hidden",
+              }}
+            >
               <Box
                 component="img"
                 src={preview[0]}
                 alt="preview"
                 sx={{
                   width: "100%",
-                  height: {
-                    xs: "300px",
-                    sm: "500px",
-                    md: "300px",
-                    lg: "400px",
-                  },
+                  height: "100%",
                   objectFit: "cover",
-                  borderRadius: 2,
+                  cursor: "pointer",
                 }}
+                onClick={() => handleRemove(0)}
               />
+              <IconButton
+                size="small"
+                onClick={() => handleRemove(0)}
+                sx={{
+                  position: "absolute",
+                  top: 8,
+                  right: 8,
+                  bgcolor: "#ffffffaa",
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
               <input
                 type="file"
                 hidden
@@ -94,7 +117,7 @@ export const PhotoUpload = ({ setValue, errors }) => {
                 accept="image/*"
                 onChange={handleFileChange}
               />
-            </>
+            </Box>
           ) : (
             <Box
               sx={{
@@ -132,10 +155,6 @@ export const PhotoUpload = ({ setValue, errors }) => {
           )}
         </Button>
 
-        {errors.photos && (
-          <FormHelperText error>{errors.photos.message}</FormHelperText>
-        )}
-
         {preview.length > 1 && (
           <Box
             sx={{
@@ -150,18 +169,63 @@ export const PhotoUpload = ({ setValue, errors }) => {
           >
             {preview.slice(1).map((src, index) => (
               <Box
-                key={index}
-                component="img"
-                src={src}
-                alt={`preview-${index}`}
+                key={index + 1}
                 sx={{
+                  position: "relative",
                   width: "100%",
-                  height: { sm: "150px" },
-                  objectFit: "cover",
+                  height: 150,
                   borderRadius: 2,
+                  overflow: "hidden",
                 }}
-              />
+              >
+                <Box
+                  component="img"
+                  src={src}
+                  alt={`preview-${index + 1}`}
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => handleRemove(index + 1)}
+                />
+                <IconButton
+                  size="small"
+                  onClick={() => handleRemove(index + 1)}
+                  sx={{
+                    position: "absolute",
+                    top: 4,
+                    right: 4,
+                    bgcolor: "#ffffffaa",
+                  }}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </Box>
             ))}
+            <Button
+              variant="outlined"
+              component="label"
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: 150,
+                borderRadius: 2,
+                border: "2px dashed #ccc",
+                bgcolor: "#F9F9F9",
+              }}
+            >
+              <AddAPhotoIcon />
+              <input
+                type="file"
+                hidden
+                multiple
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+            </Button>
           </Box>
         )}
       </Box>

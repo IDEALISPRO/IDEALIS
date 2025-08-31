@@ -8,10 +8,7 @@ import { FormFields } from "./components/FormFields";
 import { Characteristics } from "./components/Characteristics";
 import { OwnerContacts } from "./components/OwnerContacts";
 import { SubmitButtons } from "./components/SubmitButtons";
-import {
-  objectIdThunk,
-  objectPatch,
-} from "../../../app/store/reducers/admin/changeAdminObject/changeAdminObjectThunks";
+import { objectIdThunk, objectPatch } from "../../../app/store/reducers/admin/changeAdminObject/changeAdminObjectThunks";
 import { useDetailObject } from "../../../app/store/reducers/admin/changeAdminObject/changeAdminObjectSlice";
 
 export const ChangeAdminObject = () => {
@@ -68,54 +65,46 @@ export const ChangeAdminObject = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const dataToSend = new FormData();
-
-    Object.entries(formData).forEach(([key, value]) => {
-      if (key !== "photos") {
-        dataToSend.append(key, value ?? "");
+    const imagesPayload = formData.photos.map((photo, index) => {
+      if (photo.id) {
+        return { id: photo.id, sort_order: index };
       }
+      return { url: photo, sort_order: index };
     });
 
-    formData.photos.forEach((photo, index) => {
-      dataToSend.append(`images[${index}][id]`, photo.id || "");
-      dataToSend.append(`images[${index}][url]`, photo.url || "");
-      dataToSend.append(
-        `images[${index}][sort_order]`,
-        photo.sort_order ?? index
-      );
-      if (photo.file) {
-        dataToSend.append(`images[${index}][file]`, photo.file);
-      }
-    });
+    const payload = {
+      title: formData.description,
+      description: formData.description,
+      area_m2: formData.area_m2,
+      floor: Number(formData.Floor),
+      price: Number(formData.price),
+      city: formData.city,
+      district: Number(formData.District),
+      street: formData.IntersectionStreets,
+      house: formData.realEstate,
+      owner_phone: formData.number,
+      deal_type: formData.offers,
+      rooms: Number(formData.NumberRooms),
+      house_series: formData.HomeSeries,
+      repair_state: formData.repairs,
+      images: imagesPayload,
+    };
 
-    dispatch(objectPatch({ id, newItem: dataToSend }));
+    console.log("Payload for API:", payload);
+    dispatch(objectPatch({ id, newItem: payload }));
   };
 
   return (
     <Box className="container" component="form" onSubmit={onSubmit}>
-      <Typography
-        variant="h2"
-        sx={{ fontSize: "55px", fontWeight: 700, mt: "80px" }}
-      >
+      <Typography variant="h2" sx={{ fontSize: "55px", fontWeight: 700, mt: "80px" }}>
         Изменить объект
       </Typography>
 
-      <PhotoUpload
-        value={formData.photos}
-        onChange={(value) => handleChange("photos", value)}
-      />
-
-      <DescriptionField
-        value={formData.description}
-        onChange={(value) => handleChange("description", value)}
-      />
-
+      <PhotoUpload value={formData.photos} onChange={(value) => handleChange("photos", value)} />
+      <DescriptionField value={formData.description} onChange={(value) => handleChange("description", value)} />
       <FormFields formData={formData} handleChange={handleChange} />
-
       <Characteristics formData={formData} handleChange={handleChange} />
-
       <OwnerContacts formData={formData} handleChange={handleChange} />
-
       <SubmitButtons onSubmit={onSubmit} />
     </Box>
   );
