@@ -18,7 +18,7 @@ export const NavigateMobile = () => {
       {links &&
         links.map((link) => (
           <NavLink
-            key={link.id || `${link.key}-${link.title}`} // уникальный ключ
+            key={link.id || `${link.key}-${link.title}`} 
             to="/estate-categories"
             state={{ title: link.category?.title }}
             onClick={(e) => e.stopPropagation()}
@@ -26,7 +26,7 @@ export const NavigateMobile = () => {
             <div className="navigateMobile__link">
               <div className="navigateMobile__link__img">
                 <img
-                  src={link.images?.[0]?.image_url}
+                  src={link.images?.[0]?.url}
                   alt={link.title || "category"}
                 />
               </div>

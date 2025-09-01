@@ -8,8 +8,6 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import React, { useEffect, useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
@@ -19,12 +17,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import { useDispatch } from "react-redux";
-import {
-  doFilters,
-  doHomeSearch,
-} from "../../app/store/reducers/admin/homeSlice/homeThunk";
+import { doHomeSearch } from "../../app/store/reducers/admin/homeSlice/homeThunk";
 import { useAgents } from "../../app/store/reducers/admin/agents/agentsSlice";
 import { getAgentsWithoutToken } from "../../app/store/reducers/admin/agents/agentsThunks";
+import { axiosApi } from "../../app/services/AxiosPub";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -35,6 +31,7 @@ export const FilterWidget = ({ handleSubmit }) => {
   const [value1, setValue1] = React.useState([100000, 1000000]);
   const [currency, setCurrency] = React.useState("KGS");
   const [alignment, setAlignment] = useState("all");
+  const [rayon, setRoyon] = useState();
 
   const [state, setState] = useState({
     filters: {
@@ -59,37 +56,12 @@ export const FilterWidget = ({ handleSubmit }) => {
   const [search, setSearch] = useState({
     search: "",
   });
-  const handleSearchClick = () => {
-    alert("Иконка поиска нажата!");
-  };
 
   const dispatch = useDispatch();
 
   const [age, setAge] = React.useState("");
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
-
-  // отдельные состояния для каждого селекта
-  // const [dealType, setDealType] = useState("");
-  // const [propertyType, setPropertyType] = useState("");
-  // const [rooms, setRooms] = useState("");
-  // const [district, setDistrict] = useState("");
-  // const [series, setSeries] = useState("");
-  // const [agent, setAgent] = useState("");
-  // const [status, setStatus] = useState("");
-  // const [extra, setExtra] = useState("");
-  // const [repair, setRepair] = useState("");
-
-  // // обработчики
-  // const handleDealType = (e) => setDealType(e.target.value);
-  // const handlePropertyType = (e) => setPropertyType(e.target.value);
-  // const handleRooms = (e) => setRooms(e.target.value);
-  // const handleDistrict = (e) => setDistrict(e.target.value);
-  // const handleSeries = (e) => setSeries(e.target.value);
-  // const handleAgent = (e) => setAgent(e.target.value);
-  // const handleStatus = (e) => setStatus(e.target.value);
-  // const handleExtra = (e) => setExtra(e.target.value);
-  // const handleRepair = (e) => setRepair(e.target.value);
 
   const handleCurrency = (event, newCurrency) => {
     setCurrency(newCurrency);
@@ -100,9 +72,9 @@ export const FilterWidget = ({ handleSubmit }) => {
     }
   };
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  const reset = () => {
+    dispatch(doHomeSearch(''));
+  }
 
   const handleChangeSlider = (event, newValue, activeThumb) => {
     if (activeThumb === 0) {
@@ -149,7 +121,6 @@ export const FilterWidget = ({ handleSubmit }) => {
       ...prev,
       filters: {
         ...prev.filters,
-
         price_min: value1[0],
         price_max: value1[1],
         currency: currency,
@@ -168,12 +139,18 @@ export const FilterWidget = ({ handleSubmit }) => {
         console.log("Ошибка от сервера:", result.error);
         return;
       }
-
-      // navigate("/");
     } catch (err) {
       console.log("Ошибка при отправке:", err);
     }
   };
+
+  useEffect(() => {
+    axiosApi("/users/raion/")
+      .then(({ data }) => {
+        setRoyon(data);
+      })
+      .catch((e) => console.log(e));
+  }, []);
 
   return (
     <>
@@ -199,10 +176,7 @@ export const FilterWidget = ({ handleSubmit }) => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      edge="end"
-                      aria-label="search"
-                    >
+                    <IconButton edge="end" aria-label="search">
                       <SearchIcon />
                     </IconButton>
                   </InputAdornment>
@@ -337,9 +311,10 @@ export const FilterWidget = ({ handleSubmit }) => {
                   <MenuItem value="">
                     <em>Район</em>
                   </MenuItem>
-                  <MenuItem value={"1"}>Ten</MenuItem>
-                  <MenuItem value={"2"}>Twenty</MenuItem>
-                  <MenuItem value={"3"}>Thirty</MenuItem>
+                  {rayon &&
+                    rayon.map((rayon) => (
+                      <MenuItem value={`${rayon.id}`}>{rayon.title}</MenuItem>
+                    ))}
                 </Select>
               </Grid>
 
@@ -568,6 +543,7 @@ export const FilterWidget = ({ handleSubmit }) => {
               variant="outlined"
               color="primary"
               type="reset"
+              onClick={reset}
               sx={{
                 width: "100%",
                 padding: { xs: "10px 2px", sm: "14px 18px" },
@@ -581,7 +557,6 @@ export const FilterWidget = ({ handleSubmit }) => {
                   borderColor: "primary.main",
                   color: "primary.main",
                 },
-                // mr: 2
               }}
             >
               Сбросить фильтры

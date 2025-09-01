@@ -96,7 +96,7 @@ export const ChangeAdminObject = () => {
       street: formData.IntersectionStreets,
       house: formData.realEstate,
       owner_phone: formData.number,
-      deal_type: formData.offers,
+      deal_type: formData.typepayment,
       rooms: Number(formData.NumberRooms),
       house_series: formData.HomeSeries,
       repair_state: formData.repairs,
@@ -104,7 +104,6 @@ export const ChangeAdminObject = () => {
       payment_type: formData.TypePayment,
       images: imagesPayload,
     };
-
     try {
       await dispatch(objectPatch({ id, newItem: payload })).unwrap();
       toast.success("Объект успешно обновлен!");

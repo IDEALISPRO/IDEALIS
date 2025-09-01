@@ -18,6 +18,8 @@ export const ObjectDetail = () => {
   const { detail, loading, error } = useDetail();
   const [open, setOpen] = useState(false);
 
+  console.log(detail);
+
   useEffect(() => {
     if (id) {
       dispatch(detailGet(id))

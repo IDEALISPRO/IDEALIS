@@ -70,9 +70,4 @@ export const schema = yup.object().shape({
     .number()
     .typeError("Введите цену на руки")
     .required("Введите цену на руки"), //
-  userName: yup.string().required("Введите ФИО владельца"), //
-  number: yup
-    .string()
-    .matches(/^\+?[0-9]{7,15}$/, "Введите корректный номер")
-    .required("Введите телефон"), //
 });

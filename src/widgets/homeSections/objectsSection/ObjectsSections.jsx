@@ -4,6 +4,7 @@ import "./objects.scss";
 import { useEffect, useState } from "react";
 import { objectsGet } from "../../../app/store/reducers/public/home/objectsThunks";
 import { useObjects } from "../../../app/store/reducers/public/home/objectsSlice";
+import { useBanner } from "../../../app/store/reducers/admin/homeSlice/homeSlice";
 import {
   detailGet,
   detailLikesPatch,
@@ -12,6 +13,7 @@ import {
 export const ObjectsSections = () => {
   const dispatch = useDispatch();
   const { objects } = useObjects();
+  const { searchResults } = useBanner();
 
   const [data, setData] = useState([]);
 
@@ -20,15 +22,14 @@ export const ObjectsSections = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (objects?.length) {
-      const likedIds = JSON.parse(localStorage.getItem("likedIds")) || [];
-      const withLiked = objects.map((obj) => ({
-        ...obj,
-        liked: likedIds.includes(obj.id),
-      }));
-      setData(withLiked);
-    }
-  }, [objects]);
+    const baseObjects = searchResults?.length ? searchResults : objects;
+    const likedIds = JSON.parse(localStorage.getItem("likedIds")) || [];
+    const withLiked = (baseObjects || []).map((obj) => ({
+      ...obj,
+      liked: likedIds.includes(obj.id),
+    }));
+    setData(withLiked);
+  }, [objects, searchResults]);
 
   const toggleLike = (id) => {
     dispatch(detailGet(id))
@@ -36,12 +37,9 @@ export const ObjectsSections = () => {
       .then((data) => {
         if (!data?.stats) return;
 
-        const newItem = {
-          favorites: 1,
-        };
-
-        dispatch(detailLikesPatch({ id, newObject: newItem }));
+        dispatch(detailLikesPatch({ id, newObject: { favorites: 1 } }));
       });
+
     setData((prev) =>
       prev.map((item) =>
         item.id === id ? { ...item, liked: !item.liked } : item
@@ -50,15 +48,17 @@ export const ObjectsSections = () => {
 
     const likedIds = JSON.parse(localStorage.getItem("likedIds")) || [];
     if (likedIds.includes(id)) {
-      const newIds = likedIds.filter((itemId) => itemId !== id);
-      localStorage.setItem("likedIds", JSON.stringify(newIds));
+      localStorage.setItem(
+        "likedIds",
+        JSON.stringify(likedIds.filter((itemId) => itemId !== id))
+      );
     } else {
       localStorage.setItem("likedIds", JSON.stringify([...likedIds, id]));
     }
   };
 
   return (
-    <div className=" objects">
+    <div className="objects">
       <div className="flex-cont">
         <div className="objects__title">
           <h1 className="objects__title__text">
@@ -69,10 +69,8 @@ export const ObjectsSections = () => {
 
         <div className="objects__info">
           <p className="objects__info__res">Результаты</p>
-
           <p className="objects__info__count">
-            {data[0]?.id}{" "}
-            {data?.length && data?.length > 9 ? `-${data[9]?.id}` : ""} из{" "}
+            {data?.length && data?.length >= 9 ? `10` : ""} из
             {data?.length} найденных объектов
           </p>
           <p className="objects__info__mobile">
@@ -82,26 +80,23 @@ export const ObjectsSections = () => {
       </div>
 
       <div className="objects__cards">
-        {data &&
-          data
-            .slice(0, 10)
-            .map((item) => (
-              <ObjectsCard
-                manager={item.manager?.phone_number}
-                key={item.id}
-                id={item.id}
-                img={item.images[0]}
-                title={item.title}
-                district={item.district}
-                street={item.street}
-                city={item.city}
-                rooms={item.rooms}
-                area_m2={item.area_m2}
-                price={item.price}
-                liked={item.liked}
-                onLike={() => toggleLike(item.id)}
-              />
-            ))}
+        {data?.slice(0, 10).map((item) => (
+          <ObjectsCard
+            key={item.id}
+            id={item.id}
+            img={item.images[0]}
+            title={item.title}
+            district={item.district}
+            street={item.street}
+            city={item.city}
+            rooms={item.rooms}
+            area_m2={item.area_m2}
+            price={item.price}
+            manager={item.manager?.phone_number}
+            liked={item.liked}
+            onLike={() => toggleLike(item.id)}
+          />
+        ))}
         <ObjectsBtn />
       </div>
     </div>

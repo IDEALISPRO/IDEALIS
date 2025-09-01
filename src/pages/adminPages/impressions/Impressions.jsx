@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { ImpressionCard } from "../../../features";
-import img from "../../../shared/images/ImpressionsImg1.png";
 import "./impressions.scss";
 import { useAuth } from "../../../app/store/reducers/auth/authSlice";
 import { useEffect } from "react";

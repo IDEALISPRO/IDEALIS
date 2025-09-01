@@ -25,9 +25,12 @@ const detailSlice = createSlice({
         state.loading = false;
         state.error = payload;
       })
-      .addCase(detailViewPatch.fulfilled, (state, { payload }) => {
-        state.detail = payload;
-      });
+      // .addCase(detailViewPatch.fulfilled, (state, { payload }) => {
+      //   state.detail = {
+      //     ...state.detail,
+      //     stats: payload.stats || state.detail.stats, 
+      //   };
+      // });
   },
 });
 

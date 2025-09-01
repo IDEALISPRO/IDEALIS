@@ -87,12 +87,12 @@ export const FormFields = ({ formData, handleChange }) => {
         <TextField
           select
           label="Город"
-          value={formData.District || ""}
-          onChange={(e) => handleChange("District", e.target.value)}
+          value={formData.city || ""}
+          onChange={(e) => handleChange("city", e.target.value)}
           sx={{ width: { xs: "100%", sm: "48%" } }}
         >
           {district.map((item) => (
-            <MenuItem key={item.id} value={item.id}>
+            <MenuItem key={item.id} value={item.title}>
               {item.title}
             </MenuItem>
           ))}

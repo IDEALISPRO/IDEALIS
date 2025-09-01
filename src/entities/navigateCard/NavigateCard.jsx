@@ -7,6 +7,7 @@ export const NavigateCard = ({
   type,
   title,
   id,
+  key,
   images,
 }) => {
   const isActive = activeSelect === id;
