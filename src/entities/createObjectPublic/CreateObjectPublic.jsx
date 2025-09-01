@@ -49,7 +49,6 @@ export const CreateObjectPublic = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log("Form submitted:", data);
 
     const formData = new FormData();
 
@@ -64,8 +63,6 @@ export const CreateObjectPublic = () => {
     formData.append("street", data.address);
     formData.append("owner_phone", data.number);
     formData.append("urgent", data.urgent);
-
-    console.log([...formData]); // проверить что все поля на месте
 
     // диспатчим уже formData
     dispatch(createObjectPublicThunk(formData));

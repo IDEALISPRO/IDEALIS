@@ -7,35 +7,6 @@ import {
   getServicesStep,
 } from "../../app/store/reducers/admin/services/servicesThunk";
 import { useEffect } from "react";
-// const data = [
-//   {
-//     id: 1,
-//     shag: "Шаг 1",
-//     work: "Начало работ",
-//     title: "Консультация и планирование",
-//     description:
-//       "На этом этапе наши профессионалы берутся за реализацию проекта. Мы гарантируем высочайшее качество строительства и монтажа каждой детали вашего дома или бани из карельской сухостойной сосны Кело.",
-//     img: img,
-//   },
-//   {
-//     id: 2,
-//     shag: "Шаг 2",
-//     work: "Начало работ",
-//     title: "Консультация и планирование",
-//     description:
-//       "На этом этапе наши профессионалы берутся за реализацию проекта. Мы гарантируем высочайшее качество строительства и монтажа каждой детали вашего дома или бани из карельской сухостойной сосны Кело.",
-//     img: img,
-//   },
-//   {
-//     id: 3,
-//     shag: "Шаг 3",
-//     work: "Начало работ",
-//     title: "Консультация и планирование",
-//     description:
-//       "На этом этапе наши профессионалы берутся за реализацию проекта. Мы гарантируем высочайшее качество строительства и монтажа каждой детали вашего дома или бани из карельской сухостойной сосны Кело.",
-//     img: img,
-//   },
-// ];
 
 export const ServicesWidget = ({ title, description }) => {
   const { stepList: data } = useServices();
@@ -62,9 +33,8 @@ export const ServicesWidget = ({ title, description }) => {
           marginBottom: "20px",
           ml: { xs: "0", sm: "40%", md: "40%", lg: "50%" },
         }}
-      >
-        {description}
-      </Typography>
+        dangerouslySetInnerHTML={{ __html: description }}
+      ></Typography>
 
       <Acardion data={data} />
     </Box>

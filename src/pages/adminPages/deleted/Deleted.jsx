@@ -10,8 +10,6 @@ export const Deleted = () => {
   const dispatch = useDispatch();
   const { list: data } = usePublished();
 
-  console.log(data);
-
   useEffect(() => {
     dispatch(publishedGet({ status: "deleted" }));
   }, []);

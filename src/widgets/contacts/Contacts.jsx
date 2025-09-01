@@ -1,8 +1,6 @@
 import "./contacts.scss";
 
 export const Contacts = ({ contact }) => {
-  console.log(contact);
-
   return (
     <>
       {contact && (

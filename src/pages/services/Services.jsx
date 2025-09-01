@@ -9,8 +9,6 @@ export const Services = () => {
   const { list } = useServices();
   const dispatch = useDispatch();
 
-  
-
   useEffect(() => {
     dispatch(getServicesBanner());
   }, [dispatch]);

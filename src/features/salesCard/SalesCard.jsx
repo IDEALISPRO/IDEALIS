@@ -8,7 +8,6 @@ export const SalesCard = ({ img, title, location, description, price }) => {
   const [liked, setLiked] = useState(false);
 
   const HandleLike = () => {
-    console.log(liked);
     setLiked(!liked);
   };
   return (

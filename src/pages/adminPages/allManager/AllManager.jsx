@@ -49,7 +49,6 @@ export const AllManager = () => {
       .then(({ data }) => setAllManager(data))
       .catch((e) => console.log(e));
   }, []);
-  console.log(allManager);
 
   const handleChangePage = (event, newPage) => setPage(newPage);
   const handleChangeRowsPerPage = (event) => {

@@ -11,9 +11,11 @@ export const Favorites = () => {
   const dispatch = useDispatch();
   const { banner } = useBanner();
   const { objects } = useObjects();
-  console.log(objects);
-  
+
   const [favorites, setFavorites] = useState([]);
+
+  console.log(favorites);
+  
 
   useEffect(() => {
     dispatch(bannerGet());
@@ -34,13 +36,10 @@ export const Favorites = () => {
     setFavorites((prev) => prev.filter((item) => item.id !== id));
   };
 
-  console.log(favorites);
-  
-
   return (
     <div className="container favorite__container">
-      <Banner title={banner[5]?.site_name} description={banner[5]?.slogan} />
-      <BannerPictures images={banner[5]?.banner_photos} />
+      <Banner title={banner[2]?.site_name} description={banner[2]?.slogan} />
+      <BannerPictures images={banner[2]?.banner_photos} />
       <div className="row objects">
         <p>Все</p>
         <p>{favorites.length} объектов</p>
@@ -50,7 +49,7 @@ export const Favorites = () => {
           favorites.map((item) => (
             <ObjectsCard
               key={item.id}
-              img={item?.images}
+              img={item?.images[0]}
               title={item.title}
               district={item.district}
               street={item.street}

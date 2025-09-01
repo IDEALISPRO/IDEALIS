@@ -21,7 +21,6 @@ export const NavigateCard = ({
   const handleClick = () => {
     setActiveSelect(id);
   };
-  // console.log(title.title);
 
   return (
     <div

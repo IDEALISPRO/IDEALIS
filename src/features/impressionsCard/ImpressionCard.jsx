@@ -45,23 +45,23 @@ export const ImpressionCard = ({
             <div className="statistics__row">
               <span>Просмотры:</span>
               <div className="statistics__time-indicators">
-                <span>{stats.views}</span>
+                <span>{stats?.views}</span>
               </div>
             </div>
             <div className="statistics__row">
               <span>В избранное:</span>
               <div className="statistics__time-indicators">
-                <span>{stats.favorites}</span>
+                <span>{stats?.favorites}</span>
               </div>
             </div>
             <div className="statistics__row">
               <span>Обращения:</span>
               <div className="statistics__time-indicators">
-                <span>{stats.contacts}</span>
+                <span>{stats?.contacts}</span>
               </div>
             </div>
             <p className="statistics__date">
-              Последний показ: {stats.last_show_at}
+              Последний показ: {stats?.last_show_at}
             </p>
           </div>
         </div>
@@ -91,23 +91,23 @@ export const ImpressionCard = ({
           <div className="statistics__row">
             <span>Просмотры:</span>
             <div className="statistics__time-indicators">
-              <span>{stats.views}</span>
+              <span>{stats?.views}</span>
             </div>
           </div>
           <div className="statistics__row">
             <span>В избранное:</span>
             <div className="statistics__time-indicators">
-              <span>{stats.favorites}</span>
+              <span>{stats?.favorites}</span>
             </div>
           </div>
           <div className="statistics__row">
             <span>Обращения:</span>
             <div className="statistics__time-indicators">
-              <span>{stats.contacts}</span>
+              <span>{stats?.contacts}</span>
             </div>
           </div>
           <p className="statistics__date">
-            Последний показ: {stats.last_show_at}
+            Последний показ: {stats?.last_show_at}
           </p>
         </div>
       </div>

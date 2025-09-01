@@ -14,8 +14,6 @@ export const HomePage = () => {
   const dispatch = useDispatch();
   const { banner } = useBanner();
   const { header } = useHeader();
-  console.log(header);
-  
 
   useEffect(() => {
     dispatch(bannerGet());

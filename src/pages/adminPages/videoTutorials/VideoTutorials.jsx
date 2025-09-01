@@ -8,22 +8,7 @@ import { useVideoTutorials } from "../../../app/store/reducers/admin/videoTutori
 export const VideoTutorials = () => {
   const dispatch = useDispatch();
   const {videos} = useVideoTutorials();
-  console.log(videos);
-  
-  const videoTutorials = [
-    {
-      id: 1,
-      link: "https://youtu.be/0F4WIZeo_KU?si=3I1fVsNAi7QqOZa3",
-    },
-    {
-      id: 2,
-      link: "https://youtu.be/0F4WIZeo_KU?si=3I1fVsNAi7QqOZa3",
-    },
-    {
-      id: 3,
-      link: "https://youtu.be/0F4WIZeo_KU?si=3I1fVsNAi7QqOZa3",
-    },
-  ];
+
   useEffect(() => {
     dispatch(videoTutorialsGet())
   }, [dispatch])

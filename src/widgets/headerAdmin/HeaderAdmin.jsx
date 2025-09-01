@@ -19,7 +19,6 @@ export const HeaderAdmin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useAuth();
-  console.log(user);
   
   const [isEditing, setIsEditing] = useState(false);
   const role = Cookies.get("role");

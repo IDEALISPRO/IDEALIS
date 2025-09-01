@@ -12,7 +12,6 @@ export const NavigateMobile = () => {
   useEffect(() => {
     dispatch(getCategory());
   }, [dispatch]);
-  // console.log(links);
 
   return (
     <section className="navigateMobile">

@@ -95,7 +95,6 @@ export const CreateManager = () => {
     formData.append("password", data.password);
     formData.append("password2", data.confirmPassword);
 
-    console.log("FormData ready for submission:", formData);
 
     reset();
     setPreview(null);

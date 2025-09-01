@@ -23,7 +23,6 @@ export const SearchReq = ({ list: data }) => {
   };
 
   const { pathname } = useLocation();
-  // console.log(pathname);
 
   return (
     <div className="search-req">

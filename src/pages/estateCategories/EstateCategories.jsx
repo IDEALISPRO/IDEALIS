@@ -8,7 +8,6 @@ import { useEffect } from "react";
 
 export const EstateCategories = () => {
   const location = useLocation();
-  console.log(location);
   const dispatch = useDispatch();
   const { objects } = useObjects();
 
@@ -19,7 +18,6 @@ export const EstateCategories = () => {
     land: "Участки",
     business: "Под бизнес",
   };
-  console.log(location.state.title);
 
   useEffect(() => {
     dispatch(objectsGet({ category: location.state.title }));

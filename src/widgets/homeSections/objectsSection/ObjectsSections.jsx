@@ -18,7 +18,6 @@ export const ObjectsSections = () => {
   useEffect(() => {
     dispatch(objectsGet());
   }, [dispatch]);
-  console.log(data);
 
   useEffect(() => {
     if (objects?.length) {

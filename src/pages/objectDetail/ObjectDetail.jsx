@@ -17,7 +17,6 @@ export const ObjectDetail = () => {
   const location = useLocation();
   const { detail, loading, error } = useDetail();
   const [open, setOpen] = useState(false);
-  console.log(detail);
 
   useEffect(() => {
     if (id) {

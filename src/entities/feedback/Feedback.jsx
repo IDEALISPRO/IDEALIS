@@ -28,7 +28,6 @@ const registrationSchema = yup.object().shape({
 
 export const Feedback = ({ id, stats }) => {
   const dispatch = useDispatch();
-  console.log(id, stats);
 
   const {
     register,

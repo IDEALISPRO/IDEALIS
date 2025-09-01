@@ -13,7 +13,6 @@ import { useLocation } from "react-router-dom";
 export const Acardion = ({ data }) => {
   const [expanded, setExpanded] = useState(null);
   const { pathname } = useLocation();
-  console.log(data);
 
   const handleChange = (panelId) => (event, isExpanded) => {
     setExpanded(isExpanded ? panelId : null);
@@ -63,9 +62,8 @@ export const Acardion = ({ data }) => {
                 color: expanded === item.id ? "#000" : "#00000099",
               }}
               className="accordion-summary-content-item"
-            >
-              {item.description}
-            </Typography>
+              dangerouslySetInnerHTML={{ __html: item.description }}
+            ></Typography>
           </AccordionSummary>
 
           <AccordionDetails
@@ -95,7 +93,7 @@ export const Acardion = ({ data }) => {
                   }}
                   className="accordion-details-description"
                   dangerouslySetInnerHTML={{
-                    __html: item.detail_description,
+                    __html: item.description,
                   }}
                 ></Typography>
               </Box>

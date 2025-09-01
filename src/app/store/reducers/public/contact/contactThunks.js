@@ -13,3 +13,16 @@ export const contactGet = createAsyncThunk(
     }
   }
 );
+
+export const contactBannerGet = createAsyncThunk(
+  "contactBanner/get",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axiosApi.get(`/pages/contacts/`);
+      return data;
+    } catch (e) {
+      console.log(e);
+      return rejectWithValue(e.response?.data || e.message);
+    }
+  }
+);

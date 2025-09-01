@@ -1,18 +1,13 @@
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import "./adFreeCard.scss";
-
-import img1 from "../../shared/house1.svg";
-import img2 from "../../shared/card2.svg";
-import img3 from "../../shared/card3.svg";
-import img4 from "../../shared/card4.svg";
 import location from "../../shared/location.svg";
 import { Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 
 export const AdFreeCard = ({ item }) => {
-
+  
   return (
     <div className="card">
       <div className="card-block1 block1">
@@ -43,7 +38,7 @@ export const AdFreeCard = ({ item }) => {
               gap: "12px",
             }}
           >
-            {item?.images
+            {item?.images.slice(0, 5)
               ?.filter((_, indx) => indx != 0)
               .map((item, i) => (
                 <ImageListItem

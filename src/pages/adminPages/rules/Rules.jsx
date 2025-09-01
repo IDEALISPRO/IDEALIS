@@ -7,7 +7,6 @@ import { useRules } from "../../../app/store/reducers/admin/rules/rulesSlice";
 export const Rules = () => {
   const dispatch = useDispatch();
   const { rules } = useRules();
-  console.log(rules);
 
   useEffect(() => {
     dispatch(rulesGet());

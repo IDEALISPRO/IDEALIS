@@ -34,7 +34,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../shared/SiteTheme/SiteTheme";
 import { Messenger } from "../../features";
 import { CreateObjectPublic } from "../../entities";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const routesArr = [
@@ -88,6 +89,7 @@ function App() {
           <Route path="/admin" element={<Login />} />
         </Routes>
         <Messenger />
+        <ToastContainer position="top-right" autoClose={3000} />
         <Footer />
       </BrowserRouter>
     </ThemeProvider>
