@@ -74,7 +74,7 @@ export const FormFields = ({ formData, handleChange }) => {
 
         <TextField
           select
-          label="Район"
+          label="Город"
           value={formData.District || ""}
           onChange={(e) => handleChange("District", e.target.value)}
           sx={{ width: { xs: "100%", sm: "48%" } }}

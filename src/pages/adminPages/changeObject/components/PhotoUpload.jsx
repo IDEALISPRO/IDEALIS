@@ -21,8 +21,8 @@ export const PhotoUpload = ({ value = [], onChange }) => {
     }
 
     const initialPreviews = value.map((photo) => {
-      if (typeof photo === "string") return photo; 
-      if (photo.url) return photo.url; 
+      if (typeof photo === "string") return photo; // base64
+      if (photo.url) return photo.url; // объект {url}
       return "";
     });
 
@@ -33,9 +33,7 @@ export const PhotoUpload = ({ value = [], onChange }) => {
     const files = e.target.files ? Array.from(e.target.files) : [];
     if (files.length === 0) return;
 
-    const base64Files = await Promise.all(
-      files.map((file) => fileToBase64(file))
-    );
+    const base64Files = await Promise.all(files.map(fileToBase64));
     const updatedValue = [...value, ...base64Files];
 
     if (updatedValue.length > 15) {
@@ -85,44 +83,93 @@ export const PhotoUpload = ({ value = [], onChange }) => {
           mt: 2,
         }}
       >
-        {preview.length > 0 && (
-          <Box
-            sx={{
-              p: 0,
-              bgcolor: "#F1F1F9",
-              width: { sm: "100%", md: "30%" },
-              borderRadius: 2,
-              overflow: "hidden",
-              position: "relative",
-              minHeight: "300px",
-            }}
-          >
-            <Box
-              component="img"
-              src={preview[0]}
-              alt="preview"
+        {/* Большая первая фотография */}
+        <Box
+          sx={{
+            p: 0,
+            bgcolor: "#F1F1F9",
+            width: { sm: "100%", md: "30%" },
+            borderRadius: 2,
+            overflow: "hidden",
+            position: "relative",
+            minHeight: "300px",
+          }}
+        >
+          {preview[0] ? (
+            <>
+              <Box
+                component="img"
+                src={preview[0]}
+                alt="preview"
+                sx={{
+                  width: "100%",
+                  height: {
+                    xs: "300px",
+                    sm: "500px",
+                    md: "300px",
+                    lg: "400px",
+                  },
+                  objectFit: "cover",
+                }}
+              />
+              <IconButton
+                onClick={() => handleRemovePhoto(0)}
+                sx={{
+                  position: "absolute",
+                  top: 8,
+                  right: 8,
+                  bgcolor: "rgba(255,255,255,0.7)",
+                  "&:hover": { bgcolor: "rgba(255,255,255,0.9)" },
+                  zIndex: 2,
+                }}
+              >
+                <CancelIcon color="error" />
+              </IconButton>
+            </>
+          ) : (
+            <Button
+              variant="contained"
+              component="label"
               sx={{
                 width: "100%",
-                height: { xs: "300px", sm: "500px", md: "300px", lg: "400px" },
-                objectFit: "cover",
-              }}
-            />
-            <IconButton
-              onClick={() => handleRemovePhoto(0)}
-              sx={{
-                position: "absolute",
-                top: 8,
-                right: 8,
-                bgcolor: "rgba(255,255,255,0.7)",
-                "&:hover": { bgcolor: "rgba(255,255,255,0.9)" },
-                zIndex: 2,
+                height: { xs: "300px", sm: "500px", md: "300px", lg: "300px" },
+                bgcolor: "#F1F1F9",
+                borderRadius: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                "&:hover": { bgcolor: "#e0e0e0" },
               }}
             >
-              <CancelIcon color="error" />
-            </IconButton>
-          </Box>
-        )}
+              <AddAPhotoIcon
+                sx={{
+                  mb: 1,
+                  fontSize: { xs: "48px", md: "64px" },
+                  color: "#00000099",
+                }}
+              />
+              <Typography
+                sx={{
+                  fontSize: { xs: "14px", md: "16px" },
+                  fontWeight: 600,
+                  color: "#000000",
+                }}
+              >
+                Добавить фото
+              </Typography>
+              <input
+                type="file"
+                hidden
+                multiple
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+            </Button>
+          )}
+        </Box>
 
+        {/* Мини-фотографии и кнопка */}
         <Box
           sx={{
             width: { sm: "100%", md: preview.length > 0 ? "65%" : "100%" },
@@ -163,34 +210,35 @@ export const PhotoUpload = ({ value = [], onChange }) => {
             </Box>
           ))}
 
-          {preview.length < 15 && (
+          {preview.length > 1 && (
             <Button
               variant="contained"
               component="label"
               sx={{
-                p: 0,
+                p: "20px",
                 bgcolor: "#F1F1F9",
                 borderRadius: 2,
-                minHeight: "150px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                height: { sm: "150px" },
                 "&:hover": { bgcolor: "#e0e0e0" },
               }}
             >
               <AddAPhotoIcon
                 sx={{
                   mb: 1,
-                  fontSize: { xs: "48px", md: "64px" },
+                  fontSize: { xs: "24px", sm: "32px" },
                   color: "#00000099",
                 }}
               />
               <Typography
                 sx={{
-                  fontSize: { xs: "14px", md: "16px" },
+                  fontSize: { xs: "12px", sm: "14px" },
                   fontWeight: 600,
                   color: "#000000",
+                  textAlign: "center",
                 }}
               >
                 Добавить фото

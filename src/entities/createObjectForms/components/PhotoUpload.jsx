@@ -23,7 +23,6 @@ export const PhotoUpload = ({ setValue, errors }) => {
     setPreview([...preview, ...newPreviews]);
     setPhotos(newPhotos);
 
-    // ✅ сохраняем как File[] в react-hook-form
     setValue("photos", newPhotos, { shouldValidate: true });
   };
 
@@ -155,7 +154,7 @@ export const PhotoUpload = ({ setValue, errors }) => {
           )}
         </Button>
 
-        {preview.length > 1 && (
+        {preview.length > 0 && (
           <Box
             sx={{
               width: { sm: "100%", md: "65%" },

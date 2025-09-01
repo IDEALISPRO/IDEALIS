@@ -1,6 +1,17 @@
 import { Box, Typography, TextField, MenuItem } from "@mui/material";
 import { characteristics } from "../fields";
 
+const objectStatusOptions = [
+  { value: "draft", label: "Черновик" },
+  { value: "no_ads", label: "Без рекламы" },
+  { value: "ad_requested", label: "Заявка на рекламу" },
+  { value: "pending", label: "Ожидает подтверждения" },
+  { value: "published", label: "Опубликовано" },
+  { value: "deleted", label: "Удалено" },
+  { value: "sold", label: "Продано" },
+  { value: "in_process", label: "В работе" },
+];
+
 export const Characteristics = ({ formData, handleChange }) => (
   <>
     <Typography
@@ -68,13 +79,14 @@ export const Characteristics = ({ formData, handleChange }) => (
       <TextField
         select
         label="Статус объекта"
+        name="status"
         value={formData.ObjectStatus || ""}
         onChange={(e) => handleChange("ObjectStatus", e.target.value)}
         sx={{ width: { xs: "100%", sm: "49%" } }}
       >
-        {["Сдан", "На стадии строительства"].map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
+        {objectStatusOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
           </MenuItem>
         ))}
       </TextField>

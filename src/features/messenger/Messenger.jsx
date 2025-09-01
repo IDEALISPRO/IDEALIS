@@ -2,12 +2,19 @@ import "./messenger.scss";
 import { FaWhatsapp } from "react-icons/fa";
 import { MdOutlineMessage } from "react-icons/md";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChatWidget } from "../../entities";
+import { useHeader } from "../../app/store/reducers/admin/header/headerSlice";
+import { useContact } from "../../app/store/reducers/public/contact/contactSlice";
+import { useDispatch } from "react-redux";
+import { contactGet } from "../../app/store/reducers/public/contact/contactThunks";
 
 export const Messenger = () => {
   const location = useLocation();
+  const { header } = useHeader();
+  const { contact } = useContact();
   const [isChatOpen, setIsChatOpen] = useState(false);
+  // const dispatch = useDispatch();
 
   if (
     location.pathname.startsWith("/admin") ||
@@ -16,11 +23,16 @@ export const Messenger = () => {
     return null;
 
   const openWhatsApp = () => {
-    const whatsappNumber = "996773446312";
-    const message = encodeURIComponent("Здравствуйте! Хотелось бы узнать...");
-    const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+    const url = header?.whatsup;
     window.open(url, "_blank");
   };
+
+  console.log(contact);
+
+  // useEffect(() => {
+  //   dispatch(contactGet());
+  // }, [dispatch]);
+  
 
   return (
     <div className="messenger">

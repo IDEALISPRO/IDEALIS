@@ -9,11 +9,12 @@ import { FormFields } from "./components/FormFields";
 import { Characteristics } from "./components/Characteristics";
 import { OwnerContacts } from "./components/OwnerContacts";
 import { SubmitButtons } from "./components/SubmitButtons";
-
+import Cookies from "js-cookie";
 import { createObjectThunk } from "../../app/store/reducers/admin/createObject/createObjectThunk";
 
 export const CreateObjectForm = () => {
   const dispatch = useDispatch();
+  const role = Cookies.get("role");
   const {
     control,
     handleSubmit,
@@ -54,7 +55,7 @@ export const CreateObjectForm = () => {
     const formData = new FormData();
 
     data.photos.forEach((file) => {
-      formData.append("images", file); 
+      formData.append("images", file);
     });
 
     formData.append("title", data.description);
@@ -92,7 +93,7 @@ export const CreateObjectForm = () => {
       <DescriptionField control={control} errors={errors} />
       <FormFields control={control} errors={errors} />
       <Characteristics control={control} errors={errors} />
-      <OwnerContacts control={control} errors={errors} />
+      {role === "admin" && <OwnerContacts control={control} errors={errors} />}
       <SubmitButtons />
     </Box>
   );

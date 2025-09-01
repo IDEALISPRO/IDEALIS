@@ -1,7 +1,19 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, MenuItem, TextField } from "@mui/material";
 import { SelectField } from "./SelectField";
 import { TextFieldController } from "./TextFieldController";
+import { Controller } from "react-hook-form";
 import { characteristics } from "../fields";
+
+const objectStatusOptions = [
+  { value: "draft", label: "Черновик" },
+  { value: "no_ads", label: "Без рекламы" },
+  { value: "ad_requested", label: "Заявка на рекламу" },
+  { value: "pending", label: "Ожидает подтверждения" },
+  { value: "published", label: "Опубликовано" },
+  { value: "deleted", label: "Удалено" },
+  { value: "sold", label: "Продано" },
+  { value: "in_process", label: "В работе" },
+];
 
 export const Characteristics = ({ control, errors }) => (
   <>
@@ -67,18 +79,27 @@ export const Characteristics = ({ control, errors }) => (
           },
         }}
       />
-      <SelectField
+
+      {/* Используем Controller вместо formData и handleChange */}
+      <Controller
         name="ObjectStatus"
         control={control}
-        label="Статус объекта"
-        options={["Сдан", "На стадии строительства"]}
-        error={errors.ObjectStatus}
-        sx={{
-          width: {
-            xs: "100%",
-            sm: "49%",
-          },
-        }}
+        render={({ field }) => (
+          <TextField
+            select
+            label="Статус объекта"
+            {...field}
+            error={!!errors.ObjectStatus}
+            helperText={errors.ObjectStatus?.message}
+            sx={{ width: { xs: "100%", sm: "49%" } }}
+          >
+            {objectStatusOptions.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        )}
       />
 
       <TextFieldController
