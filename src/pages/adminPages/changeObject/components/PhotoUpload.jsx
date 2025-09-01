@@ -21,8 +21,8 @@ export const PhotoUpload = ({ value = [], onChange }) => {
     }
 
     const initialPreviews = value.map((photo) => {
-      if (typeof photo === "string") return photo; 
-      if (photo.url) return photo.url; 
+      if (typeof photo === "string") return photo;
+      if (photo.url) return photo.url;
       return "";
     });
 

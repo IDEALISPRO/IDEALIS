@@ -21,7 +21,7 @@ export const NavigateCard = ({
   const handleClick = () => {
     setActiveSelect(id);
   };
-  // console.log(title);
+  // console.log(title.title);
 
   return (
     <div
@@ -33,7 +33,7 @@ export const NavigateCard = ({
         {isActive ? (
           <NavLink
             to={"/estate-categories"}
-            state={{ title: title?.title }}
+            state={{ title: title }}
             onClick={(e) => e.stopPropagation()}
           >
             <motion.div

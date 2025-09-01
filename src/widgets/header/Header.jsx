@@ -6,7 +6,7 @@ import ru from "../../shared/ru.svg";
 import kg from "../../shared/kg.svg";
 import en from "../../shared/en.svg";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { MiniMenu } from "../index";
 
 import { useDispatch } from "react-redux";
@@ -14,6 +14,7 @@ import { headerGet } from "../../app/store/reducers/admin/header/headerThunk";
 import { useHeader } from "../../app/store/reducers/admin/header/headerSlice";
 
 export const Header = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   if (
     location.pathname.startsWith("/admin") ||
@@ -186,6 +187,13 @@ export const Header = () => {
             </NavLink>
             <NavLink
               className="mobile-link"
+              to="/login"
+              onClick={() => setMenuOpen(false)}
+            >
+              Логин
+            </NavLink>
+            <NavLink
+              className="mobile-link"
               to="/favorites"
               onClick={() => setMenuOpen(false)}
             >
@@ -228,7 +236,13 @@ export const Header = () => {
           )}
         </div>
 
-        <button className="mobile-login" onClick={() => setMenuOpen(false)}>
+        <button
+          className="mobile-login"
+          onClick={() => {
+            setMenuOpen(false);
+            navigate("create-object-public");
+          }}
+        >
           Добавить объект
         </button>
       </div>

@@ -44,15 +44,27 @@ export const FormFields = ({ formData, handleChange }) => {
         <TextField
           select
           label="Агент"
-          value={formData.Agent || ""}
-          onChange={(e) => handleChange("Agent", e.target.value)}
+          value={formData.agent || ""}
+          onChange={(e) => handleChange("agent", e.target.value)}
           sx={{ width: { xs: "100%", sm: "48%" } }}
         >
           {list.map((item) => (
-            <MenuItem key={item.id} value={item.name}>
+            <MenuItem key={item.id} value={item.id}>
               {item.name}
             </MenuItem>
           ))}
+        </TextField>
+        <TextField
+          select
+          label="Агент"
+          value={formData.deal_type || ""}
+          onChange={(e) => handleChange("deal_type", e.target.value)}
+          sx={{ width: { xs: "100%", sm: "48%" } }}
+        >
+          {/* {list.map((item) => ( */}
+          <MenuItem value={"Продажа"}>Продажа</MenuItem>
+          <MenuItem value={"Аренда"}>Аренда</MenuItem>
+          {/* ))} */}
         </TextField>
 
         {selectFields.map((field) => (

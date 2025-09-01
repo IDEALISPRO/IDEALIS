@@ -8,7 +8,10 @@ import { FormFields } from "./components/FormFields";
 import { Characteristics } from "./components/Characteristics";
 import { OwnerContacts } from "./components/OwnerContacts";
 import { SubmitButtons } from "./components/SubmitButtons";
-import { objectIdThunk, objectPatch } from "../../../app/store/reducers/admin/changeAdminObject/changeAdminObjectThunks";
+import {
+  objectIdThunk,
+  objectPatch,
+} from "../../../app/store/reducers/admin/changeAdminObject/changeAdminObjectThunks";
 import { useDetailObject } from "../../../app/store/reducers/admin/changeAdminObject/changeAdminObjectSlice";
 
 export const ChangeAdminObject = () => {
@@ -96,12 +99,21 @@ export const ChangeAdminObject = () => {
 
   return (
     <Box className="container" component="form" onSubmit={onSubmit}>
-      <Typography variant="h2" sx={{ fontSize: "55px", fontWeight: 700, mt: "80px" }}>
+      <Typography
+        variant="h2"
+        sx={{ fontSize: "55px", fontWeight: 700, mt: "80px" }}
+      >
         Изменить объект
       </Typography>
 
-      <PhotoUpload value={formData.photos} onChange={(value) => handleChange("photos", value)} />
-      <DescriptionField value={formData.description} onChange={(value) => handleChange("description", value)} />
+      <PhotoUpload
+        value={formData.photos}
+        onChange={(value) => handleChange("photos", value)}
+      />
+      <DescriptionField
+        value={formData.description}
+        onChange={(value) => handleChange("description", value)}
+      />
       <FormFields formData={formData} handleChange={handleChange} />
       <Characteristics formData={formData} handleChange={handleChange} />
       <OwnerContacts formData={formData} handleChange={handleChange} />
