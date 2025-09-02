@@ -14,9 +14,6 @@ export const Favorites = () => {
 
   const [favorites, setFavorites] = useState([]);
 
-  console.log(favorites);
-  
-
   useEffect(() => {
     dispatch(bannerGet());
     dispatch(objectsGet());

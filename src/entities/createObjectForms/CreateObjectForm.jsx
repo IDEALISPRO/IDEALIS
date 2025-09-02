@@ -11,6 +11,7 @@ import { OwnerContacts } from "./components/OwnerContacts";
 import { SubmitButtons } from "./components/SubmitButtons";
 import Cookies from "js-cookie";
 import { createObjectThunk } from "../../app/store/reducers/admin/createObject/createObjectThunk";
+import LocationPicker from "./components/LocationPicker";
 
 export const CreateObjectForm = () => {
   const dispatch = useDispatch();
@@ -46,16 +47,23 @@ export const CreateObjectForm = () => {
       allPrice: "",
       price: "",
       city: "",
+      location: null,
     },
   });
 
   const onSubmit = async (data) => {
-
     const formData = new FormData();
 
     data.photos.forEach((file) => {
       formData.append("images", file);
     });
+    if (data.location) {
+      const mapData = {
+        lat: data.location.lat,
+        lng: data.location.lng,
+      };
+      formData.append("map_url", JSON.stringify(mapData));
+    }
 
     formData.append("title", data.description);
     formData.append("area_m2", Number(data.Square));
@@ -75,6 +83,7 @@ export const CreateObjectForm = () => {
     formData.append("house_series", data.HomeSeries);
     formData.append("repair_state", data.repairs);
     formData.append("typepayment", data.TypePayment);
+    console.log(formData);
 
     dispatch(createObjectThunk(formData));
   };
@@ -93,6 +102,10 @@ export const CreateObjectForm = () => {
       <FormFields control={control} errors={errors} />
       <Characteristics control={control} errors={errors} />
       {role === "admin" && <OwnerContacts control={control} errors={errors} />}
+      <LocationPicker
+        setValue={setValue}
+        value={control._formValues.location}
+      />
       <SubmitButtons />
     </Box>
   );

@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosApi } from "../../../../services/axiosApi";
-// import { axiosApi } from "../../../../services/AxiosPub";
+import { axiosApi } from "../../../../services/AxiosPub";
 
 export const getServicesBanner = createAsyncThunk(
   "services/getBanner",

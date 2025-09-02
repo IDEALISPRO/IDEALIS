@@ -1,13 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosProfile } from "../../../../services/axiosApi";
+import { axiosProfile } from "../../../../services/AxiosPub";
 
 export const publishedGet = createAsyncThunk(
   "admin/published",
   async (_, { rejectWithValue }) => {
     try {
-      // const { data } = await axiosProfile.get(`/users/listings/`, {
-      //   params: clientParams,
-      // });
       const { data } = await axiosProfile.get(`/users/listings/`);
       return data;
     } catch (e) {

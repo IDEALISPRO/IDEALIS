@@ -8,6 +8,7 @@ export const SearchReq = ({ list: data }) => {
   const itemsPerPage = 9;
   const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
+  
 
   useEffect(() => {
     const sorted = [...data].sort((a, b) => b.req - a.req);

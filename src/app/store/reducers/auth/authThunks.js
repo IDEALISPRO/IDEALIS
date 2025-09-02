@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { axiosProfile } from "../../../services/axiosApi";
 import { BASE_URL } from "../../../services/constants";
+import { axiosProfile } from "../../../services/AxiosPub";
 
 export const userLogin = createAsyncThunk(
   "auth/userLogin",
@@ -11,8 +11,6 @@ export const userLogin = createAsyncThunk(
         `${BASE_URL}/api/v1/users/login/`,
         credentials
       );
-      console.log(data);
-      
       return data;
     } catch (e) {
       console.log(e);

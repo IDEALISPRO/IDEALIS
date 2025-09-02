@@ -44,7 +44,7 @@ export const ObjectsCard = ({
       )}
 
       <div className="objCard__info">
-        <h3 className="objCard__info__title">{title}</h3>
+        <h3 className="objCard__info__title">{title.length > 30 ? `${title.slice(0, 25)}...` : title}</h3>
         <div className="objCard__info__location" onClick={goToDetail}>
           <img
             className="objCard__info__location__mark"

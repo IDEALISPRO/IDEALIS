@@ -21,8 +21,8 @@ export const PhotoUpload = ({ value = [], onChange }) => {
     }
 
     const initialPreviews = value.map((photo) => {
-      if (typeof photo === "string") return photo; // base64
-      if (photo.url) return photo.url; // объект {url}
+      if (typeof photo === "string") return photo;
+      if (photo.url) return photo.url;
       return "";
     });
 
@@ -69,7 +69,6 @@ export const PhotoUpload = ({ value = [], onChange }) => {
           component="span"
           sx={{ color: "#00000080", fontSize: { xs: "14px", md: "18px" } }}
         >
-          {" "}
           (от 3 до 15)
         </Typography>
       </Typography>
@@ -82,7 +81,6 @@ export const PhotoUpload = ({ value = [], onChange }) => {
           mt: 2,
         }}
       >
-        {/* Большая первая фотография */}
         <Box
           sx={{
             p: 0,
@@ -131,7 +129,7 @@ export const PhotoUpload = ({ value = [], onChange }) => {
               component="label"
               sx={{
                 width: "100%",
-                height: { xs: "300px", sm: "500px", md: "300px", lg: "300px" },
+                height: { xs: "300px", sm: "500px", md: "300px", lg: "330px" },
                 bgcolor: "#F1F1F9",
                 borderRadius: 2,
                 display: "flex",
@@ -168,7 +166,6 @@ export const PhotoUpload = ({ value = [], onChange }) => {
           )}
         </Box>
 
-        {/* Мини-фотографии и кнопка */}
         <Box
           sx={{
             width: { sm: "100%", md: preview.length > 0 ? "65%" : "100%" },

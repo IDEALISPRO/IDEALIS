@@ -19,7 +19,7 @@ export const HeaderAdmin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useAuth();
-  
+
   const [isEditing, setIsEditing] = useState(false);
   const role = Cookies.get("role");
   const [form, setForm] = useState({
@@ -41,7 +41,10 @@ export const HeaderAdmin = () => {
   }, [user]);
 
   useEffect(() => {
-    dispatch(getUser());
+    const token = Cookies.get("token");
+    if (token) {
+      dispatch(getUser());
+    }
   }, [dispatch]);
 
   useEffect(() => {

@@ -14,21 +14,7 @@ export const SubmitButtons = ({ onSubmit }) => (
       type="submit"
       variant="contained"
       sx={{
-        width: { xs: "100%", sm: "49%" },
-        backgroundColor: "transparent",
-        color: "#323232",
-        "&:hover": { backgroundColor: "#163659", color: "#fff" },
-        py: { xs: 1.5, sm: 2 },
-        fontSize: { xs: "14px", sm: "16px" },
-      }}
-    >
-      Сохранить как Без рекламы
-    </Button>
-    <Button
-      type="submit"
-      variant="contained"
-      sx={{
-        width: { xs: "100%", sm: "49%" },
+        width: { xs: "100%", sm: "100%" },
         backgroundColor: "transparent",
         color: "#323232",
         "&:hover": { backgroundColor: "#163659", color: "#fff" },

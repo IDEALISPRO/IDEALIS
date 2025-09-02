@@ -8,8 +8,9 @@ import {
 import { useDetail } from "../../app/store/reducers/admin/detailObject/detailObjectSlice";
 import { Feedback, ModalImg } from "../../entities";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import "./objectDetail.scss";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { ObjectMap } from "./component/ObjectMap";
+import "./objectDetail.scss";
 
 export const ObjectDetail = () => {
   const { id } = useParams();
@@ -17,8 +18,6 @@ export const ObjectDetail = () => {
   const location = useLocation();
   const { detail, loading, error } = useDetail();
   const [open, setOpen] = useState(false);
-
-  console.log(detail);
 
   useEffect(() => {
     if (id) {
@@ -40,6 +39,34 @@ export const ObjectDetail = () => {
   if (loading) return <p>Загрузка...</p>;
   if (error) return <p>Ошибка: {error}</p>;
   if (!detail) return <p>Нет данных</p>;
+
+  const parseCoordinates = (mapUrl) => {
+    if (!mapUrl) return null;
+
+    if (typeof mapUrl === "string") {
+      try {
+        return JSON.parse(mapUrl); 
+      } catch {
+        const [lat, lng] = mapUrl.split(",").map(Number);
+        return { lat, lng };
+      }
+    }
+
+    return mapUrl;
+  };
+
+  const isValidCoordinates = (mapUrl) => {
+    const coords = parseCoordinates(mapUrl);
+    return (
+      coords &&
+      typeof coords.lat === "number" &&
+      typeof coords.lng === "number" &&
+      coords.lat !== 1 &&
+      coords.lng !== 1
+    );
+  };
+
+  const getCoordinates = parseCoordinates;
 
   return (
     <div className="container object__detail">
@@ -92,7 +119,7 @@ export const ObjectDetail = () => {
           <div className="agent row">
             <div>
               {detail.manager?.avatar ? (
-                <img src={detail.manager?.avatar} alt="" />
+                <img src={detail.manager.avatar} alt="" />
               ) : (
                 <AccountCircleIcon fontSize="large" />
               )}
@@ -118,7 +145,7 @@ export const ObjectDetail = () => {
               <span>Площадь:</span> {detail.area_m2 || "—"} м²
             </p>
             <p>
-              <span>Этаж:</span> {detail.floor || "—"} из
+              <span>Этаж:</span> {detail.floor || "—"} из{" "}
               {detail.floors_total || "—"}
             </p>
             <p>
@@ -136,11 +163,15 @@ export const ObjectDetail = () => {
         </div>
       </section>
 
+      {isValidCoordinates(detail.map_url) && (
+        <ObjectMap mapUrl={getCoordinates(detail.map_url)} />
+      )}
+
       {!location.pathname.startsWith("/admin") && (
         <Feedback id={id} stats={detail.stats} />
       )}
 
-      <ModalImg isOpen={open} setOpen={setOpen} images={detail?.images || []} />
+      <ModalImg isOpen={open} setOpen={setOpen} images={detail.images || []} />
     </div>
   );
 };

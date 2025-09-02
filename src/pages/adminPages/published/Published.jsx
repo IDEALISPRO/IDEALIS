@@ -2,20 +2,20 @@ import { useEffect } from "react";
 import { usePublished } from "../../../app/store/reducers/admin/published/publishedSlice";
 import { ObjectsCard } from "../../../features";
 import "./published.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { publishedGet } from "../../../app/store/reducers/admin/published/publishedThunk";
+import Cookies from "js-cookie";
 
 export const Published = () => {
   const { list } = usePublished();
   const dispatch = useDispatch();
 
-  const access = useSelector((state) => state.auth.access);
-
   useEffect(() => {
-    if (access) {
+    const token = Cookies.get("token");
+    if (token) {
       dispatch(publishedGet());
     }
-  }, [access, dispatch]);
+  }, [dispatch]);
 
   return (
     <div className="container published">

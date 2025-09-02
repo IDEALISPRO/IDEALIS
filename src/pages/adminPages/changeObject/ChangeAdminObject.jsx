@@ -9,6 +9,7 @@ import { FormFields } from "./components/FormFields";
 import { Characteristics } from "./components/Characteristics";
 import { OwnerContacts } from "./components/OwnerContacts";
 import { SubmitButtons } from "./components/SubmitButtons";
+import LocationPicker from "./components/LocationPicker";
 import {
   objectIdThunk,
   objectPatch,
@@ -41,6 +42,7 @@ export const ChangeAdminObject = () => {
     repairs: "",
     ObjectStatus: "",
     TypePayment: "",
+    map_url: null,
   });
 
   useEffect(() => {
@@ -49,7 +51,8 @@ export const ChangeAdminObject = () => {
 
   useEffect(() => {
     if (detail) {
-      setFormData({
+      setFormData((prev) => ({
+        ...prev,
         photos: detail.images || [],
         description: detail.title || "",
         area_m2: detail.area_m2 || "",
@@ -67,7 +70,9 @@ export const ChangeAdminObject = () => {
         repairs: detail.repair_state || "",
         ObjectStatus: detail.status || "",
         TypePayment: detail.payment_type || "",
-      });
+        // если map_url есть, парсим его в объект
+        map_url: detail.map_url ? JSON.parse(detail.map_url) : null,
+      }));
     }
   }, [detail]);
 
@@ -78,11 +83,14 @@ export const ChangeAdminObject = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const imagesPayload = formData.photos.map((photo, index) => {
-      if (photo.id) return { id: photo.id, sort_order: index };
-      if (photo.url) return { url: photo.url, sort_order: index };
-      return { url: photo, sort_order: index };
-    });
+    const imagesPayload = formData.photos
+      .filter((photo) => !photo.id)
+      .map((photo, index) => {
+        if (typeof photo === "string") return { url: photo, sort_order: index };
+        if (photo.url) return { url: photo.url, sort_order: index };
+        return null;
+      })
+      .filter(Boolean);
 
     const payload = {
       title: formData.description,
@@ -96,14 +104,16 @@ export const ChangeAdminObject = () => {
       street: formData.IntersectionStreets,
       house: formData.realEstate,
       owner_phone: formData.number,
-      deal_type: formData.typepayment,
+      deal_type: formData.offers,
       rooms: Number(formData.NumberRooms),
       house_series: formData.HomeSeries,
       repair_state: formData.repairs,
       status: formData.ObjectStatus,
       payment_type: formData.TypePayment,
       images: imagesPayload,
+      map_url: formData.map_url,
     };
+
     try {
       await dispatch(objectPatch({ id, newItem: payload })).unwrap();
       toast.success("Объект успешно обновлен!");
@@ -133,6 +143,10 @@ export const ChangeAdminObject = () => {
       />
       <FormFields formData={formData} handleChange={handleChange} />
       <Characteristics formData={formData} handleChange={handleChange} />
+      <LocationPicker
+        value={formData.map_url}
+        onChange={(value) => handleChange("map_url", value)}
+      />
 
       {role === "admin" && (
         <OwnerContacts formData={formData} handleChange={handleChange} />

@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAgents } from "../../../../app/store/reducers/admin/agents/agentsSlice";
 import { getAgentsWithoutToken } from "../../../../app/store/reducers/admin/agents/agentsThunks";
-import { axiosApi } from "../../../../app/services/axiosApi";
 import { selectFields } from "../fields";
+import { axiosApi } from "../../../../app/services/AxiosPub";
 
 export const FormFields = ({ formData, handleChange }) => {
   const { list } = useAgents();
@@ -56,15 +56,13 @@ export const FormFields = ({ formData, handleChange }) => {
         </TextField>
         <TextField
           select
-          label="Агент"
+          label="Тип сделки"
           value={formData.deal_type || ""}
           onChange={(e) => handleChange("deal_type", e.target.value)}
           sx={{ width: { xs: "100%", sm: "48%" } }}
         >
-          {/* {list.map((item) => ( */}
           <MenuItem value={"Продажа"}>Продажа</MenuItem>
           <MenuItem value={"Аренда"}>Аренда</MenuItem>
-          {/* ))} */}
         </TextField>
 
         {selectFields.map((field) => (

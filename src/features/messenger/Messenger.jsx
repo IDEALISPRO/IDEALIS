@@ -14,7 +14,6 @@ export const Messenger = () => {
   const { header } = useHeader();
   const { contact } = useContact();
   const [isChatOpen, setIsChatOpen] = useState(false);
-  // const dispatch = useDispatch();
 
   if (
     location.pathname.startsWith("/admin") ||
@@ -26,12 +25,6 @@ export const Messenger = () => {
     const url = header?.whatsup;
     window.open(url, "_blank");
   };
-
-
-  // useEffect(() => {
-  //   dispatch(contactGet());
-  // }, [dispatch]);
-  
 
   return (
     <div className="messenger">
