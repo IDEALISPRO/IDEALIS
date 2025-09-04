@@ -9,6 +9,7 @@ import { schema } from "./validation";
 import { TextFieldController } from "./components/TextFieldController";
 import "./createObjectPublic.scss";
 import { createObjectPublicThunk } from "../../app/store/reducers/admin/createObject/createObjectPublicThunks";
+import LocationPicker from "./components/LocationPicker";
 
 export const CreateObjectPublic = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ export const CreateObjectPublic = () => {
       city: "",
       address: "",
       urgent: false,
+      location: null,
     },
   });
 
@@ -55,6 +57,13 @@ export const CreateObjectPublic = () => {
     data.photos.forEach((file) => {
       formData.append("images", file);
     });
+    if (data.location) {
+      const mapData = {
+        lat: data.location.lat,
+        lng: data.location.lng,
+      };
+      formData.append("map_url", JSON.stringify(mapData));
+    }
 
     formData.append("description", data.description);
     formData.append("area_m2", data.Square);
@@ -64,7 +73,6 @@ export const CreateObjectPublic = () => {
     formData.append("owner_phone", data.number);
     formData.append("urgent", data.urgent);
 
-    // диспатчим уже formData
     dispatch(createObjectPublicThunk(formData));
   };
 
@@ -77,9 +85,7 @@ export const CreateObjectPublic = () => {
       <Typography
         variant="h2"
         sx={{ fontSize: "55px", fontWeight: 700, mt: "80px" }}
-      >
-        Добавить объект
-      </Typography>
+      ></Typography>
 
       <PhotoUpload setValue={setValue} errors={errors} />
       <Typography
@@ -156,6 +162,10 @@ export const CreateObjectPublic = () => {
             }}
           />
         )}
+      />
+      <LocationPicker
+        setValue={setValue}
+        value={control._formValues.location}
       />
 
       <DescriptionField control={control} errors={errors} />

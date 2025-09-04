@@ -4,7 +4,7 @@ import "./estateCategories.scss";
 import { useDispatch } from "react-redux";
 import { useObjects } from "../../app/store/reducers/public/home/objectsSlice";
 import { objectsGet } from "../../app/store/reducers/public/home/objectsThunks";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 export const EstateCategories = () => {
   const location = useLocation();
@@ -21,7 +21,14 @@ export const EstateCategories = () => {
 
   useEffect(() => {
     dispatch(objectsGet({ category: location.state.title }));
-  }, [dispatch]);
+  }, [dispatch, location.state.title]);
+
+  // фильтрация только опубликованных объектов
+  const publishedObjects = useMemo(
+    () => (objects || []).filter((obj) => obj.status === "published"),
+    [objects]
+  );
+
   return (
     <div className="container estate__categories">
       <Banner
@@ -34,13 +41,13 @@ export const EstateCategories = () => {
       />
       <div className="row objects">
         <p>Все</p>
-        <p>{objects?.length} объектов</p>
+        <p>{publishedObjects?.length} объектов</p>
       </div>
       <section className="estate__cards">
-        {objects.map((item) => (
+        {publishedObjects.map((item) => (
           <ObjectsCard
             key={item.id}
-            img={item?.images}
+            img={item?.images[0]}
             title={item.title}
             location={`г. ${item.city}, мкр. ${item.district}, ул. ${item.street}, 
             ${item.house}`}

@@ -1,19 +1,17 @@
 import "./messenger.scss";
-import { FaWhatsapp } from "react-icons/fa";
-import { MdOutlineMessage } from "react-icons/md";
+import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
+import { BsFillFileTextFill } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { ChatWidget } from "../../entities";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useHeader } from "../../app/store/reducers/admin/header/headerSlice";
-import { useContact } from "../../app/store/reducers/public/contact/contactSlice";
-import { useDispatch } from "react-redux";
-import { contactGet } from "../../app/store/reducers/public/contact/contactThunks";
 
 export const Messenger = () => {
   const location = useLocation();
+  const [open, setOpen] = useState(false);
   const { header } = useHeader();
-  const { contact } = useContact();
-  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  console.log(header);
 
   if (
     location.pathname.startsWith("/admin") ||
@@ -21,37 +19,51 @@ export const Messenger = () => {
   )
     return null;
 
-  const openWhatsApp = () => {
-    const url = header?.whatsup;
-    window.open(url, "_blank");
-  };
-
   return (
     <div className="messenger">
       <div className="iconsContainer">
         <button
-          className="iconsContainer-btn messaging"
-          onClick={() => setIsChatOpen((prev) => !prev)}
+          onClick={() => setOpen(!open)}
+          className="iconsContainer-btn open"
         >
-          <MdOutlineMessage className="iconsContainer-btn-icon" />
+          <BsFillFileTextFill className="iconsContainer-btn-icon" />
         </button>
 
-        <button className="iconsContainer-btn whatsApp" onClick={openWhatsApp}>
-          <FaWhatsapp className="iconsContainer-btn-icon" />
-        </button>
+        <AnimatePresence>
+          {open && (
+            <>
+              <a href={header.telegram} target="_blank">
+                <motion.button
+                  className="iconsContainer-btn telegram"
+                  initial={{ opacity: 0, y: 0 }}
+                  animate={{ opacity: 1, y: -80 }}
+                  exit={{ opacity: 0, y: 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <FaTelegramPlane className="iconsContainer-btn-icon" />
+                </motion.button>
+              </a>
+
+              <a href={header.whatsup} target="_blank">
+                <motion.button
+                  className="iconsContainer-btn whatsApp"
+                  initial={{ opacity: 0, y: 0 }}
+                  animate={{ opacity: 1, y: -160 }}
+                  exit={{ opacity: 0, y: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 20,
+                    delay: 0.05,
+                  }}
+                >
+                  <FaWhatsapp className="iconsContainer-btn-icon" />
+                </motion.button>
+              </a>
+            </>
+          )}
+        </AnimatePresence>
       </div>
-
-      {isChatOpen && (
-        <div className="chat-popup">
-          <div className="chat-header">
-            <span>Онлайн-помощник</span>
-            <button className="close-btn" onClick={() => setIsChatOpen(false)}>
-              ✖
-            </button>
-          </div>
-          <ChatWidget />
-        </div>
-      )}
     </div>
   );
 };

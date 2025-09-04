@@ -70,7 +70,6 @@ export const ChangeAdminObject = () => {
         repairs: detail.repair_state || "",
         ObjectStatus: detail.status || "",
         TypePayment: detail.payment_type || "",
-        // если map_url есть, парсим его в объект
         map_url: detail.map_url ? JSON.parse(detail.map_url) : null,
       }));
     }

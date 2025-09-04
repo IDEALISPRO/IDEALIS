@@ -23,11 +23,18 @@ export const ObjectsSections = () => {
 
   useEffect(() => {
     const baseObjects = searchResults?.length ? searchResults : objects;
+
+    // фильтрация только опубликованных объектов
+    const publishedObjects = (baseObjects || []).filter(
+      (obj) => obj.status === "published"
+    );
+
     const likedIds = JSON.parse(localStorage.getItem("likedIds")) || [];
-    const withLiked = (baseObjects || []).map((obj) => ({
+    const withLiked = publishedObjects.map((obj) => ({
       ...obj,
       liked: likedIds.includes(obj.id),
     }));
+
     setData(withLiked);
   }, [objects, searchResults]);
 
@@ -70,8 +77,8 @@ export const ObjectsSections = () => {
         <div className="objects__info">
           <p className="objects__info__res">Результаты</p>
           <p className="objects__info__count">
-            {data?.length && data?.length >= 9 ? `10` : ""} из
-            {data?.length} найденных объектов
+            {data?.length && data?.length >= 9 ? `10` : ""} из {data?.length}{" "}
+            найденных объектов
           </p>
           <p className="objects__info__mobile">
             {data[9]?.id} найденных объектов

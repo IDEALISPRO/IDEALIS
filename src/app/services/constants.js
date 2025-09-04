@@ -1,1 +1,3 @@
-export const BASE_URL = "https://idealis.webtm.ru";
+const baseUrl = "https://idealis.webtm.ru";
+
+export const BASE_URL = baseUrl;
